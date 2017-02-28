@@ -2,3 +2,588 @@ h1{
     color: dodgerblue;
     font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
 }
+
+body {
+    background-color: #f2f2f2;
+}
+
+.My {
+  position: absolute;
+  left: 333.1px;
+  top: 29.5px; /*bus 29px, kad nebus izvelets*/
+  width: 113px;
+	height: 17px;
+	font-family: Oxygen;
+	font-size: 14px;
+	font-weight: bold; /* seit mainisies, jo tas ir tikai tad,
+  ja lietotajs so ir izvelejies
+	color: #000000; */
+} /* Tiek novietots 'Mans Darba Laiks'*/
+
+.All {
+  position: absolute;
+  left: 530px;
+  top: 29px;
+  width: 22px;
+	height: 17px;
+	font-family: Oxygen;
+	font-size: 14px;
+	color: #9d9d9d;
+}
+
+.Saved {
+  position: absolute;
+  left: 635px;
+  top: 29px;
+  width: 68px;
+	height: 17px;
+	font-family: Oxygen;
+	font-size: 14px;
+	text-align: left;
+	color: #9d9d9d;
+}
+
+.Line {
+  position: absolute;
+  left: 322.4px;
+  top: 54.9px;
+  width: 127.9px;
+	height: 1px;
+	border: solid 2.7px #29abe2;
+} /*Linija zem izveleta lauka*/
+
+.Month {
+  position: absolute;
+  left: 99px;
+  top: 115.9px;
+  width: 87px;
+	height: 21px;
+	font-family: Oxygen;
+	font-size: 16.3px;
+	font-weight: bold;
+	color: #259adb;
+}
+
+.Monday{
+  position: absolute;
+  left: 99px;
+  top: 154px;
+  width: 55px;
+	height: 15px;
+	font-family: Oxygen;
+	font-size: 12px;
+	color: #3b3b3b;
+}
+
+.Tuesday{
+  position: absolute;
+  left: 253.5px;
+  top: 154.5px;
+  width: 51px;
+  height: 15px;
+  font-family: Oxygen;
+  font-size: 12px;
+  font-weight: bold;
+  color: #259adb; /*konkrētā diena - pagaidām*/
+}
+
+.Wednesday{
+  position: absolute;
+  left: 403.5px;
+  top: 154.5px;
+  width: 53px;
+	height: 15px;
+	font-family: Oxygen;
+	font-size: 12px;
+	color: #3b3b3b;
+}
+
+.Thursday{
+  position: absolute;
+  left: 553.5px;
+  top: 154.5px;
+  width: 64px;
+	height: 15px;
+	font-family: Oxygen;
+	font-size: 12px;
+	color: #3b3b3b;
+}
+
+.Friday{
+  position: absolute;
+  left: 703.5px;
+  top: 154.5px;
+  width: 57px;
+	height: 15px;
+	font-family: Oxygen;
+	font-size: 12px;
+	color: #3b3b3b;
+}
+
+.Saturday{
+  position: absolute;
+  left: 853.5px;
+  top: 154.5px;
+  width: 54px;
+  height: 15px;
+  font-family: Oxygen;
+  font-size: 12px;
+  color: #3b3b3b;
+}
+
+.Sunday{
+  position: absolute;
+  left: 855.5px;
+  top: 296.7px;
+  width: 54px;
+	height: 15px;
+	font-family: Oxygen;
+	font-size: 12px;
+	color: #3b3b3b;
+}
+
+.MondayDate {
+  position: absolute;
+  left: 211.1px;
+  top: 154.5px;
+	width: 34px;
+	height: 15px;
+	font-family: Oxygen;
+	font-size: 12px;
+	color: #c1c1c1;
+}
+
+.TuesdayDate {
+  position: absolute;
+  left: 365px;
+  top: 154.5px;
+  width: 30px;
+	height: 15px;
+	font-family: Oxygen;
+	font-size: 12px;
+	font-weight: bold;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: normal;
+	letter-spacing: normal;
+	color: #262626;
+}
+
+.WednesdayDate {
+  position: absolute;
+  left: 511.9px;
+  top: 154.5px;
+  width: 33px;
+	height: 15px;
+	font-family: Oxygen;
+	font-size: 12px;
+	color: #c1c1c1;
+}
+
+.ThursdayDate {
+  position: absolute;
+  left: 661.9px;
+  top: 154.5px;
+  width: 33px;
+	height: 15px;
+	font-family: Oxygen;
+	font-size: 12px;
+	color: #c1c1c1;
+}
+
+.FridayDate {
+  position: absolute;
+  left: 814.2px;
+  top: 154.5px;
+  width: 31px;
+	height: 15px;
+	font-family: Oxygen;
+	font-size: 12px;
+	color: #c1c1c1;
+}
+
+.SaturdayDate {
+  position: absolute;
+  left: 961.5px;
+  top: 154.5px;
+  width: 34px;
+	height: 15px;
+	font-family: Oxygen;
+	font-size: 12px;
+	color: #c1c1c1;
+}
+
+.SundayDate {
+  position: absolute;
+  left: 961.4px;
+  top: 296.7px;
+  width: 34px;
+  height: 15px;
+  font-family: Oxygen;
+  font-size: 12px;
+  color: #c1c1c1;
+}
+
+.Table div {
+  width: 145px;
+	height: 22.7px;
+}
+
+.box1 {
+  background-color: #ffffff;
+  width: 74px;
+	height: 15px;
+	font-family: Oxygen;
+	font-size: 12px;
+	color: #e0e0e0;
+  text-align: center;
+}
+
+#M8-9 {
+  position: absolute;
+  left: 99px;
+  top: 177.7px;
+}
+
+#Tu8-9 {
+  position: absolute;
+  left: 249.4px;
+  top: 177.7px;
+}
+
+#We8-9 {
+  position: absolute;
+  left: 399.8px;
+  top: 177.7px;
+}
+
+#Th8-9 {
+  position: absolute;
+  left: 550.2px;
+  top: 177.7px;
+}
+
+#F8-9 {
+  position: absolute;
+  left: 700.7px;
+  top: 177.7px;
+}
+
+#M18-19 {
+  position: absolute;
+  left: 99px;
+  top: 404.7px;
+}
+
+#Tu18-19 {
+  position: absolute;
+  left: 249.4px;
+  top: 404.7px;
+}
+#We18-19 {
+  position: absolute;
+  left: 399.8px;
+  top: 404.7px;
+}
+#Th18-19 {
+  position: absolute;
+  left: 550.2px;
+  top: 404.7px;
+}
+#F18-19 {
+  position: absolute;
+  left: 700.7px;
+  top: 404.7px;
+}
+
+.box2{
+  width: 145px;
+  height: 22.7px;
+  background-color: #e2edf8;
+	font-family: Oxygen;
+	font-size: 12px;
+	color: #a8b6c3;
+  text-align: center;
+}
+
+#M9-10 {
+  position: absolute;
+  left: 99px;
+  top: 200.4px;
+}
+
+#Tu9-10 {
+  position: absolute;
+  left: 249.4px;
+  top: 200.4px;
+}
+
+#We9-10 {
+  position: absolute;
+  left: 399.8px;
+  top: 200.4px;
+}
+
+#Th9-10 {
+  position: absolute;
+  left: 550.2px;
+  top: 200.4px;
+}
+
+#F9-10 {
+  position: absolute;
+  left: 700.7px;
+  top: 200.4px;
+}
+
+#M10-11 {
+  position: absolute;
+  left: 99px;
+  top: 223.1px;
+}
+
+#Tu10-11 {
+  position: absolute;
+  left: 249.4px;
+  top: 223.1px;
+}
+
+#We10-11 {
+  position: absolute;
+  left: 399.8px;
+  top: 223.1px;
+}
+
+#Th10-11 {
+  position: absolute;
+  left: 550.2px;
+  top: 223.1px;
+}
+
+#F10-11 {
+  position: absolute;
+  left: 700.7px;
+  top: 223.1px;
+}
+
+#M11-12 {
+  position: absolute;
+  left: 99px;
+  top: 245.8px;
+}
+
+#Tu11-12 {
+  position: absolute;
+  left: 249.4px;
+  top: 245.8px;
+}
+
+#We11-12 {
+  position: absolute;
+  left: 399.8px;
+  top: 245.8px;
+}
+
+#Th11-12 {
+  position: absolute;
+  left: 550.2px;
+  top: 245.8px;
+}
+
+#F11-12 {
+  position: absolute;
+  left: 700.7px;
+  top: 245.8px;
+}
+
+#M12-13 {
+  position: absolute;
+  left: 99px;
+  top: 268.5px;
+}
+
+#Tu12-13 {
+  position: absolute;
+  left: 249.4px;
+  top: 268.5px;
+}
+
+#We12-13 {
+  position: absolute;
+  left: 399.8px;
+  top: 268.5px;
+}
+
+#Th12-13 {
+  position: absolute;
+  left: 550.2px;
+  top: 268.5px;
+}
+
+#F12-13 {
+  position: absolute;
+  left: 700.7px;
+  top: 268.5px;
+}
+
+#M13-14 {
+  position: absolute;
+  left: 99px;
+  top: 291.2px;
+}
+
+#Tu13-14 {
+  position: absolute;
+  left: 249.4px;
+  top: 291.2px;
+}
+
+#We13-14 {
+  position: absolute;
+  left: 399.8px;
+  top: 291.2px;
+}
+
+#Th13-14 {
+  position: absolute;
+  left: 550.2px;
+  top: 291.2px;
+}
+
+#F13-14 {
+  position: absolute;
+  left: 700.7px;
+  top: 291.2px;
+}
+
+#M14-15 {
+  position: absolute;
+  left: 99px;
+  top: 313.9px;
+}
+
+#Tu14-15 {
+  position: absolute;
+  left: 249.4px;
+  top: 313.9px;
+}
+
+#We14-15 {
+  position: absolute;
+  left: 399.8px;
+  top: 313.9px;
+}
+
+#Th14-15 {
+  position: absolute;
+  left: 550.2px;
+  top: 313.9px;
+}
+
+#F14-15 {
+  position: absolute;
+  left: 700.7px;
+  top: 313.9px;
+}
+
+#M15-16 {
+  position: absolute;
+  left: 99px;
+  top: 336.6px;
+}
+
+#Tu15-16 {
+  position: absolute;
+  left: 249.4px;
+  top: 336.6px;
+}
+
+#We15-16 {
+  position: absolute;
+  left: 399.8px;
+  top: 336.6px;
+}
+
+#Th15-16 {
+  position: absolute;
+  left: 550.2px;
+  top: 336.6px;
+}
+
+#F15-16 {
+  position: absolute;
+  left: 700.7px;
+  top: 336.6px;
+}
+
+#M16-17 {
+  position: absolute;
+  left: 99px;
+  top: 359.3px;
+}
+
+#Tu16-17 {
+  position: absolute;
+  left: 249.4px;
+  top: 359.3px;
+}
+
+#We16-17 {
+  position: absolute;
+  left: 399.8px;
+  top: 359.3px;
+}
+
+#Th16-17 {
+  position: absolute;
+  left: 550.2px;
+  top: 359.3px;
+}
+
+#F16-17 {
+  position: absolute;
+  left: 700.7px;
+  top: 359.3px;
+}
+
+#M17-18 {
+  position: absolute;
+  left: 99px;
+  top: 382px;
+}
+
+#Tu17-18 {
+  position: absolute;
+  left: 249.4px;
+  top: 382px;
+}
+
+#We17-18 {
+  position: absolute;
+  left: 399.8px;
+  top: 382px;
+}
+
+#Th17-18 {
+  position: absolute;
+  left: 550.2px;
+  top: 382px;
+}
+
+#F17-18 {
+  position: absolute;
+  left: 700.7px;
+  top: 382px;
+}
+
+/*.box3{
+  width: 145px;
+  height: 109.6px;
+  background-color: #ffffff;
+  text-align: center;
+	font-family: Oxygen;
+	font-size: 12px;
+	color: #e0e0e0;
+}
+PRIEKS BRIVDIENAM
+*/
