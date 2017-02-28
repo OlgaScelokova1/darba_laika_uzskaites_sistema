@@ -12,7 +12,7 @@ class Darba_laiks(models.Model):
     ir_mainits = models.BooleanField(default=False)
 
     def __str__(self):
-        return str(self.datums)+'  '+ str(self.no)+'  '+ str(self.lidz)
+        return str(self.datums)+'  '+ str(self.no)+' - '+ str(self.lidz)
 
 class Iemesls(models.Model):
     lietotajs = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -25,7 +25,18 @@ class Iemesls(models.Model):
     cits= models.BooleanField(default=False)
 
     def __str__(self):
-        return str(self.darba_laiks)
+        if (self.slimiba):
+            return 'Slimiba ' + str(self.darba_laiks)
+        elif (self.atvalinajums):
+            return 'Atvalinajums ' + str(self.darba_laiks)
+        elif (self.lekcijas):
+            return 'Lekcijas ' + str(self.darba_laiks)
+        elif (self.darbs_no_majam):
+            return 'Darbs no majam ' + str(self.darba_laiks)
+        elif (self.mazaka_slodze):
+            return 'Mazaka slodze ' + str(self.darba_laiks)
+        else:
+            return 'Cits ' + str(self.darba_laiks)
 
 class Atstrada(models.Model):
     lietotajs = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -36,4 +47,4 @@ class Atstrada(models.Model):
     datums = models.DateField()
 
     def __str__(self):
-        return str(self.darba_laiks)
+        return str(self.datums)+'  '+ str(self.no)+' - '+ str(self.lidz)
