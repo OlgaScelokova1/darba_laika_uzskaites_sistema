@@ -1,19 +1,29 @@
 h1{
     color: dodgerblue;
-    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", "Oxygen", Verdana, Arial, sans-serif;
 }
 
 body {
     background-color: #f2f2f2;
+    font-family: 'Oxygen';
 }
+
+
+#LogOut{
+  position: absolute;
+  left: 920px;
+  top: 29px;
+  font-size: 12px;
+  color: #9d9d9d;
+}
+
 
 .My {
   position: absolute;
   left: 333.1px;
   top: 29.5px; /*bus 29px, kad nebus izvelets*/
-  width: 113px;
+  width: 130px;
 	height: 17px;
-	font-family: Oxygen;
 	font-size: 14px;
 	font-weight: bold; /* seit mainisies, jo tas ir tikai tad,
   ja lietotajs so ir izvelejies
@@ -26,7 +36,6 @@ body {
   top: 29px;
   width: 22px;
 	height: 17px;
-	font-family: Oxygen;
 	font-size: 14px;
 	color: #9d9d9d;
 }
@@ -37,7 +46,6 @@ body {
   top: 29px;
   width: 68px;
 	height: 17px;
-	font-family: Oxygen;
 	font-size: 14px;
 	text-align: left;
 	color: #9d9d9d;
@@ -58,7 +66,6 @@ body {
   top: 115.9px;
   width: 87px;
 	height: 21px;
-	font-family: Oxygen;
 	font-size: 16.3px;
 	font-weight: bold;
 	color: #259adb;
@@ -70,7 +77,6 @@ body {
   top: 154px;
   width: 55px;
 	height: 15px;
-	font-family: Oxygen;
 	font-size: 12px;
 	color: #3b3b3b;
 }
@@ -81,7 +87,6 @@ body {
   top: 154.5px;
   width: 51px;
   height: 15px;
-  font-family: Oxygen;
   font-size: 12px;
   font-weight: bold;
   color: #259adb; /*konkrētā diena - pagaidām*/
@@ -93,7 +98,6 @@ body {
   top: 154.5px;
   width: 53px;
 	height: 15px;
-	font-family: Oxygen;
 	font-size: 12px;
 	color: #3b3b3b;
 }
@@ -104,7 +108,6 @@ body {
   top: 154.5px;
   width: 64px;
 	height: 15px;
-	font-family: Oxygen;
 	font-size: 12px;
 	color: #3b3b3b;
 }
@@ -115,7 +118,6 @@ body {
   top: 154.5px;
   width: 57px;
 	height: 15px;
-	font-family: Oxygen;
 	font-size: 12px;
 	color: #3b3b3b;
 }
@@ -126,7 +128,7 @@ body {
   top: 154.5px;
   width: 54px;
   height: 15px;
-  font-family: Oxygen;
+
   font-size: 12px;
   color: #3b3b3b;
 }
@@ -137,7 +139,6 @@ body {
   top: 296.7px;
   width: 54px;
 	height: 15px;
-	font-family: Oxygen;
 	font-size: 12px;
 	color: #3b3b3b;
 }
@@ -148,7 +149,7 @@ body {
   top: 154.5px;
 	width: 34px;
 	height: 15px;
-	font-family: Oxygen;
+
 	font-size: 12px;
 	color: #c1c1c1;
 }
@@ -159,7 +160,7 @@ body {
   top: 154.5px;
   width: 30px;
 	height: 15px;
-	font-family: Oxygen;
+
 	font-size: 12px;
 	font-weight: bold;
 	font-style: normal;
@@ -175,7 +176,7 @@ body {
   top: 154.5px;
   width: 33px;
 	height: 15px;
-	font-family: Oxygen;
+
 	font-size: 12px;
 	color: #c1c1c1;
 }
@@ -186,7 +187,7 @@ body {
   top: 154.5px;
   width: 33px;
 	height: 15px;
-	font-family: Oxygen;
+
 	font-size: 12px;
 	color: #c1c1c1;
 }
@@ -197,7 +198,7 @@ body {
   top: 154.5px;
   width: 31px;
 	height: 15px;
-	font-family: Oxygen;
+
 	font-size: 12px;
 	color: #c1c1c1;
 }
@@ -208,7 +209,7 @@ body {
   top: 154.5px;
   width: 34px;
 	height: 15px;
-	font-family: Oxygen;
+
 	font-size: 12px;
 	color: #c1c1c1;
 }
@@ -219,7 +220,6 @@ body {
   top: 296.7px;
   width: 34px;
   height: 15px;
-  font-family: Oxygen;
   font-size: 12px;
   color: #c1c1c1;
 }
@@ -233,7 +233,6 @@ body {
   background-color: #ffffff;
   width: 74px;
 	height: 15px;
-	font-family: Oxygen;
 	font-size: 12px;
 	color: #e0e0e0;
   text-align: center;
@@ -300,7 +299,7 @@ body {
   width: 145px;
   height: 22.7px;
   background-color: #e2edf8;
-	font-family: Oxygen;
+
 	font-size: 12px;
 	color: #a8b6c3;
   text-align: center;
@@ -581,7 +580,7 @@ body {
   height: 109.6px;
   background-color: #ffffff;
   text-align: center;
-	font-family: Oxygen;
+
 	font-size: 12px;
 	color: #e0e0e0;
 }
