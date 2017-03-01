@@ -11,7 +11,7 @@ body {
 
 #LogOut{
   position: absolute;
-  left: 920px;
+  left: 890px;
   top: 29px;
   font-size: 12px;
   color: #9d9d9d;
@@ -53,10 +53,9 @@ body {
 
 .Line {
   position: absolute;
-  left: 322.4px;
+  left: 331px;
   top: 54.9px;
   width: 127.9px;
-	height: 1px;
 	border: solid 2.7px #29abe2;
 } /*Linija zem izveleta lauka*/
 
@@ -71,157 +70,113 @@ body {
 	color: #259adb;
 }
 
-.Monday{
-  position: absolute;
-  left: 99px;
-  top: 154px;
+#Days {
   width: 55px;
 	height: 15px;
 	font-size: 12px;
 	color: #3b3b3b;
 }
+/*
+font-weight: bold;
+color: #259adb;
+sis bus konkretajai dienai, kura ir izveleta
+*/
 
-.Tuesday{
+#Monday{
+  position: absolute;
+  left: 99px;
+  top: 154px;
+}
+
+#Tuesday{
   position: absolute;
   left: 253.5px;
   top: 154.5px;
-  width: 51px;
-  height: 15px;
-  font-size: 12px;
-  font-weight: bold;
-  color: #259adb; /*konkrētā diena - pagaidām*/
 }
 
-.Wednesday{
+#Wednesday{
   position: absolute;
   left: 403.5px;
   top: 154.5px;
-  width: 53px;
-	height: 15px;
-	font-size: 12px;
-	color: #3b3b3b;
 }
 
-.Thursday{
+#Thursday{
   position: absolute;
   left: 553.5px;
   top: 154.5px;
-  width: 64px;
-	height: 15px;
-	font-size: 12px;
-	color: #3b3b3b;
 }
 
-.Friday{
+#Friday{
   position: absolute;
   left: 703.5px;
   top: 154.5px;
-  width: 57px;
-	height: 15px;
-	font-size: 12px;
-	color: #3b3b3b;
 }
 
-.Saturday{
+#Saturday{
   position: absolute;
   left: 853.5px;
   top: 154.5px;
-  width: 54px;
-  height: 15px;
-
-  font-size: 12px;
-  color: #3b3b3b;
 }
 
-.Sunday{
+#Sunday{
   position: absolute;
   left: 855.5px;
   top: 296.7px;
-  width: 54px;
-	height: 15px;
-	font-size: 12px;
-	color: #3b3b3b;
 }
 
-.MondayDate {
-  position: absolute;
-  left: 211.1px;
-  top: 154.5px;
-	width: 34px;
-	height: 15px;
-
-	font-size: 12px;
-	color: #c1c1c1;
-}
-
-.TuesdayDate {
-  position: absolute;
-  left: 365px;
-  top: 154.5px;
-  width: 30px;
-	height: 15px;
-
-	font-size: 12px;
-	font-weight: bold;
-	font-style: normal;
-	font-stretch: normal;
-	line-height: normal;
-	letter-spacing: normal;
-	color: #262626;
-}
-
-.WednesdayDate {
-  position: absolute;
-  left: 511.9px;
-  top: 154.5px;
-  width: 33px;
-	height: 15px;
-
-	font-size: 12px;
-	color: #c1c1c1;
-}
-
-.ThursdayDate {
-  position: absolute;
-  left: 661.9px;
-  top: 154.5px;
-  width: 33px;
-	height: 15px;
-
-	font-size: 12px;
-	color: #c1c1c1;
-}
-
-.FridayDate {
-  position: absolute;
-  left: 814.2px;
-  top: 154.5px;
-  width: 31px;
-	height: 15px;
-
-	font-size: 12px;
-	color: #c1c1c1;
-}
-
-.SaturdayDate {
-  position: absolute;
-  left: 961.5px;
-  top: 154.5px;
-  width: 34px;
-	height: 15px;
-
-	font-size: 12px;
-	color: #c1c1c1;
-}
-
-.SundayDate {
-  position: absolute;
-  left: 961.4px;
-  top: 296.7px;
+#Date {
   width: 34px;
   height: 15px;
   font-size: 12px;
   color: #c1c1c1;
+}
+
+/*
+font-weight: bold;
+color: #262626;
+sis bus konkretajai dienai, kas ir izveleta
+*/
+
+#MondayDate {
+  position: absolute;
+  left: 211.1px;
+  top: 154.5px;
+}
+
+#TuesdayDate {
+  position: absolute;
+  left: 365px;
+  top: 154.5px;
+}
+
+#WednesdayDate {
+  position: absolute;
+  left: 511.9px;
+  top: 154.5px;
+}
+
+#ThursdayDate {
+  position: absolute;
+  left: 661.9px;
+  top: 154.5px;
+}
+
+#FridayDate {
+  position: absolute;
+  left: 814.2px;
+  top: 154.5px;
+}
+
+#SaturdayDate {
+  position: absolute;
+  left: 961.5px;
+  top: 154.5px;
+}
+
+#SundayDate {
+  position: absolute;
+  left: 961.4px;
+  top: 296.7px;
 }
 
 .Table div {
@@ -229,10 +184,14 @@ body {
 	height: 22.7px;
 }
 
+.List {
+  list-style-type: none;
+}
+
 .box1 {
   background-color: #ffffff;
-  width: 74px;
-	height: 15px;
+  width: 145px;
+  height: 22.7px;
 	font-size: 12px;
 	color: #e0e0e0;
   text-align: center;
@@ -299,7 +258,6 @@ body {
   width: 145px;
   height: 22.7px;
   background-color: #e2edf8;
-
 	font-size: 12px;
 	color: #a8b6c3;
   text-align: center;
@@ -629,4 +587,25 @@ PRIEKS BRIVDIENAM
   padding: 5px;
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
+}
+
+#WeekDate {
+  position: absolute;
+  left: 36.5px;
+  top: 254.5px;
+	width: 46px;
+	height: 51px;
+	font-size: 40.4px;
+	font-weight: bold;
+	color: #259adb;
+}
+
+#Week {
+  position: absolute;
+  left: 38.7px;
+  top: 306.7px;
+	width: 40px;
+	height: 16px;
+	font-size: 13px;
+	color: #141414;
 }
