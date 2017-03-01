@@ -587,3 +587,47 @@ body {
 }
 PRIEKS BRIVDIENAM
 */
+
+.button{
+  position: absolute;
+  width: 30.8px;
+	height: 30.8px;
+	background-color: #e6e6e6;
+  border-radius: 50%;
+}
+
+#button1{
+
+  left: 46.6px;
+  top: 211px;
+
+}
+
+#button2{
+  left: 46.6px;
+  top: 351.8px;
+}
+
+#arrow_up{
+  position: absolute;
+  left: 56px;
+  top: 222.4px;
+  border: solid #cccccc;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 5px;
+  transform: rotate(-135deg);
+   -webkit-transform: rotate(-135deg);
+}
+
+#arrow_down{
+  position: absolute;
+  left: 56px;
+  top: 360px;
+  border: solid #cccccc;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 5px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
