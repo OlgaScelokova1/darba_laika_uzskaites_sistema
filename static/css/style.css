@@ -534,17 +534,40 @@ sis bus konkretajai dienai, kas ir izveleta
   top: 382px;
 }
 
-/*.box3{
-  width: 145px;
-  height: 109.6px;
+.box3{
   background-color: #ffffff;
   text-align: center;
-
-	font-size: 12px;
+  font-size: 12px;
 	color: #e0e0e0;
 }
-PRIEKS BRIVDIENAM
-*/
+
+#SaturdayList {
+  position: absolute;
+  left: 811px;
+  top: 161.5px;
+  width: 145px;
+  height: 109.6px;
+  overflow: scroll;
+}
+
+#SaturdayList li {
+  width: 145px;
+  height: 22.7px;
+}
+
+#SundayList {
+  position: absolute;
+  left: 811px;
+  top: 301.8px;
+  width: 145px;
+	height: 109.6px;
+  overflow: scroll;
+}
+
+#SundayList li {
+  width: 145px;
+  height: 22.7px;
+}
 
 .button{
   position: absolute;
@@ -566,14 +589,17 @@ PRIEKS BRIVDIENAM
   top: 351.8px;
 }
 
-#arrow_up{
-  position: absolute;
-  left: 56px;
-  top: 222.4px;
+.arrow {
   border: solid #cccccc;
   border-width: 0 2px 2px 0;
   display: inline-block;
   padding: 5px;
+}
+
+#arrow_up{
+  position: absolute;
+  left: 56px;
+  top: 222.4px;
   transform: rotate(-135deg);
    -webkit-transform: rotate(-135deg);
 }
@@ -582,10 +608,6 @@ PRIEKS BRIVDIENAM
   position: absolute;
   left: 56px;
   top: 360px;
-  border: solid #cccccc;
-  border-width: 0 2px 2px 0;
-  display: inline-block;
-  padding: 5px;
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
 }
