@@ -198,63 +198,6 @@ sis bus konkretajai dienai, kas ir izveleta
   text-align: center;
 }
 
-#M8-9 {
-  position: absolute;
-  left: 99px;
-  top: 177.7px;
-}
-
-#Tu8-9 {
-  position: absolute;
-  left: 249.4px;
-  top: 177.7px;
-}
-
-#We8-9 {
-  position: absolute;
-  left: 399.8px;
-  top: 177.7px;
-}
-
-#Th8-9 {
-  position: absolute;
-  left: 550.2px;
-  top: 177.7px;
-}
-
-#F8-9 {
-  position: absolute;
-  left: 700.7px;
-  top: 177.7px;
-}
-
-#M18-19 {
-  position: absolute;
-  left: 99px;
-  top: 404.7px;
-}
-
-#Tu18-19 {
-  position: absolute;
-  left: 249.4px;
-  top: 404.7px;
-}
-#We18-19 {
-  position: absolute;
-  left: 399.8px;
-  top: 404.7px;
-}
-#Th18-19 {
-  position: absolute;
-  left: 550.2px;
-  top: 404.7px;
-}
-#F18-19 {
-  position: absolute;
-  left: 700.7px;
-  top: 404.7px;
-}
-
 .box2{
   width: 145px;
   height: 22.7px;
@@ -264,274 +207,34 @@ sis bus konkretajai dienai, kas ir izveleta
   text-align: center;
 }
 
-#M9-10 {
+#MondayList {
   position: absolute;
-  left: 99px;
-  top: 200.4px;
+  left: 60px;
+  top: 161.5px;
 }
 
-#Tu9-10 {
+#TuesdayList {
   position: absolute;
-  left: 249.4px;
-  top: 200.4px;
+  left: 210.4px;
+  top: 161.5px;
 }
 
-#We9-10 {
+#WednesdayList {
   position: absolute;
-  left: 399.8px;
-  top: 200.4px;
+  left: 360.8px;
+  top: 161.5px;
 }
 
-#Th9-10 {
+#ThursdayList {
   position: absolute;
-  left: 550.2px;
-  top: 200.4px;
+  left: 511.2px;
+  top: 161.5px;
 }
 
-#F9-10 {
+#FridayList {
   position: absolute;
-  left: 700.7px;
-  top: 200.4px;
-}
-
-#M10-11 {
-  position: absolute;
-  left: 99px;
-  top: 223.1px;
-}
-
-#Tu10-11 {
-  position: absolute;
-  left: 249.4px;
-  top: 223.1px;
-}
-
-#We10-11 {
-  position: absolute;
-  left: 399.8px;
-  top: 223.1px;
-}
-
-#Th10-11 {
-  position: absolute;
-  left: 550.2px;
-  top: 223.1px;
-}
-
-#F10-11 {
-  position: absolute;
-  left: 700.7px;
-  top: 223.1px;
-}
-
-#M11-12 {
-  position: absolute;
-  left: 99px;
-  top: 245.8px;
-}
-
-#Tu11-12 {
-  position: absolute;
-  left: 249.4px;
-  top: 245.8px;
-}
-
-#We11-12 {
-  position: absolute;
-  left: 399.8px;
-  top: 245.8px;
-}
-
-#Th11-12 {
-  position: absolute;
-  left: 550.2px;
-  top: 245.8px;
-}
-
-#F11-12 {
-  position: absolute;
-  left: 700.7px;
-  top: 245.8px;
-}
-
-#M12-13 {
-  position: absolute;
-  left: 99px;
-  top: 268.5px;
-}
-
-#Tu12-13 {
-  position: absolute;
-  left: 249.4px;
-  top: 268.5px;
-}
-
-#We12-13 {
-  position: absolute;
-  left: 399.8px;
-  top: 268.5px;
-}
-
-#Th12-13 {
-  position: absolute;
-  left: 550.2px;
-  top: 268.5px;
-}
-
-#F12-13 {
-  position: absolute;
-  left: 700.7px;
-  top: 268.5px;
-}
-
-#M13-14 {
-  position: absolute;
-  left: 99px;
-  top: 291.2px;
-}
-
-#Tu13-14 {
-  position: absolute;
-  left: 249.4px;
-  top: 291.2px;
-}
-
-#We13-14 {
-  position: absolute;
-  left: 399.8px;
-  top: 291.2px;
-}
-
-#Th13-14 {
-  position: absolute;
-  left: 550.2px;
-  top: 291.2px;
-}
-
-#F13-14 {
-  position: absolute;
-  left: 700.7px;
-  top: 291.2px;
-}
-
-#M14-15 {
-  position: absolute;
-  left: 99px;
-  top: 313.9px;
-}
-
-#Tu14-15 {
-  position: absolute;
-  left: 249.4px;
-  top: 313.9px;
-}
-
-#We14-15 {
-  position: absolute;
-  left: 399.8px;
-  top: 313.9px;
-}
-
-#Th14-15 {
-  position: absolute;
-  left: 550.2px;
-  top: 313.9px;
-}
-
-#F14-15 {
-  position: absolute;
-  left: 700.7px;
-  top: 313.9px;
-}
-
-#M15-16 {
-  position: absolute;
-  left: 99px;
-  top: 336.6px;
-}
-
-#Tu15-16 {
-  position: absolute;
-  left: 249.4px;
-  top: 336.6px;
-}
-
-#We15-16 {
-  position: absolute;
-  left: 399.8px;
-  top: 336.6px;
-}
-
-#Th15-16 {
-  position: absolute;
-  left: 550.2px;
-  top: 336.6px;
-}
-
-#F15-16 {
-  position: absolute;
-  left: 700.7px;
-  top: 336.6px;
-}
-
-#M16-17 {
-  position: absolute;
-  left: 99px;
-  top: 359.3px;
-}
-
-#Tu16-17 {
-  position: absolute;
-  left: 249.4px;
-  top: 359.3px;
-}
-
-#We16-17 {
-  position: absolute;
-  left: 399.8px;
-  top: 359.3px;
-}
-
-#Th16-17 {
-  position: absolute;
-  left: 550.2px;
-  top: 359.3px;
-}
-
-#F16-17 {
-  position: absolute;
-  left: 700.7px;
-  top: 359.3px;
-}
-
-#M17-18 {
-  position: absolute;
-  left: 99px;
-  top: 382px;
-}
-
-#Tu17-18 {
-  position: absolute;
-  left: 249.4px;
-  top: 382px;
-}
-
-#We17-18 {
-  position: absolute;
-  left: 399.8px;
-  top: 382px;
-}
-
-#Th17-18 {
-  position: absolute;
-  left: 550.2px;
-  top: 382px;
-}
-
-#F17-18 {
-  position: absolute;
-  left: 700.7px;
-  top: 382px;
+  left: 661.6px;
+  top: 161.5px;
 }
 
 .box3{
