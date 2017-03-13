@@ -28,7 +28,7 @@ def darba_laiks(request):
     friday=monday + datetime.timedelta(4)
     saturday= monday + datetime.timedelta(5)
     week= datetime.date.today().strftime("%V")
-    '24'
+    month= date.month
     context = {'monday': monday,
                'tuesday': tuesday,
                'wednesday': wednesday,
@@ -37,6 +37,7 @@ def darba_laiks(request):
                'saturday': saturday,
                'sunday': sunday,
                'week':week,
+               'month': month,
                }
     return render(request, "index.html", context)
 

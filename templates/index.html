@@ -25,7 +25,35 @@
         <div class = "My">Mans Darba Laiks</div>
         <div class = "All">Visi</div>
         <div class = "Saved">Saglabātie</div>
-        <div class = "Month">FEBRUĀRIS</div>
+        <div class = "Month">
+
+            {% if month == 1 %}
+                 JANVĀRIS
+            {% elif month == 2 %}
+                 FEBRUĀRIS
+            {% elif month == 3 %}
+                 MARTS
+            {% elif month == 4 %}
+                 APRĪLIS
+            {% elif month == 5 %}
+                 MAIJS
+            {% elif month == 6 %}
+                 JŪNIJS
+            {% elif month == 7 %}
+                 JŪLIJS
+            {% elif month == 8 %}
+                 AUGUSTS
+            {% elif month == 9 %}
+                 SEPTEMBRIS
+            {% elif month == 10 %}
+                 OKTOBRIS
+            {% elif month == 11 %}
+                 NOVEMBRIS
+            {% elif month == 12 %}
+                 DECEMBRIS
+            {% endif %}
+
+        </div>
         <div class = "Line"></div>
         <!-- Seit vajadzes ar kalendaru darboties -->
 
@@ -40,8 +68,6 @@
         </div>
 
         <div id = "Date">
-
-            {{ week }}
         <div id = "MondayDate">{{ monday|date:"j. m" }}</div>
           <div id = "TuesdayDate">{{ tuesday|date:"j. m" }}</div>
           <div id = "WednesdayDate">{{ wednesday|date:"j. m" }}</div>
