@@ -1,3 +1,5 @@
+
+
 {% load staticfiles %}
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootsdivapcdn.com/bootsdivap/3.3.7/css/bootsdivap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -38,13 +40,15 @@
         </div>
 
         <div id = "Date">
-          <div id = "MondayDate">27.02</div>
-          <div id = "TuesdayDate">28.02</div>
-          <div id = "WednesdayDate">01.03</div>
-          <div id = "ThursdayDate">02.03</div>
-          <div id = "FridayDate">03.03</div>
-          <div id = "SaturdayDate">04.03</div>
-          <div id = "SundayDate">05.03</div>
+
+            {{ week }}
+        <div id = "MondayDate">{{ monday|date:"j. m" }}</div>
+          <div id = "TuesdayDate">{{ tuesday|date:"j. m" }}</div>
+          <div id = "WednesdayDate">{{ wednesday|date:"j. m" }}</div>
+          <div id = "ThursdayDate">{{ thursday|date:"j. m" }}</div>
+          <div id = "FridayDate">{{ friday|date:"j. m" }}</div>
+          <div id = "SaturdayDate">{{ saturday|date:"j. m" }}</div>
+          <div id = "SundayDate">{{ sunday|date:"j. m" }}</div>
         </div>
 
         <div class = "Table">
@@ -151,7 +155,7 @@
         <div class = "arrow" id = "arrow_up"></div>
         <div class = "arrow" id = "arrow_down"></div>
 
-        <div id="WeekDate">08</div>
+        <div id="WeekDate">{{week}}</div>
         <div id = "Week" >nedēļa</div>
 
 

@@ -13,12 +13,32 @@ from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.generic import FormView, RedirectView
-
+import datetime
+from datetime import timedelta
 
 
 # Create your views here.
 def darba_laiks(request):
-    return render(request, "index.html")
+    date = datetime.date.today()
+    monday = date - datetime.timedelta(date.weekday())
+    sunday = monday + datetime.timedelta(6)
+    tuesday = monday + datetime.timedelta(1)
+    wednesday=monday + datetime.timedelta(2)
+    thursday=monday + datetime.timedelta(3)
+    friday=monday + datetime.timedelta(4)
+    saturday= monday + datetime.timedelta(5)
+    week= datetime.date.today().strftime("%V")
+    '24'
+    context = {'monday': monday,
+               'tuesday': tuesday,
+               'wednesday': wednesday,
+               'thursday': thursday,
+               'friday': friday,
+               'saturday': saturday,
+               'sunday': sunday,
+               'week':week,
+               }
+    return render(request, "index.html", context)
 
 class LogoutView(RedirectView):
     """
