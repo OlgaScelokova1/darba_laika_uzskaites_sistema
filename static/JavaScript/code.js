@@ -1,26 +1,13 @@
 var Monday = document.getElementById("MondayList").getElementsByClassName("box2");
-
 var Tuesday = document.getElementById("TuesdayList").getElementsByClassName("box2");
-
 var Wednesday = document.getElementById("WednesdayList").getElementsByClassName("box2");
-
 var Thursday = document.getElementById("ThursdayList").getElementsByClassName("box2");
-
 var Friday = document.getElementById("FridayList").getElementsByClassName("box2");
 
 var AllBoxes = document.getElementsByClassName("box2");
-
 var FillBox = document.getElementById("Fill");
 
 var body = document.getElementsByTagName("body");
-
-
-
-console.log(Monday);
-console.log(Tuesday);
-console.log(Wednesday);
-console.log(Thursday);
-console.log(Friday);
 
 
 for (i=0 ; i<9 ; i++) {
@@ -78,7 +65,7 @@ for (i=0 ; i<9 ; i++) {
 // }; meģinājumi kko izdomāt
 
 
-}s
+}
 
 
 
