@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootsdivapcdn.com/bootsdivap/3.3.7/css/bootsdivap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
 
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -185,5 +186,43 @@
         <div id = "Week" >nedēļa</div>
 
 
+        <div id = "Fill">
+
+            <p id="Time">Laiks:</p>
+
+            <input class = "FirstLine DateField" id = "InputDate" type = "date">
+            <input class = "FirstLine TimeField" id = "InputFrom" type = "time">
+            <p class = "FirstLine">-</p>
+            <input class = "FirstLine TimeField" id = "InputUntill" type = "time">
+
+            <p>Iemesls:</p>
+
+            <input id="InputReason" list = "Reason">
+                <datalist id="Reason">
+                    <option value="Slimība">
+                    <option value="Atvaļinājums">
+                    <option value="Lekcijas">
+                    <option value="Darbs no mājām">
+                    <option value="Mazāka slodze">
+                    <option value="Cits">
+                </datalist>
+
+            <p>Tiks atstrādāts</p>
+
+            <input class = "SecondLine DateField" id = "AfterDate" type = "date">
+            <input class = "SecondLine TimeField" id = "AfterFrom" type = "time">
+            <p class = "SecondLine">-</p>
+            <input class = "SecondLine TimeField" id = "AfterUntill" type = "time">
+
+            <div id="Save"><div id = "SaveText">Saglabāt</div></div>
+
+        </div>
+
+
+
+
+    <script type="text/javascript" src="{% static 'JavaScript/code.js' %}"></script>
+
+  </body>
 
 </html>

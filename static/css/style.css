@@ -185,7 +185,7 @@ sis bus konkretajai dienai, kas ir izveleta
 	height: 22.7px;
 }
 
-.List {
+li {
   list-style-type: none;
 }
 
@@ -193,8 +193,8 @@ sis bus konkretajai dienai, kas ir izveleta
   background-color: #ffffff;
   width: 145px;
   height: 22.7px;
-	font-size: 12px;
-	color: #e0e0e0;
+  font-size: 12px;
+  color: #e0e0e0;
   text-align: center;
 }
 
@@ -330,8 +330,64 @@ sis bus konkretajai dienai, kas ir izveleta
   left: 36.5px;
   top: 254.5px;
   width: 46px;
- 	height: 51px;
+  height: 51px;
   font-size: 40.4px;
   font-weight: bold;
   color: #259adb;
+}
+
+
+#Fill {
+    display: none;
+    position: absolute;
+  	width: 145px;
+    height: 136px;
+	background-color: #ffffff;
+    font-size: 10px;
+}
+
+#Fill p {
+  color: #9cb5cc;
+  -webkit-margin-after: 0px;
+  -webkit-margin-before: 0.75em;
+}
+
+.FirstLine {
+  display:inline;
+  line-height: 0px;
+}
+
+.DateField {
+	width: 46px;
+	height: 16.5px;
+
+}
+
+.TimeField {
+  width: 35px;
+  height: 16.5px;
+
+}
+
+input {
+    font-size:10px;
+    border: solid 1px #c7d8eb;
+}
+
+.SecondLine {
+  display:inline;
+  line-height: 0px;
+}
+
+#Save {
+    width: 145px;
+	height: 16px;
+	background-color: #29abe2;
+    position: absolute;
+    bottom: 0;
+}
+
+#SaveText {
+  color: #ffffff;
+  text-align:center;
 }
