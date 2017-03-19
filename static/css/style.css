@@ -180,7 +180,7 @@ sis bus konkretajai dienai, kas ir izveleta
   top: 296.7px;
 }
 
-.Table div {
+#Table div {
   width: 145px;
 	height: 22.7px;
 }
@@ -202,9 +202,20 @@ li {
   width: 145px;
   height: 22.7px;
   background-color: #e2edf8;
-	font-size: 12px;
-	color: #a8b6c3;
+  font-size: 12px;
+  color: #a8b6c3;
   text-align: center;
+}
+
+.box2:focus{
+  background-color: #d6e2ea;
+  border: none;
+  overflow: auto;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+
 }
 
 #MondayList {
@@ -391,3 +402,5 @@ input {
   color: #ffffff;
   text-align:center;
 }
+
+
