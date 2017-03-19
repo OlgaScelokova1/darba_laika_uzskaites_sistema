@@ -15,6 +15,7 @@ from django.views.decorators.debug import sensitive_post_parameters
 from django.views.generic import FormView, RedirectView
 import datetime
 from datetime import timedelta
+from .forms import UserForm
 
 
 # Create your views here.
@@ -39,7 +40,11 @@ def darba_laiks(request):
                'week':week,
                'month': month,
                }
-    return render(request, "index.html", context)
+    if request.user.is_authenticated():
+        return render(request, "index.html", context)
+    else:
+        return HttpResponseRedirect('/darba_laiks/login/')
+
 
 class LogoutView(RedirectView):
     """
@@ -81,3 +86,37 @@ class LoginView(FormView):
         if not is_safe_url(url=redirect_to, host=self.request.get_host()):
             redirect_to = self.success_url
         return redirect_to
+
+class UserFormView(View):
+    form_class=UserForm
+    template_name='registration_form.html'
+
+    #display blank form
+    def get(self,request):
+        form=self.form_class(None)
+        return render(request, self.template_name, {'form':form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+
+        if form.is_valid():
+
+            #create a user
+            user=form.save(commit=False)
+
+            #cleaned data
+
+            username=form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user.set_password(password)
+            user.save() #save to database
+
+            #returns User object if credentials are correct
+            user=authenticate(username=username, password=password)
+
+            if user is not None:
+                if user.is_active:
+                    login(request,user)
+                    return redirect('darba_laiks:darba_laiks')
+
+        return render(request, self.template_name, {'form': form})

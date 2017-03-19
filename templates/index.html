@@ -22,6 +22,9 @@
   <body>
 
         <a id = "LogOut" href="{% url 'darba_laiks:logout' %}">Izrakstīties</a>
+        {% if user.is_superuser or user.is_staff %}
+        <a id = "Create" href="{% url 'darba_laiks:create_user' %}">Izveidot lietotāju</a>
+        {% endif %}
 
         <div class = "My">Mans Darba Laiks</div>
         <div class = "All">Visi</div>
