@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+      <form method="GET" action="">
+    <input type="text" name="q" placeholder="Meklēt lietotāju" value="{{ request.get.q }}"/>
+    <input type="submit" value="Search"/>
+    </form>
+
+{% for darbinieks in darbinieki %}
+   {{darbinieks.username}} {{darbinieks.first_name}} {{darbinieks.last_name}} <br>
+{% endfor %}
+
+</body>
+</html>

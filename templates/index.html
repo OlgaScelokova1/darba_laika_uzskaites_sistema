@@ -1,25 +1,7 @@
 
+{%extends "base.html" %}
 
-{% load staticfiles %}
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootsdivapcdn.com/bootsdivap/3.3.7/css/bootsdivap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootsdivapcdn.com/bootsdivap/3.3.7/css/bootsdivap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
-
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
-      @import url('https://fonts.googleapis.com/css?family=Oxygen');
-    </style>
-  </head>
-
-  <body>
+{% block content %}
 
         <a id = "LogOut" href="{% url 'darba_laiks:logout' %}">Izrakstīties</a>
         {% if user.is_superuser or user.is_staff %}
@@ -27,7 +9,7 @@
         {% endif %}
 
         <div class = "My">Mans Darba Laiks</div>
-        <div class = "All">Visi</div>
+        <a class="All" href="{% url 'darba_laiks:visi_darbinieki' %}"> Visi</a>
         <div class = "Saved">Saglabātie</div>
         <div class = "Month">
 
@@ -223,10 +205,6 @@
         </div>
 
 
+  {% endblock %}
 
 
-    <script type="text/javascript" src="{% static 'JavaScript/code.js' %}"></script>
-
-  </body>
-
-</html>
