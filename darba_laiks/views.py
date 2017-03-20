@@ -145,11 +145,10 @@ def darbinieki(request):
 
 def visi(request):
     visi = User.objects.all()
-    avatar = request.user.userprofile.avatar
+
 
 
     context = {'visi': visi,
-               'avatar': avatar,
                }
     return render(request, 'lietotaji.html', context)
 

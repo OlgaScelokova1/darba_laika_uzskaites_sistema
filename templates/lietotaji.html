@@ -14,13 +14,21 @@
     <title>Title</title>
 </head>
 
+<body>
+
 
 <a id = "Create" href="{% url 'darba_laiks:create_user' %}">Izveidot lietotāju</a> <br> <br>
 
 
 {% for darbinieks in visi %}
 
-<img src="{{darbinieks.userprofile.avatar.url}}" class="img">
+
+{% if darbinieks.userprofile.avatar %}
+    <img src="{{darbinieks.userprofile.avatar.url}}" class="img">
+
+{% else %}
+    <img src="/media/avatar.jpg" class="img">
+{% endif %}
 
 
    {{darbinieks.username}} {{darbinieks.first_name}} {{darbinieks.last_name}} <a href="{% url 'darba_laiks:update' darbinieks.id %}"> Rediģēt </a> &nbsp
@@ -28,6 +36,7 @@
  <br>
 
 {% endfor %}
+
 
 </body>
 </html>
