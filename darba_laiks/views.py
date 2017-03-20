@@ -18,7 +18,8 @@ from datetime import timedelta
 from django.contrib.auth.models import User
 from .forms import UserForm
 from django.db.models import Q
-
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.core.urlresolvers import reverse_lazy
 
 # Create your views here.
 def darba_laiks(request):
@@ -125,7 +126,7 @@ class UserFormView(View):
 
         return render(request, self.template_name, {'form': form})
 
-def visi_darbinieki(request):
+def darbinieki(request):
     darbinieki = User.objects.all()
 
     query=request.GET.get("q")
@@ -139,3 +140,22 @@ def visi_darbinieki(request):
 
     context = {'darbinieki': darbinieki}
     return render(request, 'visi.html', context)
+
+
+def visi(request):
+    visi = User.objects.all()
+
+
+    context = {'visi': visi}
+    return render(request, 'lietotaji.html', context)
+
+class Rediget(UpdateView):
+    template_name='rediget.html'
+    success_url = reverse_lazy('darba_laiks:visi')
+    model = User
+    fields = ["username", "first_name", "last_name"]
+
+class Dzest(DeleteView):
+    template_name = 'izdzest.html'
+    model=User
+    success_url=reverse_lazy('darba_laiks:visi')

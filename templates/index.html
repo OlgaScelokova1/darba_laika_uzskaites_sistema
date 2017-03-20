@@ -4,12 +4,14 @@
 {% block content %}
 
         <a id = "LogOut" href="{% url 'darba_laiks:logout' %}">Izrakstīties</a>
-        {% if user.is_superuser or user.is_staff %}
-        <a id = "Create" href="{% url 'darba_laiks:create_user' %}">Izveidot lietotāju</a>
-        {% endif %}
 
         <div class = "My">Mans Darba Laiks</div>
-        <a class="All" href="{% url 'darba_laiks:visi_darbinieki' %}"> Visi</a>
+        <a class="All" href="{% url 'darba_laiks:darbinieki' %}"> Visi</a>
+
+        {% if user.is_superuser or user.is_staff %}
+        <a id = "List" href="{% url 'darba_laiks:visi' %}">Darbinieku saraksts</a>
+        {% endif %}
+
         <div class = "Saved">Saglabātie</div>
         <div class = "Month">
 

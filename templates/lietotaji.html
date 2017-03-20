@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<a id = "Create" href="{% url 'darba_laiks:create_user' %}">Izveidot lietotāju</a> <br> <br>
+
+
+{% for darbinieks in visi %}
+   {{darbinieks.username}} {{darbinieks.first_name}} {{darbinieks.last_name}} <a href="{% url 'darba_laiks:update' darbinieks.id %}"> Rediģēt </a> &nbsp
+<a href="{% url 'darba_laiks:dzest' darbinieks.id %}">  Dzēst </a>
+ <br>
+{% endfor %}
+
+</body>
+</html>
