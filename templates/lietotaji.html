@@ -1,18 +1,32 @@
+{% load staticfiles %}
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootsdivapcdn.com/bootsdivap/3.3.7/css/bootsdivap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootsdivapcdn.com/bootsdivap/3.3.7/css/bootsdivap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+
 
 <a id = "Create" href="{% url 'darba_laiks:create_user' %}">Izveidot lietotāju</a> <br> <br>
 
 
 {% for darbinieks in visi %}
+
+<img src="{{darbinieks.userprofile.avatar.url}}" class="img">
+
+
    {{darbinieks.username}} {{darbinieks.first_name}} {{darbinieks.last_name}} <a href="{% url 'darba_laiks:update' darbinieks.id %}"> Rediģēt </a> &nbsp
 <a href="{% url 'darba_laiks:dzest' darbinieks.id %}">  Dzēst </a>
  <br>
+
 {% endfor %}
 
 </body>

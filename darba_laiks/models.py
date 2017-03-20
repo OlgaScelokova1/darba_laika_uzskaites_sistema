@@ -2,6 +2,8 @@ from __future__ import unicode_literals
 from django.conf import settings
 from django.db import models
 from django.core.urlresolvers import reverse
+from django.contrib.auth.models import User
+from django.core.files.storage import FileSystemStorage
 
 
 # Create your models here.
@@ -49,3 +51,10 @@ class Atstrada(models.Model):
 
     def __str__(self):
         return str(self.datums)+'  '+ str(self.no)+' - '+ str(self.lidz)
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, related_name='userprofile')
+    avatar = models.FileField(default='/avatar.jpg')
+
+    def __str__(self):
+        return str(self.user.username)
