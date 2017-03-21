@@ -4,6 +4,7 @@ from django.db import models
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.core.files.storage import FileSystemStorage
+from django.db.models.signals import post_save
 
 
 # Create your models here.
@@ -52,9 +53,16 @@ class Atstrada(models.Model):
     def __str__(self):
         return str(self.datums)+'  '+ str(self.no)+' - '+ str(self.lidz)
 
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User, related_name='userprofile')
-    avatar = models.FileField(blank=True, null=True)
+    avatar = models.FileField(default='/avatar.jpg')
 
     def __str__(self):
         return str(self.user.username)
+
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            UserProfile.objects.create(user=instance)
+
+    post_save.connect(create_user_profile, sender=User)
