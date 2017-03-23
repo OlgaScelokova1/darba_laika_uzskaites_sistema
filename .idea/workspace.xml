@@ -61,11 +61,11 @@
           </provider>
         </entry>
       </file>
-<<<<<<< HEAD
+HEAD
       <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
-=======
+
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
->>>>>>> features
+features
         <entry file="file://$PROJECT_DIR$/static/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">

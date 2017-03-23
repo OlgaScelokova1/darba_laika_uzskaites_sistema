@@ -15,8 +15,11 @@ from django.views.decorators.debug import sensitive_post_parameters
 from django.views.generic import FormView, RedirectView
 import datetime
 from datetime import timedelta
+from django.contrib.auth.models import User
 from .forms import UserForm
-
+from django.db.models import Q
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.core.urlresolvers import reverse_lazy
 
 # Create your views here.
 def darba_laiks(request):
@@ -30,6 +33,8 @@ def darba_laiks(request):
     saturday= monday + datetime.timedelta(5)
     week= datetime.date.today().strftime("%V")
     month= date.month
+
+
     context = {'monday': monday,
                'tuesday': tuesday,
                'wednesday': wednesday,
@@ -120,3 +125,37 @@ class UserFormView(View):
                     return redirect('darba_laiks:darba_laiks')
 
         return render(request, self.template_name, {'form': form})
+
+def darbinieki(request):
+    darbinieki = User.objects.all()
+
+    query=request.GET.get("q")
+    if query:
+        darbinieki=darbinieki.filter(
+            Q(username__icontains=query) |
+            Q(first_name__icontains=query) |
+            Q(last_name__icontains=query)
+
+        )
+
+    context = {'darbinieki': darbinieki}
+    return render(request, 'visi.html', context)
+
+
+def visi(request):
+    visi = User.objects.all()
+
+
+    context = {'visi': visi}
+    return render(request, 'lietotaji.html', context)
+
+class Rediget(UpdateView):
+    template_name='rediget.html'
+    success_url = reverse_lazy('darba_laiks:visi')
+    model = User
+    fields = ["username", "first_name", "last_name"]
+
+class Dzest(DeleteView):
+    template_name = 'izdzest.html'
+    model=User
+    success_url=reverse_lazy('darba_laiks:visi')
