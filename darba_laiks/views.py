@@ -35,6 +35,7 @@ def darba_laiks(request):
     month= date.month
 
 
+
     context = {'monday': monday,
                'tuesday': tuesday,
                'wednesday': wednesday,
@@ -146,7 +147,9 @@ def visi(request):
     visi = User.objects.all()
 
 
-    context = {'visi': visi}
+
+    context = {'visi': visi,
+               }
     return render(request, 'lietotaji.html', context)
 
 class Rediget(UpdateView):
