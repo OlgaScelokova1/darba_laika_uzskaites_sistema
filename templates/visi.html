@@ -1,19 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{%extends "base.html" %}
 
-      <form method="GET" action="">
-    <input type="text" name="q" placeholder="Meklēt lietotāju" value="{{ request.get.q }}"/>
-    <input type="submit" value="Search"/>
-    </form>
+{% block content %}
 
-{% for darbinieks in darbinieki %}
-   {{darbinieks.username}} {{darbinieks.first_name}} {{darbinieks.last_name}} <br>
-{% endfor %}
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/All.css' %}" />
 
-</body>
-</html>
+    <div class = "row" id = "search">
+        <form method="GET" action="">
+          <span class="pull-right">
+                <input type="text" name="q" placeholder="Meklēt lietotāju" value="{{ request.get.q }}"/>
+                <input type="submit" value="Meklēt"/>
+          </span>
+        </form>
+    </div>
+
+    <div class = "row" id = "people">
+
+        {% for darbinieks in darbinieki %}
+            <div class = "col-sm-2">
+           {{darbinieks.username}} {{darbinieks.first_name}} {{darbinieks.last_name}} <br>
+            </div>
+        {% endfor %}
+
+    </div>
+
+
+
+
+
+
+{% endblock %}

@@ -185,38 +185,41 @@
 
 
         <div class = "row" id = "FillRow">
-            <div class = "container" id= "Fill">
-                <p id="Time">Laiks:</p>
+            <form class = "container" id = "Fill">
+                <div class = "container" id ="data">
 
-                <input class = "FirstLine DateField" id = "InputDate" type = "date">
-                <input class = "FirstLine TimeField" id = "InputFrom" type = "time">
-                <p class = "FirstLine">-</p>
-                <input class = "FirstLine TimeField" id = "InputUntill" type = "time">
+                    <p id="Time">Laiks:</p>
 
-                <p>Iemesls:</p>
+                    <input class = "FirstLine DateField" id = "InputDate" type = "date" name = "dateWhenIs">
+                    <input class = "FirstLine TimeField" id = "InputFrom" type = "time" name = "timeFrom">
+                    <p class = "FirstLine">-</p>
+                    <input class = "FirstLine TimeField" id = "InputUntill" type = "time" name = "timeTill">
 
-                <input id="InputReason" list = "Reason">
+                    <p>Iemesls:</p>
 
-                    <datalist id="Reason">
-                        <option id = "Sick" value="Slimība">
-                        <option id = "Vacation" value="Atvaļinājums">
-                        <option id = "Lecture" value="Lekcijas">
-                        <option id = "WorkFromHome" value="Darbs no mājām">
-                        <option id = "Workload" value="Mazāka slodze">
-                        <option id = "Other" value="Cits">
-                    </datalist>
+                    <input id="InputReason" name = "reason" list = "Reason">
 
-                <p>Tiks atstrādāts</p>
+                        <datalist id="Reason">
+                            <option id = "Sick" value="Slimība">
+                            <option id = "Vacation" value="Atvaļinājums">
+                            <option id = "Lecture" value="Lekcijas">
+                            <option id = "WorkFromHome" value="Darbs no mājām">
+                            <option id = "Workload" value="Mazāka slodze">
+                            <option id = "Other" value="Cits">
+                        </datalist>
 
-                <input class = "SecondLine DateField" id = "AfterDate" type = "date">
-                <input class = "SecondLine TimeField" id = "AfterFrom" type = "time">
-                <p class = "SecondLine">-</p>
-                <input class = "SecondLine TimeField" id = "AfterUntill" type = "time">
+                    <p>Tiks atstrādāts</p>
 
-                <div id="Save">Saglabāt</div>
-            </div>
+                    <input class = "SecondLine DateField" id = "AfterDate" type = "date" name = "dateWhenWill">
+                    <input class = "SecondLine TimeField" id = "AfterFrom" type = "time" name = "timeWillStart">
+                    <p class = "SecondLine">-</p>
+                    <input class = "SecondLine TimeField" id = "AfterUntill" type = "time" name = "timeWillEnd">
+                </div>
+                <input type = "submit" value = "Saglabāt" id="Save">
+            </form>
         </div>
 
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script type="text/javascript" src="{% static 'JavaScript/code.js' %}"></script>
   {% endblock %}
 

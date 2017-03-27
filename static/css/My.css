@@ -4,8 +4,6 @@
     border-bottom: solid 2.7px #29abe2;
 }
 
-
-
 .col-sm-2 {
     font-size: 12px;
 }
@@ -146,16 +144,18 @@ li {
     height: 136px;
 	background-color: #ffffff;
     font-size: 10px;
-    padding-left: 6px;
+    padding-left: 0px;
     padding-right:6px;
 }
 
-#Fill p {
-  color: #9cb5cc;
-  -webkit-margin-after: 0px;
-  -webkit-margin-before: 0.75em;
 
+#Fill p {
+    color: #9cb5cc;
+    -webkit-margin-after: 0px;
+    -webkit-margin-before: 0.5em;
 }
+
+
 
 .FirstLine {
   display:inline;
@@ -188,9 +188,10 @@ input {
 	height: 16px;
 	background-color: #29abe2;
     position: absolute;
-    /*bottom: 0;*/
+    bottom: 0;
     color: #ffffff;
     text-align:center;
+    padding-left:-6px;
 }
 
 

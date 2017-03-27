@@ -24,7 +24,7 @@
 
         <div class = "row" id = "navigation">
 
-            <div class = "My col-sm-2">Mans Darba Laiks</div>
+            <div class = "col-sm-2"> <a class = "My" href="{% url 'darba_laiks:darba_laiks' %}">Mans Darba Laiks</a></div>
 
             <div class = "col-sm-2"> <a class="All" href="{% url 'darba_laiks:darbinieki' %}"> Visi</a></div>
 
@@ -53,8 +53,5 @@
       </div>
 
 
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script type="text/javascript" src="{% static 'JavaScript/code.js' %}"></script>
     </body>
 </html>

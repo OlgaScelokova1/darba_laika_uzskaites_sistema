@@ -1,0 +1,15 @@
+.All {
+    font-weight: bold;
+    color: #000000;
+    border-bottom: solid 2.7px #29abe2;
+}
+
+#search {
+    margin-right: 10em;
+    margin-bottom: 2em;
+}
+
+#people {
+    margin-left: 10em;
+    margin-right: 10em;
+}

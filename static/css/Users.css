@@ -1,0 +1,32 @@
+#user{
+    width: 300px;
+}
+
+.img{
+    width: 250px;
+    height: 250px;
+}
+
+#first {
+    margin-bottom: 2em;
+    margin-right: 5em;
+}
+
+#oneUser{
+    margin-bottom: 2em;
+}
+
+#oneUser .row {
+    margin-left: 1em;
+    margin-right: 5em;
+}
+
+#Create{
+    margin-left: 5em;
+}
+
+#List{
+    font-weight: bold;
+    color: #000000;
+    border-bottom: solid 2.7px #29abe2;
+}

@@ -1,42 +1,54 @@
-{% load staticfiles %}
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootsdivapcdn.com/bootsdivap/3.3.7/css/bootsdivap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+{%extends "base.html" %}
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootsdivapcdn.com/bootsdivap/3.3.7/css/bootsdivap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+{% block content %}
 
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/Users.css' %}" />
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+ <div class = "row" id = "first">
 
-<body>
+     <div id = "Create">
+                <a  href="{% url 'darba_laiks:create_user' %}">Izveidot lietotāju</a>
+     </div>
 
+     <div id = "search">
+         <span class="pull-right">
+             <form method="GET" action="">
+                     <input type="text" name="q" placeholder="Meklēt lietotāju" value="{{ request.get.q }}"/>
+                     <input type="submit" value="Meklēt"/>
+             </form>
+         </span>
+     </div>
 
-<a id = "Create" href="{% url 'darba_laiks:create_user' %}">Izveidot lietotāju</a> <br> <br>
+ </div>
 
+<div class = "container">
 
 {% for darbinieks in visi %}
 
+    <div class = "col-sm-4" id = "oneUser">
 
-{% if darbinieks.userprofile.avatar %}
-    <img src="{{darbinieks.userprofile.avatar.url}}" class="img">
+            {% if darbinieks.userprofile.avatar %}
+                <img src="{{darbinieks.userprofile.avatar.url}}" class="img">
 
-{% else %}
-    <img src="/media/avatar.jpg" class="img">
-{% endif %}
+            {% else %}
+                <img src="/media/avatar.jpg" class="img">
+            {% endif %}
 
 
-   {{darbinieks.username}} {{darbinieks.first_name}} {{darbinieks.last_name}} <a href="{% url 'darba_laiks:update' darbinieks.id %}"> Rediģēt </a> &nbsp
-<a href="{% url 'darba_laiks:dzest' darbinieks.id %}">  Dzēst </a>
- <br>
+                <div class = "row">{{darbinieks.username}} {{darbinieks.first_name}} {{darbinieks.last_name}} </div>
+                <div class = "row">
+                    <a href="{% url 'darba_laiks:update' darbinieks.id %}"> Rediģēt </a> &nbsp
+                    <a href="{% url 'darba_laiks:dzest' darbinieks.id %}"> Dzēst </a>
+                </div>
+
+             <br>
+    </div>
 
 {% endfor %}
 
+    </div>
 
-</body>
-</html>
+  {% endblock %}
+
+

@@ -162,3 +162,4 @@ class Dzest(DeleteView):
     template_name = 'izdzest.html'
     model=User
     success_url=reverse_lazy('darba_laiks:visi')
+

@@ -23,6 +23,11 @@ body {
   padding: 0.5em;
 }
 
+a:hover{
+  color: #000000;
+  text-decoration: none;
+}
+
 .My {
   font-size: 14px;
   color: #9d9d9d;
@@ -49,7 +54,3 @@ body {
   color: #9d9d9d;
 }
 
-.img{
-    width: 250px;
-    height: 250px;
-}
