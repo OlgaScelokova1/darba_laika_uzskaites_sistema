@@ -65,7 +65,7 @@ var save = document.getElementById("Save");
 var sick = document.getElementById("Sick");
 var vacation = document.getElementById("Vacation");
 
-//
+
 // $("#Fill").submit(function(){
 //     $.post('views.py', $("#Fill").serialize(), function (data){
 //
@@ -73,6 +73,18 @@ var vacation = document.getElementById("Vacation");
 //
 //     return false;
 // });
+
+$('#Fill').on('submit', function (event){
+    event.preventDefault();
+    console.log("form submitted!");
+    alert("!");
+    // create_post();
+});
+
+function create_post() {
+    console.log("create post is working!");
+    console.log($('#post-text').val())
+};
 
 
 // save.onclick = function (){
