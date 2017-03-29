@@ -185,7 +185,7 @@
 
 
         <div class = "row" id = "FillRow">
-            <form class = "container" action="/darba_laiks/" method="POST" id = "Fill">{% csrf_token %}
+            <form class = "container" action="/darba_laiks/" id = "Fill">{% csrf_token %}
                 <div class = "container" id ="data">
 
                     <p id="Time">Laiks:</p>
@@ -218,6 +218,8 @@
                 <input type = "submit" value = "Saglabāt" id="Save">
             </form>
         </div>
+
+
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script type="text/javascript" src="{% static 'JavaScript/code.js' %}"></script>

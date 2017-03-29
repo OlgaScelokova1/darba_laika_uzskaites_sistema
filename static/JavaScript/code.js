@@ -112,7 +112,7 @@ $('.box2').click(function(event){
         var now = $(this).attr('id');
         console.log (now);
         if (now.startsWith("M")){
-            alert ("You pressed on Monday");
+            // alert ("You pressed on Monday");
         }
         else if (now.startsWith("Tu")){
             alert ("You pressed on Tuesday!");
@@ -132,24 +132,23 @@ $('.box2').click(function(event){
 
 console.log(reason);
 
-$(document).submit('submit', '#Fill', function(e){
-    e.preventDefault();
-  $.ajax({
-       type: 'POST',
-       url: '/darba_laiks/',
-        data:{
-           no:$("#InputFrom").val(),
-           'csrfmiddlewaretoken': getCookie('csrftoken')
+// $(document).submit('submit', '#Fill', function(e){
+//     e.preventDefault();
+//   $.ajax({
+//        type: 'POST',
+//        url: 'darba_laiks/',
+//
+//        data : { no : $('#InputFrom').val() },
+//
+//
+//        success: function(){
+//
+//       }
+//    });
+//  });
 
-       },
 
-       success: function(){
-
-      }
-   });
- });
-
- function getCookie(name) {
+function getCookie(name) {
      var cookieValue = null;
      if (document.cookie && document.cookie !== '') {
          var cookies = document.cookie.split(';');
@@ -164,5 +163,27 @@ $(document).submit('submit', '#Fill', function(e){
      }
      return cookieValue;
  };
+
+var frm = $('#Fill');
+
+    frm.submit(function () {
+
+        $.ajax({
+            type: 'POST',
+            url: frm.attr('action'),
+            data: frm.serialize(),
+            success: function (data) {
+                console.log(data);
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        });
+
+        return false;
+    });
+
+
+
 
 })();

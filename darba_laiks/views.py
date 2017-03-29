@@ -53,16 +53,17 @@ def darba_laiks(request):
         else:
             return HttpResponseRedirect('/darba_laiks/login/')
 
-    if request.method=='POST':
-        no = request.POST.get('no')
-        print ('post')
+    if request.method =='POST':
+
 
         Darba_laiks.objects.create(
-            no="9:00",
+            no=request.POST.get("timeFrom", ""),
             lietotajs=request.user,
-            datums="2017-11-11",
-            lidz="18:00",
-                )
+            datums=request.POST.get("dateWhenIs", ""),
+            lidz=request.POST.get("timeTill", ""),
+            ir_mainits='True',
+            )
+
         return render(request, "index.html")
 
 
