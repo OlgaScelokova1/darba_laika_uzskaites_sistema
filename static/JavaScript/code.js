@@ -74,17 +74,17 @@ var vacation = document.getElementById("Vacation");
 //     return false;
 // });
 
-$('#Fill').on('submit', function (event){
-    event.preventDefault();
-    console.log("form submitted!");
-    alert("!");
-    // create_post();
-});
-
-function create_post() {
-    console.log("create post is working!");
-    console.log($('#post-text').val())
-};
+// $('#Fill').on('submit', function (event){
+//     event.preventDefault();
+//     console.log("form submitted!");
+//     alert("!");
+//     // create_post();
+// });
+//
+// function create_post() {
+//     console.log("create post is working!");
+//     console.log($('#post-text').val())
+// };
 
 
 // save.onclick = function (){
@@ -132,6 +132,37 @@ $('.box2').click(function(event){
 
 console.log(reason);
 
+$(document).submit('submit', '#Fill', function(e){
+    e.preventDefault();
+  $.ajax({
+       type: 'POST',
+       url: '/darba_laiks/',
+        data:{
+           no:$("#InputFrom").val(),
+           'csrfmiddlewaretoken': getCookie('csrftoken')
 
+       },
+
+       success: function(){
+
+      }
+   });
+ });
+
+ function getCookie(name) {
+     var cookieValue = null;
+     if (document.cookie && document.cookie !== '') {
+         var cookies = document.cookie.split(';');
+         for (var i = 0; i < cookies.length; i++) {
+             var cookie = jQuery.trim(cookies[i]);
+             // Does this cookie string begin with the name we want?
+             if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                 break;
+             }
+         }
+     }
+     return cookieValue;
+ };
 
 })();

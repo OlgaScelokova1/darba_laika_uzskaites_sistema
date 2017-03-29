@@ -20,36 +20,51 @@ from .forms import UserForm
 from django.db.models import Q
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
+from .models import Darba_laiks
 
 # Create your views here.
 def darba_laiks(request):
-    date = datetime.date.today()
-    monday = date - datetime.timedelta(date.weekday())
-    sunday = monday + datetime.timedelta(6)
-    tuesday = monday + datetime.timedelta(1)
-    wednesday=monday + datetime.timedelta(2)
-    thursday=monday + datetime.timedelta(3)
-    friday=monday + datetime.timedelta(4)
-    saturday= monday + datetime.timedelta(5)
-    week= datetime.date.today().strftime("%V")
-    month= date.month
+    if request.method == 'GET':
+        date = datetime.date.today()
+        monday = date - datetime.timedelta(date.weekday())
+        sunday = monday + datetime.timedelta(6)
+        tuesday = monday + datetime.timedelta(1)
+        wednesday=monday + datetime.timedelta(2)
+        thursday=monday + datetime.timedelta(3)
+        friday=monday + datetime.timedelta(4)
+        saturday= monday + datetime.timedelta(5)
+        week= datetime.date.today().strftime("%V")
+        month= date.month
 
 
 
-    context = {'monday': monday,
-               'tuesday': tuesday,
-               'wednesday': wednesday,
-               'thursday': thursday,
-               'friday': friday,
-               'saturday': saturday,
-               'sunday': sunday,
-               'week':week,
-               'month': month,
-               }
-    if request.user.is_authenticated():
-        return render(request, "index.html", context)
-    else:
-        return HttpResponseRedirect('/darba_laiks/login/')
+        context = {'monday': monday,
+                   'tuesday': tuesday,
+                   'wednesday': wednesday,
+                   'thursday': thursday,
+                   'friday': friday,
+                   'saturday': saturday,
+                   'sunday': sunday,
+                   'week':week,
+                   'month': month,
+                   }
+        if request.user.is_authenticated():
+            return render(request, "index.html", context)
+        else:
+            return HttpResponseRedirect('/darba_laiks/login/')
+
+    if request.method=='POST':
+        no = request.POST.get('no')
+        print ('post')
+
+        Darba_laiks.objects.create(
+            no="9:00",
+            lietotajs=request.user,
+            datums="2017-11-11",
+            lidz="18:00",
+                )
+        return render(request, "index.html")
+
 
 
 class LogoutView(RedirectView):
