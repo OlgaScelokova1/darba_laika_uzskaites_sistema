@@ -1,7 +1,4 @@
-from django.shortcuts import render
-from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
-from django.views import generic
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login
 from django.views.generic import View
@@ -14,13 +11,13 @@ from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.debug import sensitive_post_parameters
 from django.views.generic import FormView, RedirectView
 import datetime
-from datetime import timedelta
 from django.contrib.auth.models import User
 from .forms import UserForm
 from django.db.models import Q
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
-from .models import Darba_laiks
+from .models import Darba_laiks, Iemesls, Atstrada
+
 
 # Create your views here.
 def darba_laiks(request):
@@ -33,7 +30,8 @@ def darba_laiks(request):
         thursday=monday + datetime.timedelta(3)
         friday=monday + datetime.timedelta(4)
         saturday= monday + datetime.timedelta(5)
-        week= datetime.date.today().strftime("%V")
+        #week= datetime.date.today().strftime("%V")
+        week=date.strftime("%V")
         month= date.month
 
 
@@ -54,17 +52,97 @@ def darba_laiks(request):
             return HttpResponseRedirect('/darba_laiks/login/')
 
     if request.method =='POST':
+        iemesls = request.POST.get("reason")
 
 
-        Darba_laiks.objects.create(
+
+        a=Darba_laiks.objects.create(
+            lietotajs = request.user,
             no=request.POST.get("timeFrom", ""),
-            lietotajs=request.user,
             datums=request.POST.get("dateWhenIs", ""),
-            lidz=request.POST.get("timeTill", ""),
-            ir_mainits='True',
-            )
+            lidz=request.POST.get("timeTill",""),
+            ir_mainits='True'
+        )
 
-        return render(request, "index.html")
+        darba_laiks_id=a.id
+
+
+        if iemesls=='Slimiba':
+             b=Iemesls.objects.create(
+                 lietotajs=request.user,
+                 darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
+                 slimiba='True',
+             )
+        elif iemesls=='Atvalinajums':
+             b=Iemesls.objects.create(
+                 lietotajs=request.user,
+                 darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
+                 atvalinajums='True',
+             )
+
+        elif iemesls=='Lekcijas':
+             b=Iemesls.objects.create(
+                 lietotajs=request.user,
+                 darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
+                 lekcijas='True',
+             )
+
+        elif iemesls=='Darbs no majam':
+             b=Iemesls.objects.create(
+                 lietotajs=request.user,
+                 darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
+                 darbs_no_majam='True',
+             )
+        elif iemesls=='Mazaka slodze':
+             b=Iemesls.objects.create(
+                 lietotajs=request.user,
+                 darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
+                 mazaka_slodze='True',
+             )
+        else:
+            b=Iemesls.objects.create(
+                lietotajs=request.user,
+                darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
+                cits='True',
+            )
+        iemesls_id = b.id
+
+        Atstrada.objects.create(
+            lietotajs=request.user,
+            darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
+            iemesls=Iemesls.objects.get(id=iemesls_id),
+            no=request.POST.get("timeWillStart", ""),
+            datums=request.POST.get("dateWhenWill", ""),
+            lidz=request.POST.get("timeWillEnd", ""),
+        )
+
+
+        date = datetime.date.today()
+        monday = date - datetime.timedelta(date.weekday())
+        sunday = monday + datetime.timedelta(6)
+        tuesday = monday + datetime.timedelta(1)
+        wednesday = monday + datetime.timedelta(2)
+        thursday = monday + datetime.timedelta(3)
+        friday = monday + datetime.timedelta(4)
+        saturday = monday + datetime.timedelta(5)
+        # week= datetime.date.today().strftime("%V")
+        week = date.strftime("%V")
+        month = date.month
+
+        context = {'monday': monday,
+                   'tuesday': tuesday,
+                   'wednesday': wednesday,
+                   'thursday': thursday,
+                   'friday': friday,
+                   'saturday': saturday,
+                   'sunday': sunday,
+                   'week': week,
+                   'month': month,
+                   }
+        if request.user.is_authenticated():
+            return render(request, "index.html", context)
+        else:
+            return HttpResponseRedirect('/darba_laiks/login/')
 
 
 
@@ -178,4 +256,3 @@ class Dzest(DeleteView):
     template_name = 'izdzest.html'
     model=User
     success_url=reverse_lazy('darba_laiks:visi')
-
