@@ -222,7 +222,8 @@ class UserFormView(View):
         return render(request, self.template_name, {'form': form})
 
 def darbinieki(request):
-    darbinieki = User.objects.all()
+    izmainitie=Darba_laiks.objects.filter(datums=datetime.date.today())
+    print izmainitie
 
     query=request.GET.get("q")
     if query:
@@ -231,9 +232,9 @@ def darbinieki(request):
             Q(first_name__icontains=query) |
             Q(last_name__icontains=query)
 
-        )
+       )
 
-    context = {'darbinieki': darbinieki}
+    context = {'izmainitie': izmainitie}
     return render(request, 'visi.html', context)
 
 

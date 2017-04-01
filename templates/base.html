@@ -4,7 +4,13 @@
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+
+
+
 
 
 <!DOCTYPE html>
@@ -17,29 +23,65 @@
       @import url('https://fonts.googleapis.com/css?family=Oxygen');
     </style>
   </head>
-    <body>
 
+
+
+    <nav class="navbar navbar-default">
+    <div class="container-fluid">
+
+
+    <!-- Header -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'darba_laiks:darba_laiks' %}">Mans darba laiks</a>
+        </div>
+
+    <!-- Items -->
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="">
+                    <a href="{% url 'darba_laiks:darbinieki' %}">
+                        <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>&nbsp;
+                        Visi
+                    </a>
+                </li>
+                <li class="">
+                    <a href="#">
+                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>&nbsp;
+                        Saglabātie
+                    </a>
+                </li>
+            </ul>
+
+
+          <ul class="nav navbar-nav navbar-right">
+                 {% if user.is_superuser or user.is_staff %}
+              <li class="">
+                    <a href="{% url 'darba_laiks:visi' %}">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;
+                        Darbinieku saraksts
+                    </a>
+              </li>
+              {% endif %}
+              <li class="">
+                    <a href="{% url 'darba_laiks:logout' %}">
+                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;
+                        Izrakstīties
+                    </a>
+              </li>
+          </ul>
+        </div>
+    </div>
+</nav>
+
+
+    <body>
       <div class="container-fluid">
 
-
-        <div class = "row" id = "navigation">
-
-            <div class = "col-sm-2"> <a class = "My" href="{% url 'darba_laiks:darba_laiks' %}">Mans Darba Laiks</a></div>
-
-            <div class = "col-sm-2"> <a class="All" href="{% url 'darba_laiks:darbinieki' %}"> Visi</a></div>
-
-            <div class = "Saved col-sm-2">Saglabātie</div>
-
-            <div class = "col-sm-1">
-                {% if user.is_superuser or user.is_staff %}
-                <a id = "List" href="{% url 'darba_laiks:visi' %}">Darbinieku saraksts</a>
-                {% endif %}
-            </div>
-
-            <div class = "col-sm-1">
-                <a id = "LogOut" href="{% url 'darba_laiks:logout' %}">Izrakstīties</a>
-            </div>
-        </div>
 
 
 
@@ -51,7 +93,8 @@
 
 
       </div>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     </body>
 </html>
