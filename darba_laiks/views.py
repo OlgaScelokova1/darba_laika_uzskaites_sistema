@@ -17,6 +17,8 @@ from django.db.models import Q
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 from .models import Darba_laiks, Iemesls, Atstrada
+import json
+
 
 
 # Create your views here.
@@ -34,6 +36,11 @@ def darba_laiks(request):
         week=date.strftime("%V")
         month= date.month
 
+        lietotajs=request.user
+        nebus=Darba_laiks.objects.filter(lietotajs=lietotajs)
+        iemesls=Iemesls.objects.filter(lietotajs=lietotajs)
+        atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
+
 
 
         context = {'monday': monday,
@@ -45,6 +52,9 @@ def darba_laiks(request):
                    'sunday': sunday,
                    'week':week,
                    'month': month,
+                   'nebus': nebus,
+                   'iemesls': iemesls,
+                   'atstrada': atstrada,
                    }
         if request.user.is_authenticated():
             return render(request, "index.html", context)
@@ -144,7 +154,13 @@ def darba_laiks(request):
         else:
             return HttpResponseRedirect('/darba_laiks/login/')
 
+    row = cursor.fetchone()
 
+    cursor.execute("SELECT * FROM Darba_laiks")
+    row = cursor.fetchone()
+    while row is not None:
+        print(row)
+        row = cursor.fetchone()
 
 class LogoutView(RedirectView):
     """
