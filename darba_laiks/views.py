@@ -17,7 +17,6 @@ from django.db.models import Q
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 from .models import Darba_laiks, Iemesls, Atstrada
-import json
 
 
 
