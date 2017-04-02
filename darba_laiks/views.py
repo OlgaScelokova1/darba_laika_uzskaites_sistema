@@ -17,7 +17,6 @@ from django.db.models import Q
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 from .models import Darba_laiks, Iemesls, Atstrada
-import json
 
 
 
@@ -230,7 +229,8 @@ class UserFormView(View):
         return render(request, self.template_name, {'form': form})
 
 def darbinieki(request):
-    darbinieki = User.objects.all()
+    izmainitie=Darba_laiks.objects.filter(datums=datetime.date.today())
+    print izmainitie
 
     query=request.GET.get("q")
     if query:
@@ -240,7 +240,7 @@ def darbinieki(request):
             Q(last_name__icontains=query)
         )
 
-    context = {'darbinieki': darbinieki}
+    context = {'izmainitie': izmainitie}
     return render(request, 'visi.html', context)
 
 
@@ -263,3 +263,4 @@ class Dzest(DeleteView):
     template_name = 'izdzest.html'
     model=User
     success_url=reverse_lazy('darba_laiks:visi')
+
