@@ -153,7 +153,6 @@ def darba_laiks(request):
         else:
             return HttpResponseRedirect('/darba_laiks/login/')
 
-
 class LogoutView(RedirectView):
     """
     Provides users the ability to logout

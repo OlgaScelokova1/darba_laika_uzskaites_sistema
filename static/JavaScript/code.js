@@ -231,6 +231,7 @@ m = 0;
 var sickDate = [0];
 var sickFrom = [0];
 var sickUntill = [0];
+
 for (p = 0 ; p < laiks.length ; p++) {
     sickDate[p] = laiks[p][m];
     sickFrom[p] = laiks[p][m+1].slice(0,2);
