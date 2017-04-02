@@ -3,92 +3,31 @@
 
 
 
-// var Monday = document.getElementById("MondayList").getElementsByClassName("box2");
-// var Tuesday = document.getElementById("TuesdayList").getElementsByClassName("box2");
-// var Wednesday = document.getElementById("WednesdayList").getElementsByClassName("box2");
-// var Thursday = document.getElementById("ThursdayList").getElementsByClassName("box2");
-// var Friday = document.getElementById("FridayList").getElementsByClassName("box2");
+var Monday = document.getElementById("MondayList");
+var Tuesday = document.getElementById("TuesdayList");
+var Wednesday = document.getElementById("WednesdayList");
+var Thursday = document.getElementById("ThursdayList");
+var Friday = document.getElementById("FridayList");
+var Saturday = document.getElementById("SaturdayList");
+var Sunday = document.getElementById("SundayList");
 
 var FillBox = document.getElementById("Fill");
 
 var reason = document.getElementById("InputReason");
 
+var year = new Date().getFullYear();
+var datums = 0 ;
+var menesis = 0;
 
+var date1 = document.getElementsByClassName("Date");
+var date2 = [0];
 
-// for (i=0 ; i<9 ; i++) {
-//
-//     Monday[i].onFocus = function () {
-//         FillBox.style.display = "block";
-//         FillBox.style.position = "absolute";
-//         FillBox.style.left = "99px";
-//         FillBox.style.top = "430px";
-//         reason.value = "";
-//     };
-//
-//     Tuesday[i].onclick = function () {
-//         FillBox.style.display = "block";
-//         FillBox.style.position = "absolute";
-//         FillBox.style.left = "253.5px";
-//         FillBox.style.top = "430px";
-//         reason.value = "";
-//     };
-//
-//     Wednesday[i].onclick = function () {
-//         FillBox.style.display = "block";
-//         FillBox.style.position = "absolute";
-//         FillBox.style.left = "403.5px";
-//         FillBox.style.top = "430px";
-//         reason.value = "";
-//     };
-//
-//     Thursday[i].onclick = function () {
-//         FillBox.style.display = "block";
-//         FillBox.style.position = "absolute";
-//         FillBox.style.left = "553.5px";
-//         FillBox.style.top = "430px";
-//         reason.value = "";
-//     };
-//
-//     Friday[i].onclick = function () {
-//         FillBox.style.display = "block";
-//         FillBox.style.position = "absolute";
-//         FillBox.style.left = "703.5px";
-//         FillBox.style.top = "430px";
-//         reason.value = "";
-//     };
-// }
+for (i=0 ; i<date1.length; i++){
+    datums = date1[i].innerText.slice(0,2);
+    menesis = date1[i].innerText.slice(4,6);
+    date2[i] = year + '-' + menesis + '-' + datums;
+} //parveidoju datuma formu no html un ielieku katru dienu masiva date2[]
 
-
-// $("#Fill").submit(function(){
-//     $.post('views.py', $("#Fill").serialize(), function (data){
-//
-//     })
-//
-//     return false;
-// });
-
-// $('#Fill').on('submit', function (event){
-//     event.preventDefault();
-//     console.log("form submitted!");
-//     alert("!");
-//     // create_post();
-// });
-//
-// function create_post() {
-//     console.log("create post is working!");
-//     console.log($('#post-text').val())
-// };
-
-
-// save.onclick = function (){
-//     FillBox.style.display = "none";
-//      $.ajax({
-//              type: 'POST';
-//              url: '.darba_laiks/views.py';
-//
-//          })
-//
-// };
 
 $(document).click(function(event){
     FillBox.style.display = "none";
@@ -99,45 +38,38 @@ $('#Fill').click(function(event){
 });
 
 $('.box2').click(function(event){
-    FillBox.style.display = "block";
+        FillBox.style.display = "block";
         FillBox.style.position = "absolute";
         // reason.value = "";
         var now = $(this).attr('id');
         // console.log (now);
         if (now.startsWith("M")){
-            // alert ("You pressed on Monday");
+            document.getElementById("InputDate").defaultValue = date2[0];
+            $("#MondayList" ).append($("#FillRow"));
         }
         else if (now.startsWith("Tu")){
-            // alert ("You pressed on Tuesday!");
+            document.getElementById("InputDate").defaultValue = date2[1];
+            $("#TuesdayList" ).append($("#FillRow"));
         }
         else if (now.startsWith("We")){
-            // alert ("You pressed on Wednesday!");
+            document.getElementById("InputDate").defaultValue = date2[2];
+            $("#WednesdayList" ).append($("#FillRow"));
         }
         else if (now.startsWith("Th")){
-            // alert ("You pressed on Thursday!");
+            document.getElementById("InputDate").defaultValue = date2[3];
+            $("#ThursdayList" ).append($("#FillRow"));
         }
         else if (now.startsWith("F")){
-            // alert ("You pressed on Friday!");
+            document.getElementById("InputDate").defaultValue = date2[4];
+            $("#FridayList" ).append($("#FillRow"));
         }
+        document.getElementById('InputFrom').defaultValue = now.slice(2,4) + ":00";
+        document.getElementById('InputUntill').defaultValue = now.slice(5) + ":00";
     event.stopPropagation();
 });
 
 
 
-// $(document).submit('submit', '#Fill', function(e){
-//     e.preventDefault();
-//   $.ajax({
-//        type: 'POST',
-//        url: 'darba_laiks/',
-//
-//        data : { no : $('#InputFrom').val() },
-//
-//
-//        success: function(){
-//
-//       }
-//    });
-//  });
 
 
 function getCookie(name) {
@@ -154,7 +86,7 @@ function getCookie(name) {
          }
      }
      return cookieValue;
- };
+ }
 
 var frm = $('#Fill');
 
@@ -178,6 +110,58 @@ var frm = $('#Fill');
     });
 
 
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+
+var yyyy = today.getFullYear();
+if(dd<10){
+    dd='0'+dd;
+}
+if(mm<10){
+    mm='0'+mm;
+}
+today = yyyy+'-'+mm+'-'+dd;
+
+console.log(today);
+
+if (today == date2[0]){
+    Monday.style.border = "2px solid #259adb";
+    document.getElementById("Monday").style.color = "#259adb";
+    document.getElementById("Monday").style.fontWeight = "bold";
+}
+else if (today == date2[1]){
+     Tuesday.style.border = "2px solid #259adb";
+     document.getElementById("Tuesday").style.color = "#259adb";
+     document.getElementById("Tuesday").style.fontWeight = "bold";
+}
+else if (today == date2[2]){
+     Wednesday.style.border = "2px solid #259adb";
+     document.getElementById("Wednesday").style.color = "#259adb";
+     document.getElementById("Wednesday").style.fontWeight = "bold";
+}
+else if (today == date2[3]){
+     Thursday.style.border = "2px solid #259adb";
+     document.getElementById("Thursday").style.color = "#259adb";
+     document.getElementById("Thursday").style.fontWeight = "bold";
+}
+else if (today == date2[4]){
+     Friday.style.border = "2px solid #259adb";
+     document.getElementById("Friday").style.color = "#259adb";
+     document.getElementById("Friday").style.fontWeight = "bold";
+}
+else if (today == date2[5]){
+     Saturday.style.border = "2px solid #259adb";
+     document.getElementById("Saturday").style.color = "#259adb";
+     document.getElementById("Saturday").style.fontWeight = "bold";
+}
+else if (today == date2[6]){
+     Sunday.style.border = "2px solid #259adb";
+     document.getElementById("Sunday").style.color = "#259adb";
+     document.getElementById("Sunday").style.fontWeight = "bold";
+}
+
+
 
 // var nebusList = [document.getElementById("nebusList").getElementsByClassName("one") , document.getElementById("nebus").getElementsByTagName("li")];
 // var iemesls = [document.getElementById("iemeslsList").getElementsByClassName("one"), document.getElementById("iemesls").getElementsByTagName("li")];
@@ -188,20 +172,13 @@ var iemeslsList = document.getElementById("iemeslsList").getElementsByClassName(
 // // var atstrada = document.getElementById("atstrada").getElementsByTagName("li");
 
 
-var date1 = document.getElementsByClassName("Date");
-var date2 = [0];
+
 
 var OneDay = document.getElementsByClassName("OneDay");
 
-var year = new Date().getFullYear();
-var datums = 0 ;
-var menesis = 0;
 
-for (i=0 ; i<date1.length; i++){
-    datums = date1[i].innerText.slice(0,2);
-    menesis = date1[i].innerText.slice(4,6);
-    date2[i] = year + '-' + menesis + '-' + datums;
-} //parveidoju datuma formu no html un ielieku katru dienu masiva date2[]
+
+
 
 
 var slimiba = document.getElementById("iemeslsList").querySelectorAll("#slimiba");
@@ -212,6 +189,9 @@ var box = document.getElementsByClassName("box2");
 
 
 var tmp = [0];
+var coloredId = [0];
+var n = 0;  // masiva liksu visus id, kuri ir izkrasoti
+
 
 
 for (k=0 ; k < 9 ; k++ ) {
@@ -257,6 +237,8 @@ for(a = 0 ; a < sickDate.length ; a++){
                         if (tmp[k] == from){
                             for ( m = from ; m < untill ;m++) {
                                 box[k].style.backgroundColor = 'red';
+                                coloredId[n] = box[k];
+                                n++;
                                 k++;
                             }
                         }
@@ -269,6 +251,8 @@ for(a = 0 ; a < sickDate.length ; a++){
                         if (tmp[k-9] == from){
                             for ( m = from ; m < untill ; m++) {
                                 box[k].style.backgroundColor = 'red';
+                                coloredId[n] = box[k];
+                                n++;
                                 k++;
                             }
                         }
@@ -281,6 +265,8 @@ for(a = 0 ; a < sickDate.length ; a++){
                         if (tmp[k-18] == from){
                             for ( m = from ; m < untill ; m++) {
                                 box[k].style.backgroundColor = 'red';
+                                coloredId[n] = box[k];
+                                n++;
                                 k++;
                             }
                         }
@@ -292,6 +278,8 @@ for(a = 0 ; a < sickDate.length ; a++){
                         if (tmp[k-27] == from){
                             for ( m = from ; m < untill ; m++) {
                                 box[k].style.backgroundColor = 'red';
+                                coloredId[n] = box[k];
+                                n++;
                                 k++;
                             }
                         }
@@ -303,6 +291,8 @@ for(a = 0 ; a < sickDate.length ; a++){
                         if (tmp[k-36] == from){
                             for ( m = from ; m < untill ; m++) {
                                 box[k].style.backgroundColor = 'red';
+                                coloredId[n] = box[k];
+                                n++;
                                 k++;
                             }
                         }
@@ -356,6 +346,8 @@ for(a = 0 ; a < uniDate.length ; a++){
                         if (tmp[k] == from){
                             for ( m = from ; m < untill ;m++) {
                                 box[k].style.backgroundColor = 'green';
+                                coloredId[n] = box[k];
+                                n++;
                                 k++;
                             }
                         }
@@ -368,6 +360,8 @@ for(a = 0 ; a < uniDate.length ; a++){
                         if (tmp[k-9] == from){
                             for ( m = from ; m < untill ; m++) {
                                 box[k].style.backgroundColor = 'green';
+                                coloredId[n] = box[k];
+                                n++;
                                 k++;
                             }
                         }
@@ -380,6 +374,8 @@ for(a = 0 ; a < uniDate.length ; a++){
                         if (tmp[k-18] == from){
                             for ( m = from ; m < untill ; m++) {
                                 box[k].style.backgroundColor = 'green';
+                                coloredId[n] = box[k];
+                                n++;
                                 k++;
                             }
                         }
@@ -391,6 +387,8 @@ for(a = 0 ; a < uniDate.length ; a++){
                         if (tmp[k-27] == from){
                             for ( m = from ; m < untill ; m++) {
                                 box[k].style.backgroundColor = 'green';
+                                coloredId[n] = box[k];
+                                n++;
                                 k++;
                             }
                         }
@@ -402,6 +400,8 @@ for(a = 0 ; a < uniDate.length ; a++){
                         if (tmp[k-36] == from){
                             for ( m = from ; m < untill ; m++) {
                                 box[k].style.backgroundColor = 'green';
+                                coloredId[n] = box[k];
+                                n++;
                                 k++;
                             }
                         }
@@ -456,6 +456,8 @@ for(a = 0 ; a < homeDate.length ; a++){
                         if (tmp[k] == from){
                             for ( m = from ; m < untill ;m++) {
                                 box[k].style.backgroundColor = 'purple';
+                                coloredId[n] = box[k];
+                                n++;
                                 k++;
                             }
                         }
@@ -468,6 +470,8 @@ for(a = 0 ; a < homeDate.length ; a++){
                         if (tmp[k-9] == from){
                             for ( m = from ; m < untill ; m++) {
                                 box[k].style.backgroundColor = 'purple';
+                                coloredId[n] = box[k];
+                                n++;
                                 k++;
                             }
                         }
@@ -480,6 +484,8 @@ for(a = 0 ; a < homeDate.length ; a++){
                         if (tmp[k-18] == from){
                             for ( m = from ; m < untill ; m++) {
                                 box[k].style.backgroundColor = 'purple';
+                                coloredId[n] = box[k];
+                                n++;
                                 k++;
                             }
                         }
@@ -491,6 +497,8 @@ for(a = 0 ; a < homeDate.length ; a++){
                         if (tmp[k-27] == from){
                             for ( m = from ; m < untill ; m++) {
                                 box[k].style.backgroundColor = 'purple';
+                                coloredId[n] = box[k];
+                                n++;
                                 k++;
                             }
                         }
@@ -502,6 +510,8 @@ for(a = 0 ; a < homeDate.length ; a++){
                         if (tmp[k-36] == from){
                             for ( m = from ; m < untill ; m++) {
                                 box[k].style.backgroundColor = 'purple';
+                                coloredId[n] = box[k];
+                                n++;
                                 k++;
                             }
                         }
@@ -557,6 +567,8 @@ for(a = 0 ; a < lessDate.length ; a++){
                         if (tmp[k] == from){
                             for ( m = from ; m < untill ;m++) {
                                 box[k].style.backgroundColor = 'orange';
+                                coloredId[n] = box[k];
+                                n++;
                                 k++;
                             }
                         }
@@ -569,6 +581,8 @@ for(a = 0 ; a < lessDate.length ; a++){
                         if (tmp[k-9] == from){
                             for ( m = from ; m < untill ; m++) {
                                 box[k].style.backgroundColor = 'orange';
+                                coloredId[n] = box[k];
+                                n++;
                                 k++;
                             }
                         }
@@ -581,6 +595,8 @@ for(a = 0 ; a < lessDate.length ; a++){
                         if (tmp[k-18] == from){
                             for ( m = from ; m < untill ; m++) {
                                 box[k].style.backgroundColor = 'orange';
+                                coloredId[n] = box[k];
+                                n++;
                                 k++;
                             }
                         }
@@ -592,6 +608,8 @@ for(a = 0 ; a < lessDate.length ; a++){
                         if (tmp[k-27] == from){
                             for ( m = from ; m < untill ; m++) {
                                 box[k].style.backgroundColor = 'orange';
+                                coloredId[n] = box[k];
+                                n++;
                                 k++;
                             }
                         }
@@ -603,6 +621,8 @@ for(a = 0 ; a < lessDate.length ; a++){
                         if (tmp[k-36] == from){
                             for ( m = from ; m < untill ; m++) {
                                 box[k].style.backgroundColor = 'orange';
+                                coloredId[n] = box[k];
+                                n++;
                                 k++;
                             }
                         }
@@ -657,6 +677,8 @@ for(a = 0 ; a < otherDate.length ; a++){
                         if (tmp[k] == from){
                             for ( m = from ; m < untill ;m++) {
                                 box[k].style.backgroundColor = 'blue';
+                                coloredId[n] = box[k];
+                                n++;
                                 k++;
                             }
                         }
@@ -669,6 +691,8 @@ for(a = 0 ; a < otherDate.length ; a++){
                         if (tmp[k-9] == from){
                             for ( m = from ; m < untill ; m++) {
                                 box[k].style.backgroundColor = 'blue';
+                                coloredId[n] = box[k];
+                                n++;
                                 k++;
                             }
                         }
@@ -681,6 +705,8 @@ for(a = 0 ; a < otherDate.length ; a++){
                         if (tmp[k-18] == from){
                             for ( m = from ; m < untill ; m++) {
                                 box[k].style.backgroundColor = 'blue';
+                                coloredId[n] = box[k];
+                                n++;
                                 k++;
                             }
                         }
@@ -692,6 +718,8 @@ for(a = 0 ; a < otherDate.length ; a++){
                         if (tmp[k-27] == from){
                             for ( m = from ; m < untill ; m++) {
                                 box[k].style.backgroundColor = 'blue';
+                                coloredId[n] = box[k];
+                                n++;
                                 k++;
                             }
                         }
@@ -703,6 +731,8 @@ for(a = 0 ; a < otherDate.length ; a++){
                         if (tmp[k-36] == from){
                             for ( m = from ; m < untill ; m++) {
                                 box[k].style.backgroundColor = 'blue';
+                                coloredId[n] = box[k];
+                                n++;
                                 k++;
                             }
                         }
@@ -712,6 +742,125 @@ for(a = 0 ; a < otherDate.length ; a++){
         }
     }
 } // citu iemeslu iekraso zila krasa
+
+
+
+
+
+
+console.log(iemeslsList);
+console.log(coloredId);
+
+laiks = [];
+m = 0;
+for ( p = 0 ; p<iemeslsList.length ; p++){
+        laiks[m] = iemeslsList[p].innerText.slice();
+        // laiks[m] = laiks[m].split(" ");
+        laiks[m] = laiks[m].split("\n");
+        m++;
+} // saliek masiva pec kartas visus laikus, kad nebus
+
+
+    console.log(laiks);
+
+var offDate = [];
+var offFrom = [];
+var offUntill = [];
+var offReason = [];
+m=0;
+
+
+
+
+for (p = 0 ; p < laiks.length ; p++) {
+    offDate[p] = laiks[p][m].slice(0,10);
+    offFrom[p] = laiks[p][m].slice(11,13);
+    offUntill[p] = laiks[p][m].slice(22,24);
+    if(laiks[p][1]=="True"){
+        offReason[p] = "Slimība";
+    }
+    else if (laiks[p][2]=="True"){
+        offReason[p] = "Atvaļinājums";
+    }
+    else if (laiks[p][3]=="True"){
+        offReason[p] = "Lekcijas";
+    }
+    else if (laiks[p][4]=="True"){
+        offReason[p] = "Darbs no mājām";
+    }
+    else if (laiks[p][5]=="True"){
+        offReason[p] = "Mazāka slodze";
+    }
+    else if (laiks[p][6]=="True"){
+        offReason[p] = "Cits";
+    }
+
+} // saliek pa masiviem datumus un laikus, un iemeslus, kad nestrada
+
+console.log(offDate);
+console.log(offFrom);
+console.log(offUntill);
+console.log(offReason);
+console.log(coloredId);
+console.log(date2);
+tmp = [0];
+var tmpDate =[];
+var tmpFrom = [];
+
+
+for (k=0 ; k < coloredId.length ; k++ ){
+
+    var now = coloredId[k].id;
+    if (now.startsWith("M")){
+        tmpDate[k] = date2[0];
+    }
+    else if (now.startsWith("Tu")){
+        tmpDate[k] = date2[1];
+    }
+    else if (now.startsWith("We")){
+        tmpDate[k] = date2[2];
+    }
+    else if (now.startsWith("Th")){
+        tmpDate[k] = date2[3];
+    }
+    else if (now.startsWith("F")){
+        tmpDate[k] = date2[4];
+    }
+    tmpFrom[k] = now.slice(2,4)
+}
+console.log(tmpDate);
+console.log(tmpFrom);
+
+var offTime = document.getElementById('offTime');
+var offReasonDoc = document.getElementById('offReason');
+var offWork = document.getElementById('offWork');
+var insert = document.getElementById("description");
+
+
+
+// for (i = 0 ; i < coloredId.length ; i++){
+//     $(coloredId[i] ).mouseover(function() {
+//         console.log(this);
+//        $( '#description' ).show();
+//         for (k=0 ; k < tmpDate.length ; k++){
+//             for(p=0 ; p<offDate.length ; p++) {
+//                 console.log(tmpDate[k] + "salidzina ar" + offDate[p]);
+//                 if (tmpDate[k] == offDate[k] && tmpFrom[k] == offFrom[p]) {
+//                     offTime.innerHTML = offFrom[p];
+//                     offReasonDoc.innerHTML = offReason[p];
+//                     offWork.innerHTML = 'To do';
+//
+//
+//                 }
+//             }
+//
+//
+//         }
+//
+//
+//
+//     });
+// }
 
 
 

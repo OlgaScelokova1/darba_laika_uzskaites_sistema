@@ -63,7 +63,7 @@
                             <p class = "Date" id = "MondayDate"><span class="pull-right">{{ monday|date:"d. m" }}</span></p>
                         </div>
                       <li class = "box1" id = "Mo8-9">08:00 - 09:00</li>
-                      <li tabindex="1" tabindex="1" class = "box2" id = "Mo9-10">09:00 - 10:00</li>
+                      <li tabindex="1" tabindex="1" class = "box2" id = "Mo09-10">09:00 - 10:00</li>
                       <li tabindex="1" tabindex="1" class = "box2" id = "Mo10-11">10:00 - 11:00</li>
                       <li tabindex="1" class = "box2" id = "Mo11-12">11:00 - 12:00</li>
                       <li tabindex="1" class = "box2" id = "Mo12-13">12:00 - 13:00</li>
@@ -81,7 +81,7 @@
                         <p class = "Date" id = "TuesdayDate"><span class="pull-right">{{ tuesday|date:"d. m" }}</span></p>
                     </div>
                       <li class = "box1" id = "Tu8-9">08:00 - 09:00</li>
-                      <li tabindex="1" class = "box2" id = "Tu9-10">09:00 - 10:00</li>
+                      <li tabindex="1" class = "box2" id = "Tu09-10">09:00 - 10:00</li>
                       <li tabindex="1" class = "box2" id = "Tu10-11">10:00 - 11:00</li>
                       <li tabindex="1" class = "box2" id = "Tu11-12">11:00 - 12:00</li>
                       <li tabindex="1" class = "box2" id = "Tu12-13">12:00 - 13:00</li>
@@ -99,7 +99,7 @@
                           <p class = "Date" id = "WednesdayDate"><span class="pull-right">{{ wednesday|date:"d. m" }}</span></p>
                       </div>
                       <li class = "box1" id = "We8-9">08:00 - 09:00</li>
-                      <li tabindex="1" class = "box2" id = "We9-10">09:00 - 10:00</li>
+                      <li tabindex="1" class = "box2" id = "We09-10">09:00 - 10:00</li>
                       <li tabindex="1" class = "box2" id = "We10-11">10:00 - 11:00</li>
                       <li tabindex="1" class = "box2" id = "We11-12">11:00 - 12:00</li>
                       <li tabindex="1" class = "box2" id = "We12-13">12:00 - 13:00</li>
@@ -117,7 +117,7 @@
                           <p class = "Date" id = "ThursdayDate"><span class="pull-right">{{ thursday|date:"d. m" }}</span></p>
                       </div>
                     <li class = "box1" id = "Th8-9">08:00 - 09:00</li>
-                    <li tabindex="1" class = "box2" id = "Th9-10">09:00 - 10:00</li>
+                    <li tabindex="1" class = "box2" id = "Th09-10">09:00 - 10:00</li>
                     <li tabindex="1" class = "box2" id = "Th10-11">10:00 - 11:00</li>
                     <li tabindex="1" class = "box2" id = "Th11-12">11:00 - 12:00</li>
                     <li tabindex="1" class = "box2" id = "Th12-13">12:00 - 13:00</li>
@@ -135,7 +135,7 @@
                           <p class = "Date" id = "FridayDate"><span class="pull-right">{{ friday|date:"d. m" }}</span></p>
                       </div>
                     <li class = "box1" id = "Fr8-9">08:00 - 09:00</li>
-                    <li tabindex="1" class = "box2" id = "Fr9-10">09:00 - 10:00</li>
+                    <li tabindex="1" class = "box2" id = "Fr09-10">09:00 - 10:00</li>
                     <li tabindex="1" class = "box2" id = "Fr10-11">10:00 - 11:00</li>
                     <li tabindex="1" class = "box2" id = "Fr11-12">11:00 - 12:00</li>
                     <li tabindex="1" class = "box2" id = "Fr12-13">12:00 - 13:00</li>
@@ -153,7 +153,7 @@
                           <p class = "Date" id = "SaturdayDate"><span class="pull-right">{{ saturday|date:"d. m" }}</span></p>
                       </div>
                       <div class = "container" id = "SaturdayList">
-                        <li class = "box3" id = "Sa9-10">09:00 - 10:00</li>
+                        <li class = "box3" id = "Sa09-10">09:00 - 10:00</li>
                         <li class = "box3" id = "Sa10-11">10:00 - 11:00</li>
                         <li class = "box3" id = "Sa11-12">11:00 - 12:00</li>
                         <li class = "box3" id = "Sa12-13">12:00 - 13:00</li>
@@ -170,7 +170,7 @@
                       </div>
 
                     <div class = "container" id = "SundayList">
-                        <li class = "box3" id = "Su9-10">09:00 - 10:00</li>
+                        <li class = "box3" id = "Su09-10">09:00 - 10:00</li>
                         <li class = "box3" id = "Su10-11">10:00 - 11:00</li>
                         <li class = "box3" id = "Su11-12">11:00 - 12:00</li>
                         <li class = "box3" id = "Su12-13">12:00 - 13:00</li>
@@ -219,6 +219,15 @@
             </form>
         </div>
 
+        <div class = "container" id = "description">
+            <div class = "text">Laiks:</div>
+            <div class = "insert" id = "offTime"></div>
+            <div class = "text">Iemesls:</div>
+            <div class = "insert" id = "offReason"></div>
+            <div class = "text">Tiks atstrādāts:</div>
+            <div class = "insert" id = "offWork"></div>
+        </div>
+
         <div class = "container" id = "dataForFill">
             <div class="row">
                 <ul id = "nebusList">
@@ -228,6 +237,7 @@
                                 <li id = "datumsNebus"> {{ i.datums }} </li>
                                 <li id = "nebusNo"> {{ i.no }} </li>
                                 <li id = "nebusLidz"> {{ i.lidz }} </li>
+                                <li id = "ir_mainis"> {{ i.ir_mainits }}</li>
                             </ul>
                         </li>
                     {% endfor %}

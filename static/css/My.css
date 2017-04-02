@@ -135,7 +135,8 @@ li {
 }
 
 #FillRow{
-    margin-left:100px;
+    margin-top:5px;
+    margin-left: 1.5px;
 }
 
 #Fill {
@@ -144,8 +145,7 @@ li {
     height: 136px;
 	background-color: #ffffff;
     font-size: 10px;
-    padding-left: 0px;
-    padding-right:6px;
+    padding-left:0px;
 }
 
 
@@ -155,7 +155,10 @@ li {
     -webkit-margin-before: 0.5em;
 }
 
-
+#data{
+    padding-left:7px;
+    padding-right:1px;
+}
 
 .FirstLine {
   display:inline;
@@ -185,7 +188,7 @@ input {
 
 #Save {
     width: 145px;
-	height: 16px;
+	height: 20px;
 	background-color: #29abe2;
     position: absolute;
     bottom: 0;
@@ -194,9 +197,33 @@ input {
     padding-left:-6px;
 }
 
-/*#dataForFill{*/
-    /*font-size:0px;*/
-/*}*/
+#description{
+    width: 98.7px;
+	height: 91.3px;
+	border: solid 1px #cccccc;
+    background-color: #ffffff;
+    padding: 0.15em;
+    display: none;
+}
+
+.text {
+	height: 12px;
+	font-size: 10px;
+	text-align: left;
+	color: #9cb5cc;
+}
+
+.insert {
+    font-size: 10px;
+	height: 12px;
+	text-align: left;
+	color: #2d3439;
+    margin-bottom: 5px;
+}
+
+#dataForFill{
+    font-size:0px;
+}
 
 
 
@@ -218,7 +245,6 @@ input {
 /*color: #262626;*/
 /*sis bus konkretajai dienai, kas ir izveleta*/
 /**!*/
-
 
 
 
