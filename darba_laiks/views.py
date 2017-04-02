@@ -154,14 +154,6 @@ def darba_laiks(request):
         else:
             return HttpResponseRedirect('/darba_laiks/login/')
 
-    row = cursor.fetchone()
-
-    cursor.execute("SELECT * FROM Darba_laiks")
-    row = cursor.fetchone()
-    while row is not None:
-        print(row)
-        row = cursor.fetchone()
-
 class LogoutView(RedirectView):
     """
     Provides users the ability to logout
@@ -246,7 +238,6 @@ def darbinieki(request):
             Q(username__icontains=query) |
             Q(first_name__icontains=query) |
             Q(last_name__icontains=query)
-
         )
 
     context = {'darbinieki': darbinieki}
