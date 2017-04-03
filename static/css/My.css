@@ -8,6 +8,11 @@
     font-size: 12px;
 }
 
+.dayBox{
+    padding-left: 0px;
+    padding-right: 145px;
+}
+
 #Table .col-sm-1{
     width: 60px;
 }
@@ -23,6 +28,10 @@
 
 .DayDate p {
     display: inline;
+}
+
+.Date {
+    color: #c1c1c1;
 }
 
 .Month {

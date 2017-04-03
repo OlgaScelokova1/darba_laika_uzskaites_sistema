@@ -57,11 +57,12 @@
                     </button>
                 </div>
 
-                <ul class = "container col-sm-2 OneDay" id="MondayList">
+                <div class = "container col-sm-2 OneDay" id="MondayList">
                         <div class = "DayDate">
                             <p id = "Monday">Pirmdiena</p>
                             <p class = "Date" id = "MondayDate"><span class="pull-right">{{ monday|date:"d. m" }}</span></p>
                         </div>
+                    <ul class = "dayBox" id = "mondayBox">
                       <li class = "box1" id = "Mo8-9">08:00 - 09:00</li>
                       <li tabindex="1" tabindex="1" class = "box2" id = "Mo09-10">09:00 - 10:00</li>
                       <li tabindex="1" tabindex="1" class = "box2" id = "Mo10-11">10:00 - 11:00</li>
@@ -73,13 +74,16 @@
                       <li tabindex="1" class = "box2" id = "Mo16-17">16:00 - 17:00</li>
                       <li tabindex="1" class = "box2" id = "Mo17-18">17:00 - 18:00</li>
                       <li class = "box1" id = "Mo18-19">18:00 - 19:00</li>
-                  </ul>
+                    </ul>
+                    <div id = "Mo"></div>
+                  </div>
 
-                <ul class = "container col-sm-2 OneDay" id="TuesdayList">
+                <div class = "container col-sm-2 OneDay" id="TuesdayList">
                     <div class = "DayDate">
                         <p id = "Tuesday">Otrdiena</p>
                         <p class = "Date" id = "TuesdayDate"><span class="pull-right">{{ tuesday|date:"d. m" }}</span></p>
                     </div>
+                    <ul class = "dayBox" id = "tuesdayBox">
                       <li class = "box1" id = "Tu8-9">08:00 - 09:00</li>
                       <li tabindex="1" class = "box2" id = "Tu09-10">09:00 - 10:00</li>
                       <li tabindex="1" class = "box2" id = "Tu10-11">10:00 - 11:00</li>
@@ -91,61 +95,72 @@
                       <li tabindex="1" class = "box2" id = "Tu16-17">16:00 - 17:00</li>
                       <li tabindex="1" class = "box2" id = "Tu17-18">17:00 - 18:00</li>
                       <li class = "box1" id = "Tu18-19">18:00 - 19:00</li>
-                  </ul>
+                    </ul>
+                    <div id = "Tu"></div>
+                  </div>
 
-                  <ul class = "container col-sm-2 OneDay" id="WednesdayList">
+                  <div class = "container col-sm-2 OneDay" id="WednesdayList">
                       <div class = "DayDate">
                         <p id = "Wednesday">Trešdiena</p>
                           <p class = "Date" id = "WednesdayDate"><span class="pull-right">{{ wednesday|date:"d. m" }}</span></p>
                       </div>
-                      <li class = "box1" id = "We8-9">08:00 - 09:00</li>
-                      <li tabindex="1" class = "box2" id = "We09-10">09:00 - 10:00</li>
-                      <li tabindex="1" class = "box2" id = "We10-11">10:00 - 11:00</li>
-                      <li tabindex="1" class = "box2" id = "We11-12">11:00 - 12:00</li>
-                      <li tabindex="1" class = "box2" id = "We12-13">12:00 - 13:00</li>
-                      <li tabindex="1" class = "box2" id = "We13-14">13:00 - 14:00</li>
-                      <li tabindex="1" class = "box2" id = "We14-15">14:00 - 15:00</li>
-                      <li tabindex="1" class = "box2" id = "We15-16">15:00 - 16:00</li>
-                      <li tabindex="1" class = "box2" id = "We16-17">16:00 - 17:00</li>
-                      <li tabindex="1" class = "box2" id = "We17-18">17:00 - 18:00</li>
+                      <ul class = "dayBox" id = "wednesdayBox">
+                          <li class = "box1" id = "We8-9">08:00 - 09:00</li>
+                          <li tabindex="1" class = "box2" id = "We09-10">09:00 - 10:00</li>
+                          <li tabindex="1" class = "box2" id = "We10-11">10:00 - 11:00</li>
+                          <li tabindex="1" class = "box2" id = "We11-12">11:00 - 12:00</li>
+                          <li tabindex="1" class = "box2" id = "We12-13">12:00 - 13:00</li>
+                          <li tabindex="1" class = "box2" id = "We13-14">13:00 - 14:00</li>
+                          <li tabindex="1" class = "box2" id = "We14-15">14:00 - 15:00</li>
+                          <li tabindex="1" class = "box2" id = "We15-16">15:00 - 16:00</li>
+                          <li tabindex="1" class = "box2" id = "We16-17">16:00 - 17:00</li>
+                          <li tabindex="1" class = "box2" id = "We17-18">17:00 - 18:00</li>
                       <li class = "box1" id = "We18-19">18:00 - 19:00</li>
-                  </ul>
+                      </ul>
+                      <div id = "We"></div>
+                  </div>
 
-                  <ul class = "container col-sm-2 OneDay" id = "ThursdayList">
+                  <div class = "container col-sm-2 OneDay" id = "ThursdayList">
                       <div class = "DayDate">
                         <p id = "Thursday">Ceturtdiena</p>
                           <p class = "Date" id = "ThursdayDate"><span class="pull-right">{{ thursday|date:"d. m" }}</span></p>
                       </div>
-                    <li class = "box1" id = "Th8-9">08:00 - 09:00</li>
-                    <li tabindex="1" class = "box2" id = "Th09-10">09:00 - 10:00</li>
-                    <li tabindex="1" class = "box2" id = "Th10-11">10:00 - 11:00</li>
-                    <li tabindex="1" class = "box2" id = "Th11-12">11:00 - 12:00</li>
-                    <li tabindex="1" class = "box2" id = "Th12-13">12:00 - 13:00</li>
-                    <li tabindex="1" class = "box2" id = "Th13-14">13:00 - 14:00</li>
-                    <li tabindex="1" class = "box2" id = "Th14-15">14:00 - 15:00</li>
-                    <li tabindex="1" class = "box2" id = "Th15-16">15:00 - 16:00</li>
-                    <li tabindex="1" class = "box2" id = "Th16-17">16:00 - 17:00</li>
-                    <li tabindex="1" class = "box2" id = "Th17-18">17:00 - 18:00</li>
-                    <li class = "box1" id = "Th18-19">18:00 - 19:00</li>
-                  </ul>
+                      <ul class = "dayBox" id = "thursdayBox">
+                        <li class = "box1" id = "Th8-9">08:00 - 09:00</li>
+                        <li tabindex="1" class = "box2" id = "Th09-10">09:00 - 10:00</li>
+                        <li tabindex="1" class = "box2" id = "Th10-11">10:00 - 11:00</li>
+                        <li tabindex="1" class = "box2" id = "Th11-12">11:00 - 12:00</li>
+                        <li tabindex="1" class = "box2" id = "Th12-13">12:00 - 13:00</li>
+                        <li tabindex="1" class = "box2" id = "Th13-14">13:00 - 14:00</li>
+                        <li tabindex="1" class = "box2" id = "Th14-15">14:00 - 15:00</li>
+                        <li tabindex="1" class = "box2" id = "Th15-16">15:00 - 16:00</li>
+                        <li tabindex="1" class = "box2" id = "Th16-17">16:00 - 17:00</li>
+                        <li tabindex="1" class = "box2" id = "Th17-18">17:00 - 18:00</li>
+                        <li class = "box1" id = "Th18-19">18:00 - 19:00</li>
+                      </ul>
+                        <div id = "Th"></div>
+                  </div>
 
-                  <ul class = "container col-sm-2 OneDay" id = "FridayList">
+                  <div class = "container col-sm-2 OneDay" id = "FridayList">
                       <div class = "DayDate">
                         <p id = "Friday">Piektdiena</p>
                           <p class = "Date" id = "FridayDate"><span class="pull-right">{{ friday|date:"d. m" }}</span></p>
                       </div>
-                    <li class = "box1" id = "Fr8-9">08:00 - 09:00</li>
-                    <li tabindex="1" class = "box2" id = "Fr09-10">09:00 - 10:00</li>
-                    <li tabindex="1" class = "box2" id = "Fr10-11">10:00 - 11:00</li>
-                    <li tabindex="1" class = "box2" id = "Fr11-12">11:00 - 12:00</li>
-                    <li tabindex="1" class = "box2" id = "Fr12-13">12:00 - 13:00</li>
-                    <li tabindex="1" class = "box2" id = "Fr13-14">13:00 - 14:00</li>
-                    <li tabindex="1" class = "box2" id = "Fr14-15">14:00 - 15:00</li>
-                    <li tabindex="1" class = "box2" id = "Fr15-16">15:00 - 16:00</li>
-                    <li tabindex="1" class = "box2" id = "Fr16-17">16:00 - 17:00</li>
-                    <li tabindex="1" class = "box2" id = "Fr17-18">17:00 - 18:00</li>
-                    <li class = "box1" id = "Fr18-19">18:00 - 19:00</li>
-                  </ul>
+                      <ul class = "dayBox" id = "fridayBox">
+                            <li class = "box1" id = "Fr8-9">08:00 - 09:00</li>
+                            <li tabindex="1" class = "box2" id = "Fr09-10">09:00 - 10:00</li>
+                            <li tabindex="1" class = "box2" id = "Fr10-11">10:00 - 11:00</li>
+                            <li tabindex="1" class = "box2" id = "Fr11-12">11:00 - 12:00</li>
+                            <li tabindex="1" class = "box2" id = "Fr12-13">12:00 - 13:00</li>
+                            <li tabindex="1" class = "box2" id = "Fr13-14">13:00 - 14:00</li>
+                            <li tabindex="1" class = "box2" id = "Fr14-15">14:00 - 15:00</li>
+                            <li tabindex="1" class = "box2" id = "Fr15-16">15:00 - 16:00</li>
+                            <li tabindex="1" class = "box2" id = "Fr16-17">16:00 - 17:00</li>
+                            <li tabindex="1" class = "box2" id = "Fr17-18">17:00 - 18:00</li>
+                            <li class = "box1" id = "Fr18-19">18:00 - 19:00</li>
+                      </ul>
+                      <div id = "Fr"></div>
+                  </div>
 
                   <ul class = "container col-sm-2" id = "HolidayList">
                       <div class = "DayDate">

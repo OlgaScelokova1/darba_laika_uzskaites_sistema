@@ -1,0 +1,66 @@
+body {
+  background-color: #f2f2f2;
+  font-family: 'Oxygen';
+    text-align: center;
+}
+
+li{
+    list-style-type: none;
+}
+
+.row{
+    border: solid 0.5px #29abe2;
+    margin-top: 7em;
+    margin-left: 30em;
+    width: 500px;
+    background-color: white;
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
+.control-label{
+    display: none;
+}
+
+
+
+.btn {
+    width : 200px;
+    height: 30px;
+    margin-top: 20px;
+    background-color: #29abe2;
+    border-width: 0px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 7px;
+}
+
+.form-group{
+    margin-top: 15px;
+}
+
+
+#error{
+    font-size: 14px;
+}
+
+.errorList{
+    padding-left:0px;
+}
+
+#id_username{
+    margin-left:5px;
+    width : 180px;
+    height: 30px;
+    border-radius: 7px;
+    border-width: 1px;
+}
+
+#id_password{
+    margin-left:5px;
+    width : 180px;
+    height: 30px;
+    border-radius: 7px;
+    border-width: 1px;
+}

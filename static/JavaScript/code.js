@@ -3,12 +3,12 @@
 
 
 
-var Monday = document.getElementById("MondayList");
-var Tuesday = document.getElementById("TuesdayList");
-var Wednesday = document.getElementById("WednesdayList");
-var Thursday = document.getElementById("ThursdayList");
-var Friday = document.getElementById("FridayList");
-var Saturday = document.getElementById("SaturdayList");
+var Monday = document.getElementById("mondayBox");
+var Tuesday = document.getElementById("tuesdayBox");
+var Wednesday = document.getElementById("wednesdayBox");
+var Thursday = document.getElementById("thursdayBox");
+var Friday = document.getElementById("fridayBox");
+var Saturday = document.getElementById("SsaturdayList");
 var Sunday = document.getElementById("SundayList");
 
 var FillBox = document.getElementById("Fill");
@@ -45,23 +45,23 @@ $('.box2').click(function(event){
         // console.log (now);
         if (now.startsWith("M")){
             document.getElementById("InputDate").defaultValue = date2[0];
-            $("#MondayList" ).append($("#FillRow"));
+            $("#Mo" ).append($("#FillRow"));
         }
         else if (now.startsWith("Tu")){
             document.getElementById("InputDate").defaultValue = date2[1];
-            $("#TuesdayList" ).append($("#FillRow"));
+            $("#Tu" ).append($("#FillRow"));
         }
         else if (now.startsWith("We")){
             document.getElementById("InputDate").defaultValue = date2[2];
-            $("#WednesdayList" ).append($("#FillRow"));
+            $("#We" ).append($("#FillRow"));
         }
         else if (now.startsWith("Th")){
             document.getElementById("InputDate").defaultValue = date2[3];
-            $("#ThursdayList" ).append($("#FillRow"));
+            $("#Th" ).append($("#FillRow"));
         }
         else if (now.startsWith("F")){
             document.getElementById("InputDate").defaultValue = date2[4];
-            $("#FridayList" ).append($("#FillRow"));
+            $("#Fr" ).append($("#FillRow"));
         }
         document.getElementById('InputFrom').defaultValue = now.slice(2,4) + ":00";
         document.getElementById('InputUntill').defaultValue = now.slice(5) + ":00";
@@ -129,36 +129,50 @@ if (today == date2[0]){
     Monday.style.border = "2px solid #259adb";
     document.getElementById("Monday").style.color = "#259adb";
     document.getElementById("Monday").style.fontWeight = "bold";
+    document.getElementById("MondayDate").style.color = "#262626";
+    document.getElementById("MondayDate").style.color = "#262626";
 }
 else if (today == date2[1]){
      Tuesday.style.border = "2px solid #259adb";
      document.getElementById("Tuesday").style.color = "#259adb";
      document.getElementById("Tuesday").style.fontWeight = "bold";
+     document.getElementById("TuesdayDate").style.color = "#262626";
+     document.getElementById("TuesdayDate").style.fontWeight = "bold";
 }
 else if (today == date2[2]){
      Wednesday.style.border = "2px solid #259adb";
      document.getElementById("Wednesday").style.color = "#259adb";
      document.getElementById("Wednesday").style.fontWeight = "bold";
+     document.getElementById("WednesdayDate").style.color = "#262626";
+     document.getElementById("WednesdayDate").style.fontWeight = "bold";
 }
 else if (today == date2[3]){
      Thursday.style.border = "2px solid #259adb";
      document.getElementById("Thursday").style.color = "#259adb";
      document.getElementById("Thursday").style.fontWeight = "bold";
+     document.getElementById("ThursdayDate").style.color = "#262626";
+     document.getElementById("ThursdayDate").style.fontWeight = "bold";
 }
 else if (today == date2[4]){
      Friday.style.border = "2px solid #259adb";
      document.getElementById("Friday").style.color = "#259adb";
      document.getElementById("Friday").style.fontWeight = "bold";
+     document.getElementById("FridayDate").style.color = "#262626";
+     document.getElementById("FridayDate").style.fontWeight = "bold";
 }
 else if (today == date2[5]){
      Saturday.style.border = "2px solid #259adb";
      document.getElementById("Saturday").style.color = "#259adb";
      document.getElementById("Saturday").style.fontWeight = "bold";
+     document.getElementById("SaturdayDate").style.color = "#262626";
+     document.getElementById("SaturdayDate").style.fontWeight = "bold";
 }
 else if (today == date2[6]){
      Sunday.style.border = "2px solid #259adb";
      document.getElementById("Sunday").style.color = "#259adb";
      document.getElementById("Sunday").style.fontWeight = "bold";
+     document.getElementById("SundayDate").style.color = "#262626";
+     document.getElementById("SundayDate").style.fontWeight = "bold";
 }
 
 

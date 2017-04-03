@@ -1,10 +1,13 @@
 {% load staticfiles %}
-<!-- Latest compiled and minified CSS -->
+
 <link rel="stylesheet" href="https://maxcdn.bootsdivapcdn.com/bootsdivap/3.3.7/css/bootsdivap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootsdivapcdn.com/bootsdivap/3.3.7/css/bootsdivap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
+<link href="http://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{% static 'css/Login.css' %}" />
+
+
+<body>
 <div class="container-fluid">
 
     <div class="row">
@@ -12,7 +15,7 @@
         <div class="col-sm-12 col-md-7">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h3> Login</h3>
+{#                    <h3> Login</h3>#}
                     <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
 
@@ -21,17 +24,19 @@
 
 
        <div class="form-group">
-           <div class="col-sm-offset-2 col-sm-10">
+
+           <label class="control-label col-sm-2">{{ field.label_tag }}</label>
+           <div class="col-sm-10"> {{ field }} </div>
+            <div class="col-sm-offset-2 col-sm-10" id ="error">
                <span class="text-danger small">{{ field.errors }}</span>
            </div>
-       <label class="control-label col-sm-2">{{ field.label_tag }}</label>
-       <div class="col-sm-10">{{ field }}</div>
        </div>
 
 {% endfor %}
+
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-success">Ok</button>
+                                <button type="submit" class="btn btn-success">Log in</button>
                             </div>
                         </div>
 
@@ -42,3 +47,5 @@
         </div>
     </div>
 </div>
+<script type="text/javascript" src="{% static 'JavaScript/LogIn.js' %}"></script>
+</body>
