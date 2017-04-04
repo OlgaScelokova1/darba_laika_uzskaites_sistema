@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login
@@ -17,6 +18,10 @@ from django.db.models import Q
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 from .models import Darba_laiks, Iemesls, Atstrada
+from django import forms
+from django.utils.translation import ugettext, ugettext_lazy as _
+from .forms import UserCreationForm
+
 
 
 
@@ -195,7 +200,7 @@ class LoginView(FormView):
         return redirect_to
 
 class UserFormView(View):
-    form_class=UserForm
+    form_class=UserCreationForm
     template_name='registration_form.html'
 
     #display blank form
@@ -213,35 +218,42 @@ class UserFormView(View):
 
             #cleaned data
 
-            username=form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user.set_password(password)
             user.save() #save to database
-
-            #returns User object if credentials are correct
-            user=authenticate(username=username, password=password)
 
             if user is not None:
                 if user.is_active:
                     login(request,user)
-                    return redirect('darba_laiks:darba_laiks')
+                    return redirect('darba_laiks:visi')
 
         return render(request, self.template_name, {'form': form})
 
 def darbinieki(request):
-    izmainitie=Darba_laiks.objects.filter(datums=datetime.date.today())
-    print izmainitie
+    if request.method == 'GET':
+        collection_ids = Darba_laiks.objects.filter(datums=datetime.date.today()).values_list('lietotajs',flat=True).distinct()
+        izmainitie = [
+            Darba_laiks.objects.filter(lietotajs__id=c)[0] for c in collection_ids
+            ]
 
-    query=request.GET.get("q")
-    if query:
-        darbinieki=darbinieki.filter(
-            Q(username__icontains=query) |
-            Q(first_name__icontains=query) |
-            Q(last_name__icontains=query)
-        )
 
-    context = {'izmainitie': izmainitie}
-    return render(request, 'visi.html', context)
+        context = {'izmainitie': izmainitie}
+        return render(request, 'visi.html', context)
+
+    if request.method == 'POST':
+        collection_ids = Darba_laiks.objects.filter(datums=datetime.date.today()).values_list('lietotajs',flat=True).distinct()
+
+        lietot = User.objects.filter(pk__in=collection_ids)
+
+
+        query=request.POST.get("q")
+        if query:
+            lietot=lietot.filter(
+                    Q(username__icontains=query) |
+                    Q(first_name__icontains=query) |
+                    Q(last_name__icontains=query)
+                )
+
+        context = {'lietot': lietot}
+        return render(request, 'visi.html', context)
 
 
 def visi(request):

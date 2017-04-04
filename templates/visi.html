@@ -1,12 +1,10 @@
-{%extends "base.html" %}
-
 {% block content %}
 
     {% load staticfiles %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/All.css' %}" />
 
     <div class = "row" id = "search">
-        <form method="GET" action="">
+        <form method="POST" action="">{% csrf_token %}
           <span class="pull-right">
                 <input type="text" name="q" placeholder="Meklēt lietotāju" value="{{ request.get.q }}"/>
                 <input type="submit" value="Meklēt"/>
@@ -17,10 +15,20 @@
     <div class = "row" id = "people">
 
         {% for izmainits in izmainitie %}
+
             <div class = "col-sm-2">
            {{izmainits.lietotajs.username}}  <br>
             </div>
         {% endfor %}
+
+        {% for lietotajs in lietot %}
+            <div class = "col-sm-2">
+         {{ lietotajs }}
+             </div>
+           {% endfor %}
+
+
+
 
     </div>
 
