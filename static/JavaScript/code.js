@@ -1,5 +1,123 @@
 (function() {
 
+function formatDate(myDate) {
+    var tmp = myDate;
+    var month = tmp.getMonth() + 1;
+    var day = tmp.getDate();
+    if(day<10){
+        day = "0" + day;
+    }
+    if(month<10){
+        month = "0" + month;
+    }
+
+    return (day + "." + month);
+}
+
+function addDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+}
+
+var dateMonday = new Date();
+
+while (dateMonday.getDay() !== 1) {
+    dateMonday.setDate(dateMonday.getDate()-1);
+}
+
+var dateTuesday = addDays(dateMonday, 1);
+var dateWednesday = addDays(dateMonday, 2);
+var dateThursday = addDays(dateMonday, 3);
+var dateFriday = addDays(dateMonday, 4);
+var dateSaturday = addDays(dateMonday, 5);
+var dateSunday = addDays(dateMonday, 6);
+
+var formattedDateMonday = formatDate(dateMonday);
+var formattedDateTuesday = formatDate(dateTuesday);
+var formattedDateWednesday = formatDate(dateWednesday);
+var formattedDateThursday = formatDate(dateThursday);
+var formattedDateFriday = formatDate(dateFriday);
+var formattedDateSaturday = formatDate(dateSaturday);
+var formattedDateSunday = formatDate(dateSunday);
+
+document.getElementById("MondayDate").innerHTML = formattedDateMonday;
+document.getElementById("TuesdayDate").innerHTML = formattedDateTuesday;
+document.getElementById("WednesdayDate").innerHTML = formattedDateWednesday;
+document.getElementById("ThursdayDate").innerHTML = formattedDateThursday;
+document.getElementById("FridayDate").innerHTML = formattedDateFriday;
+document.getElementById("SaturdayDate").innerHTML = formattedDateSaturday;
+document.getElementById("SundayDate").innerHTML = formattedDateSunday;
+// tiek sarakstīti šīs nedēļas datumi
+
+
+
+$('#Up').click(function(){
+    dateMonday = addDays(dateMonday, 7);
+    dateTuesday = addDays(dateTuesday, 7);
+    dateWednesday = addDays(dateWednesday, 7);
+    dateThursday = addDays(dateThursday, 7);
+    dateFriday = addDays(dateFriday, 7);
+    dateSaturday = addDays(dateSaturday, 7);
+    dateSunday = addDays(dateSunday, 7);
+    console.log(dateSunday);
+
+    formattedDateMonday = formatDate(dateMonday);
+formattedDateTuesday = formatDate(dateTuesday);
+formattedDateWednesday = formatDate(dateWednesday);
+formattedDateThursday = formatDate(dateThursday);
+formattedDateFriday = formatDate(dateFriday);
+formattedDateSaturday = formatDate(dateSaturday);
+formattedDateSunday = formatDate(dateSunday);
+document.getElementById("MondayDate").innerHTML = formattedDateMonday;
+document.getElementById("TuesdayDate").innerHTML = formattedDateTuesday;
+document.getElementById("WednesdayDate").innerHTML = formattedDateWednesday;
+document.getElementById("ThursdayDate").innerHTML = formattedDateThursday;
+document.getElementById("FridayDate").innerHTML = formattedDateFriday;
+document.getElementById("SaturdayDate").innerHTML = formattedDateSaturday;
+document.getElementById("SundayDate").innerHTML = formattedDateSunday;
+});
+
+
+$('#Down').click(function(){
+    dateMonday = addDays(dateMonday, -7);
+    dateTuesday = addDays(dateTuesday, -7);
+    dateWednesday = addDays(dateWednesday, -7);
+    dateThursday = addDays(dateThursday, -7);
+    dateFriday = addDays(dateFriday, -7);
+    dateSaturday = addDays(dateSaturday, -7);
+    dateSunday = addDays(dateSunday, -7);
+    console.log(dateSunday);
+
+    formattedDateMonday = formatDate(dateMonday);
+formattedDateTuesday = formatDate(dateTuesday);
+formattedDateWednesday = formatDate(dateWednesday);
+formattedDateThursday = formatDate(dateThursday);
+formattedDateFriday = formatDate(dateFriday);
+formattedDateSaturday = formatDate(dateSaturday);
+formattedDateSunday = formatDate(dateSunday);
+document.getElementById("MondayDate").innerHTML = formattedDateMonday;
+document.getElementById("TuesdayDate").innerHTML = formattedDateTuesday;
+document.getElementById("WednesdayDate").innerHTML = formattedDateWednesday;
+document.getElementById("ThursdayDate").innerHTML = formattedDateThursday;
+document.getElementById("FridayDate").innerHTML = formattedDateFriday;
+document.getElementById("SaturdayDate").innerHTML = formattedDateSaturday;
+document.getElementById("SundayDate").innerHTML = formattedDateSunday;
+});
+
+
+
+
+var months =['JANVĀRIS','FEBRUĀRIS','MARTS','APRĪLIS','MAIJS','JŪNIJS','JŪLIJS','AUGUSTS','SEPTEMBRIS','OKTOBRIS','NOVEMBRIS','DECEMBRIS'];
+
+var weekStarts = document.getElementById("MondayDate");
+var thisMonth = weekStarts.innerText.slice(3);
+console.log (thisMonth);
+if(thisMonth<10){
+    thisMonth=thisMonth.slice(1);
+}
+
+document.getElementById("Month").innerHTML = months[thisMonth-1]; // tiek noteikts mēnesis
 
 
 
@@ -20,11 +138,13 @@ var datums = 0 ;
 var menesis = 0;
 
 var date1 = document.getElementsByClassName("Date");
-var date2 = [0];
+var date2 = [];
+
+console.log(date1);
 
 for (i=0 ; i<date1.length; i++){
     datums = date1[i].innerText.slice(0,2);
-    menesis = date1[i].innerText.slice(4,6);
+    menesis = date1[i].innerText.slice(3);
     date2[i] = year + '-' + menesis + '-' + datums;
 } //parveidoju datuma formu no html un ielieku katru dienu masiva date2[]
 
@@ -100,7 +220,6 @@ var frm = $('#Fill');
                 console.log(data);
             },
             error: function(data) {
-                console.log(data);
             }
         });
 
@@ -196,14 +315,14 @@ var OneDay = document.getElementsByClassName("OneDay");
 
 
 var slimiba = document.getElementById("iemeslsList").querySelectorAll("#slimiba");
-var laiks = [0];
+var laiks = [];
 
 var m = 0;
 var box = document.getElementsByClassName("box2");
 
 
-var tmp = [0];
-var coloredId = [0];
+var tmp = [];
+var coloredId = [];
 var n = 0;  // masiva liksu visus id, kuri ir izkrasoti
 
 
@@ -222,9 +341,10 @@ for ( p = 0 ; p<slimiba.length ; p++){
 } // saliek masiva pec kartas visus laikus, kad ir slimiba
 
 m = 0;
-var sickDate = [0];
-var sickFrom = [0];
-var sickUntill = [0];
+var sickDate = [];
+var sickFrom = [];
+var sickUntill = [];
+console.log(laiks);
 
 for (p = 0 ; p < laiks.length ; p++) {
     sickDate[p] = laiks[p][m];
@@ -331,9 +451,9 @@ for ( p = 0 ; p<lekcijas.length ; p++){
 } // saliek masiva pec kartas visus laikus, kad ir lekcijas
 
 m = 0;
-var uniDate = [0];
-var uniFrom = [0];
-var uniUntill = [0];
+var uniDate = [];
+var uniFrom = [];
+var uniUntill = [];
 for (p = 0 ; p < laiks.length ; p++) {
     uniDate[p] = laiks[p][m];
     uniFrom[p] = laiks[p][m+1].slice(0,2);
@@ -441,9 +561,9 @@ for ( p = 0 ; p<home.length ; p++){
 
 
 m = 0;
-var homeDate = [0];
-var homeFrom = [0];
-var homeUntill = [0];
+var homeDate = [];
+var homeFrom = [];
+var homeUntill = [];
 for (p = 0 ; p < laiks.length ; p++) {
     homeDate[p] = laiks[p][m];
     homeFrom[p] = laiks[p][m+1].slice(0,2);
@@ -552,9 +672,9 @@ for ( p = 0 ; p<less.length ; p++){
 
 
 m = 0;
-var lessDate = [0];
-var lessFrom = [0];
-var lessUntill = [0];
+var lessDate = [];
+var lessFrom = [];
+var lessUntill = [];
 for (p = 0 ; p < laiks.length ; p++) {
     lessDate[p] = laiks[p][m];
     lessFrom[p] = laiks[p][m+1].slice(0,2);
@@ -662,9 +782,9 @@ for ( p = 0 ; p<other.length ; p++){
 
 
 m = 0;
-var otherDate = [0];
-var otherFrom = [0];
-var otherUntill = [0];
+var otherDate = [];
+var otherFrom = [];
+var otherUntill = [];
 for (p = 0 ; p < laiks.length ; p++) {
     otherDate[p] = laiks[p][m];
     otherFrom[p] = laiks[p][m+1].slice(0,2);
@@ -817,31 +937,33 @@ console.log(offUntill);
 console.log(offReason);
 console.log(coloredId);
 console.log(date2);
-tmp = [0];
+tmp = [];
 var tmpDate =[];
 var tmpFrom = [];
 
 
-for (k=0 ; k < coloredId.length ; k++ ){
+for ( k = 0 ; k < coloredId.length ; k++ ){
 
-    var now = coloredId[k].id;
-    if (now.startsWith("M")){
-        tmpDate[k] = date2[0];
-    }
-    else if (now.startsWith("Tu")){
-        tmpDate[k] = date2[1];
-    }
-    else if (now.startsWith("We")){
-        tmpDate[k] = date2[2];
-    }
-    else if (now.startsWith("Th")){
-        tmpDate[k] = date2[3];
-    }
-    else if (now.startsWith("F")){
-        tmpDate[k] = date2[4];
-    }
-    tmpFrom[k] = now.slice(2,4)
+        var now = coloredId[k].id;
+        console.log(now);
+        if (now.startsWith("M")){
+            tmpDate[k] = date2[0];
+        }
+        else if (now.startsWith("Tu")){
+            tmpDate[k] = date2[1];
+        }
+        else if (now.startsWith("We")){
+            tmpDate[k] = date2[2];
+        }
+        else if (now.startsWith("Th")){
+            tmpDate[k] = date2[3];
+        }
+        else if (now.startsWith("F")){
+            tmpDate[k] = date2[4];
+        }
+        tmpFrom[k] = now.slice(2,4)
 }
+
 console.log(tmpDate);
 console.log(tmpFrom);
 
@@ -875,17 +997,6 @@ var insert = document.getElementById("description");
 //
 //     });
 // }
-
-
-
-
-
-
-
-
-
-
-
 
 
 

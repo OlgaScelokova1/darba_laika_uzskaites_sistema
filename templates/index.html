@@ -7,33 +7,33 @@
     {% load staticfiles %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/My.css' %}" />
 
-        <div class = "Month">
+        <div class = "Month" id = "Month">
 
-            {% if month == 1 %}
-                 JANVĀRIS
-            {% elif month == 2 %}
-                 FEBRUĀRIS
-            {% elif month == 3 %}
-                 MARTS
-            {% elif month == 4 %}
-                 APRĪLIS
-            {% elif month == 5 %}
-                 MAIJS
-            {% elif month == 6 %}
-                 JŪNIJS
-            {% elif month == 7 %}
-                 JŪLIJS
-            {% elif month == 8 %}
-                 AUGUSTS
-            {% elif month == 9 %}
-                 SEPTEMBRIS
-            {% elif month == 10 %}
-                 OKTOBRIS
-            {% elif month == 11 %}
-                 NOVEMBRIS
-            {% elif month == 12 %}
-                 DECEMBRIS
-            {% endif %}
+{#            {% if month == 1 %}#}
+{#                 JANVĀRIS#}
+{#            {% elif month == 2 %}#}
+{#                 FEBRUĀRIS#}
+{#            {% elif month == 3 %}#}
+{#                 MARTS#}
+{#            {% elif month == 4 %}#}
+{#                 APRĪLIS#}
+{#            {% elif month == 5 %}#}
+{#                 MAIJS#}
+{#            {% elif month == 6 %}#}
+{#                 JŪNIJS#}
+{#            {% elif month == 7 %}#}
+{#                 JŪLIJS#}
+{#            {% elif month == 8 %}#}
+{#                 AUGUSTS#}
+{#            {% elif month == 9 %}#}
+{#                 SEPTEMBRIS#}
+{#            {% elif month == 10 %}#}
+{#                 OKTOBRIS#}
+{#            {% elif month == 11 %}#}
+{#                 NOVEMBRIS#}
+{#            {% elif month == 12 %}#}
+{#                 DECEMBRIS#}
+{#            {% endif %}#}
 
         </div>
 
@@ -49,7 +49,7 @@
                         <span class="glyphicon glyphicon-menu-up arrow"></span>
                     </button>
 
-                    <div id="WeekDate">{{week}}</div>
+                    <div id="WeekDate"></div>
                     <div id = "Week" >nedēļa</div>
 
                     <button type="button" class="Button" id="Down">
@@ -60,7 +60,8 @@
                 <div class = "container col-sm-2 OneDay" id="MondayList">
                         <div class = "DayDate">
                             <p id = "Monday">Pirmdiena</p>
-                            <p class = "Date" id = "MondayDate"><span class="pull-right">{{ monday|date:"d. m" }}</span></p>
+{#                            <p class = "Date" id = "MondayDate"><span class="pull-right">{{ monday|date:"d. m" }}</span></p>#}
+                              <p class = "Date" ><span class="pull-right" id = "MondayDate"></span></p>
                         </div>
                     <ul class = "dayBox" id = "mondayBox">
                       <li class = "box1" id = "Mo8-9">08:00 - 09:00</li>
@@ -81,7 +82,8 @@
                 <div class = "container col-sm-2 OneDay" id="TuesdayList">
                     <div class = "DayDate">
                         <p id = "Tuesday">Otrdiena</p>
-                        <p class = "Date" id = "TuesdayDate"><span class="pull-right">{{ tuesday|date:"d. m" }}</span></p>
+{#                        <p class = "Date" id = "TuesdayDate"><span class="pull-right">{{ tuesday|date:"d. m" }}</span></p>#}
+                        <p class = "Date" ><span class="pull-right" id = "TuesdayDate"></span></p>
                     </div>
                     <ul class = "dayBox" id = "tuesdayBox">
                       <li class = "box1" id = "Tu8-9">08:00 - 09:00</li>
@@ -102,7 +104,8 @@
                   <div class = "container col-sm-2 OneDay" id="WednesdayList">
                       <div class = "DayDate">
                         <p id = "Wednesday">Trešdiena</p>
-                          <p class = "Date" id = "WednesdayDate"><span class="pull-right">{{ wednesday|date:"d. m" }}</span></p>
+{#                          <p class = "Date" id = "WednesdayDate"><span class="pull-right">{{ wednesday|date:"d. m" }}</span></p>#}
+                           <p class = "Date" ><span class="pull-right" id = "WednesdayDate"></span></p>
                       </div>
                       <ul class = "dayBox" id = "wednesdayBox">
                           <li class = "box1" id = "We8-9">08:00 - 09:00</li>
@@ -123,7 +126,8 @@
                   <div class = "container col-sm-2 OneDay" id = "ThursdayList">
                       <div class = "DayDate">
                         <p id = "Thursday">Ceturtdiena</p>
-                          <p class = "Date" id = "ThursdayDate"><span class="pull-right">{{ thursday|date:"d. m" }}</span></p>
+{#                          <p class = "Date" id = "ThursdayDate"><span class="pull-right">{{ thursday|date:"d. m" }}</span></p>#}
+                          <p class = "Date" ><span class="pull-right" id = "ThursdayDate"></span></p>
                       </div>
                       <ul class = "dayBox" id = "thursdayBox">
                         <li class = "box1" id = "Th8-9">08:00 - 09:00</li>
@@ -144,7 +148,8 @@
                   <div class = "container col-sm-2 OneDay" id = "FridayList">
                       <div class = "DayDate">
                         <p id = "Friday">Piektdiena</p>
-                          <p class = "Date" id = "FridayDate"><span class="pull-right">{{ friday|date:"d. m" }}</span></p>
+{#                          <p class = "Date" id = "FridayDate"><span class="pull-right">{{ friday|date:"d. m" }}</span></p>#}
+                          <p class = "Date" ><span class="pull-right" id = "FridayDate"></span></p>
                       </div>
                       <ul class = "dayBox" id = "fridayBox">
                             <li class = "box1" id = "Fr8-9">08:00 - 09:00</li>
@@ -165,7 +170,8 @@
                   <ul class = "container col-sm-2" id = "HolidayList">
                       <div class = "DayDate">
                         <p id = "Saturday">Sestdiena</p>
-                          <p class = "Date" id = "SaturdayDate"><span class="pull-right">{{ saturday|date:"d. m" }}</span></p>
+{#                          <p class = "Date" id = "SaturdayDate"><span class="pull-right">{{ saturday|date:"d. m" }}</span></p>#}
+                          <p class = "Date" ><span class="pull-right" id = "SaturdayDate"></span></p>
                       </div>
                       <div class = "container" id = "SaturdayList">
                         <li class = "box3" id = "Sa09-10">09:00 - 10:00</li>
@@ -181,7 +187,8 @@
 
                       <div class = "DayDate">
                           <p id = "Sunday">Svētdiena</p>
-                          <p class = "Date" id = "SundayDate"><span class="pull-right">{{ sunday|date:"d. m" }}</span></p>
+{#                          <p class = "Date" id = "SundayDate"><span class="pull-right">{{ sunday|date:"d. m" }}</span></p>#}
+                          <p class = "Date"><span class="pull-right" id = "SundayDate"></span></p>
                       </div>
 
                     <div class = "container" id = "SundayList">
@@ -291,6 +298,10 @@
                 </ul>
             </div>
         </div>
+
+
+
+    <div id ="test"></div>
 
 
 
