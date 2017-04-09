@@ -1,40 +1,77 @@
+{%extends "base.html" %}
 {% block content %}
 
     {% load staticfiles %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/All.css' %}" />
 
-    <div class = "row" id = "search">
-        <form method="POST" action="">{% csrf_token %}
-          <span class="pull-right">
-                <input type="text" name="q" placeholder="Meklēt lietotāju" value="{{ request.get.q }}"/>
-                <input type="submit" value="Meklēt"/>
-          </span>
-        </form>
+    <div class = "container">
+
+        <div class = "row" id = "firstRow">
+
+            <span class = "pull-left">
+               
+                <div id = "today"> </div>
+
+                 <button type="button" class="Button" id="Left">
+                      <span class="glyphicon glyphicon-chevron-left"></span>
+                 </button>
+                 <button type="button" class="Button" id="Right">
+                      <span class="glyphicon glyphicon-chevron-right"></span>
+                 </button>
+                <button type="button" class="Button" id="Calendar">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                 </button>
+
+            </span>
+
+
+
+
+            <span class="pull-right">
+                <div id = "search">
+                    <form method="POST" action="">{% csrf_token %}
+
+                            <input type="text" name="q" placeholder="Meklēt lietotāju" value="{{ request.get.q }}"/>
+                            <input type="submit" value="Meklēt"/>
+
+                    </form>
+                 </div>
+            </span>
+        </div>
+
+        <div class = "row" id = "secondRow"></div>
+
+        <div class = "row" id = "people">
+
+            {% for izmainits in izmainitie %}
+
+                <div class = "col-sm-2">
+                    {{izmainits.lietotajs.username}}  <br>
+                </div>
+
+
+
+
+
+
+            {% endfor %}
+
+            {% for lietotajs in lietot %}
+                <div class = "col-sm-2">
+             {{ lietotajs }}
+                 </div>
+               {% endfor %}
+
+
+
+
+        </div>
     </div>
 
-    <div class = "row" id = "people">
-
-        {% for izmainits in izmainitie %}
-
-            <div class = "col-sm-2">
-           {{izmainits.lietotajs.username}}  <br>
-            </div>
-        {% endfor %}
-
-        {% for lietotajs in lietot %}
-            <div class = "col-sm-2">
-         {{ lietotajs }}
-             </div>
-           {% endfor %}
 
 
 
-
-    </div>
-
-
-
-
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script type="text/javascript" src="{% static 'JavaScript/Visi.js' %}"></script>
 
 {% endblock %}
