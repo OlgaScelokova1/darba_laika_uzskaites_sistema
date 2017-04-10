@@ -370,7 +370,8 @@ for(a = 0 ; a < sickDate.length ; a++){
                     for(k = 0; k < 9 ; ){
                         if (tmp[k] == from){
                             for ( m = from ; m < untill ;m++) {
-                                box[k].style.backgroundColor = 'red';
+                                box[k].style.backgroundColor = '#ba1d79';
+                                box[k].style.color = "#ffffff";
                                 coloredId[n] = box[k];
                                 n++;
                                 k++;
@@ -384,7 +385,8 @@ for(a = 0 ; a < sickDate.length ; a++){
                     for(k = 9; k < 18 ; ){
                         if (tmp[k-9] == from){
                             for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = 'red';
+                                box[k].style.backgroundColor = '#ba1d79';
+                                box[k].style.color = "#ffffff";
                                 coloredId[n] = box[k];
                                 n++;
                                 k++;
@@ -398,7 +400,8 @@ for(a = 0 ; a < sickDate.length ; a++){
                     for(k = 18; k < 27 ; ){
                         if (tmp[k-18] == from){
                             for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = 'red';
+                                box[k].style.backgroundColor = '#ba1d79';
+                                box[k].style.color = "#ffffff";
                                 coloredId[n] = box[k];
                                 n++;
                                 k++;
@@ -411,7 +414,8 @@ for(a = 0 ; a < sickDate.length ; a++){
                     for(k = 27; k < 36 ; ){
                         if (tmp[k-27] == from){
                             for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = 'red';
+                                box[k].style.backgroundColor = '#ba1d79';
+                                box[k].style.color = "#ffffff";
                                 coloredId[n] = box[k];
                                 n++;
                                 k++;
@@ -424,7 +428,8 @@ for(a = 0 ; a < sickDate.length ; a++){
                     for(k = 36; k < 45 ; ){
                         if (tmp[k-36] == from){
                             for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = 'red';
+                                box[k].style.backgroundColor = '#ba1d79';
+                                box[k].style.color = "#ffffff";
                                 coloredId[n] = box[k];
                                 n++;
                                 k++;
@@ -479,7 +484,8 @@ for(a = 0 ; a < uniDate.length ; a++){
                     for(k = 0; k < 9 ; ){
                         if (tmp[k] == from){
                             for ( m = from ; m < untill ;m++) {
-                                box[k].style.backgroundColor = 'green';
+                                box[k].style.backgroundColor = '#f15a24';
+                                box[k].style.color = "#ffffff";
                                 coloredId[n] = box[k];
                                 n++;
                                 k++;
@@ -493,7 +499,8 @@ for(a = 0 ; a < uniDate.length ; a++){
                     for(k = 9; k < 18 ; ){
                         if (tmp[k-9] == from){
                             for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = 'green';
+                                box[k].style.backgroundColor = '#f15a24';
+                                box[k].style.color = "#ffffff";
                                 coloredId[n] = box[k];
                                 n++;
                                 k++;
@@ -507,7 +514,8 @@ for(a = 0 ; a < uniDate.length ; a++){
                     for(k = 18; k < 27 ; ){
                         if (tmp[k-18] == from){
                             for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = 'green';
+                                box[k].style.backgroundColor = '#f15a24';
+                                box[k].style.color = "#ffffff";
                                 coloredId[n] = box[k];
                                 n++;
                                 k++;
@@ -520,7 +528,8 @@ for(a = 0 ; a < uniDate.length ; a++){
                     for(k = 27; k < 36 ; ){
                         if (tmp[k-27] == from){
                             for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = 'green';
+                                box[k].style.backgroundColor = '#f15a24';
+                                box[k].style.color = "#ffffff";
                                 coloredId[n] = box[k];
                                 n++;
                                 k++;
@@ -533,7 +542,8 @@ for(a = 0 ; a < uniDate.length ; a++){
                     for(k = 36; k < 45 ; ){
                         if (tmp[k-36] == from){
                             for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = 'green';
+                                box[k].style.backgroundColor = '#f15a24';
+                                box[k].style.color = "#ffffff";
                                 coloredId[n] = box[k];
                                 n++;
                                 k++;
@@ -589,7 +599,8 @@ for(a = 0 ; a < homeDate.length ; a++){
                     for(k = 0; k < 9 ; ){
                         if (tmp[k] == from){
                             for ( m = from ; m < untill ;m++) {
-                                box[k].style.backgroundColor = 'purple';
+                                box[k].style.backgroundColor = '#29abe2';
+                                box[k].style.color = "#ffffff";
                                 coloredId[n] = box[k];
                                 n++;
                                 k++;
@@ -603,7 +614,8 @@ for(a = 0 ; a < homeDate.length ; a++){
                     for(k = 9; k < 18 ; ){
                         if (tmp[k-9] == from){
                             for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = 'purple';
+                                box[k].style.backgroundColor = '#29abe2';
+                                box[k].style.color = "#ffffff";
                                 coloredId[n] = box[k];
                                 n++;
                                 k++;
@@ -617,7 +629,8 @@ for(a = 0 ; a < homeDate.length ; a++){
                     for(k = 18; k < 27 ; ){
                         if (tmp[k-18] == from){
                             for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = 'purple';
+                                box[k].style.backgroundColor = '#29abe2';
+                                box[k].style.color = "#ffffff";
                                 coloredId[n] = box[k];
                                 n++;
                                 k++;
@@ -630,7 +643,8 @@ for(a = 0 ; a < homeDate.length ; a++){
                     for(k = 27; k < 36 ; ){
                         if (tmp[k-27] == from){
                             for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = 'purple';
+                                box[k].style.backgroundColor = '#29abe2';
+                                box[k].style.color = "#ffffff";
                                 coloredId[n] = box[k];
                                 n++;
                                 k++;
@@ -643,7 +657,8 @@ for(a = 0 ; a < homeDate.length ; a++){
                     for(k = 36; k < 45 ; ){
                         if (tmp[k-36] == from){
                             for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = 'purple';
+                                box[k].style.backgroundColor = '#29abe2';
+                                box[k].style.color = "#ffffff";
                                 coloredId[n] = box[k];
                                 n++;
                                 k++;
@@ -700,7 +715,8 @@ for(a = 0 ; a < lessDate.length ; a++){
                     for(k = 0; k < 9 ; ){
                         if (tmp[k] == from){
                             for ( m = from ; m < untill ;m++) {
-                                box[k].style.backgroundColor = 'orange';
+                                box[k].style.backgroundColor = '#22b573';
+                                box[k].style.color = "#ffffff";
                                 coloredId[n] = box[k];
                                 n++;
                                 k++;
@@ -714,7 +730,8 @@ for(a = 0 ; a < lessDate.length ; a++){
                     for(k = 9; k < 18 ; ){
                         if (tmp[k-9] == from){
                             for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = 'orange';
+                                box[k].style.backgroundColor = '#22b573';
+                                box[k].style.color = "#ffffff";
                                 coloredId[n] = box[k];
                                 n++;
                                 k++;
@@ -728,7 +745,8 @@ for(a = 0 ; a < lessDate.length ; a++){
                     for(k = 18; k < 27 ; ){
                         if (tmp[k-18] == from){
                             for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = 'orange';
+                                box[k].style.backgroundColor = '#22b573';
+                                box[k].style.color = "#ffffff";
                                 coloredId[n] = box[k];
                                 n++;
                                 k++;
@@ -741,7 +759,8 @@ for(a = 0 ; a < lessDate.length ; a++){
                     for(k = 27; k < 36 ; ){
                         if (tmp[k-27] == from){
                             for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = 'orange';
+                                box[k].style.backgroundColor = '#22b573';
+                                box[k].style.color = "#ffffff";
                                 coloredId[n] = box[k];
                                 n++;
                                 k++;
@@ -754,7 +773,8 @@ for(a = 0 ; a < lessDate.length ; a++){
                     for(k = 36; k < 45 ; ){
                         if (tmp[k-36] == from){
                             for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = 'orange';
+                                box[k].style.backgroundColor = '#22b573';
+                                box[k].style.color = "#ffffff";
                                 coloredId[n] = box[k];
                                 n++;
                                 k++;
@@ -810,7 +830,8 @@ for(a = 0 ; a < otherDate.length ; a++){
                     for(k = 0; k < 9 ; ){
                         if (tmp[k] == from){
                             for ( m = from ; m < untill ;m++) {
-                                box[k].style.backgroundColor = 'blue';
+                                box[k].style.backgroundColor = "#662d91";
+                                box[k].style.color = "#ffffff";
                                 coloredId[n] = box[k];
                                 n++;
                                 k++;
@@ -824,7 +845,8 @@ for(a = 0 ; a < otherDate.length ; a++){
                     for(k = 9; k < 18 ; ){
                         if (tmp[k-9] == from){
                             for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = 'blue';
+                                box[k].style.backgroundColor = "#662d91";
+                                box[k].style.color = "#ffffff";
                                 coloredId[n] = box[k];
                                 n++;
                                 k++;
@@ -838,7 +860,8 @@ for(a = 0 ; a < otherDate.length ; a++){
                     for(k = 18; k < 27 ; ){
                         if (tmp[k-18] == from){
                             for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = 'blue';
+                                box[k].style.backgroundColor = "#662d91";
+                                box[k].style.color = "#ffffff";
                                 coloredId[n] = box[k];
                                 n++;
                                 k++;
@@ -851,7 +874,8 @@ for(a = 0 ; a < otherDate.length ; a++){
                     for(k = 27; k < 36 ; ){
                         if (tmp[k-27] == from){
                             for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = 'blue';
+                                box[k].style.backgroundColor = "#662d91";
+                                box[k].style.color = "#ffffff";
                                 coloredId[n] = box[k];
                                 n++;
                                 k++;
@@ -864,7 +888,8 @@ for(a = 0 ; a < otherDate.length ; a++){
                     for(k = 36; k < 45 ; ){
                         if (tmp[k-36] == from){
                             for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = 'blue';
+                                box[k].style.backgroundColor = "#662d91";
+                                box[k].style.color = "#ffffff";
                                 coloredId[n] = box[k];
                                 n++;
                                 k++;

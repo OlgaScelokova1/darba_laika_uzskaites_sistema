@@ -11,6 +11,7 @@
 .dayBox{
     padding-left: 0px;
     padding-right: 145px;
+    color: #a8b6c3;
 }
 
 #Table .col-sm-1{
@@ -72,12 +73,14 @@
     width: 145px;
 	height: 109.6px;
 	background-color: #ffffff;
+    color: #a8b6c3;
 }
 
 #SundayList{
     width: 145px;
 	height: 109.6px;
 	background-color: #ffffff;
+    color: #a8b6c3;
 }
 
 
