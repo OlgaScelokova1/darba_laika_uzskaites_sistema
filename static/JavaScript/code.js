@@ -1,4 +1,4 @@
-(function() {
+$( document ).ready(function() {
 
 function formatDate(myDate) {
     var tmp = myDate;
@@ -12,13 +12,13 @@ function formatDate(myDate) {
     }
 
     return (day + "." + month);
-}
+} //funkcija, kas pārveido datumu pareizā formātā : dd.mm
 
 function addDays(date, days) {
     var result = new Date(date);
     result.setDate(result.getDate() + days);
     return result;
-}
+} // funckija, kas pievieno dienas konkrētajai dienai
 
 function getWeek(date) {
    date.setHours(0, 0, 0, 0);
@@ -29,7 +29,7 @@ function getWeek(date) {
   // Adjust to Thursday in week 1 and count number of weeks from date to week1.
   return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000
                         - 3 + (week1.getDay() + 6) % 7) / 7);
-}
+} // funkcija, kas nosaka nedēļu atkarībā no padotā datuma
 
 
 
@@ -102,6 +102,7 @@ $('#Down').click(function(){
     dateSunday = addDays(dateSunday, -7);
     console.log(dateSunday);
 
+
     formattedDateMonday = formatDate(dateMonday);
 formattedDateTuesday = formatDate(dateTuesday);
 formattedDateWednesday = formatDate(dateWednesday);
@@ -133,7 +134,7 @@ if(thisMonth<10){
 document.getElementById("Month").innerHTML = months[thisMonth-1]; // tiek noteikts mēnesis
 
 document.getElementById("WeekDate").innerHTML = getWeek(dateMonday);
-    
+
 
 
 
@@ -373,6 +374,7 @@ var untill = 0;
 var date = 0;
 
 m=0;
+console.log(date);
 
 for(a = 0 ; a < sickDate.length ; a++){
     date = sickDate[a];
