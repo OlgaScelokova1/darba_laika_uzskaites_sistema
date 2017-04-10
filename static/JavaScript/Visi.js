@@ -24,3 +24,28 @@ function formatDate(myDate) {
 var formattedDay = formatDate(today);
 
 document.getElementById("today").innerHTML = days[day] + ", " + formattedDay;
+
+
+function addDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+}
+
+$('#Left').click(function(){
+    today = addDays(today, -1);
+    day = today.getDay();
+    formattedDay = formatDate(today);
+
+    document.getElementById("today").innerHTML = days[day] + ", " + formattedDay;
+
+});
+
+
+$('#Right').click(function(){
+    today = addDays(today, 1);
+    day = today.getDay();
+    formattedDay = formatDate(today);
+    document.getElementById("today").innerHTML = days[day] + ", " + formattedDay;
+
+});
