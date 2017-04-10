@@ -21,6 +21,7 @@ from .models import Darba_laiks, Iemesls, Atstrada
 from django import forms
 from django.utils.translation import ugettext, ugettext_lazy as _
 from .forms import UserCreationForm
+from .models import UserProfile
 
 
 
@@ -229,10 +230,11 @@ class UserFormView(View):
 
 def darbinieki(request):
     if request.method == 'GET':
-        collection_ids = Darba_laiks.objects.filter(datums=datetime.date.today()).values_list('lietotajs',flat=True).distinct()
-        izmainitie = [
-            Darba_laiks.objects.filter(lietotajs__id=c)[0] for c in collection_ids
-            ]
+        # collection_ids = Darba_laiks.objects.filter(datums=datetime.date.today()).values_list('lietotajs',flat=True).distinct()
+        # izmainitie = [
+        #     Darba_laiks.objects.filter(lietotajs__id=c)[0] for c in collection_ids
+        #     ]
+        izmainitie=User.objects.all()
 
 
         context = {'izmainitie': izmainitie}
@@ -275,4 +277,13 @@ class Dzest(DeleteView):
     template_name = 'izdzest.html'
     model=User
     success_url=reverse_lazy('darba_laiks:visi')
+
+class RedigetBildi(UpdateView):
+    template_name='rediget.html'
+    success_url=reverse_lazy('darba_laiks:visi')
+    model=UserProfile
+    fields=['avatar']
+
+
+
 

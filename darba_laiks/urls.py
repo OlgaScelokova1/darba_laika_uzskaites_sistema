@@ -14,5 +14,6 @@ urlpatterns = [
     url(r'^visi/$', views.visi, name='visi'),
     url(r'^visi/(?P<pk>[0-9]+)/$', views.Rediget.as_view(),name='update'),
     url(r'^visi/(?P<pk>[0-9]+)/dzest/$', views.Dzest.as_view(),name='dzest'),
+    url(r'^visi/(?P<pk>[0-9]+)/pievienot-bildi/$', views.RedigetBildi.as_view(), name='bilde'),
 
 ]

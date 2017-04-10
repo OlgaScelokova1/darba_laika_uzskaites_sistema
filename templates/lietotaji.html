@@ -39,6 +39,7 @@
                 <div class = "row">{{darbinieks.username}} {{darbinieks.first_name}} {{darbinieks.last_name}} </div>
                 <div class = "row">
                     <a href="{% url 'darba_laiks:update' darbinieks.id %}"> Rediģēt </a> &nbsp
+                    <a href="{% url 'darba_laiks:bilde' darbinieks.userprofile.id %}"> Rediģēt bildi </a> &nbsp
                     <a href="{% url 'darba_laiks:dzest' darbinieks.id %}"> Dzēst </a>
                 </div>
 

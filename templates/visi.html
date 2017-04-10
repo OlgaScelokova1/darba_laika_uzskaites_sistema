@@ -48,12 +48,12 @@
 
                              <span class="glyphicon glyphicon-star-empty pull-right" id="star"></span>
                             <div id = "userInfo">
-                                {% if izmainits.lietotajs.userprofile.avatar %}
-                                    <img src="{{izmainits.lietotajs.userprofile.avatar.url}}" class="img">
+                                {% if izmainits.avatar %}
+                                    <img src="{{izmainits.avatar.url}}" class="img">
 
                                 {% endif %}
                                 <div id ="userName">
-                                    {{izmainits.lietotajs.first_name}} {{izmainits.lietotajs.last_name}}
+                                    {{izmainits.first_name}} {{izmainits.last_name}}
                                 </div>
                             </div>
                         </div>
