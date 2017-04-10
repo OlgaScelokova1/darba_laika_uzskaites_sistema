@@ -8,10 +8,9 @@
 
         <div class = "row" id = "firstRow">
 
-            <span class = "pull-left">
-               
-                <div id = "today"> </div>
+            <span class = "pull-left" id="line">
 
+                <div id = "today"> </div>
                  <button type="button" class="Button" id="Left">
                       <span class="glyphicon glyphicon-chevron-left"></span>
                  </button>
@@ -23,9 +22,6 @@
                  </button>
 
             </span>
-
-
-
 
             <span class="pull-right">
                 <div id = "search">
@@ -44,15 +40,42 @@
         <div class = "row" id = "people">
 
             {% for izmainits in izmainitie %}
+                <div class = "col-sm-2" id ="oneUser">
 
-                <div class = "col-sm-2">
-                    {{izmainits.lietotajs.username}}  <br>
+                     <div class = "dayBox" id = "box">
+
+                        <div id = "user">
+
+                             <span class="glyphicon glyphicon-star-empty pull-right" id="star"></span>
+                            <div id = "userInfo">
+                                {% if izmainits.lietotajs.userprofile.avatar %}
+                                    <img src="{{izmainits.lietotajs.userprofile.avatar.url}}" class="img">
+
+                                {% endif %}
+                                <div id ="userName">
+                                    {{izmainits.lietotajs.first_name}} {{izmainits.lietotajs.last_name}}
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <ul id = "time">
+                             <li class = "box1" id = "Mo8-9">08:00 - 09:00</li>
+                             <li tabindex="1" class = "box2" id = "09-10">09:00 - 10:00</li>
+                             <li tabindex="1" class = "box2" id = "10-11">10:00 - 11:00</li>
+                             <li tabindex="1" class = "box2" id = "11-12">11:00 - 12:00</li>
+                             <li tabindex="1" class = "box2" id = "12-13">12:00 - 13:00</li>
+                             <li tabindex="1" class = "box2" id = "13-14">13:00 - 14:00</li>
+                             <li tabindex="1" class = "box2" id = "14-15">14:00 - 15:00</li>
+                             <li tabindex="1" class = "box2" id = "15-16">15:00 - 16:00</li>
+                             <li tabindex="1" class = "box2" id = "16-17">16:00 - 17:00</li>
+                             <li tabindex="1" class = "box2" id = "17-18">17:00 - 18:00</li>
+                             <li class = "box1" id = "18-19">18:00 - 19:00</li>
+                         </ul>
+                     </div>
+
+
                 </div>
-
-
-
-
-
 
             {% endfor %}
 

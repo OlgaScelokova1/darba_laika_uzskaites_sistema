@@ -10,13 +10,10 @@
 }
 
 #people {
-    margin-left: 10em;
-    margin-right: 10em;
+    padding-left:0px;
 }
 
-#firstRow{
 
-}
 
 #today {
 	font-size: 16px;
@@ -28,10 +25,10 @@
   	width: 15.8px;
 	height: 15.8px;
     text-align: center;
-      font-size: 7px;
-      border-radius: 7px;
-      background-color: #e6e6e6;
-      border-width: 0px;
+    font-size: 7px;
+    border-radius: 7px;
+    background-color: #e6e6e6;
+    border-width: 0px;
 }
 
 .arrow{
@@ -44,4 +41,65 @@
 	border: solid 1px #cccccc;
     margin-top: 1.5em;
     margin-bottom: 1.5em;
+}
+
+#user{
+    height: 48.9px;
+}
+
+#star{
+	color: #c7d8eb;
+    font-size: 15px;
+}
+
+.img{
+    width: 25px;
+	height: 25px;
+    float:left;
+    margin-right:0.25em;
+    border-radius: 50%;
+}
+
+#userName{
+    font-weight: bold;
+}
+
+#userInfo{
+    padding-top: 1em;
+    padding-left:1.5em;
+    padding-right:0.5em;
+}
+
+#box {
+	width: 145px;
+	height: 300px;
+	border: solid 2px #29abe2;
+    text-align: center;
+    background-color: #ffffff;
+    font-size: 12px;
+}
+
+#oneUser{
+    margin-right:0em;
+    padding-left:0px;
+    padding-right:0px;
+}
+
+.box2{
+    background-color: #e2edf8;
+	height: 22.7px;
+}
+
+#time{
+    padding-left: 0px;
+    color: #a8b6c3;
+}
+
+.box2:focus{
+  border: none;
+  overflow: auto;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }

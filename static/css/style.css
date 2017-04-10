@@ -54,3 +54,6 @@ a:hover{
   color: #9d9d9d;
 }
 
+li {
+  list-style-type: none;
+}
