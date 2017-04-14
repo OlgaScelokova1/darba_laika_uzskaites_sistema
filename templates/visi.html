@@ -39,7 +39,7 @@
 
         <div class = "row" id = "people">
 
-            {% for izmainits in izmainitie %}
+            {% for izmainits in visi %}
                 <div class = "col-sm-2" id ="oneUser">
 
                      <div class = "dayBox" id = "box">
@@ -90,6 +90,20 @@
 
         </div>
     </div>
+
+    {% for lietot in izmainitie %}
+
+    {{ lietot.lietotajs.username}}  </br>
+
+    {%  endfor %}
+
+
+
+    {% for lietot in iemesli %}
+
+    {{ lietot.lietotajs.id}} </br>
+
+    {%  endfor %}
 
 
 
