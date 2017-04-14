@@ -104,3 +104,11 @@
   -moz-box-shadow: none;
   box-shadow: none;
 }
+
+.userId{
+    font-size: 0px;
+}
+
+#info{
+    font-size: 0px;
+}

@@ -401,7 +401,6 @@ function setSlimiba (){
                                 }
                             }
                             else k++;
-                        }
                     }
 
                 if (OneDay[j].id.startsWith("Tu")){
@@ -467,7 +466,7 @@ function setSlimiba (){
     console.log(dateWhen);
 
 
-}
+}}
 
 function setLekcijas(){
    var lekcijas = document.getElementById("iemeslsList").querySelectorAll("#lekcijas");
