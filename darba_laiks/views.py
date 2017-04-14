@@ -21,7 +21,7 @@ from .models import Darba_laiks, Iemesls, Atstrada
 from django import forms
 from django.utils.translation import ugettext, ugettext_lazy as _
 from .forms import UserCreationForm
-from .models import UserProfile
+from .models import UserProfile, Iemesls
 
 
 
@@ -234,10 +234,29 @@ def darbinieki(request):
         # izmainitie = [
         #     Darba_laiks.objects.filter(lietotajs__id=c)[0] for c in collection_ids
         #     ]
-        izmainitie=User.objects.all()
+        visi=User.objects.all()
 
 
-        context = {'izmainitie': izmainitie}
+        darba_laika_id = Darba_laiks.objects.filter(datums=datetime.date.today()).values_list('id',flat=True).distinct()
+
+
+        collection_ids = Darba_laiks.objects.filter(datums=datetime.date.today()).values_list('lietotajs',flat=True).distinct()
+        izmainitie = [
+            Darba_laiks.objects.filter(lietotajs__id=c)[0] for c in collection_ids
+            ]
+
+
+        iemesli = [
+            Iemesls.objects.filter(darba_laiks__id=c)[0] for c in darba_laika_id
+            ]
+
+
+
+
+
+        context = {'visi': visi,
+                   'izmainitie': izmainitie,
+                   'iemesli': iemesli}
         return render(request, 'visi.html', context)
 
     if request.method == 'POST':
