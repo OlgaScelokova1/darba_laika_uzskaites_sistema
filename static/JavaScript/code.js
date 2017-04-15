@@ -76,6 +76,7 @@ var box = document.getElementsByClassName("box2"); // pie box tiek ielikti visi 
     console.log(box);
 
 $('#Up').click(function(){
+
     dateMonday = addDays(dateTuesday, 6);
     dateTuesday = addDays(dateTuesday, 7);
     dateWednesday = addDays(dateWednesday, 7);
@@ -94,6 +95,8 @@ $('#Up').click(function(){
     getTodayDate(); // ja atkal uziet uz šodienas, tiek piešķirti nepieciešamie parametri
     getDates();
     // setColors();
+
+
 });
 
 
@@ -204,7 +207,7 @@ $(box).click(function(event){
         } // atkarībā no tā, kurā dienā atrodas laiks, uz kura lietotājs uzspiedis, tiek novietota aizpildāmā forma
 
         document.getElementById('InputFrom').defaultValue = now.slice(2,4) + ":00";
-        document.getElementById('InputUntill').defaultValue = now.slice(5) + ":00";
+        document.getElementById('InputUntil').defaultValue = now.slice(5) + ":00";
         // tiek uzstādītas default vērtības atkarībā no tā, kādi laiki ir kastītē, uz kuru uzspiests
     event.stopPropagation();
 }); // kastītes novietojums un default vērtības
@@ -321,7 +324,7 @@ var tmp = [];
 var coloredId = [];
 var n = 0;  // masiva liksu visus id, kuri ir izkrasoti
 var from = 0;
-var untill = 0;
+var Until = 0;
 var dateWhen = 0;
 var iemeslsList;
 var OneDay;
@@ -332,11 +335,16 @@ for (k=0 ; k < 9 ; k++ ) {
 
 
 var insert = document.getElementById("description");
+var offTime = document.getElementById("offTime");
+var offReasonDoc = document.getElementById('offReason');
+var offWork = document.getElementById('offWork');
+
 
 function setSlimiba (){
     m=0;
     var slimiba = document.getElementById("iemeslsList").querySelectorAll("#slimiba");
     //tiek ielikti visi, kur ir slimība
+    offReasonDoc.innerHTML = "Slimība";
 
 
 
@@ -353,17 +361,17 @@ function setSlimiba (){
     m = 0;
     var sickDate = [];
     var sickFrom = [];
-    var sickUntill = [];
+    var sickUntil = [];
     console.log(laiks);
 
     for (p = 0 ; p < laiks.length ; p++) {
         sickDate[p] = laiks[p][m];
         sickFrom[p] = laiks[p][m+1].slice(0,2);
-        sickUntill[p] = laiks[p][m+3].slice(0,2);
+        sickUntil[p] = laiks[p][m+3].slice(0,2);
     } // saliek pa masiviem datumus un laikus, kad slimo
 
     var from = 0;
-    var untill = 0;
+    var Until = 0;
     var date = 0;
 
     m=0;
@@ -371,7 +379,7 @@ function setSlimiba (){
     for(a = 0 ; a < sickDate.length ; a++){
         date = sickDate[a];
         from = sickFrom[a];
-        untill = sickUntill[a];
+        Until = sickUntil[a];
 
         for (j = 0; j < (date2.length - 2) ; j ++){
             if (date == date2[j]){
@@ -379,13 +387,13 @@ function setSlimiba (){
                 if (OneDay[j].id.startsWith("Mo")){
                         for(k = 0; k < 9 ; ){
                             if (tmp[k] == from){
-                                for ( m = from ; m < untill ;m++) {
+                                for ( m = from ; m < Until ;m++) {
                                     box[k].style.backgroundColor = '#ba1d79';
                                     box[k].style.color = "#ffffff";
                                     coloredId[n] = box[k];
-                                    insert.style.display= "block";
-                                    box[k].title = insert.innerHTML;
-                                     n++;
+                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    box[k].title = insert.textContent;
+                                    n++;
                                     k++;
                                 }
                             }
@@ -396,10 +404,12 @@ function setSlimiba (){
                 if (OneDay[j].id.startsWith("Tu")){
                         for(k = 9; k < 18 ; ){
                             if (tmp[k-9] == from){
-                                for ( m = from ; m < untill ; m++) {
+                                for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#ba1d79';
                                     box[k].style.color = "#ffffff";
                                     coloredId[n] = box[k];
+                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    box[k].title = insert.textContent;
                                     n++;
                                     k++;
                                 }
@@ -411,10 +421,12 @@ function setSlimiba (){
                     if (OneDay[j].id.startsWith("We")){
                         for(k = 18; k < 27 ; ){
                             if (tmp[k-18] == from){
-                                for ( m = from ; m < untill ; m++) {
+                                for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#ba1d79';
                                     box[k].style.color = "#ffffff";
                                     coloredId[n] = box[k];
+                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    box[k].title = insert.textContent;
                                     n++;
                                     k++;
                                 }
@@ -425,10 +437,12 @@ function setSlimiba (){
                     if (OneDay[j].id.startsWith("Th")){
                         for(k = 27; k < 36 ; ){
                             if (tmp[k-27] == from){
-                                for ( m = from ; m < untill ; m++) {
+                                for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#ba1d79';
                                     box[k].style.color = "#ffffff";
                                     coloredId[n] = box[k];
+                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    box[k].title = insert.textContent;
                                     n++;
                                     k++;
                                 }
@@ -439,10 +453,12 @@ function setSlimiba (){
                     if (OneDay[j].id.startsWith("Fr")){
                         for(k = 36; k < 45 ; ){
                             if (tmp[k-36] == from){
-                                for ( m = from ; m < untill ; m++) {
+                                for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#ba1d79';
                                     box[k].style.color = "#ffffff";
                                     coloredId[n] = box[k];
+                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    box[k].title = insert.textContent;
                                     n++;
                                     k++;
                                 }
@@ -461,6 +477,8 @@ function setLekcijas(){
    var lekcijas = document.getElementById("iemeslsList").querySelectorAll("#lekcijas");
     laiks = [];
     m = 0;
+    offReasonDoc.innerHTML= "Lekcijas";
+
     for ( p = 0 ; p<lekcijas.length ; p++){
         if (lekcijas[p].innerText == "True"){
             laiks[m] = iemeslsList[p].innerText.slice(0,31);
@@ -472,16 +490,16 @@ function setLekcijas(){
     m = 0;
     var uniDate = [];
     var uniFrom = [];
-    var uniUntill = [];
+    var uniUntil = [];
     for (p = 0 ; p < laiks.length ; p++) {
         uniDate[p] = laiks[p][m];
         uniFrom[p] = laiks[p][m+1].slice(0,2);
-        uniUntill[p] = laiks[p][m+3].slice(0,2);
+        uniUntil[p] = laiks[p][m+3].slice(0,2);
     } // saliek pa masiviem datumus un laikus, kad ir lekcijas
 
 
     from = 0;
-    untill = 0;
+    Until = 0;
     dateWhen = 0;
 
     m=0;
@@ -489,7 +507,7 @@ function setLekcijas(){
     for(a = 0 ; a < uniDate.length ; a++){
         dateWhen = uniDate[a];
         from = uniFrom[a];
-        untill = uniUntill[a];
+        Until = uniUntil[a];
 
         for (j = 0; j < (date2.length - 2) ; j ++){
             if (dateWhen == date2[j]){
@@ -497,10 +515,12 @@ function setLekcijas(){
                 if (OneDay[j].id.startsWith("Mo")){
                         for(k = 0; k < 9 ; ){
                             if (tmp[k] == from){
-                                for ( m = from ; m < untill ;m++) {
+                                for ( m = from ; m < Until ;m++) {
                                     box[k].style.backgroundColor = '#f15a24';
                                     box[k].style.color = "#ffffff";
                                     coloredId[n] = box[k];
+                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    box[k].title = insert.textContent;
                                     n++;
                                     k++;
                                 }
@@ -512,10 +532,12 @@ function setLekcijas(){
                 if (OneDay[j].id.startsWith("Tu")){
                         for(k = 9; k < 18 ; ){
                             if (tmp[k-9] == from){
-                                for ( m = from ; m < untill ; m++) {
+                                for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#f15a24';
                                     box[k].style.color = "#ffffff";
                                     coloredId[n] = box[k];
+                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    box[k].title = insert.textContent;
                                     n++;
                                     k++;
                                 }
@@ -527,10 +549,12 @@ function setLekcijas(){
                     if (OneDay[j].id.startsWith("We")){
                         for(k = 18; k < 27 ; ){
                             if (tmp[k-18] == from){
-                                for ( m = from ; m < untill ; m++) {
+                                for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#f15a24';
                                     box[k].style.color = "#ffffff";
                                     coloredId[n] = box[k];
+                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    box[k].title = insert.textContent;
                                     n++;
                                     k++;
                                 }
@@ -541,10 +565,12 @@ function setLekcijas(){
                     if (OneDay[j].id.startsWith("Th")){
                         for(k = 27; k < 36 ; ){
                             if (tmp[k-27] == from){
-                                for ( m = from ; m < untill ; m++) {
+                                for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#f15a24';
                                     box[k].style.color = "#ffffff";
                                     coloredId[n] = box[k];
+                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    box[k].title = insert.textContent;
                                     n++;
                                     k++;
                                 }
@@ -555,10 +581,12 @@ function setLekcijas(){
                     if (OneDay[j].id.startsWith("Fr")){
                         for(k = 36; k < 45 ; ){
                             if (tmp[k-36] == from){
-                                for ( m = from ; m < untill ; m++) {
+                                for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#f15a24';
                                     box[k].style.color = "#ffffff";
                                     coloredId[n] = box[k];
+                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    box[k].title = insert.textContent;
                                     n++;
                                     k++;
                                 }
@@ -574,359 +602,415 @@ function setLekcijas(){
 function setHome(){
 
 
-var home = document.getElementById("iemeslsList").querySelectorAll("#noMajam");
-laiks = [];
-m = 0;
+    var home = document.getElementById("iemeslsList").querySelectorAll("#noMajam");
+    laiks = [];
+    m = 0;
+    offReasonDoc.innerHTML= "Darbs no mājām";
 
-for ( p = 0 ; p<home.length ; p++){
-    if (home[p].innerText == "True"){
-        laiks[m] = iemeslsList[p].innerText.slice(0,31);
-        laiks[m] = laiks[m].split(" ");
-        m++;
-    }
-} // saliek masiva pec kartas visus laikus, kad ir darbs no majam
-
-
-m = 0;
-var homeDate = [];
-var homeFrom = [];
-var homeUntill = [];
-for (p = 0 ; p < laiks.length ; p++) {
-    homeDate[p] = laiks[p][m];
-    homeFrom[p] = laiks[p][m+1].slice(0,2);
-    homeUntill[p] = laiks[p][m+3].slice(0,2);
-} // saliek pa masiviem datumus un laikus, kad ir darbs no majam
-
-
-from = 0;
-untill = 0;
-dateWhen = 0;
-
-m=0;
-
-for(a = 0 ; a < homeDate.length ; a++){
-    dateWhen = homeDate[a];
-    from = homeFrom[a];
-    untill = homeUntill[a];
-
-    for (j = 0; j < (date2.length - 2) ; j ++){
-        if (dateWhen == date2[j]){
-
-            if (OneDay[j].id.startsWith("Mo")){
-                    for(k = 0; k < 9 ; ){
-                        if (tmp[k] == from){
-                            for ( m = from ; m < untill ;m++) {
-                                box[k].style.backgroundColor = '#29abe2';
-                                box[k].style.color = "#ffffff";
-                                coloredId[n] = box[k];
-                                n++;
-                                k++;
-                            }
-                        }
-                        else k++;
-                    }
-                }
-
-            if (OneDay[j].id.startsWith("Tu")){
-                    for(k = 9; k < 18 ; ){
-                        if (tmp[k-9] == from){
-                            for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = '#29abe2';
-                                box[k].style.color = "#ffffff";
-                                coloredId[n] = box[k];
-                                n++;
-                                k++;
-                            }
-                        }
-                        else k++;
-                    }
-                }
-
-                if (OneDay[j].id.startsWith("We")){
-                    for(k = 18; k < 27 ; ){
-                        if (tmp[k-18] == from){
-                            for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = '#29abe2';
-                                box[k].style.color = "#ffffff";
-                                coloredId[n] = box[k];
-                                n++;
-                                k++;
-                            }
-                        }
-                        else k++;
-                    }
-                }
-                if (OneDay[j].id.startsWith("Th")){
-                    for(k = 27; k < 36 ; ){
-                        if (tmp[k-27] == from){
-                            for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = '#29abe2';
-                                box[k].style.color = "#ffffff";
-                                coloredId[n] = box[k];
-                                n++;
-                                k++;
-                            }
-                        }
-                        else k++;
-                    }
-                }
-                if (OneDay[j].id.startsWith("Fr")){
-                    for(k = 36; k < 45 ; ){
-                        if (tmp[k-36] == from){
-                            for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = '#29abe2';
-                                box[k].style.color = "#ffffff";
-                                coloredId[n] = box[k];
-                                n++;
-                                k++;
-                            }
-                        }
-                        else k++;
-                    }
-                }
+    for ( p = 0 ; p<home.length ; p++){
+        if (home[p].innerText == "True"){
+            laiks[m] = iemeslsList[p].innerText.slice(0,31);
+            laiks[m] = laiks[m].split(" ");
+            m++;
         }
-    }
-} // darba no majam laikus iekraso lilla krasa
+    } // saliek masiva pec kartas visus laikus, kad ir darbs no majam
+
+
+    m = 0;
+    var homeDate = [];
+    var homeFrom = [];
+    var homeUntil = [];
+    for (p = 0 ; p < laiks.length ; p++) {
+        homeDate[p] = laiks[p][m];
+        homeFrom[p] = laiks[p][m+1].slice(0,2);
+        homeUntil[p] = laiks[p][m+3].slice(0,2);
+    } // saliek pa masiviem datumus un laikus, kad ir darbs no majam
+
+
+    from = 0;
+    Until = 0;
+    dateWhen = 0;
+
+    m=0;
+
+    for(a = 0 ; a < homeDate.length ; a++){
+        dateWhen = homeDate[a];
+        from = homeFrom[a];
+        Until = homeUntil[a];
+
+        for (j = 0; j < (date2.length - 2) ; j ++){
+            if (dateWhen == date2[j]){
+
+                if (OneDay[j].id.startsWith("Mo")){
+                        for(k = 0; k < 9 ; ){
+                            if (tmp[k] == from){
+                                for ( m = from ; m < Until ;m++) {
+                                    box[k].style.backgroundColor = '#29abe2';
+                                    box[k].style.color = "#ffffff";
+                                    coloredId[n] = box[k];
+                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    box[k].title = insert.textContent;
+                                    n++;
+                                    k++;
+                                }
+                            }
+                            else k++;
+                        }
+                    }
+
+                if (OneDay[j].id.startsWith("Tu")){
+                        for(k = 9; k < 18 ; ){
+                            if (tmp[k-9] == from){
+                                for ( m = from ; m < Until ; m++) {
+                                    box[k].style.backgroundColor = '#29abe2';
+                                    box[k].style.color = "#ffffff";
+                                    coloredId[n] = box[k];
+                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    box[k].title = insert.textContent;
+                                    n++;
+                                    k++;
+                                }
+                            }
+                            else k++;
+                        }
+                    }
+
+                    if (OneDay[j].id.startsWith("We")){
+                        for(k = 18; k < 27 ; ){
+                            if (tmp[k-18] == from){
+                                for ( m = from ; m < Until ; m++) {
+                                    box[k].style.backgroundColor = '#29abe2';
+                                    box[k].style.color = "#ffffff";
+                                    coloredId[n] = box[k];
+                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    box[k].title = insert.textContent;
+                                    n++;
+                                    k++;
+                                }
+                            }
+                            else k++;
+                        }
+                    }
+                    if (OneDay[j].id.startsWith("Th")){
+                        for(k = 27; k < 36 ; ){
+                            if (tmp[k-27] == from){
+                                for ( m = from ; m < Until ; m++) {
+                                    box[k].style.backgroundColor = '#29abe2';
+                                    box[k].style.color = "#ffffff";
+                                    coloredId[n] = box[k];
+                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    box[k].title = insert.textContent;
+                                    n++;
+                                    k++;
+                                }
+                            }
+                            else k++;
+                        }
+                    }
+                    if (OneDay[j].id.startsWith("Fr")){
+                        for(k = 36; k < 45 ; ){
+                            if (tmp[k-36] == from){
+                                for ( m = from ; m < Until ; m++) {
+                                    box[k].style.backgroundColor = '#29abe2';
+                                    box[k].style.color = "#ffffff";
+                                    coloredId[n] = box[k];
+                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    box[k].title = insert.textContent;
+                                    n++;
+                                    k++;
+                                }
+                            }
+                            else k++;
+                        }
+                    }
+            }
+        }
+    } // darba no majam laikus iekraso lilla krasa
 
 }
 
 function setSlodze(){
-    var less = document.getElementById("iemeslsList").querySelectorAll("#slodze");
-laiks = [];
-m = 0;
+        var less = document.getElementById("iemeslsList").querySelectorAll("#slodze");
+    laiks = [];
+    m = 0;
+    offReasonDoc.innerHTML= "Mazāka slodze";
 
-for ( p = 0 ; p<less.length ; p++){
-    if (less[p].innerText == "True"){
-        laiks[m] = iemeslsList[p].innerText.slice(0,31);
-        laiks[m] = laiks[m].split(" ");
-        m++;
-    }
-} // saliek masiva pec kartas visus laikus, kad ir mazaka slodze
-
-
-m = 0;
-var lessDate = [];
-var lessFrom = [];
-var lessUntill = [];
-for (p = 0 ; p < laiks.length ; p++) {
-    lessDate[p] = laiks[p][m];
-    lessFrom[p] = laiks[p][m+1].slice(0,2);
-    lessUntill[p] = laiks[p][m+3].slice(0,2);
-} // saliek pa masiviem datumus un laikus, kad ir mazaka slodze
-
-
-from = 0;
-untill = 0;
-date = 0;
-
-m=0;
-
-for(a = 0 ; a < lessDate.length ; a++){
-    date = lessDate[a];
-    from = lessFrom[a];
-    untill = lessUntill[a];
-
-    for (j = 0; j < (date2.length - 2) ; j ++){
-        if (date == date2[j]){
-
-            if (OneDay[j].id.startsWith("Mo")){
-                    for(k = 0; k < 9 ; ){
-                        if (tmp[k] == from){
-                            for ( m = from ; m < untill ;m++) {
-                                box[k].style.backgroundColor = '#22b573';
-                                box[k].style.color = "#ffffff";
-                                coloredId[n] = box[k];
-                                n++;
-                                k++;
-                            }
-                        }
-                        else k++;
-                    }
-                }
-
-            if (OneDay[j].id.startsWith("Tu")){
-                    for(k = 9; k < 18 ; ){
-                        if (tmp[k-9] == from){
-                            for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = '#22b573';
-                                box[k].style.color = "#ffffff";
-                                coloredId[n] = box[k];
-                                n++;
-                                k++;
-                            }
-                        }
-                        else k++;
-                    }
-                }
-
-                if (OneDay[j].id.startsWith("We")){
-                    for(k = 18; k < 27 ; ){
-                        if (tmp[k-18] == from){
-                            for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = '#22b573';
-                                box[k].style.color = "#ffffff";
-                                coloredId[n] = box[k];
-                                n++;
-                                k++;
-                            }
-                        }
-                        else k++;
-                    }
-                }
-                if (OneDay[j].id.startsWith("Th")){
-                    for(k = 27; k < 36 ; ){
-                        if (tmp[k-27] == from){
-                            for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = '#22b573';
-                                box[k].style.color = "#ffffff";
-                                coloredId[n] = box[k];
-                                n++;
-                                k++;
-                            }
-                        }
-                        else k++;
-                    }
-                }
-                if (OneDay[j].id.startsWith("Fr")){
-                    for(k = 36; k < 45 ; ){
-                        if (tmp[k-36] == from){
-                            for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = '#22b573';
-                                box[k].style.color = "#ffffff";
-                                coloredId[n] = box[k];
-                                n++;
-                                k++;
-                            }
-                        }
-                        else k++;
-                    }
-                }
+    for ( p = 0 ; p<less.length ; p++){
+        if (less[p].innerText == "True"){
+            laiks[m] = iemeslsList[p].innerText.slice(0,31);
+            laiks[m] = laiks[m].split(" ");
+            m++;
         }
-    }
-} // mazaku slodzi iekraso oranza krasa
+    } // saliek masiva pec kartas visus laikus, kad ir mazaka slodze
+
+
+    m = 0;
+    var lessDate = [];
+    var lessFrom = [];
+    var lessUntil = [];
+    for (p = 0 ; p < laiks.length ; p++) {
+        lessDate[p] = laiks[p][m];
+        lessFrom[p] = laiks[p][m+1].slice(0,2);
+        lessUntil[p] = laiks[p][m+3].slice(0,2);
+    } // saliek pa masiviem datumus un laikus, kad ir mazaka slodze
+
+
+    from = 0;
+    Until = 0;
+    date = 0;
+
+    m=0;
+
+    for(a = 0 ; a < lessDate.length ; a++){
+        date = lessDate[a];
+        from = lessFrom[a];
+        Until = lessUntil[a];
+
+        for (j = 0; j < (date2.length - 2) ; j ++){
+            if (date == date2[j]){
+
+                if (OneDay[j].id.startsWith("Mo")){
+                        for(k = 0; k < 9 ; ){
+                            if (tmp[k] == from){
+                                for ( m = from ; m < Until ;m++) {
+                                    box[k].style.backgroundColor = '#22b573';
+                                    box[k].style.color = "#ffffff";
+                                    coloredId[n] = box[k];
+                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    box[k].title = insert.textContent;
+                                    n++;
+                                    k++;
+                                }
+                            }
+                            else k++;
+                        }
+                    }
+
+                if (OneDay[j].id.startsWith("Tu")){
+                        for(k = 9; k < 18 ; ){
+                            if (tmp[k-9] == from){
+                                for ( m = from ; m < Until ; m++) {
+                                    box[k].style.backgroundColor = '#22b573';
+                                    box[k].style.color = "#ffffff";
+                                    coloredId[n] = box[k];
+                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    box[k].title = insert.textContent;
+                                    n++;
+                                    k++;
+                                }
+                            }
+                            else k++;
+                        }
+                    }
+
+                    if (OneDay[j].id.startsWith("We")){
+                        for(k = 18; k < 27 ; ){
+                            if (tmp[k-18] == from){
+                                for ( m = from ; m < Until ; m++) {
+                                    box[k].style.backgroundColor = '#22b573';
+                                    box[k].style.color = "#ffffff";
+                                    coloredId[n] = box[k];
+                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    box[k].title = insert.textContent;
+                                    n++;
+                                    k++;
+                                }
+                            }
+                            else k++;
+                        }
+                    }
+                    if (OneDay[j].id.startsWith("Th")){
+                        for(k = 27; k < 36 ; ){
+                            if (tmp[k-27] == from){
+                                for ( m = from ; m < Until ; m++) {
+                                    box[k].style.backgroundColor = '#22b573';
+                                    box[k].style.color = "#ffffff";
+                                    coloredId[n] = box[k];
+                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    box[k].title = insert.textContent;
+                                    n++;
+                                    k++;
+                                }
+                            }
+                            else k++;
+                        }
+                    }
+                    if (OneDay[j].id.startsWith("Fr")){
+                        for(k = 36; k < 45 ; ){
+                            if (tmp[k-36] == from){
+                                for ( m = from ; m < Until ; m++) {
+                                    box[k].style.backgroundColor = '#22b573';
+                                    box[k].style.color = "#ffffff";
+                                    coloredId[n] = box[k];
+                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    box[k].title = insert.textContent;
+                                    n++;
+                                    k++;
+                                }
+                            }
+                            else k++;
+                        }
+                    }
+            }
+        }
+    } // mazaku slodzi iekraso oranza krasa
 
 }
 
 function setOther(){
     var other = document.getElementById("iemeslsList").querySelectorAll("#cits");
-laiks = [];
-m = 0;
+    laiks = [];
+    m = 0;
+    offReasonDoc.innerHTML= "Cits";
 
-for ( p = 0 ; p<other.length ; p++){
-    if (other[p].innerText == "True"){
-        laiks[m] = iemeslsList[p].innerText.slice(0,31);
-        laiks[m] = laiks[m].split(" ");
-        m++;
-    }
-} // saliek masiva pec kartas visus laikus, kad ir cits iemesls
-
-
-m = 0;
-var otherDate = [];
-var otherFrom = [];
-var otherUntill = [];
-for (p = 0 ; p < laiks.length ; p++) {
-    otherDate[p] = laiks[p][m];
-    otherFrom[p] = laiks[p][m+1].slice(0,2);
-    otherUntill[p] = laiks[p][m+3].slice(0,2);
-} // saliek pa masiviem datumus un laikus, kad ir cits iemesls
-
-
-from = 0;
-untill = 0;
-date = 0;
-
-m=0;
-
-for(a = 0 ; a < otherDate.length ; a++){
-    date = otherDate[a];
-    from = otherFrom[a];
-    untill = otherUntill[a];
-
-    for (j = 0; j < (date2.length - 2) ; j ++){
-        if (date == date2[j]){
-
-            if (OneDay[j].id.startsWith("Mo")){
-                    for(k = 0; k < 9 ; ){
-                        if (tmp[k] == from){
-                            for ( m = from ; m < untill ;m++) {
-                                box[k].style.backgroundColor = "#662d91";
-                                box[k].style.color = "#ffffff";
-                                coloredId[n] = box[k];
-                                n++;
-                                k++;
-                            }
-                        }
-                        else k++;
-                    }
-                }
-
-            if (OneDay[j].id.startsWith("Tu")){
-                    for(k = 9; k < 18 ; ){
-                        if (tmp[k-9] == from){
-                            for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = "#662d91";
-                                box[k].style.color = "#ffffff";
-                                coloredId[n] = box[k];
-                                n++;
-                                k++;
-                            }
-                        }
-                        else k++;
-                    }
-                }
-
-                if (OneDay[j].id.startsWith("We")){
-                    for(k = 18; k < 27 ; ){
-                        if (tmp[k-18] == from){
-                            for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = "#662d91";
-                                box[k].style.color = "#ffffff";
-                                coloredId[n] = box[k];
-                                n++;
-                                k++;
-                            }
-                        }
-                        else k++;
-                    }
-                }
-                if (OneDay[j].id.startsWith("Th")){
-                    for(k = 27; k < 36 ; ){
-                        if (tmp[k-27] == from){
-                            for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = "#662d91";
-                                box[k].style.color = "#ffffff";
-                                coloredId[n] = box[k];
-                                n++;
-                                k++;
-                            }
-                        }
-                        else k++;
-                    }
-                }
-                if (OneDay[j].id.startsWith("Fr")){
-                    for(k = 36; k < 45 ; ){
-                        if (tmp[k-36] == from){
-                            for ( m = from ; m < untill ; m++) {
-                                box[k].style.backgroundColor = "#662d91";
-                                box[k].style.color = "#ffffff";
-                                coloredId[n] = box[k];
-                                n++;
-                                k++;
-                            }
-                        }
-                        else k++;
-                    }
-                }
+    for ( p = 0 ; p<other.length ; p++){
+        if (other[p].innerText == "True"){
+            laiks[m] = iemeslsList[p].innerText.slice(0,31);
+            laiks[m] = laiks[m].split(" ");
+            m++;
         }
-    }
-} // citu iemeslu iekraso zila krasa
+    } // saliek masiva pec kartas visus laikus, kad ir cits iemesls
+
+
+    m = 0;
+    var otherDate = [];
+    var otherFrom = [];
+    var otherUntil = [];
+    for (p = 0 ; p < laiks.length ; p++) {
+        otherDate[p] = laiks[p][m];
+        otherFrom[p] = laiks[p][m+1].slice(0,2);
+        otherUntil[p] = laiks[p][m+3].slice(0,2);
+    } // saliek pa masiviem datumus un laikus, kad ir cits iemesls
+
+
+    from = 0;
+    Until = 0;
+    date = 0;
+
+    m=0;
+
+    for(a = 0 ; a < otherDate.length ; a++){
+        date = otherDate[a];
+        from = otherFrom[a];
+        Until = otherUntil[a];
+
+        for (j = 0; j < (date2.length - 2) ; j ++){
+            if (date == date2[j]){
+
+                if (OneDay[j].id.startsWith("Mo")){
+                        for(k = 0; k < 9 ; ){
+                            if (tmp[k] == from){
+                                for ( m = from ; m < Until ;m++) {
+                                    box[k].style.backgroundColor = "#662d91";
+                                    box[k].style.color = "#ffffff";
+                                    coloredId[n] = box[k];
+                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    box[k].title = insert.textContent;
+                                    n++;
+                                    k++;
+                                }
+                            }
+                            else k++;
+                        }
+                    }
+
+                if (OneDay[j].id.startsWith("Tu")){
+                        for(k = 9; k < 18 ; ){
+                            if (tmp[k-9] == from){
+                                for ( m = from ; m < Until ; m++) {
+                                    box[k].style.backgroundColor = "#662d91";
+                                    box[k].style.color = "#ffffff";
+                                    coloredId[n] = box[k];
+                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    box[k].title = insert.textContent;
+                                    n++;
+                                    k++;
+                                }
+                            }
+                            else k++;
+                        }
+                    }
+
+                    if (OneDay[j].id.startsWith("We")){
+                        for(k = 18; k < 27 ; ){
+                            if (tmp[k-18] == from){
+                                for ( m = from ; m < Until ; m++) {
+                                    box[k].style.backgroundColor = "#662d91";
+                                    box[k].style.color = "#ffffff";
+                                    coloredId[n] = box[k];
+                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    box[k].title = insert.textContent;
+                                    n++;
+                                    k++;
+                                }
+                            }
+                            else k++;
+                        }
+                    }
+                    if (OneDay[j].id.startsWith("Th")){
+                        for(k = 27; k < 36 ; ){
+                            if (tmp[k-27] == from){
+                                for ( m = from ; m < Until ; m++) {
+                                    box[k].style.backgroundColor = "#662d91";
+                                    box[k].style.color = "#ffffff";
+                                    coloredId[n] = box[k];
+                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    box[k].title = insert.textContent;
+                                    n++;
+                                    k++;
+                                }
+                            }
+                            else k++;
+                        }
+                    }
+                    if (OneDay[j].id.startsWith("Fr")){
+                        for(k = 36; k < 45 ; ){
+                            if (tmp[k-36] == from){
+                                for ( m = from ; m < Until ; m++) {
+                                    box[k].style.backgroundColor = "#662d91";
+                                    box[k].style.color = "#ffffff";
+                                    coloredId[n] = box[k];
+                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    box[k].title = insert.textContent;
+                                    n++;
+                                    k++;
+                                }
+                            }
+                            else k++;
+                        }
+                    }
+            }
+        }
+    } // citu iemeslu iekraso zila krasa
 
 }
+
+
 
 function setColors(){
     iemeslsList = document.getElementById("iemeslsList").getElementsByClassName("one");
     //ieliek masīvā atsevišķi visus iemeslus, vēlāk tiks izmantots, lai katru iemeslu atsevišķi ieliktu citā masīvā
+    console.log(iemeslsList);
+    var workFrom = document.getElementsByClassName("atstradasNo");
+    var workUntil = document.getElementsByClassName("atstradasLidz");
+    var workDate = document.getElementsByClassName("atstradasKad");
+    console.log(offReasonDoc);
+    console.log(workFrom);
+    console.log(workUntil);
+    console.log(workDate);
+    var lessWork = document.getElementsByClassName("less");
+    var willWork = [];
+
+    // console.log(lessWork);
+    // for (i=0; i<iemeslsList.length ; i++){
+    //     if (lessWork[i].innerHTML==" True "){
+    //         willWork[i] = "-";
+    //     }
+    //     else {
+    //         willWork[i] = workDate[i].innerHTML + "  " + workFrom[i].innerHTML + "-" + workUntil[i].innerHTML;
+    //     }
+    // }
+    // console.log(willWork);
 
     OneDay = document.getElementsByClassName("OneDay");
     // masīvā tiek ielikts katras dienas bloks ar visiem datiem
@@ -946,140 +1030,98 @@ setColors();
 
 
 
-laiks = [];
-m = 0;
-for ( p = 0 ; p<iemeslsList.length ; p++){
-        laiks[m] = iemeslsList[p].innerText.slice();
-        // laiks[m] = laiks[m].split(" ");
-        laiks[m] = laiks[m].split("\n");
-        m++;
-} // saliek masiva pec kartas visus laikus, kad nebus
-
-
-    console.log(laiks);
-
-var offDate = [];
-var offFrom = [];
-var offUntill = [];
-var offReason = [];
-m=0;
-
-
-
-
-for (p = 0 ; p < laiks.length ; p++) {
-    offDate[p] = laiks[p][m].slice(0,10);
-    offFrom[p] = laiks[p][m].slice(11,13);
-    offUntill[p] = laiks[p][m].slice(22,24);
-    if(laiks[p][1]=="True"){
-        offReason[p] = "Slimība";
-    }
-    else if (laiks[p][2]=="True"){
-        offReason[p] = "Atvaļinājums";
-    }
-    else if (laiks[p][3]=="True"){
-        offReason[p] = "Lekcijas";
-    }
-    else if (laiks[p][4]=="True"){
-        offReason[p] = "Darbs no mājām";
-    }
-    else if (laiks[p][5]=="True"){
-        offReason[p] = "Mazāka slodze";
-    }
-    else if (laiks[p][6]=="True"){
-        offReason[p] = "Cits";
-    }
-
-} // saliek pa masiviem datumus un laikus, un iemeslus, kad nestrada
-
-console.log(offDate);
-console.log(offFrom);
-console.log(offUntill);
-console.log(offReason);
-console.log(coloredId);
-console.log(date2);
-tmp = [];
-var tmpDate =[];
-var tmpFrom = [];
-
-
-for ( k = 0 ; k < coloredId.length ; k++ ){
-
-        var now = coloredId[k].id;
-
-        if (now.startsWith("M")){
-            tmpDate[k] = date2[0];
-        }
-        else if (now.startsWith("Tu")){
-            tmpDate[k] = date2[1];
-        }
-        else if (now.startsWith("We")){
-            tmpDate[k] = date2[2];
-        }
-        else if (now.startsWith("Th")){
-            tmpDate[k] = date2[3];
-        }
-        else if (now.startsWith("F")){
-            tmpDate[k] = date2[4];
-        }
-        tmpFrom[k] = now.slice(2,4)
-}
-
-console.log(tmpDate);
-console.log(tmpFrom);
-
-var offTime = document.getElementById('offTime');
-var offReasonDoc = document.getElementById('offReason');
-var offWork = document.getElementById('offWork');
-
-
-
-
-// for (i = 0 ; i < coloredId.length ; i++){
-//     $(coloredId[i] ).mouseover(function() {
-//         console.log(this);
-//        $( '#description' ).show();
-//         for (k=0 ; k < tmpDate.length ; k++){
-//             for(p=0 ; p<offDate.length ; p++) {
-//                 console.log(tmpDate[k] + "salidzina ar" + offDate[p]);
-//                 if (tmpDate[k] == offDate[k] && tmpFrom[k] == offFrom[p]) {
-//                     offTime.innerHTML = offFrom[p];
-//                     offReasonDoc.innerHTML = offReason[p];
-//                     offWork.innerHTML = 'To do';
+// laiks = [];
+// m = 0;
+// for ( p = 0 ; p<iemeslsList.length ; p++){
+//         laiks[m] = iemeslsList[p].innerText.slice();
+//         // laiks[m] = laiks[m].split(" ");
+//         laiks[m] = laiks[m].split("\n");
+//         m++;
+// } // saliek masiva pec kartas visus laikus, kad nebus
 //
 //
-//                 }
-//             }
+//     console.log(laiks);
+//
+// var offDate = [];
+// var offFrom = [];
+// var offUntil = [];
+// var offReason = [];
+// m=0;
 //
 //
+//
+//
+// for (p = 0 ; p < laiks.length ; p++) {
+//     offDate[p] = laiks[p][m].slice(0,10);
+//     offFrom[p] = laiks[p][m].slice(11,13);
+//     offUntil[p] = laiks[p][m].slice(22,24);
+//     if(laiks[p][1]=="True"){
+//         offReason[p] = "Slimība";
+//     }
+//     else if (laiks[p][2]=="True"){
+//         offReason[p] = "Atvaļinājums";
+//     }
+//     else if (laiks[p][3]=="True"){
+//         offReason[p] = "Lekcijas";
+//     }
+//     else if (laiks[p][4]=="True"){
+//         offReason[p] = "Darbs no mājām";
+//     }
+//     else if (laiks[p][5]=="True"){
+//         offReason[p] = "Mazāka slodze";
+//     }
+//     else if (laiks[p][6]=="True"){
+//         offReason[p] = "Cits";
+//     }
+//
+// } // saliek pa masiviem datumus un laikus, un iemeslus, kad nestrada
+//
+// console.log(offDate);
+// console.log(offFrom);
+// console.log(offUntil);
+// console.log(offReason);
+// console.log(coloredId);
+// console.log(date2);
+// tmp = [];
+// var tmpDate =[];
+// var tmpFrom = [];
+//
+//
+// for ( k = 0 ; k < coloredId.length ; k++ ){
+//
+//         var now = coloredId[k].id;
+//
+//         if (now.startsWith("M")){
+//             tmpDate[k] = date2[0];
 //         }
-//
-//
-//
-//     });
+//         else if (now.startsWith("Tu")){
+//             tmpDate[k] = date2[1];
+//         }
+//         else if (now.startsWith("We")){
+//             tmpDate[k] = date2[2];
+//         }
+//         else if (now.startsWith("Th")){
+//             tmpDate[k] = date2[3];
+//         }
+//         else if (now.startsWith("F")){
+//             tmpDate[k] = date2[4];
+//         }
+//         tmpFrom[k] = now.slice(2,4)
 // }
+//
+// console.log(tmpDate);
+// console.log(tmpFrom);
+//
 
-function simple_tooltip(target_items, name){
- $(target_items).each(function(i){
-		$("body").append("<div class='"+name+"' id='"+name+i+"'><p>"+$(this).attr('title')+"</p></div>");
-		var my_tooltip = $("#"+name+i);
 
-		$(this).removeAttr("title").mouseover(function(){
-				my_tooltip.css({opacity:0.8, display:"none"}).fadeIn(400);
-		}).mousemove(function(kmouse){
-				my_tooltip.css({left:kmouse.pageX+15, top:kmouse.pageY+15});
-		}).mouseout(function(){
-				my_tooltip.fadeOut(400);
-		});
-	});
-}
-$(document).ready(function(){
-	 // simple_tooltip("div","tooltip");
-});
+
+
+
+
 
 $(function(){
 $('[data-toggle = "tooltip" ]').tooltip();
-    });
+});
 
 
 
