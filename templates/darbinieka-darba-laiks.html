@@ -1,0 +1,318 @@
+{%extends "base.html" %}
+
+
+
+{% block content %}
+
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/My.css' %}" />
+
+        <div class = "Month" id = "Month">
+
+{#            {% if month == 1 %}#}
+{#                 JANVĀRIS#}
+{#            {% elif month == 2 %}#}
+{#                 FEBRUĀRIS#}
+{#            {% elif month == 3 %}#}
+{#                 MARTS#}
+{#            {% elif month == 4 %}#}
+{#                 APRĪLIS#}
+{#            {% elif month == 5 %}#}
+{#                 MAIJS#}
+{#            {% elif month == 6 %}#}
+{#                 JŪNIJS#}
+{#            {% elif month == 7 %}#}
+{#                 JŪLIJS#}
+{#            {% elif month == 8 %}#}
+{#                 AUGUSTS#}
+{#            {% elif month == 9 %}#}
+{#                 SEPTEMBRIS#}
+{#            {% elif month == 10 %}#}
+{#                 OKTOBRIS#}
+{#            {% elif month == 11 %}#}
+{#                 NOVEMBRIS#}
+{#            {% elif month == 12 %}#}
+{#                 DECEMBRIS#}
+{#            {% endif %}#}
+
+        </div>
+
+        <!-- Seit vajadzes ar kalendaru darboties -->
+
+
+
+        <div class = "row" id = "Table">
+
+
+                <div class = "container col-sm-1">
+                    <button type="button" class="Button" id="Up">
+                        <span class="glyphicon glyphicon-menu-up arrow"></span>
+                    </button>
+
+                    <div id="WeekDate"></div>
+                    <div id = "Week" >nedēļa</div>
+
+                    <button type="button" class="Button" id="Down">
+                        <span class="glyphicon glyphicon-menu-down arrow"></span>
+                    </button>
+                </div>
+
+                <div class = "container col-sm-2 OneDay" id="MondayList">
+                        <div class = "DayDate">
+                            <p id = "Monday">Pirmdiena</p>
+{#                            <p class = "Date" id = "MondayDate"><span class="pull-right">{{ monday|date:"d. m" }}</span></p>#}
+                              <p class = "Date" ><span class="pull-right" id = "MondayDate"></span></p>
+                        </div>
+                    <ul class = "dayBox" id = "mondayBox">
+                      <li class = "box1" id = "Mo8-9">08:00 - 09:00</li>
+                      <li tabindex="1" class = "box2" id = "Mo09-10">09:00 - 10:00</li>
+                      <li tabindex="1" class = "box2" id = "Mo10-11">10:00 - 11:00</li>
+                      <li tabindex="1" class = "box2" id = "Mo11-12">11:00 - 12:00</li>
+                      <li tabindex="1" class = "box2" id = "Mo12-13">12:00 - 13:00</li>
+                      <li tabindex="1" class = "box2" id = "Mo13-14">13:00 - 14:00</li>
+                      <li tabindex="1" class = "box2" id = "Mo14-15">14:00 - 15:00</li>
+                      <li tabindex="1" class = "box2" id = "Mo15-16">15:00 - 16:00</li>
+                      <li tabindex="1" class = "box2" id = "Mo16-17">16:00 - 17:00</li>
+                      <li tabindex="1" class = "box2" id = "Mo17-18">17:00 - 18:00</li>
+                      <li class = "box1" id = "Mo18-19">18:00 - 19:00</li>
+                    </ul>
+                    <div id = "Mo"></div>
+                  </div>
+
+                <div class = "container col-sm-2 OneDay" id="TuesdayList">
+                    <div class = "DayDate">
+                        <p id = "Tuesday">Otrdiena</p>
+{#                        <p class = "Date" id = "TuesdayDate"><span class="pull-right">{{ tuesday|date:"d. m" }}</span></p>#}
+                        <p class = "Date" ><span class="pull-right" id = "TuesdayDate"></span></p>
+                    </div>
+                    <ul class = "dayBox" id = "tuesdayBox">
+                      <li class = "box1" id = "Tu8-9">08:00 - 09:00</li>
+                      <li tabindex="1" class = "box2" id = "Tu09-10">09:00 - 10:00</li>
+                      <li tabindex="1" class = "box2" id = "Tu10-11">10:00 - 11:00</li>
+                      <li tabindex="1" class = "box2" id = "Tu11-12">11:00 - 12:00</li>
+                      <li tabindex="1" class = "box2" id = "Tu12-13">12:00 - 13:00</li>
+                      <li tabindex="1" class = "box2" id = "Tu13-14">13:00 - 14:00</li>
+                      <li tabindex="1" class = "box2" id = "Tu14-15">14:00 - 15:00</li>
+                      <li tabindex="1" class = "box2" id = "Tu15-16">15:00 - 16:00</li>
+                      <li tabindex="1" class = "box2" id = "Tu16-17">16:00 - 17:00</li>
+                      <li tabindex="1" class = "box2" id = "Tu17-18">17:00 - 18:00</li>
+                      <li class = "box1" id = "Tu18-19">18:00 - 19:00</li>
+                    </ul>
+                    <div id = "Tu"></div>
+                  </div>
+
+                  <div class = "container col-sm-2 OneDay" id="WednesdayList">
+                      <div class = "DayDate">
+                        <p id = "Wednesday">Trešdiena</p>
+{#                          <p class = "Date" id = "WednesdayDate"><span class="pull-right">{{ wednesday|date:"d. m" }}</span></p>#}
+                           <p class = "Date" ><span class="pull-right" id = "WednesdayDate"></span></p>
+                      </div>
+                      <ul class = "dayBox" id = "wednesdayBox">
+                          <li class = "box1" id = "We8-9">08:00 - 09:00</li>
+                          <li tabindex="1" class = "box2" id = "We09-10">09:00 - 10:00</li>
+                          <li tabindex="1" class = "box2" id = "We10-11">10:00 - 11:00</li>
+                          <li tabindex="1" class = "box2" id = "We11-12">11:00 - 12:00</li>
+                          <li tabindex="1" class = "box2" id = "We12-13">12:00 - 13:00</li>
+                          <li tabindex="1" class = "box2" id = "We13-14">13:00 - 14:00</li>
+                          <li tabindex="1" class = "box2" id = "We14-15">14:00 - 15:00</li>
+                          <li tabindex="1" class = "box2" id = "We15-16">15:00 - 16:00</li>
+                          <li tabindex="1" class = "box2" id = "We16-17">16:00 - 17:00</li>
+                          <li tabindex="1" class = "box2" id = "We17-18">17:00 - 18:00</li>
+                      <li class = "box1" id = "We18-19">18:00 - 19:00</li>
+                      </ul>
+                      <div id = "We"></div>
+                  </div>
+
+                  <div class = "container col-sm-2 OneDay" id = "ThursdayList">
+                      <div class = "DayDate">
+                        <p id = "Thursday">Ceturtdiena</p>
+{#                          <p class = "Date" id = "ThursdayDate"><span class="pull-right">{{ thursday|date:"d. m" }}</span></p>#}
+                          <p class = "Date" ><span class="pull-right" id = "ThursdayDate"></span></p>
+                      </div>
+                      <ul class = "dayBox" id = "thursdayBox">
+                        <li class = "box1" id = "Th8-9">08:00 - 09:00</li>
+                        <li tabindex="1" class = "box2" id = "Th09-10">09:00 - 10:00</li>
+                        <li tabindex="1" class = "box2" id = "Th10-11">10:00 - 11:00</li>
+                        <li tabindex="1" class = "box2" id = "Th11-12">11:00 - 12:00</li>
+                        <li tabindex="1" class = "box2" id = "Th12-13">12:00 - 13:00</li>
+                        <li tabindex="1" class = "box2" id = "Th13-14">13:00 - 14:00</li>
+                        <li tabindex="1" class = "box2" id = "Th14-15">14:00 - 15:00</li>
+                        <li tabindex="1" class = "box2" id = "Th15-16">15:00 - 16:00</li>
+                        <li tabindex="1" class = "box2" id = "Th16-17">16:00 - 17:00</li>
+                        <li tabindex="1" class = "box2" id = "Th17-18">17:00 - 18:00</li>
+                        <li class = "box1" id = "Th18-19">18:00 - 19:00</li>
+                      </ul>
+                        <div id = "Th"></div>
+                  </div>
+
+                  <div class = "container col-sm-2 OneDay" id = "FridayList">
+                      <div class = "DayDate">
+                        <p id = "Friday">Piektdiena</p>
+{#                          <p class = "Date" id = "FridayDate"><span class="pull-right">{{ friday|date:"d. m" }}</span></p>#}
+                          <p class = "Date" ><span class="pull-right" id = "FridayDate"></span></p>
+                      </div>
+                      <ul class = "dayBox" id = "fridayBox">
+                            <li class = "box1" id = "Fr8-9">08:00 - 09:00</li>
+                            <li tabindex="1" class = "box2" id = "Fr09-10">09:00 - 10:00</li>
+                            <li tabindex="1" class = "box2" id = "Fr10-11">10:00 - 11:00</li>
+                            <li tabindex="1" class = "box2" id = "Fr11-12">11:00 - 12:00</li>
+                            <li tabindex="1" class = "box2" id = "Fr12-13">12:00 - 13:00</li>
+                            <li tabindex="1" class = "box2" id = "Fr13-14">13:00 - 14:00</li>
+                            <li tabindex="1" class = "box2" id = "Fr14-15">14:00 - 15:00</li>
+                            <li tabindex="1" class = "box2" id = "Fr15-16">15:00 - 16:00</li>
+                            <li tabindex="1" class = "box2" id = "Fr16-17">16:00 - 17:00</li>
+                            <li tabindex="1" class = "box2" id = "Fr17-18">17:00 - 18:00</li>
+                            <li class = "box1" id = "Fr18-19">18:00 - 19:00</li>
+                      </ul>
+                      <div id = "Fr"></div>
+                  </div>
+
+                  <ul class = "container col-sm-2" id = "HolidayList">
+                      <div class = "DayDate">
+                        <p id = "Saturday">Sestdiena</p>
+{#                          <p class = "Date" id = "SaturdayDate"><span class="pull-right">{{ saturday|date:"d. m" }}</span></p>#}
+                          <p class = "Date" ><span class="pull-right" id = "SaturdayDate"></span></p>
+                      </div>
+                      <div class = "container" id = "SaturdayList">
+                        <li class = "box3" id = "Sa09-10">09:00 - 10:00</li>
+                        <li class = "box3" id = "Sa10-11">10:00 - 11:00</li>
+                        <li class = "box3" id = "Sa11-12">11:00 - 12:00</li>
+                        <li class = "box3" id = "Sa12-13">12:00 - 13:00</li>
+                        <li class = "box3" id = "Sa13-14">13:00 - 14:00</li>
+                        <li class = "box3" id = "Sa14-15">14:00 - 15:00</li>
+                        <li class = "box3" id = "Sa15-16">15:00 - 16:00</li>
+                        <li class = "box3" id = "Sa16-17">16:00 - 17:00</li>
+                        <li class = "box3" id = "Sa17-18">17:00 - 18:00</li>
+                      </div>
+
+                      <div class = "DayDate">
+                          <p id = "Sunday">Svētdiena</p>
+{#                          <p class = "Date" id = "SundayDate"><span class="pull-right">{{ sunday|date:"d. m" }}</span></p>#}
+                          <p class = "Date"><span class="pull-right" id = "SundayDate"></span></p>
+                      </div>
+
+                    <div class = "container" id = "SundayList">
+                        <li class = "box3" id = "Su09-10">09:00 - 10:00</li>
+                        <li class = "box3" id = "Su10-11">10:00 - 11:00</li>
+                        <li class = "box3" id = "Su11-12">11:00 - 12:00</li>
+                        <li class = "box3" id = "Su12-13">12:00 - 13:00</li>
+                        <li class = "box3" id = "Su13-14">13:00 - 14:00</li>
+                        <li class = "box3" id = "Su14-15">14:00 - 15:00</li>
+                        <li class = "box3" id = "Su15-16">15:00 - 16:00</li>
+                        <li class = "box3" id = "Su16-17">16:00 - 17:00</li>
+                        <li class = "box3" id = "Su17-18">17:00 - 18:00</li>
+                    </div>
+                  </ul>
+        </div>
+
+
+        <div class = "row" id = "FillRow">
+            <form class = "container" action="/darba_laiks/" id = "Fill">{% csrf_token %}
+                <div class = "container" id ="data">
+
+                    <p id="Time">Laiks:</p>
+
+                    <input class = "FirstLine DateField" id = "InputDate" type = "date" name = "dateWhenIs">
+                    <input class = "FirstLine TimeField" id = "InputFrom" name = "timeFrom" list = "timeFrom">
+                    <p class = "FirstLine">-</p>
+                    <input class = "FirstLine TimeField" id = "InputUntill" type = "time" name = "timeTill">
+
+                    <p>Iemesls:</p>
+
+                    <input id="InputReason" name = "reason" list = "Reason">
+
+                        <datalist id="Reason">
+                            <option id = "Sick" value="Slimība">
+                            <option id = "Vacation" value="Atvaļinājums">
+                            <option id = "Lecture" value="Lekcijas">
+                            <option id = "WorkFromHome" value="Darbs no mājām">
+                            <option id = "Workload" value="Mazāka slodze">
+                            <option id = "Other" value="Cits">
+                        </datalist>
+
+                    <p>Tiks atstrādāts</p>
+
+                    <input class = "SecondLine DateField" id = "AfterDate" type = "date" name = "dateWhenWill">
+                    <input class = "SecondLine TimeField" id = "AfterFrom" type = "time" name = "timeWillStart">
+                    <p class = "SecondLine">-</p>
+                    <input class = "SecondLine TimeField" id = "AfterUntill" type = "time" name = "timeWillEnd">
+                </div>
+                <input type = "submit" value = "Saglabāt" id="Save">
+            </form>
+        </div>
+
+    <span class="tooltiptext">
+        <div class = "tooltip container" id = "description">
+                <div class = "text">Laiks:</div>
+                <div class = "insert" id = "offTime"></div>
+                <div class = "text">Iemesls:</div>
+                <div class = "insert" id = "offReason"></div>
+                <div class = "text">Tiks atstrādāts:</div>
+                <div class = "insert" id = "offWork"></div>
+        </div>
+    </span>
+
+        <div class = "container" id = "dataForFill">
+
+            <div class="row">
+                <ul id = "nebusList">
+                    {% for i in nebus %}
+                        <li class = "one">
+                            <ul id = "nebus">
+                                <li id = "datumsNebus"> {{ i.datums }} </li>
+                                <li id = "nebusNo"> {{ i.no }} </li>
+                                <li id = "nebusLidz"> {{ i.lidz }} </li>
+                                <li id = "ir_mainis"> {{ i.ir_mainits }}</li>
+                            </ul>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="row">
+                <ul id = "iemeslsList">
+                    {% for i in iemesls %}
+                        <li class = "one">
+                            <ul id = "iemesls">
+                                <li id = "kadNebus"> {{ i.darba_laiks }} </li>
+                                <li id = "slimiba"> {{ i.slimiba }} </li>
+                                <li id = "atvalinajums"> {{ i.atvalinajums }} </li>
+                                <li id = "lekcijas"> {{ i.lekcijas }} </li>
+                                <li id = "noMajam"> {{ i.darbs_no_majam }} </li>
+                                <li id = "slodze"> {{ i.mazaka_slodze }} </li>
+                                <li id = "cits"> {{ i.cits }} </li>
+                            </ul>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="row">
+                <ul id = "atstradaList">
+                    {% for i in atstrada %}
+                        <li class = "one">
+                            <ul id = "atstrada">
+                                <li id = "nebusKad"> {{ i.darba_laiks }} </li>
+                                <li id = "nebusKapec"> {{ i.iemesls }} </li>
+                                <li id = "atstradasNo"> {{ i.no }} </li>
+                                <li id = "atstradasLidz"> {{ i.lidz }} </li>
+                                <li id = "atstradasKad"> {{ i.datums }} </li>
+                            </ul>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+
+
+
+<a href="#" title="This is a small Tooltip with the Classname 'Tooltip'">Link</a>
+{#    <div class="tooltip">#}
+{#    <p>This is a small Tooltip with the Classname 'Tooltip'</p>#}
+{#</div>#}
+
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script type="text/javascript" src="{% static 'JavaScript/code.js' %}"></script>
+  {% endblock %}

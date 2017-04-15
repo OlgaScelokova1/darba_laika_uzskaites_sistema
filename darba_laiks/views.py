@@ -317,6 +317,18 @@ class RedigetBildi(UpdateView):
     model=UserProfile
     fields=['avatar']
 
+def darbinieka_darba_laiks(request, pk):
+    lietotajs = User.objects.get(pk=pk)
+    nebus = Darba_laiks.objects.filter(lietotajs=lietotajs)
+    iemesls = Iemesls.objects.filter(lietotajs=lietotajs)
+    atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
+
+    context = {'nebus': nebus,
+               'iemesls': iemesls,
+               'atstrada': atstrada,
+               }
+    return render(request, 'darbinieka-darba-laiks.html', context)
+
 
 
 
