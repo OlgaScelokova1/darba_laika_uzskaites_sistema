@@ -257,13 +257,7 @@ input {
 /**!*/
 
 
-.tooltip{
-    position:absolute;
-    z-index:999;
-    left:-9999px;
-    background-color:#dedede;
-    padding:5px;
-    border:1px solid #fff;
-    width:250px;
-}
+
+
+
 
