@@ -330,23 +330,6 @@ for (k=0 ; k < 9 ; k++ ) {
         tmp[k] = box[k].innerText.slice(0,2);
 } // visi darba laiki, kas ir defaultā, tiek salikti masīvā tmp
 
-function setColors(){
-    iemeslsList = document.getElementById("iemeslsList").getElementsByClassName("one");
-    //ieliek masīvā atsevišķi visus iemeslus, vēlāk tiks izmantots, lai katru iemeslu atsevišķi ieliktu citā masīvā
-
-    OneDay = document.getElementsByClassName("OneDay");
-    // masīvā tiek ielikts katras dienas bloks ar visiem datiem
-
-    setSlimiba();
-    setLekcijas();
-    setHome();
-    setSlodze();
-    setOther();
-
-}
-
-
-setColors();
 
 
 
@@ -356,38 +339,42 @@ function setSlimiba (){
     //tiek ielikti visi, kur ir slimība
 
 
+
     for ( p = 0 ; p<slimiba.length ; p++){
         if (slimiba[p].innerText == "True"){
             laiks[m] = iemeslsList[p].innerText.slice(0,31);
             laiks[m] = laiks[m].split(" ");
             m++;
+
         }
     } // saliek masiva pec kartas visus laikus, kad ir slimiba  (datums, no , līdz)
+
 
     m = 0;
     var sickDate = [];
     var sickFrom = [];
     var sickUntill = [];
+    console.log(laiks);
 
     for (p = 0 ; p < laiks.length ; p++) {
         sickDate[p] = laiks[p][m];
         sickFrom[p] = laiks[p][m+1].slice(0,2);
         sickUntill[p] = laiks[p][m+3].slice(0,2);
-    } // saliek pa atsevišķiem masiviem datumus un laikus, kad slimo
+    } // saliek pa masiviem datumus un laikus, kad slimo
 
-    from = 0;
-    untill = 0;
-    dateWhen = 0;
+    var from = 0;
+    var untill = 0;
+    var date = 0;
+
     m=0;
 
-
     for(a = 0 ; a < sickDate.length ; a++){
-        dateWhen = sickDate[a];
+        date = sickDate[a];
         from = sickFrom[a];
         untill = sickUntill[a];
 
         for (j = 0; j < (date2.length - 2) ; j ++){
-            if (dateWhen == date2[j]){
+            if (date == date2[j]){
 
                 if (OneDay[j].id.startsWith("Mo")){
                         for(k = 0; k < 9 ; ){
@@ -401,6 +388,7 @@ function setSlimiba (){
                                 }
                             }
                             else k++;
+                        }
                     }
 
                 if (OneDay[j].id.startsWith("Tu")){
@@ -462,11 +450,10 @@ function setSlimiba (){
                     }
             }
         }
-    }// slimibas laikus iekraso sarkana krasa
-    console.log(dateWhen);
+    }
 
 
-}}
+}
 
 function setLekcijas(){
    var lekcijas = document.getElementById("iemeslsList").querySelectorAll("#lekcijas");
@@ -935,6 +922,25 @@ for(a = 0 ; a < otherDate.length ; a++){
 
 }
 
+function setColors(){
+    iemeslsList = document.getElementById("iemeslsList").getElementsByClassName("one");
+    //ieliek masīvā atsevišķi visus iemeslus, vēlāk tiks izmantots, lai katru iemeslu atsevišķi ieliktu citā masīvā
+
+    OneDay = document.getElementsByClassName("OneDay");
+    // masīvā tiek ielikts katras dienas bloks ar visiem datiem
+
+    setSlimiba();
+    setLekcijas();
+    setHome();
+    setSlodze();
+    setOther();
+
+
+}
+
+
+setColors();
+
 
 
 
@@ -998,7 +1004,7 @@ var tmpFrom = [];
 for ( k = 0 ; k < coloredId.length ; k++ ){
 
         var now = coloredId[k].id;
-        console.log(now);
+
         if (now.startsWith("M")){
             tmpDate[k] = date2[0];
         }
