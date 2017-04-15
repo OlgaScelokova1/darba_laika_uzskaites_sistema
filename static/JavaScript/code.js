@@ -331,7 +331,7 @@ for (k=0 ; k < 9 ; k++ ) {
 } // visi darba laiki, kas ir defaultā, tiek salikti masīvā tmp
 
 
-
+var insert = document.getElementById("description");
 
 function setSlimiba (){
     m=0;
@@ -383,7 +383,9 @@ function setSlimiba (){
                                     box[k].style.backgroundColor = '#ba1d79';
                                     box[k].style.color = "#ffffff";
                                     coloredId[n] = box[k];
-                                    n++;
+                                    insert.style.display= "block";
+                                    box[k].title = insert.innerHTML;
+                                     n++;
                                     k++;
                                 }
                             }
@@ -1029,7 +1031,7 @@ console.log(tmpFrom);
 var offTime = document.getElementById('offTime');
 var offReasonDoc = document.getElementById('offReason');
 var offWork = document.getElementById('offWork');
-var insert = document.getElementById("description");
+
 
 
 

@@ -65,15 +65,15 @@
                         </div>
                     <ul class = "dayBox" id = "mondayBox">
                       <li class = "box1" id = "Mo8-9">08:00 - 09:00</li>
-                      <li tabindex="1" class = "box2" id = "Mo09-10">09:00 - 10:00</li>
-                      <li tabindex="1" class = "box2" id = "Mo10-11">10:00 - 11:00</li>
-                      <li tabindex="1" class = "box2" id = "Mo11-12">11:00 - 12:00</li>
-                      <li tabindex="1" class = "box2" id = "Mo12-13">12:00 - 13:00</li>
-                      <li tabindex="1" class = "box2" id = "Mo13-14">13:00 - 14:00</li>
-                      <li tabindex="1" class = "box2" id = "Mo14-15">14:00 - 15:00</li>
-                      <li tabindex="1" class = "box2" id = "Mo15-16">15:00 - 16:00</li>
-                      <li tabindex="1" class = "box2" id = "Mo16-17">16:00 - 17:00</li>
-                      <li tabindex="1" class = "box2" id = "Mo17-18">17:00 - 18:00</li>
+                      <li tabindex="1" class = "box2" id = "Mo09-10" data-toggle = "tooltip" data-placement = "right">09:00 - 10:00</li>
+                      <li tabindex="1" class = "box2" id = "Mo10-11" data-toggle = "tooltip" data-placement = "right">10:00 - 11:00</li>
+                      <li tabindex="1" class = "box2" id = "Mo11-12" data-toggle = "tooltip" data-placement = "right">11:00 - 12:00</li>
+                      <li tabindex="1" class = "box2" id = "Mo12-13" data-toggle = "tooltip" data-placement = "right">12:00 - 13:00</li>
+                      <li tabindex="1" class = "box2" id = "Mo13-14" data-toggle = "tooltip" data-placement = "right">13:00 - 14:00</li>
+                      <li tabindex="1" class = "box2" id = "Mo14-15" data-toggle = "tooltip" data-placement = "right">14:00 - 15:00</li>
+                      <li tabindex="1" class = "box2" id = "Mo15-16" data-toggle = "tooltip" data-placement = "v">15:00 - 16:00</li>
+                      <li tabindex="1" class = "box2" id = "Mo16-17" data-toggle = "tooltip">16:00 - 17:00</li>
+                      <li tabindex="1" class = "box2" id = "Mo17-18" data-toggle = "tooltip">17:00 - 18:00</li>
                       <li class = "box1" id = "Mo18-19">18:00 - 19:00</li>
                     </ul>
                     <div id = "Mo"></div>
@@ -241,7 +241,7 @@
             </form>
         </div>
 
-    <span class="tooltiptext">
+    <div class="tooltip" id='tooltip_inner_container'>
         <div class = "tooltip container" id = "description">
                 <div class = "text">Laiks:</div>
                 <div class = "insert" id = "offTime"></div>
@@ -250,7 +250,7 @@
                 <div class = "text">Tiks atstrādāts:</div>
                 <div class = "insert" id = "offWork"></div>
         </div>
-    </span>
+    </div>>
 
         <div class = "container" id = "dataForFill">
 
@@ -306,10 +306,6 @@
 
 
 
-<a href="#" title="This is a small Tooltip with the Classname 'Tooltip'">Link</a>
-{#    <div class="tooltip">#}
-{#    <p>This is a small Tooltip with the Classname 'Tooltip'</p>#}
-{#</div>#}
 
 
 
