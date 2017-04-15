@@ -207,14 +207,14 @@ input {
     padding-left:-6px;
 }
 
-#description{
-    width: 98.7px;
-	height: 91.3px;
-	border: solid 1px #cccccc;
-    background-color: #ffffff;
-    padding: 0.15em;
-    display: none;
-}
+/*#description{*/
+    /*width: 98.7px;*/
+	/*height: 91.3px;*/
+	/*border: solid 1px #cccccc;*/
+    /*background-color: #ffffff;*/
+    /*padding: 0.15em;*/
+    /*display: none;*/
+/*}*/
 
 .text {
 	height: 12px;
@@ -257,7 +257,31 @@ input {
 /**!*/
 
 
+.box2 + .tooltip > .tooltip-inner {
+    width: 99px !important;
+	height: 92px !important;
+	border: solid 1px #cccccc;
+    background-color: #ffffff;
+    padding: 0.15em;
+    text-align: center;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    margin-bottom: 6px;
+    font-size: 14px;
 
 
+}
+.box2 + .tooltip > .tooltip-arrow {
+    display: none;
+}
+
+.tooltip.in {
+  opacity: 1;
+  filter:alpha(opacity=100);
+}
 
 
+.tooltip{
+
+}
