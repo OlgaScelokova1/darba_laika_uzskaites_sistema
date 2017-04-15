@@ -260,20 +260,34 @@ def darbinieki(request):
         return render(request, 'visi.html', context)
 
     if request.method == 'POST':
-        collection_ids = Darba_laiks.objects.filter(datums=datetime.date.today()).values_list('lietotajs',flat=True).distinct()
 
-        lietot = User.objects.filter(pk__in=collection_ids)
+        visi=User.objects.all()
+
+        darba_laika_id = Darba_laiks.objects.filter(datums=datetime.date.today()).values_list('id',flat=True).distinct()
+
+        collection_ids = Darba_laiks.objects.filter(datums=datetime.date.today()).values_list('lietotajs',flat=True).distinct()
+        izmainitie = [
+            Darba_laiks.objects.filter(lietotajs__id=c)[0] for c in collection_ids
+            ]
+
+
+        iemesli = [
+            Iemesls.objects.filter(darba_laiks__id=c)[0] for c in darba_laika_id
+            ]
+
 
 
         query=request.POST.get("q")
         if query:
-            lietot=lietot.filter(
+            visi=visi.filter(
                     Q(username__icontains=query) |
                     Q(first_name__icontains=query) |
                     Q(last_name__icontains=query)
                 )
 
-        context = {'lietot': lietot}
+        context = {'visi': visi,
+                   'izmainitie': izmainitie,
+                   'iemesli': iemesli}
         return render(request, 'visi.html', context)
 
 
