@@ -140,7 +140,7 @@ var Tuesday = document.getElementById("tuesdayBox");
 var Wednesday = document.getElementById("wednesdayBox");
 var Thursday = document.getElementById("thursdayBox");
 var Friday = document.getElementById("fridayBox");
-var Saturday = document.getElementById("SsaturdayList");
+var Saturday = document.getElementById("SaturdayList");
 var Sunday = document.getElementById("SundayList");
 // tiek iegūtas katras nedēļas laiku kastītes
 
@@ -1066,11 +1066,12 @@ function simple_tooltip(target_items, name){
 	});
 }
 $(document).ready(function(){
-	 simple_tooltip("a","tooltip");
+	 // simple_tooltip("div","tooltip");
 });
 
-
-
+$(function(){
+$('[data-toggle = "tooltip" ]').tooltip();
+    });
 
 
 
