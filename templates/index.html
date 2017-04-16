@@ -215,7 +215,7 @@
                     <input class = "FirstLine DateField" id = "InputDate" type = "date" name = "dateWhenIs">
                     <input class = "FirstLine TimeField" id = "InputFrom" name = "timeFrom" list = "timeFrom">
                     <p class = "FirstLine">-</p>
-                    <input class = "FirstLine TimeField" id = "InputUntil" type = "time" name = "timeTill">
+                    <input class = "FirstLine TimeField" id = "InputUntil"  name = "timeTill">
 
                     <p>Iemesls:</p>
 
@@ -233,9 +233,9 @@
                     <p>Tiks atstrādāts</p>
 
                     <input class = "SecondLine DateField" id = "AfterDate" type = "date" name = "dateWhenWill">
-                    <input class = "SecondLine TimeField" id = "AfterFrom" type = "time" name = "timeWillStart">
+                    <input class = "SecondLine TimeField" id = "AfterFrom" name = "timeWillStart">
                     <p class = "SecondLine">-</p>
-                    <input class = "SecondLine TimeField" id = "AfterUntil" type = "time" name = "timeWillEnd">
+                    <input class = "SecondLine TimeField" id = "AfterUntil"  name = "timeWillEnd">
                 </div>
                 <input type = "submit" value = "Saglabāt" id="Save">
             </form>
@@ -293,10 +293,10 @@
                         <li class = "one">
                             <ul id = "atstrada">
                                 <li id = "nebusKad"> {{ i.darba_laiks }} </li>
-                                <li id = "nebusKapec"> {{ i.iemesls }} </li>
-                                <li class = "atstradasNo" id = "atstradasNo"> {{i.no}} </li>
-                                <li class = "atstradasLidz" id = "atstradasLidz"> {{i.lidz}} </li>
-                                <li class = "atstradasKad" id = "atstradasKad"> {{i.datums}} </li>
+                                <li class = "atstradasKapec" id = "nebusKapec">{{ i.iemesls }}</li>
+                                <li class = "atstradasNo" id = "atstradasNo">{{i.no|time:"H:i"}}</li>
+                                <li class = "atstradasLidz" id = "atstradasLidz">{{i.lidz|time:"H:i"}}</li>
+                                <li class = "atstradasKad" id = "atstradasKad">{{i.datums|date:"d.m"}}</li>
                             </ul>
                         </li>
                     {% endfor %}

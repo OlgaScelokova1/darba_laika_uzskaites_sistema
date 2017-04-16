@@ -112,3 +112,27 @@
 #info{
     font-size: 0px;
 }
+
+.box2 + .tooltip > .tooltip-inner {
+    width: 99px !important;
+	height: 92px !important;
+	border: solid 1px #cccccc;
+    background-color: #ffffff;
+    border-radius: 0;
+    white-space: pre-line;
+    line-height: 12px;
+	font-size: 10px;
+	text-align: left;
+    color: #2d3439;
+    padding:0;
+}
+
+.box2 + .tooltip > .tooltip-arrow {
+    display: none;
+}
+
+.tooltip.in {
+  opacity: 1;
+  filter:alpha(opacity=100);
+
+}

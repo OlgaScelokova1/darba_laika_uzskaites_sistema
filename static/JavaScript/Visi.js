@@ -95,6 +95,10 @@ function setReasons(){
     var iemesls = [];
     var tmp = [];
     var start;
+    var insert = document.getElementById("description");
+    var offTime = document.getElementById("offTime");
+    var offReasonDoc = document.getElementById('offReason');
+    var offWork = document.getElementById('offWork');
 
     for(i=0; i< everyIdtmp.length; i++){
         for(j=0; j<id.length ; j++){
@@ -109,9 +113,12 @@ function setReasons(){
                     tmp[i] = box[i].getElementsByTagName("li");
                     for(k=0 ; k<tmp[i].length ; k++){
                        if (tmp[i][k].innerHTML.slice(0,2) == no[j]){
+                           offReasonDoc.innerHTML = "Slimība";
                            while (tmp[i][k].innerHTML.slice(0,2) != lidz[j]){
                                tmp[i][k].style.backgroundColor = '#ba1d79';
                                tmp[i][k].style.color = "#ffffff";
+                               offTime.innerHTML = no[j] + ":00" + "-" + lidz[j] + ":00";
+                               tmp[i][k].title = insert.textContent;
                                k++;
                            }
                        }
@@ -122,9 +129,12 @@ function setReasons(){
                     tmp[i] = box[i].getElementsByTagName("li");
                     for(k=0 ; k<tmp[i].length ; k++){
                        if (tmp[i][k].innerHTML.slice(0,2) == no[j]){
+                           offReasonDoc.innerHTML = "Lekcijas";
                            while (tmp[i][k].innerHTML.slice(0,2) != lidz[j]){
                                tmp[i][k].style.backgroundColor = '#f15a24';
                                tmp[i][k].style.color = "#ffffff";
+                               offTime.innerHTML = no[j] + ":00" + "-" + lidz[j] + ":00";
+                               tmp[i][k].title = insert.textContent;
                                k++;
                            }
                        }
@@ -135,9 +145,12 @@ function setReasons(){
                     tmp[i] = box[i].getElementsByTagName("li");
                     for(k=0 ; k<tmp[i].length ; k++){
                        if (tmp[i][k].innerHTML.slice(0,2) == no[j]){
+                           offReasonDoc.innerHTML = "Darbs no mājām";
                            while (tmp[i][k].innerHTML.slice(0,2) != lidz[j]){
                                tmp[i][k].style.backgroundColor = '#29abe2';
                                tmp[i][k].style.color = "#ffffff";
+                               offTime.innerHTML = no[j] + ":00" + "-" + lidz[j] + ":00";
+                               tmp[i][k].title = insert.textContent;
                                k++;
                            }
                        }
@@ -148,9 +161,12 @@ function setReasons(){
                     tmp[i] = box[i].getElementsByTagName("li");
                     for(k=0 ; k<tmp[i].length ; k++){
                        if (tmp[i][k].innerHTML.slice(0,2) == no[j]){
+                           offReasonDoc.innerHTML = "Mazāka slodze";
                            while (tmp[i][k].innerHTML.slice(0,2) != lidz[j]){
                                tmp[i][k].style.backgroundColor = '#22b573';
                                tmp[i][k].style.color = "#ffffff";
+                               offTime.innerHTML = no[j] + ":00" + "-" + lidz[j] + ":00";
+                               tmp[i][k].title = insert.textContent;
                                k++;
                            }
                        }
@@ -161,9 +177,12 @@ function setReasons(){
                     tmp[i] = box[i].getElementsByTagName("li");
                     for(k=0 ; k<tmp[i].length ; k++){
                        if (tmp[i][k].innerHTML.slice(0,2) == no[j]){
+                           offReasonDoc.innerHTML = "Cits";
                            while (tmp[i][k].innerHTML.slice(0,2) != lidz[j]){
                                tmp[i][k].style.backgroundColor = "#662d91";
                                tmp[i][k].style.color = "#ffffff";
+                               offTime.innerHTML = no[j] + ":00" + "-" + lidz[j] + ":00";
+                               tmp[i][k].title = insert.textContent;
                                k++;
                            }
                        }
@@ -179,3 +198,7 @@ function setReasons(){
 }
 
 setReasons();
+
+$(function(){
+$('[data-toggle = "tooltip" ]').tooltip();
+});

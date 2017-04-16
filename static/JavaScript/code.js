@@ -321,7 +321,6 @@ getTodayDate();
 var laiks = [];
 var m = 0;
 var tmp = [];
-var coloredId = [];
 var n = 0;  // masiva liksu visus id, kuri ir izkrasoti
 var from = 0;
 var Until = 0;
@@ -370,6 +369,10 @@ function setSlimiba (){
         sickUntil[p] = laiks[p][m+3].slice(0,2);
     } // saliek pa masiviem datumus un laikus, kad slimo
 
+    console.log(sickDate);
+    console.log(sickFrom);
+    console.log(sickUntil);
+
     var from = 0;
     var Until = 0;
     var date = 0;
@@ -390,8 +393,8 @@ function setSlimiba (){
                                 for ( m = from ; m < Until ;m++) {
                                     box[k].style.backgroundColor = '#ba1d79';
                                     box[k].style.color = "#ffffff";
-                                    coloredId[n] = box[k];
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offWork.innerHTML = willWorkSick[a];
                                     box[k].title = insert.textContent;
                                     n++;
                                     k++;
@@ -407,8 +410,8 @@ function setSlimiba (){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#ba1d79';
                                     box[k].style.color = "#ffffff";
-                                    coloredId[n] = box[k];
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offWork.innerHTML = willWorkSick[a];
                                     box[k].title = insert.textContent;
                                     n++;
                                     k++;
@@ -424,8 +427,8 @@ function setSlimiba (){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#ba1d79';
                                     box[k].style.color = "#ffffff";
-                                    coloredId[n] = box[k];
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offWork.innerHTML = willWorkSick[a];
                                     box[k].title = insert.textContent;
                                     n++;
                                     k++;
@@ -440,8 +443,8 @@ function setSlimiba (){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#ba1d79';
                                     box[k].style.color = "#ffffff";
-                                    coloredId[n] = box[k];
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offWork.innerHTML = willWorkSick[a];
                                     box[k].title = insert.textContent;
                                     n++;
                                     k++;
@@ -456,8 +459,8 @@ function setSlimiba (){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#ba1d79';
                                     box[k].style.color = "#ffffff";
-                                    coloredId[n] = box[k];
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offWork.innerHTML = willWorkSick[a];
                                     box[k].title = insert.textContent;
                                     n++;
                                     k++;
@@ -518,8 +521,9 @@ function setLekcijas(){
                                 for ( m = from ; m < Until ;m++) {
                                     box[k].style.backgroundColor = '#f15a24';
                                     box[k].style.color = "#ffffff";
-                                    coloredId[n] = box[k];
+                                    
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offWork.innerHTML = willWorkUni[a];
                                     box[k].title = insert.textContent;
                                     n++;
                                     k++;
@@ -535,8 +539,9 @@ function setLekcijas(){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#f15a24';
                                     box[k].style.color = "#ffffff";
-                                    coloredId[n] = box[k];
+                                    
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offWork.innerHTML = willWorkUni[a];
                                     box[k].title = insert.textContent;
                                     n++;
                                     k++;
@@ -552,8 +557,9 @@ function setLekcijas(){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#f15a24';
                                     box[k].style.color = "#ffffff";
-                                    coloredId[n] = box[k];
+                                    
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offWork.innerHTML = willWorkUni[a];
                                     box[k].title = insert.textContent;
                                     n++;
                                     k++;
@@ -568,8 +574,9 @@ function setLekcijas(){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#f15a24';
                                     box[k].style.color = "#ffffff";
-                                    coloredId[n] = box[k];
+                                    
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offWork.innerHTML = willWorkUni[a];
                                     box[k].title = insert.textContent;
                                     n++;
                                     k++;
@@ -584,8 +591,9 @@ function setLekcijas(){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#f15a24';
                                     box[k].style.color = "#ffffff";
-                                    coloredId[n] = box[k];
+                                    
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offWork.innerHTML = willWorkUni[a];
                                     box[k].title = insert.textContent;
                                     n++;
                                     k++;
@@ -647,8 +655,8 @@ function setHome(){
                                 for ( m = from ; m < Until ;m++) {
                                     box[k].style.backgroundColor = '#29abe2';
                                     box[k].style.color = "#ffffff";
-                                    coloredId[n] = box[k];
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offWork.innerHTML = "-";
                                     box[k].title = insert.textContent;
                                     n++;
                                     k++;
@@ -664,8 +672,8 @@ function setHome(){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#29abe2';
                                     box[k].style.color = "#ffffff";
-                                    coloredId[n] = box[k];
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offWork.innerHTML = "-";
                                     box[k].title = insert.textContent;
                                     n++;
                                     k++;
@@ -681,8 +689,8 @@ function setHome(){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#29abe2';
                                     box[k].style.color = "#ffffff";
-                                    coloredId[n] = box[k];
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offWork.innerHTML = "-";
                                     box[k].title = insert.textContent;
                                     n++;
                                     k++;
@@ -697,8 +705,8 @@ function setHome(){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#29abe2';
                                     box[k].style.color = "#ffffff";
-                                    coloredId[n] = box[k];
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offWork.innerHTML = "-";
                                     box[k].title = insert.textContent;
                                     n++;
                                     k++;
@@ -713,8 +721,8 @@ function setHome(){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#29abe2';
                                     box[k].style.color = "#ffffff";
-                                    coloredId[n] = box[k];
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offWork.innerHTML = "-";
                                     box[k].title = insert.textContent;
                                     n++;
                                     k++;
@@ -775,8 +783,9 @@ function setSlodze(){
                                 for ( m = from ; m < Until ;m++) {
                                     box[k].style.backgroundColor = '#22b573';
                                     box[k].style.color = "#ffffff";
-                                    coloredId[n] = box[k];
+                                    
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offWork.innerHTML = "-";
                                     box[k].title = insert.textContent;
                                     n++;
                                     k++;
@@ -792,8 +801,9 @@ function setSlodze(){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#22b573';
                                     box[k].style.color = "#ffffff";
-                                    coloredId[n] = box[k];
+                                    
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offWork.innerHTML = "-";
                                     box[k].title = insert.textContent;
                                     n++;
                                     k++;
@@ -809,8 +819,8 @@ function setSlodze(){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#22b573';
                                     box[k].style.color = "#ffffff";
-                                    coloredId[n] = box[k];
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offWork.innerHTML = "-";
                                     box[k].title = insert.textContent;
                                     n++;
                                     k++;
@@ -825,8 +835,8 @@ function setSlodze(){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#22b573';
                                     box[k].style.color = "#ffffff";
-                                    coloredId[n] = box[k];
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offWork.innerHTML = "-";
                                     box[k].title = insert.textContent;
                                     n++;
                                     k++;
@@ -841,8 +851,8 @@ function setSlodze(){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#22b573';
                                     box[k].style.color = "#ffffff";
-                                    coloredId[n] = box[k];
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offWork.innerHTML = "-";
                                     box[k].title = insert.textContent;
                                     n++;
                                     k++;
@@ -903,8 +913,8 @@ function setOther(){
                                 for ( m = from ; m < Until ;m++) {
                                     box[k].style.backgroundColor = "#662d91";
                                     box[k].style.color = "#ffffff";
-                                    coloredId[n] = box[k];
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offWork.innerHTML = willWorkOther[a];
                                     box[k].title = insert.textContent;
                                     n++;
                                     k++;
@@ -920,8 +930,8 @@ function setOther(){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = "#662d91";
                                     box[k].style.color = "#ffffff";
-                                    coloredId[n] = box[k];
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offWork.innerHTML = willWorkOther[a];
                                     box[k].title = insert.textContent;
                                     n++;
                                     k++;
@@ -937,8 +947,8 @@ function setOther(){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = "#662d91";
                                     box[k].style.color = "#ffffff";
-                                    coloredId[n] = box[k];
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offWork.innerHTML = willWorkOther[a];
                                     box[k].title = insert.textContent;
                                     n++;
                                     k++;
@@ -953,8 +963,8 @@ function setOther(){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = "#662d91";
                                     box[k].style.color = "#ffffff";
-                                    coloredId[n] = box[k];
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offWork.innerHTML = willWorkOther[a];
                                     box[k].title = insert.textContent;
                                     n++;
                                     k++;
@@ -969,8 +979,8 @@ function setOther(){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = "#662d91";
                                     box[k].style.color = "#ffffff";
-                                    coloredId[n] = box[k];
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offWork.innerHTML = willWorkOther[a];
                                     box[k].title = insert.textContent;
                                     n++;
                                     k++;
@@ -985,6 +995,10 @@ function setOther(){
 
 }
 
+var willWork = [];
+var willWorkSick = [];
+var willWorkUni = [];
+var willWorkOther = [];
 
 
 function setColors(){
@@ -994,27 +1008,36 @@ function setColors(){
     var workFrom = document.getElementsByClassName("atstradasNo");
     var workUntil = document.getElementsByClassName("atstradasLidz");
     var workDate = document.getElementsByClassName("atstradasKad");
-    console.log(offReasonDoc);
-    console.log(workFrom);
-    console.log(workUntil);
-    console.log(workDate);
+    var willWorkReason = document.getElementsByClassName("atstradasKapec");
     var lessWork = document.getElementsByClassName("less");
-    var willWork = [];
+    var k = 0 ;
+    var j = 0;
+    var s = 0;
 
-    // console.log(lessWork);
-    // for (i=0; i<iemeslsList.length ; i++){
-    //     if (lessWork[i].innerHTML==" True "){
-    //         willWork[i] = "-";
-    //     }
-    //     else {
-    //         willWork[i] = workDate[i].innerHTML + "  " + workFrom[i].innerHTML + "-" + workUntil[i].innerHTML;
-    //     }
-    // }
-    // console.log(willWork);
+    for (i = 0; i< willWorkReason.length; i++) {
+        if (willWorkReason[i].innerHTML.startsWith('Slimiba')) {
+            willWorkSick[k] = workDate[i].innerHTML + "  " + workFrom[i].innerHTML + "-" + workUntil[i].innerHTML;
+            k++;
+        }
+        else if (willWorkReason[i].innerHTML.startsWith('Lekc')) {
+            willWorkUni[j] = workDate[i].innerHTML + "  " + workFrom[i].innerHTML + "-" + workUntil[i].innerHTML;
+            j++;
+        }
+        else if (willWorkReason[i].innerHTML.startsWith('Cits')) {
+            willWorkOther[s] = workDate[i].innerHTML + "  " + workFrom[i].innerHTML + "-" + workUntil[i].innerHTML;
+            s++;
+        }
+    }
+
+    console.log(willWorkSick);
+    console.log(willWorkUni);
+    console.log(willWorkOther);
+
+
+
 
     OneDay = document.getElementsByClassName("OneDay");
     // masīvā tiek ielikts katras dienas bloks ar visiem datiem
-
     setSlimiba();
     setLekcijas();
     setHome();
@@ -1026,96 +1049,6 @@ function setColors(){
 
 
 setColors();
-
-
-
-
-// laiks = [];
-// m = 0;
-// for ( p = 0 ; p<iemeslsList.length ; p++){
-//         laiks[m] = iemeslsList[p].innerText.slice();
-//         // laiks[m] = laiks[m].split(" ");
-//         laiks[m] = laiks[m].split("\n");
-//         m++;
-// } // saliek masiva pec kartas visus laikus, kad nebus
-//
-//
-//     console.log(laiks);
-//
-// var offDate = [];
-// var offFrom = [];
-// var offUntil = [];
-// var offReason = [];
-// m=0;
-//
-//
-//
-//
-// for (p = 0 ; p < laiks.length ; p++) {
-//     offDate[p] = laiks[p][m].slice(0,10);
-//     offFrom[p] = laiks[p][m].slice(11,13);
-//     offUntil[p] = laiks[p][m].slice(22,24);
-//     if(laiks[p][1]=="True"){
-//         offReason[p] = "Slimība";
-//     }
-//     else if (laiks[p][2]=="True"){
-//         offReason[p] = "Atvaļinājums";
-//     }
-//     else if (laiks[p][3]=="True"){
-//         offReason[p] = "Lekcijas";
-//     }
-//     else if (laiks[p][4]=="True"){
-//         offReason[p] = "Darbs no mājām";
-//     }
-//     else if (laiks[p][5]=="True"){
-//         offReason[p] = "Mazāka slodze";
-//     }
-//     else if (laiks[p][6]=="True"){
-//         offReason[p] = "Cits";
-//     }
-//
-// } // saliek pa masiviem datumus un laikus, un iemeslus, kad nestrada
-//
-// console.log(offDate);
-// console.log(offFrom);
-// console.log(offUntil);
-// console.log(offReason);
-// console.log(coloredId);
-// console.log(date2);
-// tmp = [];
-// var tmpDate =[];
-// var tmpFrom = [];
-//
-//
-// for ( k = 0 ; k < coloredId.length ; k++ ){
-//
-//         var now = coloredId[k].id;
-//
-//         if (now.startsWith("M")){
-//             tmpDate[k] = date2[0];
-//         }
-//         else if (now.startsWith("Tu")){
-//             tmpDate[k] = date2[1];
-//         }
-//         else if (now.startsWith("We")){
-//             tmpDate[k] = date2[2];
-//         }
-//         else if (now.startsWith("Th")){
-//             tmpDate[k] = date2[3];
-//         }
-//         else if (now.startsWith("F")){
-//             tmpDate[k] = date2[4];
-//         }
-//         tmpFrom[k] = now.slice(2,4)
-// }
-//
-// console.log(tmpDate);
-// console.log(tmpFrom);
-//
-
-
-
-
 
 
 

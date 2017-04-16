@@ -29,18 +29,6 @@ from .models import UserProfile, Iemesls
 # Create your views here.
 def darba_laiks(request):
     if request.method == 'GET':
-        # date = datetime.date.today()
-        # monday = date - datetime.timedelta(date.weekday())
-        # sunday = monday + datetime.timedelta(6)
-        # tuesday = monday + datetime.timedelta(1)
-        # wednesday=monday + datetime.timedelta(2)
-        # thursday=monday + datetime.timedelta(3)
-        # friday=monday + datetime.timedelta(4)
-        # saturday= monday + datetime.timedelta(5)
-        # #week= datetime.date.today().strftime("%V")
-        # week=date.strftime("%V")
-        # month= date.month
-
         lietotajs=request.user
         nebus=Darba_laiks.objects.filter(lietotajs=lietotajs)
         iemesls=Iemesls.objects.filter(lietotajs=lietotajs)
@@ -51,18 +39,14 @@ def darba_laiks(request):
         context = {'nebus': nebus,
                    'iemesls': iemesls,
                    'atstrada': atstrada,
-                   #  'monday': monday,
-                   # 'tuesday': tuesday,
-                   # 'wednesday': wednesday,
-                   # 'thursday': thursday,
-                   # 'friday': friday,
-                   # 'saturday': saturday,
-                   # 'sunday': sunday,
-                   # 'week':week,
-                   # 'month': month,
                    }
+        urls = [
+            'index.html',
+            'visi.html',
+        ]
+
         if request.user.is_authenticated():
-            return render(request, "index.html", context)
+            return render(request, urls, context)
         else:
             return HttpResponseRedirect('/darba_laiks/login/')
 
@@ -132,28 +116,8 @@ def darba_laiks(request):
         )
 
 
-        # date = datetime.date.today()
-        # monday = date - datetime.timedelta(date.weekday())
-        # sunday = monday + datetime.timedelta(6)
-        # tuesday = monday + datetime.timedelta(1)
-        # wednesday = monday + datetime.timedelta(2)
-        # thursday = monday + datetime.timedelta(3)
-        # friday = monday + datetime.timedelta(4)
-        # saturday = monday + datetime.timedelta(5)
-        # # week= datetime.date.today().strftime("%V")
-        # week = date.strftime("%V")
-        # month = date.month
-        #
+
         context = {
-            # 'monday': monday,
-            #        'tuesday': tuesday,
-            #        'wednesday': wednesday,
-            #        'thursday': thursday,
-            #        'friday': friday,
-            #        'saturday': saturday,
-            #        'sunday': sunday,
-            #        'week': week,
-            #        'month': month,
                    }
         if request.user.is_authenticated():
             return render(request, "index.html", context)
