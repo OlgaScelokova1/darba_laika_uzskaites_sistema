@@ -21,7 +21,7 @@ from .models import Darba_laiks, Iemesls, Atstrada
 from django import forms
 from django.utils.translation import ugettext, ugettext_lazy as _
 from .forms import UserCreationForm
-from .models import UserProfile, Iemesls
+from .models import UserProfile, Iemesls, Atstrada
 
 
 
@@ -215,13 +215,19 @@ def darbinieki(request):
             Iemesls.objects.filter(darba_laiks__id=c)[0] for c in darba_laika_id
             ]
 
+        atstrada = [
+            Atstrada.objects.filter(darba_laiks__id=c)[0] for c in darba_laika_id
+            ]
+
 
 
 
 
         context = {'visi': visi,
                    'izmainitie': izmainitie,
-                   'iemesli': iemesli}
+                   'iemesli': iemesli,
+                   'atstrada': atstrada,
+                }
         return render(request, 'visi.html', context)
 
     if request.method == 'POST':
@@ -240,6 +246,10 @@ def darbinieki(request):
             Iemesls.objects.filter(darba_laiks__id=c)[0] for c in darba_laika_id
             ]
 
+        atstrada = [
+            Atstrada.objects.filter(darba_laiks__id=c)[0] for c in darba_laika_id
+            ]
+
 
 
         query=request.POST.get("q")
@@ -252,7 +262,8 @@ def darbinieki(request):
 
         context = {'visi': visi,
                    'izmainitie': izmainitie,
-                   'iemesli': iemesli}
+                   'iemesli': iemesli,
+                   'atstrada': atstrada}
         return render(request, 'visi.html', context)
 
 
