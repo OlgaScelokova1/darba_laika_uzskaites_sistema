@@ -21,7 +21,7 @@ from .models import Darba_laiks, Iemesls, Atstrada
 from django import forms
 from django.utils.translation import ugettext, ugettext_lazy as _
 from .forms import UserCreationForm
-from .models import UserProfile, Iemesls, Atstrada
+from .models import UserProfile, Iemesls, Atstrada, Saglabatie
 
 
 
@@ -304,6 +304,20 @@ def darbinieka_darba_laiks(request, pk):
                'atstrada': atstrada,
                }
     return render(request, 'darbinieka-darba-laiks.html', context)
+
+def saglabatie(request):
+    if request.method == 'GET':
+        lietotajs_kurs_pievienoja=request.user
+        lietotaja_saglabatie=Saglabatie.objects.filter(lietotajs_kurs_pievienoja=lietotajs_kurs_pievienoja)
+
+
+        context= {'lietotaja_saglabatie': lietotaja_saglabatie,
+
+                 }
+
+        return render(request, 'saglabatie.html', context)
+
+
 
 
 

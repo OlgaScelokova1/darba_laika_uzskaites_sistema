@@ -66,3 +66,10 @@ class UserProfile(models.Model):
             UserProfile.objects.create(user=instance)
 
     post_save.connect(create_user_profile, sender=User)
+
+class Saglabatie(models.Model):
+    lietotajs_kurs_pievienoja=models.ForeignKey(settings.AUTH_USER_MODEL, related_name='lietotajs_kurs_pievienoja')
+    lietotajs_kuru_pievienoja=models.ForeignKey(settings.AUTH_USER_MODEL, related_name='lietotajs_kuru_pievienoja')
+
+    def __str__(self):
+        return str(self.lietotajs_kurs_pievienoja)+'  '+ str(self.lietotajs_kuru_pievienoja)
