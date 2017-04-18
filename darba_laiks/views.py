@@ -215,10 +215,7 @@ def darbinieki(request):
             Iemesls.objects.filter(darba_laiks__id=c)[0] for c in darba_laika_id
             ]
 
-        atstrada = [
-            Atstrada.objects.filter(darba_laiks__id=c)[0] for c in darba_laika_id
-            ]
-
+        atstrada= Atstrada.objects.filter(darba_laiks__id__in=darba_laika_id)
 
 
 
@@ -246,9 +243,8 @@ def darbinieki(request):
             Iemesls.objects.filter(darba_laiks__id=c)[0] for c in darba_laika_id
             ]
 
-        atstrada = [
-            Atstrada.objects.filter(darba_laiks__id=c)[0] for c in darba_laika_id
-            ]
+        atstrada = Atstrada.objects.filter(darba_laiks__id__in=darba_laika_id)
+
 
 
 
