@@ -50,6 +50,19 @@
 #star{
 	color: #c7d8eb;
     font-size: 15px;
+    position: absolute;
+    top: 0;
+    left:110px;
+
+}
+
+#starIcon{
+    border:none;
+    background-color: inherit;
+}
+
+.form-control-feedback {
+     position: static;
 }
 
 .img{
@@ -62,6 +75,7 @@
 
 #userName{
     font-weight: bold;
+    padding-right: 10px;
 }
 
 #userInfo{

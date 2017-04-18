@@ -37,6 +37,7 @@
 
         <div class = "row" id = "secondRow"></div>
 
+
         <div class = "row" id = "people">
 
             {% for izmainits in visi %}
@@ -52,7 +53,12 @@
 
                         <div id = "user">
 
-                             <span class="glyphicon glyphicon-star-empty pull-right" id="star"></span>
+                            <form id = "star" role="form" action="/darba_laiks/">
+                                <div class="form-group has-feedback">
+                                    <button type = "submit" class="form-control-feedback glyphicon glyphicon-star-empty" id = "starIcon"></button>
+                                </div>
+                            </form>
+
                             <div id = "userInfo">
 
                                     <img src="{{izmainits.userprofile.avatar.url}}" class="img">

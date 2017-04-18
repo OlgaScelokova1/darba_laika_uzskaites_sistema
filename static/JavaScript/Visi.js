@@ -231,3 +231,23 @@ setReasons();
 $(function(){
 $('[data-toggle = "tooltip" ]').tooltip();
 });
+
+var frm = $(star);
+
+console.log(frm);
+
+frm.submit(function () {
+
+    $.ajax({
+        type: 'POST',
+        url: frm.attr('action'),
+        data: frm.serialize(),
+        success: function (data) {
+            console.log(data);
+        },
+        error: function(data) {
+        }
+    });
+    frm.cleanData(); // forma tiek notīrīta
+    return false;
+}); // kad uzspiež "submit", padotie dati tiek sūtīti uz datu bāzi, kur tie tiek apstrādāti
