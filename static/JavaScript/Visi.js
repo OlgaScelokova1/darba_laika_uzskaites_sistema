@@ -50,12 +50,36 @@ $('#Right').click(function(){
 
 });
 
+var all = document.getElementsByClassName("oneReason");
+var willWorkWhen = document.getElementById("offWork");
+var reason = document.getElementsByClassName("reason");
+console.log(reason);
+var workFrom = document.getElementsByClassName("atstradasNo");
+var workUntil = document.getElementsByClassName("atstradasLidz");
+var workDate = document.getElementsByClassName("atstradasKad");
+
+var forInputWork = [];
+var k = 0 ;
+console.log(reason.length);
+
+for (i = 0 ; i < reason.length ; ){
+    if(reason[i].innerHTML == all[k].innerHTML ){
+        forInputWork[k] = workDate[i].innerHTML + "  " + workFrom[i].innerHTML + "-" + workUntil[i].innerHTML;
+        i++;
+    }
+    else {
+        forInputWork[i] = 0;
+        k++;
+    }
+}
+
+console.log(forInputWork);
 
 
 
 function setReasons(){
     var everyId = document.getElementsByClassName("userId");
-    var all = document.getElementsByClassName("oneReason");
+
     var box = document.getElementsByClassName("dayBox");
     console.log(box);
     // dabūju katru iemeslu ar id
@@ -118,6 +142,7 @@ function setReasons(){
                                tmp[i][k].style.backgroundColor = '#ba1d79';
                                tmp[i][k].style.color = "#ffffff";
                                offTime.innerHTML = no[j] + ":00" + "-" + lidz[j] + ":00";
+                               willWorkWhen.innerHTML = forInputWork[j];
                                tmp[i][k].title = insert.textContent;
                                k++;
                            }
@@ -134,6 +159,7 @@ function setReasons(){
                                tmp[i][k].style.backgroundColor = '#f15a24';
                                tmp[i][k].style.color = "#ffffff";
                                offTime.innerHTML = no[j] + ":00" + "-" + lidz[j] + ":00";
+                               willWorkWhen.innerHTML = forInputWork[j];
                                tmp[i][k].title = insert.textContent;
                                k++;
                            }
@@ -150,6 +176,7 @@ function setReasons(){
                                tmp[i][k].style.backgroundColor = '#29abe2';
                                tmp[i][k].style.color = "#ffffff";
                                offTime.innerHTML = no[j] + ":00" + "-" + lidz[j] + ":00";
+                               willWorkWhen.innerHTML = "-";
                                tmp[i][k].title = insert.textContent;
                                k++;
                            }
@@ -166,6 +193,7 @@ function setReasons(){
                                tmp[i][k].style.backgroundColor = '#22b573';
                                tmp[i][k].style.color = "#ffffff";
                                offTime.innerHTML = no[j] + ":00" + "-" + lidz[j] + ":00";
+                               willWorkWhen.innerHTML = "-";
                                tmp[i][k].title = insert.textContent;
                                k++;
                            }
@@ -182,6 +210,7 @@ function setReasons(){
                                tmp[i][k].style.backgroundColor = "#662d91";
                                tmp[i][k].style.color = "#ffffff";
                                offTime.innerHTML = no[j] + ":00" + "-" + lidz[j] + ":00";
+                               willWorkWhen.innerHTML = forInputWork[j];
                                tmp[i][k].title = insert.textContent;
                                k++;
                            }

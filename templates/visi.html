@@ -107,7 +107,8 @@
 
         {%  endfor %}
     </div>
-                         <div class = "tooltip" id = "description">
+
+        <div class = "tooltip" id = "description">
                 <div class = "text">Laiks:</div>
                 <div class = "insert" id = "offTime"></div>
                 <div class = "text">Iemesls:</div>
@@ -156,22 +157,18 @@
                 <ul id = "atstradaList">
                     {% for i in atstrada %}
                         <li class = "one">
-                            <ul id = "atstrada">
+                            <ul class = "willWork" id = "atstrada">
                                 <li id = "nebusKad"> {{ i.darba_laiks }} </li>
-                                <li id = "nebusKapec"> {{ i.iemesls }} {{ i.iemesls.id }}  {{ i.lietotajs.id }}</li>
-                                <li class = "atstradasNo" id = "atstradasNo"> {{i.no}} </li>
-                                <li class = "atstradasLidz" id = "atstradasLidz"> {{i.lidz}} </li>
-                                <li class = "atstradasKad" id = "atstradasKad"> {{i.datums}} </li>
+                                <li class = "reason" id = "nebusKapec">{{ i.lietotajs.id }} {{ i.iemesls }}</li>
+                                <li class = "iemesls_id">{{ i.iemesls.id }}</li>
+                                <li class = "atstradasNo" id = "atstradasNo">{{i.no|time:"H:i"}}</li>
+                                <li class = "atstradasLidz" id = "atstradasLidz">{{i.lidz|time:"H:i"}}</li>
+                                <li class = "atstradasKad" id = "atstradasKad">{{i.datums|date:"d.m"}}</li>
                             </ul>
                         </li>
                     {% endfor %}
                 </ul>
             </div>
-
-                {% for lietot in atstrada %}
-                    Atstradas: {{lietot.iemesls.id}} {{ lietot.lietotajs.id }} {{ lietot }}
-
-        {%  endfor %}
 
 
 
