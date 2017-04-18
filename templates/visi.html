@@ -158,7 +158,7 @@
                         <li class = "one">
                             <ul id = "atstrada">
                                 <li id = "nebusKad"> {{ i.darba_laiks }} </li>
-                                <li id = "nebusKapec"> {{ i.iemesls }} </li>
+                                <li id = "nebusKapec"> {{ i.iemesls }} {{ i.iemesls.id }}  {{ i.lietotajs.id }}</li>
                                 <li class = "atstradasNo" id = "atstradasNo"> {{i.no}} </li>
                                 <li class = "atstradasLidz" id = "atstradasLidz"> {{i.lidz}} </li>
                                 <li class = "atstradasKad" id = "atstradasKad"> {{i.datums}} </li>
@@ -169,9 +169,10 @@
             </div>
 
                 {% for lietot in atstrada %}
-                    Atstradas: {{lietot}}
+                    Atstradas: {{lietot.iemesls.id}} {{ lietot.lietotajs.id }} {{ lietot }}
 
         {%  endfor %}
+
 
 
 

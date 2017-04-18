@@ -46,9 +46,9 @@ class Atstrada(models.Model):
     lietotajs = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     darba_laiks= models.ForeignKey(Darba_laiks)
     iemesls= models.ForeignKey(Iemesls)
-    no = models.TimeField()
-    lidz = models.TimeField()
-    datums = models.DateField()
+    no = models.TimeField(null=True, blank=True)
+    lidz = models.TimeField(null=True, blank=True)
+    datums = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return str(self.datums)+'  '+ str(self.no)+' - '+ str(self.lidz)
