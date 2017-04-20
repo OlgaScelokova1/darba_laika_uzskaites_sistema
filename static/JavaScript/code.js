@@ -1014,6 +1014,8 @@ function setColors(){
     var j = 0;
     var s = 0;
 
+    console.log(willWorkReason);
+
     for (i = 0; i< willWorkReason.length; i++) {
         if (willWorkReason[i].innerHTML.startsWith('Slimiba')) {
             willWorkSick[k] = workDate[i].innerHTML + "  " + workFrom[i].innerHTML + "-" + workUntil[i].innerHTML;

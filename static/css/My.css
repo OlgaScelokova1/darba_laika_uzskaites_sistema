@@ -191,6 +191,19 @@ input {
     border: solid 1px #c7d8eb;
 }
 
+#InputReason {
+    width: 126.1px;
+	height: 16.5px;
+	border: solid 1px #c7d8eb;
+
+}
+
+#InputReason:focus{
+  border: solid 1px #c7d8eb;
+  outline:0px;
+}
+
+
 .SecondLine {
   display:inline;
   line-height: 0px;
