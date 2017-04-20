@@ -75,10 +75,10 @@ for (i = 0 ; i < reason.length ; ){
 
 console.log(forInputWork);
 
-
+var everyId = document.getElementsByClassName("userId");
 
 function setReasons(){
-    var everyId = document.getElementsByClassName("userId");
+
 
     var box = document.getElementsByClassName("dayBox");
     console.log(box);
@@ -232,47 +232,32 @@ $(function(){
 $('[data-toggle = "tooltip" ]').tooltip();
 });
 
-//var frm = $(star);
-//
-//console.log(frm);
-//
-//frm.submit(function () {
-//
-//    $.ajax({
-//        type: 'POST',
-//        url: frm.attr('action'),
-//        data: frm.serialize(),
-//        success: function (data) {
-//            console.log(data);
-//        },
-//        error: function(data) {
-//        }
-//    });
-//    frm.cleanData(); // forma tiek notīrīta
-//    return false;
-//}); // kad uzspiež "submit", padotie dati tiek sūtīti uz datu bāzi, kur tie tiek apstrādāti
+var userIdStar = document.getElementsByClassName("idStar");
+console.log(userIdStar);
+console.log(everyId);
 
-var star = document.getElementsByClassName("starIcon");
-console.log(star);
-//
-//for(i=0 ; i<starIcon.length ; i ++){
-//    $(starIcon[i]).click(function(){
-//    starIcon[i].style.backgroundColor = 'yellow';
-////    if (starIcon[i].style.backgroundColor == "#f2f2f2"){
-////            alert ("hi!");
-////        }
-//});
-//}
+for (i = 0 ; i < everyId.length ; i++){
+    userIdStar[i].value = everyId[i].innerHTML;
+}
 
-$(".glyphicon-star").click(function(){
+console.log(userIdStar);
 
-    console.log( $(this).style.color);
-    if (this.style.color == "#c7d8eb"){
-             $(this).glyphicon.style.color = yellow;
+var frm = $(star);
+
+frm.submit(function () {
+
+    $.ajax({
+        type: 'POST',
+        url: frm.attr('action'),
+        data: frm.serialize(),
+        success: function (data) {
+            console.log(data);
+        },
+        error: function(data) {
         }
-
-})
-
+    });
+    return false;
+});
 
 
 

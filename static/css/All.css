@@ -156,3 +156,7 @@
   filter:alpha(opacity=100);
 
 }
+
+.userIdStar{
+    visibility:hidden;
+}
