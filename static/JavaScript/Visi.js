@@ -233,7 +233,7 @@ $('[data-toggle = "tooltip" ]').tooltip();
 });
 
 var userIdStar = document.getElementsByClassName("idStar");
-console.log(userIdStar);
+
 console.log(everyId);
 
 for (i = 0 ; i < everyId.length ; i++){
