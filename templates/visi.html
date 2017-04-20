@@ -54,13 +54,9 @@
                         <div id = "user">
 
                             <div id = "star">{% csrf_token %}
-                                <form class = "star" role="form" action="/darba_laiks/">
-                                    <div class="form-group has-feedback">
+                                <form id = "starForm" class = "star" role="form" action="/darba_laiks/">
                                         <button type = "submit" class="form-control-feedback glyphicon glyphicon-star starIcon"></button>
-                                    </div>
-                                    <div class = "userIdStar">
                                         <input type="hidden" class = "idStar" name = "idStar">
-                                    </div>
                                 </form>
                             </div>
 

@@ -242,7 +242,7 @@ for (i = 0 ; i < everyId.length ; i++){
 
 console.log(userIdStar);
 
-var frm = $(star);
+var frm = $(starForm);
 
 frm.submit(function () {
 
