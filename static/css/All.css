@@ -47,8 +47,7 @@
     height: 48.9px;
 }
 
-#star{
-	color: #c7d8eb;
+.star{
     font-size: 15px;
     position: absolute;
     top: 0;
@@ -56,10 +55,13 @@
 
 }
 
-#starIcon{
-    border:none;
-    background-color: inherit;
+
+.starIcon{
+    border:0;
+    background: inherit;
+    color: #c7d8eb;
 }
+
 
 .form-control-feedback {
      position: static;
