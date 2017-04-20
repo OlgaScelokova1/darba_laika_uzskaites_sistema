@@ -334,5 +334,10 @@ def pievienot_favoritiem(request, pk):
 
     return render(request, 'saglabatie.html', context)
 
+class Dzest_favoritu(DeleteView):
+    template_name = 'izdzest.html'
+    model=Saglabatie
+    success_url=reverse_lazy('darba_laiks:saglabatie')
+
 
 
