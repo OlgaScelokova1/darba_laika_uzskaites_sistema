@@ -53,11 +53,8 @@
 
                         <div id = "user">
 
-                            <form id = "star" role="form" action="/darba_laiks/">
-                                <div class="form-group has-feedback">
-                                    <button type = "submit" class="form-control-feedback glyphicon glyphicon-star-empty" id = "starIcon"></button>
-                                </div>
-                            </form>
+                            <a href="{% url 'darba_laiks:pievienot_favoritiem' izmainits.id %}" >  <span class="glyphicon glyphicon-star-empty pull-right" id="star"></span></a>
+
 
                             <div id = "userInfo">
 
