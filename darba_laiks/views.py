@@ -217,6 +217,9 @@ def darbinieki(request):
 
         atstrada= Atstrada.objects.filter(darba_laiks__id__in=darba_laika_id)
 
+        lietotajs_kurs_pievienoja = request.user
+        lietotaja_saglabatie = Saglabatie.objects.filter(lietotajs_kurs_pievienoja=lietotajs_kurs_pievienoja)
+
 
 
 
@@ -224,6 +227,7 @@ def darbinieki(request):
                    'izmainitie': izmainitie,
                    'iemesli': iemesli,
                    'atstrada': atstrada,
+                   'lietotaja_saglabatie': lietotaja_saglabatie,
                 }
         return render(request, 'visi.html', context)
 
@@ -245,6 +249,9 @@ def darbinieki(request):
 
         atstrada = Atstrada.objects.filter(darba_laiks__id__in=darba_laika_id)
 
+        lietotajs_kurs_pievienoja = request.user
+        lietotaja_saglabatie = Saglabatie.objects.filter(lietotajs_kurs_pievienoja=lietotajs_kurs_pievienoja)
+
 
 
 
@@ -259,12 +266,14 @@ def darbinieki(request):
         context = {'visi': visi,
                    'izmainitie': izmainitie,
                    'iemesli': iemesli,
-                   'atstrada': atstrada}
+                   'atstrada': atstrada,
+                   'lietotaja_saglabatie': lietotaja_saglabatie,}
         return render(request, 'visi.html', context)
 
 
 def visi(request):
     visi = User.objects.all()
+
 
 
 
