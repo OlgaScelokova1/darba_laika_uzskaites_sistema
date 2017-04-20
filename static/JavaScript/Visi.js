@@ -232,22 +232,48 @@ $(function(){
 $('[data-toggle = "tooltip" ]').tooltip();
 });
 
-var frm = $(star);
+//var frm = $(star);
+//
+//console.log(frm);
+//
+//frm.submit(function () {
+//
+//    $.ajax({
+//        type: 'POST',
+//        url: frm.attr('action'),
+//        data: frm.serialize(),
+//        success: function (data) {
+//            console.log(data);
+//        },
+//        error: function(data) {
+//        }
+//    });
+//    frm.cleanData(); // forma tiek notīrīta
+//    return false;
+//}); // kad uzspiež "submit", padotie dati tiek sūtīti uz datu bāzi, kur tie tiek apstrādāti
 
-console.log(frm);
+var star = document.getElementsByClassName("starIcon");
+console.log(star);
+//
+//for(i=0 ; i<starIcon.length ; i ++){
+//    $(starIcon[i]).click(function(){
+//    starIcon[i].style.backgroundColor = 'yellow';
+////    if (starIcon[i].style.backgroundColor == "#f2f2f2"){
+////            alert ("hi!");
+////        }
+//});
+//}
 
-frm.submit(function () {
+$(".glyphicon-star").click(function(){
 
-    $.ajax({
-        type: 'POST',
-        url: frm.attr('action'),
-        data: frm.serialize(),
-        success: function (data) {
-            console.log(data);
-        },
-        error: function(data) {
+    console.log( $(this).style.color);
+    if (this.style.color == "#c7d8eb"){
+             $(this).glyphicon.style.color = yellow;
         }
-    });
-    frm.cleanData(); // forma tiek notīrīta
-    return false;
-}); // kad uzspiež "submit", padotie dati tiek sūtīti uz datu bāzi, kur tie tiek apstrādāti
+
+})
+
+
+
+
+
