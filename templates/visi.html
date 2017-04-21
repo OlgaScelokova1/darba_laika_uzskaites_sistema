@@ -53,12 +53,10 @@
 
                         <div id = "user">
 
-                            <div id = "star">{% csrf_token %}
-                                <form id = "starForm" class = "star" role="form" action="/darba_laiks/">
-                                        <button type = "submit" class="form-control-feedback glyphicon glyphicon-star starIcon"></button>
-                                        <input type="hidden" class = "idStar" name = "idStar">
+       <form method='POST'class = "star" role="form" action="/darba_laiks/darbinieki/">{% csrf_token %}
+                                    <input type="hidden" name="id" value="{{ izmainits.id}}">
+                                    <input type = "submit" value = "Saglabāt" id="Save">
                                 </form>
-                            </div>
 
                             <div id = "userInfo">
 
@@ -176,6 +174,8 @@
                     {% endfor %}
                 </ul>
             </div>
+
+
 
 
 
