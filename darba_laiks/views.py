@@ -252,14 +252,19 @@ def darbinieki(request):
         lietotajs_kurs_pievienoja = request.user
         lietotaja_saglabatie = Saglabatie.objects.filter(lietotajs_kurs_pievienoja=lietotajs_kurs_pievienoja)
 
-        saglabata_id=request.POST.get("id")
-        if saglabata_id:
-            lietotajs_kuru_pievienoja=User.objects.get(id=saglabata_id)
 
-            Saglabatie.objects.create(
-                lietotajs_kurs_pievienoja=request.user,
-                lietotajs_kuru_pievienoja=lietotajs_kuru_pievienoja
-            )
+        saglabata_id=request.POST.get("id")
+
+        if saglabata_id:
+            lietotajs_kuru_pievienoja = User.objects.get(id=saglabata_id)
+            i = Saglabatie.objects.filter(lietotajs_kuru_pievienoja=lietotajs_kuru_pievienoja)
+
+            if not i:
+
+                Saglabatie.objects.create(
+                    lietotajs_kurs_pievienoja=request.user,
+                    lietotajs_kuru_pievienoja=lietotajs_kuru_pievienoja
+                )
 
 
 
@@ -276,7 +281,8 @@ def darbinieki(request):
                    'iemesli': iemesli,
                    'atstrada': atstrada,
                    'lietotaja_saglabatie': lietotaja_saglabatie,
-                   'saglabata_id': saglabata_id}
+                   'saglabata_id': saglabata_id,
+                   }
         return render(request, 'visi.html', context)
 
 
