@@ -265,6 +265,9 @@ def darbinieki(request):
                     lietotajs_kurs_pievienoja=request.user,
                     lietotajs_kuru_pievienoja=lietotajs_kuru_pievienoja
                 )
+            else:
+                dzest=i
+                dzest.delete()
 
 
 
@@ -338,25 +341,25 @@ def saglabatie(request):
         return render(request, 'saglabatie.html', context)
 
 
-def pievienot_favoritiem(request, pk):
-    lietotajs_kuru_pievienoja = User.objects.get(pk=pk)
-    lietotajs_kurs_pievienoja=request.user
-
-    Saglabatie.objects.create(
-        lietotajs_kuru_pievienoja=lietotajs_kuru_pievienoja,
-        lietotajs_kurs_pievienoja= lietotajs_kurs_pievienoja,
-
-
-    )
-
-    lietotajs_kurs_pievienoja = request.user
-    lietotaja_saglabatie = Saglabatie.objects.filter(lietotajs_kurs_pievienoja=lietotajs_kurs_pievienoja)
-
-    context = {'lietotaja_saglabatie': lietotaja_saglabatie,
-
-               }
-
-    return render(request, 'saglabatie.html', context)
+# def pievienot_favoritiem(request, pk):
+#     lietotajs_kuru_pievienoja = User.objects.get(pk=pk)
+#     lietotajs_kurs_pievienoja=request.user
+#
+#     Saglabatie.objects.create(
+#         lietotajs_kuru_pievienoja=lietotajs_kuru_pievienoja,
+#         lietotajs_kurs_pievienoja= lietotajs_kurs_pievienoja,
+#
+#
+#     )
+#
+#     lietotajs_kurs_pievienoja = request.user
+#     lietotaja_saglabatie = Saglabatie.objects.filter(lietotajs_kurs_pievienoja=lietotajs_kurs_pievienoja)
+#
+#     context = {'lietotaja_saglabatie': lietotaja_saglabatie,
+#
+#                }
+#
+#     return render(request, 'saglabatie.html', context)
 
 class Dzest_favoritu(DeleteView):
     template_name = 'izdzest.html'
