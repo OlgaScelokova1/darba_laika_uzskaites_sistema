@@ -7,9 +7,7 @@
     <div class = "container">
 
         <div class = "row" id = "firstRow">
-
             <span class = "pull-left" id="line">
-
                 <div id = "today"> </div>
                  <button type="button" class="Button" id="Left">
                       <span class="glyphicon glyphicon-chevron-left"></span>
@@ -20,9 +18,7 @@
                 <button type="button" class="Button" id="Calendar">
                       <span class="glyphicon glyphicon-calendar"></span>
                  </button>
-
             </span>
-
         </div>
 
         <div class = "row" id = "secondRow"></div>
@@ -32,8 +28,6 @@
             {% for izmainits in lietotaja_saglabatie %}
                 {% if request.user == izmainits%}
 
-                <div> </div>
-
                 {% else %}
 
                 <div class = "col-sm-2" id ="oneUser">
@@ -42,16 +36,19 @@
 
                         <div id = "user">
 
-                                   <form method='POST'class = "star" role="form" action="/darba_laiks/saglabatie/">{% csrf_token %}
-                                    <input type="hidden" name="id" value="{{ izmainits.lietotajs_kuru_pievienoja.id}}">
-                                    <input type = "submit" value = "Saglabāt" id="Save">
+                                <form method='POST' class = "star" role="form" action="/darba_laiks/darbinieki/">{% csrf_token %}
+                                    <input type="hidden" name="id" class = "everyUserId" value="{{ izmainits.id}}">
+                                    <button type = "submit" value = "Saglabāt" id="Save">
+                                        <span class="glyphicon glyphicon-star starFavorites"></span>
+                                    </button>
                                 </form>
+                            <div id = "userInfo">
 
                                     <img src="{{izmainits.lietotajs_kuru_pievienoja.userprofile.avatar.url}}" class="img">
 
                                 <div id ="userName">
 
-                                    <a href="{% url 'darba_laiks:darbinieka-darba-laiks' izmainits.lietotajs_kuru_pievienoja.id %}">{{izmainits.lietotajs_kuru_pievienoja.first_name}} {{izmainits.lietotajs_kuru_pievienoja.last_name}} </a>
+                                    <a href="{% url 'darba_laiks:darbinieka-darba-laiks' izmainits.id %}">{{izmainits.lietotajs_kuru_pievienoja.first_name}} {{izmainits.lietotajs_kuru_pievienoja.last_name}}</a>
                                 </div>
                                 <div class = "userId">{{izmainits.id}}</div>
                             </div>

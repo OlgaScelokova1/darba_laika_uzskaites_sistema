@@ -232,33 +232,21 @@ $(function(){
 $('[data-toggle = "tooltip" ]').tooltip();
 });
 
-var userIdStar = document.getElementsByClassName("idStar");
+var everyFavorite = document.getElementsByClassName("everyFavorite");
+var everyUserId = document.getElementsByClassName("everyUserId");
+var star = document.getElementsByClassName("star1");
 
-console.log(everyId);
+console.log(everyFavorite);
+console.log(everyUserId);
+console.log(star);
 
-for (i = 0 ; i < everyId.length ; i++){
-    userIdStar[i].value = everyId[i].innerHTML;
-}
 
-console.log(userIdStar);
-
-var frm = $(starForm);
-
-frm.submit(function () {
-
-    $.ajax({
-        type: 'POST',
-        url: frm.attr('action'),
-        data: frm.serialize(),
-        success: function (data) {
-            console.log(data);
-        },
-        error: function(data) {
+for (i=0; i< everyUserId.length; i++){
+    for (k=0; k<everyFavorite.length ; k++){
+        if (everyUserId[i].value == everyFavorite[k].innerHTML){
+        star[i].style.color = "#f8e81c";
         }
-    });
-    return false;
-});
-
-
+    }
+}
 
 
