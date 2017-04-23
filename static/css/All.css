@@ -56,11 +56,6 @@
 }
 
 
-.starIcon{
-    border:0;
-    background: inherit;
-    color: #c7d8eb;
-}
 
 
 .form-control-feedback {
@@ -157,3 +152,19 @@
 
 }
 
+#Save
+{
+    margin-top: 2px;
+    color: 	#DCDCDC;
+    background-color: inherit;
+    border: none;
+    outline:none;
+}
+
+.favorites{
+    font-size: 0;
+}
+
+.starFavorites{
+    color: #f8e81c;
+}

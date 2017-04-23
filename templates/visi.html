@@ -43,8 +43,6 @@
             {% for izmainits in visi %}
                 {% if request.user == izmainits%}
 
-                <div> </div>
-
                 {% else %}
 
                 <div class = "col-sm-2" id ="oneUser">
@@ -54,8 +52,10 @@
                         <div id = "user">
 
                                 <form method='POST' class = "star" role="form" action="/darba_laiks/darbinieki/">{% csrf_token %}
-                                    <input type="hidden" name="id" value="{{ izmainits.id}}">
-                                    <input type = "submit" value = "Saglabāt" id="Save">
+                                    <input type="hidden" name="id" class = "everyUserId" value="{{ izmainits.id}}">
+                                    <button type = "submit" value = "Saglabāt" id="Save">
+                                        <span class="glyphicon glyphicon-star star1"></span>
+                                    </button>
                                 </form>
 
                             <div id = "userInfo">
@@ -173,6 +173,12 @@
                         </li>
                     {% endfor %}
                 </ul>
+            </div>
+
+            <div class = "favorites">
+                {% for i in lietotaja_saglabatie %}
+                <div class = "everyFavorite" >{{i.lietotajs_kuru_pievienoja.id}}</div>
+                {% endfor %}
             </div>
 
 
