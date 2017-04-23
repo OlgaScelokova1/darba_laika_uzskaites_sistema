@@ -42,8 +42,10 @@
 
                         <div id = "user">
 
-                            <a href="{% url 'darba_laiks:dzest_favoritu' izmainits.id %}"><span class="glyphicon glyphicon-star-empty pull-right" id="star"></span></a>
-                            <div id = "userInfo">
+                                   <form method='POST'class = "star" role="form" action="/darba_laiks/saglabatie/">{% csrf_token %}
+                                    <input type="hidden" name="id" value="{{ izmainits.lietotajs_kuru_pievienoja.id}}">
+                                    <input type = "submit" value = "Saglabāt" id="Save">
+                                </form>
 
                                     <img src="{{izmainits.lietotajs_kuru_pievienoja.userprofile.avatar.url}}" class="img">
 

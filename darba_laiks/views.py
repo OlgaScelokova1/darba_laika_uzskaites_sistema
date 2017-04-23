@@ -340,6 +340,24 @@ def saglabatie(request):
 
         return render(request, 'saglabatie.html', context)
 
+    if request.method == 'POST':
+        saglabata_id=request.POST.get("id")
+        lietotajs_kurs_pievienoja = request.user
+        lietotaja_saglabatie = Saglabatie.objects.filter(lietotajs_kurs_pievienoja=lietotajs_kurs_pievienoja)
+        lietotajs_kuru_pievienoja = User.objects.get(id=saglabata_id)
+
+        if saglabata_id:
+            i = Saglabatie.objects.filter(lietotajs_kuru_pievienoja=lietotajs_kuru_pievienoja)
+            i.delete()
+
+
+
+        context= {'lietotaja_saglabatie': lietotaja_saglabatie,
+
+                 }
+
+        return render(request, 'saglabatie.html', context)
+
 
 # def pievienot_favoritiem(request, pk):
 #     lietotajs_kuru_pievienoja = User.objects.get(pk=pk)
@@ -361,10 +379,10 @@ def saglabatie(request):
 #
 #     return render(request, 'saglabatie.html', context)
 
-class Dzest_favoritu(DeleteView):
-    template_name = 'izdzest.html'
-    model=Saglabatie
-    success_url=reverse_lazy('darba_laiks:saglabatie')
+# class Dzest_favoritu(DeleteView):
+#     template_name = 'izdzest.html'
+#     model=Saglabatie
+#     success_url=reverse_lazy('darba_laiks:saglabatie')
 
 
 
