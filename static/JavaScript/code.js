@@ -103,14 +103,17 @@ $('#Up').click(function(){
 
 
     setValuesForForm();
+    setMonthAndWeek()
+    setDatesAfterClick(); // piešķir nedēļu attiecīgi pēc padotajiem datiem
     formatAllDates(); // datumu formāts
-    setMonthAndWeek(); // piešķir nedēļu attiecīgi pēc padotajiem datiem
     getTodayDate(); // ja atkal uziet uz šodienas, tiek piešķirti nepieciešamie parametri
     getDates();
     setColors();
+    document.getElementById("MondayDate").innerHTML = document.getElementById("mondayReceived").innerHTML;
 
 
 });
+
 
 
 $('#Down').click(function(){
@@ -146,6 +149,16 @@ function setMonthAndWeek() {
 }
 
 setMonthAndWeek();
+
+function setDatesAfterClick (){
+    dateMonday = document.getElementById("mondayReceived").innerHTML;
+    dateTuesday = document.getElementById("tuesdayReceived").innerHTML;
+    dateWednesday = document.getElementById("wednesdayReceived").innerHTML;
+    dateThursday = document.getElementById("thursdayReceived").innerHTML;
+    dateFriday = document.getElementById("fridayReceived").innerHTML;
+    dateSaturday = document.getElementById("saturdayReceived").innerHTML;
+    dateSunday = document.getElementById("sundayReceived").innerHTML;
+}
 
 
 
@@ -1026,8 +1039,6 @@ function setColors(){
     var k = 0 ;
     var j = 0;
     var s = 0;
-
-    console.log(willWorkReason);
 
     for (i = 0; i< willWorkReason.length; i++) {
         if (willWorkReason[i].innerHTML.startsWith('Slimiba')) {
