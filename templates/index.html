@@ -45,22 +45,39 @@
 
 
                 <div class = "container col-sm-1">
-                    <button type="button" class="Button" id="Up">
-                        <span class="glyphicon glyphicon-menu-up arrow"></span>
-                    </button>
+
+                    <form method='POST' class = "Button" id= "Up" role="form" action="/darba_laiks/">{% csrf_token %}
+                        <input type="hidden" name="monday" id = "mondaySend">
+                        <input type="hidden" name="tuesday" id = "tuesdaySend">
+                        <input type="hidden" name="wednesday" id = "wednesdaySend">
+                        <input type="hidden" name="thursday" id = "thursdaySend">
+                        <input type="hidden" name="friday" id = "fridaySend">
+                        <input type = "submit" value = "Saglabāt">
+                    </form>
+                    <!--<button type="button" class="Button" id="Up">-->
+                        <!--<span class="glyphicon glyphicon-menu-up arrow"></span>-->
+                    <!--</button>-->
 
                     <div id="WeekDate"></div>
                     <div id = "Week" >nedēļa</div>
 
-                    <button type="button" class="Button" id="Down">
-                        <span class="glyphicon glyphicon-menu-down arrow"></span>
-                    </button>
+                     <form method='POST' class = "Button" id= "Down" role="form" action="/darba_laiks/">{% csrf_token %}
+                        <input type="hidden" name="mondayDown" id = "mondaySendDown">
+                        <input type="hidden" name="tuesdayDown" id = "tuesdaySendDown">
+                        <input type="hidden" name="wednesdayDown" id = "wednesdaySendDown">
+                        <input type="hidden" name="thursdayDown" id = "thursdaySendDown">
+                        <input type="hidden" name="fridayDown" id = "fridaySendDown">
+                        <input type = "submit" value = "Saglabāt">
+                    </form>
+
+                    <!--<button type="button" class="Button" id="Down">-->
+                        <!--<span class="glyphicon glyphicon-menu-down arrow"></span>-->
+                    <!--</button>-->
                 </div>
 
                 <div class = "container col-sm-2 OneDay" id="MondayList">
                         <div class = "DayDate">
                             <p id = "Monday">Pirmdiena</p>
-{#                            <p class = "Date" id = "MondayDate"><span class="pull-right">{{ monday|date:"d. m" }}</span></p>#}
                               <p class = "Date" ><span class="pull-right" id = "MondayDate"></span></p>
                         </div>
                     <ul class = "dayBox" id = "mondayBox">
@@ -82,7 +99,6 @@
                 <div class = "container col-sm-2 OneDay" id="TuesdayList">
                     <div class = "DayDate">
                         <p id = "Tuesday">Otrdiena</p>
-{#                        <p class = "Date" id = "TuesdayDate"><span class="pull-right">{{ tuesday|date:"d. m" }}</span></p>#}
                         <p class = "Date" ><span class="pull-right" id = "TuesdayDate"></span></p>
                     </div>
                     <ul class = "dayBox" id = "tuesdayBox">
@@ -104,7 +120,6 @@
                   <div class = "container col-sm-2 OneDay" id="WednesdayList">
                       <div class = "DayDate">
                         <p id = "Wednesday">Trešdiena</p>
-{#                          <p class = "Date" id = "WednesdayDate"><span class="pull-right">{{ wednesday|date:"d. m" }}</span></p>#}
                            <p class = "Date" ><span class="pull-right" id = "WednesdayDate"></span></p>
                       </div>
                       <ul class = "dayBox" id = "wednesdayBox">
@@ -126,7 +141,6 @@
                   <div class = "container col-sm-2 OneDay" id = "ThursdayList">
                       <div class = "DayDate">
                         <p id = "Thursday">Ceturtdiena</p>
-{#                          <p class = "Date" id = "ThursdayDate"><span class="pull-right">{{ thursday|date:"d. m" }}</span></p>#}
                           <p class = "Date" ><span class="pull-right" id = "ThursdayDate"></span></p>
                       </div>
                       <ul class = "dayBox" id = "thursdayBox">
@@ -148,7 +162,6 @@
                   <div class = "container col-sm-2 OneDay" id = "FridayList">
                       <div class = "DayDate">
                         <p id = "Friday">Piektdiena</p>
-{#                          <p class = "Date" id = "FridayDate"><span class="pull-right">{{ friday|date:"d. m" }}</span></p>#}
                           <p class = "Date" ><span class="pull-right" id = "FridayDate"></span></p>
                       </div>
                       <ul class = "dayBox" id = "fridayBox">
@@ -170,7 +183,6 @@
                   <ul class = "container col-sm-2" id = "HolidayList">
                       <div class = "DayDate">
                         <p id = "Saturday">Sestdiena</p>
-{#                          <p class = "Date" id = "SaturdayDate"><span class="pull-right">{{ saturday|date:"d. m" }}</span></p>#}
                           <p class = "Date" ><span class="pull-right" id = "SaturdayDate"></span></p>
                       </div>
                       <div class = "container" id = "SaturdayList">
@@ -187,7 +199,6 @@
 
                       <div class = "DayDate">
                           <p id = "Sunday">Svētdiena</p>
-{#                          <p class = "Date" id = "SundayDate"><span class="pull-right">{{ sunday|date:"d. m" }}</span></p>#}
                           <p class = "Date"><span class="pull-right" id = "SundayDate"></span></p>
                       </div>
 
