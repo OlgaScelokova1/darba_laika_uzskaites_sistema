@@ -75,6 +75,22 @@ formatAllDates();
 var box = document.getElementsByClassName("box2"); // pie box tiek ielikti visi elementi, kam klase box2
     console.log(box);
 
+function setValuesForForm (){
+    document.getElementById("mondaySend").value = dateMonday;
+    document.getElementById("tuesdaySend").value = dateTuesday;
+    document.getElementById("thursdaySend").value = dateWednesday;
+    document.getElementById("ThursdayDate").value = dateThursday;
+    document.getElementById("fridaySend").value = dateFriday;
+
+    document.getElementById("mondaySendDown").value = dateMonday;
+    document.getElementById("tuesdaySendDown").value = dateTuesday;
+    document.getElementById("wednesdaySendDown").value = dateWednesday;
+    document.getElementById("thursdaySendDown").value = dateThursday;
+    document.getElementById("fridaySendDown").value = dateFriday;
+}
+
+setValuesForForm();
+
 $('#Up').click(function(){
 
     dateMonday = addDays(dateTuesday, 6);
@@ -84,17 +100,14 @@ $('#Up').click(function(){
     dateFriday = addDays(dateFriday, 7);
     dateSaturday = addDays(dateSaturday, 7);
     dateSunday = addDays(dateSunday, 7);
-    //tiek piešķirti visi datumi nākamajai nedēļai
-    // for (i=0 ; i<45 ; i++){
-    //   box[i].style.backgroundColor = "#e2edf8";
-    //   console.log(box[i]);
-    // }
 
+
+    setValuesForForm();
     formatAllDates(); // datumu formāts
     setMonthAndWeek(); // piešķir nedēļu attiecīgi pēc padotajiem datiem
     getTodayDate(); // ja atkal uziet uz šodienas, tiek piešķirti nepieciešamie parametri
     getDates();
-    // setColors();
+    setColors();
 
 
 });
