@@ -78,8 +78,8 @@ var box = document.getElementsByClassName("box2"); // pie box tiek ielikti visi 
 function setValuesForForm (){
     document.getElementById("mondaySend").value = dateMonday;
     document.getElementById("tuesdaySend").value = dateTuesday;
-    document.getElementById("thursdaySend").value = dateWednesday;
-    document.getElementById("ThursdayDate").value = dateThursday;
+    document.getElementById("wednesdaySend").value = dateWednesday;
+    document.getElementById("thursdaySend").value = dateThursday;
     document.getElementById("fridaySend").value = dateFriday;
 
     document.getElementById("mondaySendDown").value = dateMonday;
