@@ -51,15 +51,36 @@ def darba_laiks(request):
             return HttpResponseRedirect('/darba_laiks/login/')
 
     if request.method =='POST':
-        iemesls = request.POST.get("reason")
-        dateWhenIs = request.POST.get("dateWhenIs")
+        monday = request.POST.get("monday")
         lietotajs=request.user
         nebus=Darba_laiks.objects.filter(lietotajs=lietotajs)
         iemesls=Iemesls.objects.filter(lietotajs=lietotajs)
         atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
 
-        if dateWhenIs:
+        if monday:
+            mondayy=monday
+            tuesday = request.POST.get("tuesday")
+            wednesday= request.POST.get("wednesday")
+            thursday = request.POST.get("thursday")
+            friday = request.POST.get("friday")
+            saturday = request.POST.get("saturday")
+            sunday = request.POST.get("sunday")
 
+
+            context = {'nebus': nebus,
+                       'iemesls': iemesls,
+                       'atstrada': atstrada,
+                       'mondayy': mondayy,
+                       'tuesday': tuesday,
+                       'wednesday': wednesday,
+                       'thursday': thursday,
+                       'friday': friday,
+                       'saturday': saturday,
+                       'sunday': sunday,
+                       }
+        else:
+
+            iemesls = request.POST.get("reason")
             a=Darba_laiks.objects.create(
                 lietotajs = request.user,
                 no=request.POST.get("timeFrom", ""),
@@ -120,48 +141,15 @@ def darba_laiks(request):
                 lidz=request.POST.get("timeWillEnd", ""),
             )
 
-            context = {'nebus': nebus,
-                       'iemesls': iemesls,
-                       'atstrada': atstrada,
+            context = {
                        }
-            urls = [
-                'index.html',
-                'visi.html',
-            ]
-
-            if request.user.is_authenticated():
-                return render(request, "index.html", context)
-            else:
-                return HttpResponseRedirect('/darba_laiks/login/')
-
-        monday = request.POST.get("monday")
-        lietotajs=request.user
-        nebus=Darba_laiks.objects.filter(lietotajs=lietotajs)
-        iemesls=Iemesls.objects.filter(lietotajs=lietotajs)
-        atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
-
-        if monday:
-            mondayy=monday
-            tuesday = request.POST.get("tuesday")
-            wednesday= request.POST.get("wednesday")
-            thursday = request.POST.get("thursday")
-            friday = request.POST.get("friday")
-            saturday = request.POST.get("saturday")
-            sunday = request.POST.get("sunday")
-
-
-            context = {'nebus': nebus,
-                       'iemesls': iemesls,
-                       'atstrada': atstrada,
-                       'mondayy': mondayy,
-                       'tuesday': tuesday,
-                       'wednesday': wednesday,
-                       'thursday': thursday,
-                       'friday': friday,
-                       'saturday': saturday,
-                       'sunday': sunday,
-                       }
+        if request.user.is_authenticated():
             return render(request, "index.html", context)
+        else:
+            return HttpResponseRedirect('/darba_laiks/login/')
+
+
+
 
 
 class LogoutView(RedirectView):
