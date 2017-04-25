@@ -1,8 +1,8 @@
 body {
   background-color: #f2f2f2;
   font-family: 'Oxygen';
-  text-align: center;
-  margin-top: 200px;
+
+
 }
 
 #text{
@@ -17,17 +17,20 @@ body {
     border-width: 1px;
 }
 
-.row{
+.container{
     border: solid 0.5px #29abe2;
-    margin-top: 7em;
-    margin-left: 30em;
     width: 500px;
     background-color: white;
     padding-top: 2em;
     padding-bottom: 2em;
+    text-align: right;
+    position: fixed;
+    top: 15%;
+    left: 40%;
+
 }
 
-#id_password1, #id_password2{
+.inputField {
     margin-left:5px;
     width : 180px;
     height: 30px;
@@ -35,7 +38,7 @@ body {
     border-width: 1px;
 }
 
-.btn {
+#btn {
     width : 200px;
     height: 30px;
     margin-top: 20px;
@@ -50,8 +53,6 @@ body {
 li{
     list-style-type: none;
 }
-
-
 
 
 
@@ -70,3 +71,12 @@ li{
 
 
 
+form {
+    padding-right: 9em;
+}
+
+.helptext{
+    font-size: 13px;
+    display:block;
+    padding-left:9em;
+}

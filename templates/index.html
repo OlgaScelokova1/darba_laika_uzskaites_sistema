@@ -6,46 +6,10 @@
 
     {% load staticfiles %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/My.css' %}" />
+<div class = "container">
 
-
-
-
-
-        <div class = "Month" id = "Month">
-
-{#            {% if month == 1 %}#}
-{#                 JANVĀRIS#}
-{#            {% elif month == 2 %}#}
-{#                 FEBRUĀRIS#}
-{#            {% elif month == 3 %}#}
-{#                 MARTS#}
-{#            {% elif month == 4 %}#}
-{#                 APRĪLIS#}
-{#            {% elif month == 5 %}#}
-{#                 MAIJS#}
-{#            {% elif month == 6 %}#}
-{#                 JŪNIJS#}
-{#            {% elif month == 7 %}#}
-{#                 JŪLIJS#}
-{#            {% elif month == 8 %}#}
-{#                 AUGUSTS#}
-{#            {% elif month == 9 %}#}
-{#                 SEPTEMBRIS#}
-{#            {% elif month == 10 %}#}
-{#                 OKTOBRIS#}
-{#            {% elif month == 11 %}#}
-{#                 NOVEMBRIS#}
-{#            {% elif month == 12 %}#}
-{#                 DECEMBRIS#}
-{#            {% endif %}#}
-
-        </div>
-
-        <!-- Seit vajadzes ar kalendaru darboties -->
-
-
-
-        <div class = "row" id = "Table">
+<div class = "Month" id = "Month"></div>
+          <div class = "row" id = "Table">
 
 
                 <div class = "container col-sm-1">
@@ -56,6 +20,8 @@
                         <input type="hidden" name="wednesday" id = "wednesdaySend">
                         <input type="hidden" name="thursday" id = "thursdaySend">
                         <input type="hidden" name="friday" id = "fridaySend">
+                        <input type="hidden" name="friday" id = "saturdaySend">
+                        <input type="hidden" name="friday" id = "sundaySend">
                         <input id= "Up" type = "submit" value = "Saglabāt">
                     </form>
 
@@ -73,6 +39,8 @@
                         <input type="hidden" name="wednesdayDown" id = "wednesdaySendDown">
                         <input type="hidden" name="thursdayDown" id = "thursdaySendDown">
                         <input type="hidden" name="fridayDown" id = "fridaySendDown">
+                         <input type="hidden" name="friday" id = "saturdaySendDown">
+                        <input type="hidden" name="friday" id = "sundaySendDown">
                         <input type = "submit" value = "Saglabāt">
                     </form>
 
@@ -331,7 +299,7 @@
     </div>
 
 
-
+</div>
 
 
 

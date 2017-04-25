@@ -10,41 +10,44 @@
 
 
 <body>
-<div class="container-fluid">
+    <div class="container-fluid">
 
-    <div class="row">
+        <div class="row">
 
-        <div class="col-sm-12 col-md-7">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <h3> Reģistrācija</h3>
-                    <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
-                        {% csrf_token %}
-
-
-                        {% for field in form %}
+            <div class="col-sm-12 col-md-7">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h3 id = "text">Pievienot jaunu lietotāju</h3>
+                        <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
 
 
-       <div class="form-group">
-           <div class="col-sm-offset-2 col-sm-10">
-               <span class="text-danger small">{{ field.errors }}</span>
-           </div>
-       <label class="control-label col-sm-2">{{ field.label_tag }}</label>
-       <div class="col-sm-10">{{ field }}</div>
-       </div>
+                            {% for field in form %}
 
-{% endfor %}
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-success">Ok</button>
+                               <div class="form-group">
+                                   <div class="col-sm-offset-2 col-sm-10">
+                                       <span class="text-danger small">{{ field.errors }}</span>
+                                   </div>
+                               <label class="control-label col-sm-2">{{ field.label_tag }}</label>
+                               <div class="col-sm-10">{{ field }}</div>
+                               </div>
+
+                            {% endfor %}
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-success">Ok</button>
+                                </div>
                             </div>
-                        </div>
 
-                    </form>
+                        </form>
 
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'JavaScript/createUser.js' %}"></script>
+
 </body>
+
