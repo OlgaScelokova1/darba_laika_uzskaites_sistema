@@ -22,7 +22,8 @@ from django import forms
 from django.utils.translation import ugettext, ugettext_lazy as _
 from .forms import UserCreationForm
 from .models import UserProfile, Iemesls, Atstrada, Saglabatie
-
+import datetime
+from datetime import timedelta
 
 
 
@@ -33,12 +34,30 @@ def darba_laiks(request):
         nebus=Darba_laiks.objects.filter(lietotajs=lietotajs)
         iemesls=Iemesls.objects.filter(lietotajs=lietotajs)
         atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
+        date = datetime.date.today()
+        monday = date - datetime.timedelta(date.weekday())
+        sunday = monday + datetime.timedelta(6)
+        tuesday = monday + datetime.timedelta(1)
+        wednesday = monday + datetime.timedelta(2)
+        thursday = monday + datetime.timedelta(3)
+        friday = monday + datetime.timedelta(4)
+        saturday = monday + datetime.timedelta(5)
+        week = datetime.date.today().strftime("%V")
+        '24'
 
 
 
         context = {'nebus': nebus,
                    'iemesls': iemesls,
                    'atstrada': atstrada,
+                   'monday': monday,
+                   'tuesday': tuesday,
+                   'wednesday': wednesday,
+                   'thursday': thursday,
+                   'friday': friday,
+                   'saturday': saturday,
+                   'sunday': sunday,
+                   'week': week,
                    }
         urls = [
             'index.html',
@@ -56,6 +75,7 @@ def darba_laiks(request):
         nebus=Darba_laiks.objects.filter(lietotajs=lietotajs)
         iemesls=Iemesls.objects.filter(lietotajs=lietotajs)
         atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
+
 
         if monday:
             mondayy=monday
