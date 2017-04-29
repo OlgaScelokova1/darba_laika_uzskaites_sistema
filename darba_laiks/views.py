@@ -76,9 +76,8 @@ def darba_laiks(request):
         iemesls=Iemesls.objects.filter(lietotajs=lietotajs)
         atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
 
-
         if monday:
-            mondayy=monday
+            monday=monday
             tuesday = request.POST.get("tuesday")
             wednesday= request.POST.get("wednesday")
             thursday = request.POST.get("thursday")
@@ -90,7 +89,7 @@ def darba_laiks(request):
             context = {'nebus': nebus,
                        'iemesls': iemesls,
                        'atstrada': atstrada,
-                       'mondayy': mondayy,
+                       'monday': monday,
                        'tuesday': tuesday,
                        'wednesday': wednesday,
                        'thursday': thursday,

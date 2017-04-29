@@ -135,7 +135,7 @@ function changeDatesUp (){
 
 changeDatesUp();
 
-//$('#Up').click(function(){
+// $('#Up').click(function(){
 //
 //    setDatesForEveryDay();
 //
@@ -150,7 +150,7 @@ changeDatesUp();
 //    document.getElementById("MondayDate").innerHTML = document.getElementById("mondayReceived").innerHTML;
 //
 //
-//});
+// });
 
 
 
