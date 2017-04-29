@@ -70,33 +70,33 @@ def darba_laiks(request):
             return HttpResponseRedirect('/darba_laiks/login/')
 
     if request.method =='POST':
-        monday = request.POST.get("monday")
+        mondayy = request.POST.get("mondayy")
         lietotajs=request.user
         nebus=Darba_laiks.objects.filter(lietotajs=lietotajs)
         iemesls=Iemesls.objects.filter(lietotajs=lietotajs)
         atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
 
 
-        if monday:
-            mondayy=monday
-            tuesday = request.POST.get("tuesday")
-            wednesday= request.POST.get("wednesday")
-            thursday = request.POST.get("thursday")
-            friday = request.POST.get("friday")
-            saturday = request.POST.get("saturday")
-            sunday = request.POST.get("sunday")
+        if mondayy:
+            # mondayy= mondayy
+            # tuesday = request.POST.get("tuesday")
+            # wednesday= request.POST.get("wednesday")
+            # thursday = request.POST.get("thursday")
+            # friday = request.POST.get("friday")
+            # saturday = request.POST.get("saturday")
+            # sunday = request.POST.get("sunday")
 
 
             context = {'nebus': nebus,
                        'iemesls': iemesls,
                        'atstrada': atstrada,
                        'mondayy': mondayy,
-                       'tuesday': tuesday,
-                       'wednesday': wednesday,
-                       'thursday': thursday,
-                       'friday': friday,
-                       'saturday': saturday,
-                       'sunday': sunday,
+                       # 'tuesday': tuesday,
+                       # 'wednesday': wednesday,
+                       # 'thursday': thursday,
+                       # 'friday': friday,
+                       # 'saturday': saturday,
+                       # 'sunday': sunday,
                        }
         else:
 
