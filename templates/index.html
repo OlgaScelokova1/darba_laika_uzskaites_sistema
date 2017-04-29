@@ -14,23 +14,34 @@
 
                 <div class = "container col-sm-1">
 
+<<<<<<< HEAD
                     <form method='POST' class = "Button"  role="form" action="/darba_laiks/">{% csrf_token %}
                         <input type="hidden" name="monday" id = "mondaySend" value="2017-04-30">
                         <input type="hidden" name="tuesday" id = "tuesdaySend" value="2017-05-01">
+=======
+                    <!--<button type="button" class = "Button" id="Up">-->
+                    <form id = "formUp" action="/darba_laiks/">{% csrf_token %}
+                        <input name="mondayy" id = "mondaySend" value = "2017-05-01">
+                        <input type="hidden" name="tuesday" id = "tuesdaySend">
+>>>>>>> d5188fa3a87b1fed3e5fe13b553856498228ff83
                         <input type="hidden" name="wednesday" id = "wednesdaySend">
                         <input type="hidden" name="thursday" id = "thursdaySend">
                         <input type="hidden" name="friday" id = "fridaySend">
                         <input type="hidden" name="friday" id = "saturdaySend">
                         <input type="hidden" name="friday" id = "sundaySend">
-                        <input id= "Up" type = "submit" value = "Saglabāt">
+
+                            <input type = "submit" value = "">
+
                     </form>
+                    <!--</button>-->
+
 
 
                     <!--<button type="button" class="Button" id="Up">-->
                         <!--<span class="glyphicon glyphicon-menu-up arrow"></span>-->
                     <!--</button>-->
 
-                    <div id="WeekDate"></div>
+                    <div id="WeekDate">{{week}}</div>
                     <div id = "Week" >nedēļa</div>
 
                      <form method='POST' class = "Button" id= "Down" role="form" action="/darba_laiks/">{% csrf_token %}
@@ -52,7 +63,11 @@
                 <div class = "container col-sm-2 OneDay" id="MondayList">
                         <div class = "DayDate">
                             <p id = "Monday">Pirmdiena</p>
+<<<<<<< HEAD
                               <p class = "Date" ><span class="pull-right" id = "MondayDate"> {{ monday }}</span></p>
+=======
+                              <p class = "Date" ><span class="pull-right" id = "MondayDate">{{monday|date:"d.m"}}</span></p>
+>>>>>>> d5188fa3a87b1fed3e5fe13b553856498228ff83
                         </div>
                     <ul class = "dayBox" id = "mondayBox">
                       <li class = "box1" id = "Mo8-9">08:00 - 09:00</li>
@@ -73,7 +88,11 @@
                 <div class = "container col-sm-2 OneDay" id="TuesdayList">
                     <div class = "DayDate">
                         <p id = "Tuesday">Otrdiena</p>
+<<<<<<< HEAD
                         <p class = "Date" ><span class="pull-right" id = "TuesdayDate">{{ tuesday }}</span></p>
+=======
+                        <p class = "Date" ><span class="pull-right" id = "TuesdayDate">{{tuesday|date:"d.m"}}</span></p>
+>>>>>>> d5188fa3a87b1fed3e5fe13b553856498228ff83
                     </div>
                     <ul class = "dayBox" id = "tuesdayBox">
                       <li class = "box1" id = "Tu8-9">08:00 - 09:00</li>
@@ -94,7 +113,11 @@
                   <div class = "container col-sm-2 OneDay" id="WednesdayList">
                       <div class = "DayDate">
                         <p id = "Wednesday">Trešdiena</p>
+<<<<<<< HEAD
                            <p class = "Date" ><span class="pull-right" id = "WednesdayDate">{{wednesday}}</span></p>
+=======
+                           <p class = "Date" ><span class="pull-right" id = "WednesdayDate">{{wednesday|date:"d.m"}}</span></p>
+>>>>>>> d5188fa3a87b1fed3e5fe13b553856498228ff83
                       </div>
                       <ul class = "dayBox" id = "wednesdayBox">
                           <li class = "box1" id = "We8-9">08:00 - 09:00</li>
@@ -115,7 +138,11 @@
                   <div class = "container col-sm-2 OneDay" id = "ThursdayList">
                       <div class = "DayDate">
                         <p id = "Thursday">Ceturtdiena</p>
+<<<<<<< HEAD
                           <p class = "Date" ><span class="pull-right" id = "ThursdayDate">{{ thursday }}</span></p>
+=======
+                          <p class = "Date" ><span class="pull-right" id = "ThursdayDate">{{thursday|date:"d.m"}}</span></p>
+>>>>>>> d5188fa3a87b1fed3e5fe13b553856498228ff83
                       </div>
                       <ul class = "dayBox" id = "thursdayBox">
                         <li class = "box1" id = "Th8-9">08:00 - 09:00</li>
@@ -136,7 +163,11 @@
                   <div class = "container col-sm-2 OneDay" id = "FridayList">
                       <div class = "DayDate">
                         <p id = "Friday">Piektdiena</p>
+<<<<<<< HEAD
                           <p class = "Date" ><span class="pull-right" id = "FridayDate">{{ friday }}</span></p>
+=======
+                          <p class = "Date" ><span class="pull-right" id = "FridayDate">{{friday|date:"d.m"}}</span></p>
+>>>>>>> d5188fa3a87b1fed3e5fe13b553856498228ff83
                       </div>
                       <ul class = "dayBox" id = "fridayBox">
                             <li class = "box1" id = "Fr8-9">08:00 - 09:00</li>
@@ -157,7 +188,11 @@
                   <ul class = "container col-sm-2" id = "HolidayList">
                       <div class = "DayDate">
                         <p id = "Saturday">Sestdiena</p>
+<<<<<<< HEAD
                           <p class = "Date" ><span class="pull-right" id = "SaturdayDate">{{ saturday }}</span></p>
+=======
+                          <p class = "Date" ><span class="pull-right" id = "SaturdayDate">{{saturday|date:"d.m"}}</span></p>
+>>>>>>> d5188fa3a87b1fed3e5fe13b553856498228ff83
                       </div>
                       <div class = "container" id = "SaturdayList">
                         <li class = "box3" id = "Sa09-10">09:00 - 10:00</li>
@@ -173,7 +208,11 @@
 
                       <div class = "DayDate">
                           <p id = "Sunday">Svētdiena</p>
+<<<<<<< HEAD
                           <p class = "Date"><span class="pull-right" id = "SundayDate">{{ sunday }}</span></p>
+=======
+                          <p class = "Date"><span class="pull-right" id = "SundayDate">{{sunday|date:"d.m"}}</span></p>
+>>>>>>> d5188fa3a87b1fed3e5fe13b553856498228ff83
                       </div>
 
                     <div class = "container" id = "SundayList">
@@ -288,6 +327,7 @@
         </div>
 
     <div class="dates">
+<<<<<<< HEAD
         <div id = "mondayReceived">{{monday}}</div>
         <div id = "tuesdayReceived">{{tuesday}}</div>
         <div id = "wednesdayReceived">{{wednesday}}</div>
@@ -295,9 +335,19 @@
         <div id = "fridayReceived">{{friday}}</div>
         <div id = "saturdayReceived">{{saturday}}</div>
         <div id = "sundayReceived">{{sunday }}</div>
+=======
+        <div id = "mondayReceived">{{monday|date:"Y-m-d"}}</div>
+        <div id = "tuesdayReceived">{{tuesday|date:"Y-m-d"}}</div>
+        <div id = "wednesdayReceived">{{wednesday|date:"Y-m-d"}}</div>
+        <div id = "thursdayReceived">{{thursday|date:"Y-m-d"}}</div>
+        <div id = "fridayReceived">{{friday|date:"Y-m-d"}}</div>
+        <div id = "saturdayReceived">{{saturday|date:"Y-m-d"}}</div>
+        <div id = "sundayReceived">{{sunday|date:"Y-m-d"}}</div>
+>>>>>>> d5188fa3a87b1fed3e5fe13b553856498228ff83
 
     </div>
 
+    {{ mondayy}}!!
 
 </div>
 
@@ -306,6 +356,6 @@
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script type="text/javascript" src="{% static 'JavaScript/code.js' %}"></script>
+        <script type="text/javascript" src="{% static 'JavaScript/test.js' %}"></script>
   {% endblock %}
 

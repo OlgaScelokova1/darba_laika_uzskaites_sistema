@@ -38,33 +38,18 @@ function getWeek(date) {
 
 
 var dateMonday = new Date(); // pagaidām pirmdienā ir šodienas datums
-var firstMonday;
 
 while (dateMonday.getDay() !== 1) {
     dateMonday.setDate(dateMonday.getDate()-1);
-    firstMonday = dateMonday;
 } // tiek piešķirts pirmdienas datums
 
-console.log(firstMonday);
-console.log(dateMonday);
 
-var dateTuesday;
-var dateWednesday;
-var dateThursday;
-var dateFriday;
-var dateSaturday;
-var dateSunday; // tiek definētas visas pārējās dienas un piešķirti datumi konkrētajai nedēļai
-
-function setDates(){
-    dateTuesday = addDays(dateMonday, 1);
-    dateWednesday = addDays(dateMonday, 2);
-    dateThursday = addDays(dateMonday, 3);
-    dateFriday = addDays(dateMonday, 4);
-    dateSaturday = addDays(dateMonday, 5);
-    dateSunday = addDays(dateMonday, 6);
-}// tiek definētas visas pārējās dienas un piešķirti datumi konkrētajai nedēļai
-
-setDates();
+var dateTuesday = addDays(dateMonday, 1);
+var dateWednesday = addDays(dateMonday, 2);
+var dateThursday = addDays(dateMonday, 3);
+var dateFriday = addDays(dateMonday, 4);
+var dateSaturday = addDays(dateMonday, 5);
+var dateSunday = addDays(dateMonday, 6); // tiek definētas visas pārējās dienas un piešķirti datumi konkrētajai nedēļai
 
 function formatAllDates(){
     var formattedDateMonday = formatDate(dateMonday);
@@ -90,23 +75,8 @@ formatAllDates();
 var box = document.getElementsByClassName("box2"); // pie box tiek ielikti visi elementi, kam klase box2
     console.log(box);
 
-function setValuesForForm (){
-    document.getElementById("mondaySend").value = dateMonday;
-    document.getElementById("tuesdaySend").value = dateTuesday;
-    document.getElementById("wednesdaySend").value = dateWednesday;
-    document.getElementById("thursdaySend").value = dateThursday;
-    document.getElementById("fridaySend").value = dateFriday;
+$('#Up').click(function(){
 
-    document.getElementById("mondaySendDown").value = dateMonday;
-    document.getElementById("tuesdaySendDown").value = dateTuesday;
-    document.getElementById("wednesdaySendDown").value = dateWednesday;
-    document.getElementById("thursdaySendDown").value = dateThursday;
-    document.getElementById("fridaySendDown").value = dateFriday;
-}
-
-setValuesForForm();
-
-function addDates (){
     dateMonday = addDays(dateTuesday, 6);
     dateTuesday = addDays(dateTuesday, 7);
     dateWednesday = addDays(dateWednesday, 7);
@@ -114,25 +84,23 @@ function addDates (){
     dateFriday = addDays(dateFriday, 7);
     dateSaturday = addDays(dateSaturday, 7);
     dateSunday = addDays(dateSunday, 7);
-}
+    //tiek piešķirti visi datumi nākamajai nedēļai
+    // for (i=0 ; i<45 ; i++){
+    //   box[i].style.backgroundColor = "#e2edf8";
+    //   console.log(box[i]);
+    // }
 
-$("#Up").click(function(){
-    addDates();
-})
+    formatAllDates(); // datumu formāts
+    setMonthAndWeek(); // piešķir nedēļu attiecīgi pēc padotajiem datiem
+    getTodayDate(); // ja atkal uziet uz šodienas, tiek piešķirti nepieciešamie parametri
+    getDates();
+    // setColors();
 
 
-function changeDatesUp (){
-    if (firstMonday == dateMonday){
-        setDates();
-    }
-    else {
-        setDatesAfterClick ();
-    }
-    formatAllDates();
-//    setMonthAndWeek();
-    getTodayDate();
-}
+});
 
+
+<<<<<<< HEAD
 changeDatesUp();
 
 // $('#Up').click(function(){
@@ -168,6 +136,22 @@ changeDatesUp();
 //    setMonthAndWeek();
 //    getTodayDate(); // ja atkal uziet uz šodienas, tiek piešķirti nepieciešamie parametri
 //});
+=======
+$('#Down').click(function(){
+    dateMonday = addDays(dateTuesday, -8);
+    dateTuesday = addDays(dateTuesday, -7);
+    dateWednesday = addDays(dateWednesday, -7);
+    dateThursday = addDays(dateThursday, -7);
+    dateFriday = addDays(dateFriday, -7);
+    dateSaturday = addDays(dateSaturday, -7);
+    dateSunday = addDays(dateSunday, -7);
+    // tiek piešķirti visi datumi iepriekšējai nedēļai
+
+    formatAllDates();
+    setMonthAndWeek();
+    getTodayDate(); // ja atkal uziet uz šodienas, tiek piešķirti nepieciešamie parametri
+});
+>>>>>>> d5188fa3a87b1fed3e5fe13b553856498228ff83
 
 
 
@@ -178,7 +162,7 @@ function setMonthAndWeek() {
     var weekStarts = document.getElementById("MondayDate");
     var thisMonth = weekStarts.innerText.slice(3);
     if(thisMonth<10){
-        thisMonth=thisMonth.slice(1);
+    thisMonth=thisMonth.slice(1);
     }
     document.getElementById("Month").innerHTML = months[thisMonth-1]; // tiek ierakstīts mēnesis
 
@@ -187,17 +171,6 @@ function setMonthAndWeek() {
 }
 
 setMonthAndWeek();
-
-function setDatesAfterClick (){
-    dateMonday = document.getElementById("mondayReceived").innerHTML;
-    dateTuesday = document.getElementById("tuesdayReceived").innerHTML;
-    dateWednesday = document.getElementById("wednesdayReceived").innerHTML;
-    dateThursday = document.getElementById("thursdayReceived").innerHTML;
-    dateFriday = document.getElementById("fridayReceived").innerHTML;
-    dateSaturday = document.getElementById("saturdayReceived").innerHTML;
-    dateSunday = document.getElementById("sundayReceived").innerHTML;
-}
-}
 
 
 
@@ -233,13 +206,6 @@ function getDates(){
 
 
 getDates();
-
-
-
-function dates (){
-    setDates();
-
-}
 
 
 
