@@ -75,6 +75,22 @@ formatAllDates();
 var box = document.getElementsByClassName("box2"); // pie box tiek ielikti visi elementi, kam klase box2
     console.log(box);
 
+function setValuesForForm (){
+    document.getElementById("mondaySend").value = dateMonday;
+    document.getElementById("tuesdaySend").value = dateTuesday;
+    document.getElementById("wednesdaySend").value = dateWednesday;
+    document.getElementById("thursdaySend").value = dateThursday;
+    document.getElementById("fridaySend").value = dateFriday;
+
+    document.getElementById("mondaySendDown").value = dateMonday;
+    document.getElementById("tuesdaySendDown").value = dateTuesday;
+    document.getElementById("wednesdaySendDown").value = dateWednesday;
+    document.getElementById("thursdaySendDown").value = dateThursday;
+    document.getElementById("fridaySendDown").value = dateFriday;
+}
+
+setValuesForForm();
+
 $('#Up').click(function(){
 
     dateMonday = addDays(dateTuesday, 6);
@@ -84,59 +100,19 @@ $('#Up').click(function(){
     dateFriday = addDays(dateFriday, 7);
     dateSaturday = addDays(dateSaturday, 7);
     dateSunday = addDays(dateSunday, 7);
-    //tiek piešķirti visi datumi nākamajai nedēļai
-    // for (i=0 ; i<45 ; i++){
-    //   box[i].style.backgroundColor = "#e2edf8";
-    //   console.log(box[i]);
-    // }
 
+
+    setValuesForForm();
     formatAllDates(); // datumu formāts
     setMonthAndWeek(); // piešķir nedēļu attiecīgi pēc padotajiem datiem
     getTodayDate(); // ja atkal uziet uz šodienas, tiek piešķirti nepieciešamie parametri
     getDates();
-    // setColors();
+    setColors();
 
 
 });
 
 
-<<<<<<< HEAD
-changeDatesUp();
-
-// $('#Up').click(function(){
-//
-//    setDatesForEveryDay();
-//
-//
-//    setValuesForForm();
-//    setMonthAndWeek()
-//    setDatesAfterClick(); // piešķir nedēļu attiecīgi pēc padotajiem datiem
-//    formatAllDates(); // datumu formāts
-//    getTodayDate(); // ja atkal uziet uz šodienas, tiek piešķirti nepieciešamie parametri
-//    getDates();
-//    setColors();
-//    document.getElementById("MondayDate").innerHTML = document.getElementById("mondayReceived").innerHTML;
-//
-//
-// });
-
-
-
-//$('#Down').click(function(){
-//    dateMonday = addDays(dateTuesday, -8);
-//    dateTuesday = addDays(dateTuesday, -7);
-//    dateWednesday = addDays(dateWednesday, -7);
-//    dateThursday = addDays(dateThursday, -7);
-//    dateFriday = addDays(dateFriday, -7);
-//    dateSaturday = addDays(dateSaturday, -7);
-//    dateSunday = addDays(dateSunday, -7);
-//    // tiek piešķirti visi datumi iepriekšējai nedēļai
-//
-//    formatAllDates();
-//    setMonthAndWeek();
-//    getTodayDate(); // ja atkal uziet uz šodienas, tiek piešķirti nepieciešamie parametri
-//});
-=======
 $('#Down').click(function(){
     dateMonday = addDays(dateTuesday, -8);
     dateTuesday = addDays(dateTuesday, -7);
@@ -151,7 +127,6 @@ $('#Down').click(function(){
     setMonthAndWeek();
     getTodayDate(); // ja atkal uziet uz šodienas, tiek piešķirti nepieciešamie parametri
 });
->>>>>>> d5188fa3a87b1fed3e5fe13b553856498228ff83
 
 
 
@@ -559,7 +534,7 @@ function setLekcijas(){
                                 for ( m = from ; m < Until ;m++) {
                                     box[k].style.backgroundColor = '#f15a24';
                                     box[k].style.color = "#ffffff";
-                                    
+
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
                                     offWork.innerHTML = willWorkUni[a];
                                     box[k].title = insert.textContent;
@@ -577,7 +552,7 @@ function setLekcijas(){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#f15a24';
                                     box[k].style.color = "#ffffff";
-                                    
+
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
                                     offWork.innerHTML = willWorkUni[a];
                                     box[k].title = insert.textContent;
@@ -595,7 +570,7 @@ function setLekcijas(){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#f15a24';
                                     box[k].style.color = "#ffffff";
-                                    
+
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
                                     offWork.innerHTML = willWorkUni[a];
                                     box[k].title = insert.textContent;
@@ -612,7 +587,7 @@ function setLekcijas(){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#f15a24';
                                     box[k].style.color = "#ffffff";
-                                    
+
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
                                     offWork.innerHTML = willWorkUni[a];
                                     box[k].title = insert.textContent;
@@ -629,7 +604,7 @@ function setLekcijas(){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#f15a24';
                                     box[k].style.color = "#ffffff";
-                                    
+
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
                                     offWork.innerHTML = willWorkUni[a];
                                     box[k].title = insert.textContent;
@@ -821,7 +796,7 @@ function setSlodze(){
                                 for ( m = from ; m < Until ;m++) {
                                     box[k].style.backgroundColor = '#22b573';
                                     box[k].style.color = "#ffffff";
-                                    
+
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
                                     offWork.innerHTML = "-";
                                     box[k].title = insert.textContent;
@@ -839,7 +814,7 @@ function setSlodze(){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#22b573';
                                     box[k].style.color = "#ffffff";
-                                    
+
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
                                     offWork.innerHTML = "-";
                                     box[k].title = insert.textContent;
@@ -1051,6 +1026,8 @@ function setColors(){
     var k = 0 ;
     var j = 0;
     var s = 0;
+
+    console.log(willWorkReason);
 
     for (i = 0; i< willWorkReason.length; i++) {
         if (willWorkReason[i].innerHTML.startsWith('Slimiba')) {

@@ -70,13 +70,13 @@ def darba_laiks(request):
             return HttpResponseRedirect('/darba_laiks/login/')
 
     if request.method =='POST':
-        mondayy = request.POST.get("mondayy")
+        monday = request.POST.get("monday")
+
         lietotajs=request.user
         nebus=Darba_laiks.objects.filter(lietotajs=lietotajs)
         iemesls=Iemesls.objects.filter(lietotajs=lietotajs)
         atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
 
-<<<<<<< HEAD
         if monday:
             monday=monday
             tuesday = request.POST.get("tuesday")
@@ -85,23 +85,11 @@ def darba_laiks(request):
             friday = request.POST.get("friday")
             saturday = request.POST.get("saturday")
             sunday = request.POST.get("sunday")
-=======
-
-        if mondayy:
-            # mondayy= mondayy
-            # tuesday = request.POST.get("tuesday")
-            # wednesday= request.POST.get("wednesday")
-            # thursday = request.POST.get("thursday")
-            # friday = request.POST.get("friday")
-            # saturday = request.POST.get("saturday")
-            # sunday = request.POST.get("sunday")
->>>>>>> d5188fa3a87b1fed3e5fe13b553856498228ff83
 
 
             context = {'nebus': nebus,
                        'iemesls': iemesls,
                        'atstrada': atstrada,
-<<<<<<< HEAD
                        'monday': monday,
                        'tuesday': tuesday,
                        'wednesday': wednesday,
@@ -109,15 +97,6 @@ def darba_laiks(request):
                        'friday': friday,
                        'saturday': saturday,
                        'sunday': sunday,
-=======
-                       'mondayy': mondayy,
-                       # 'tuesday': tuesday,
-                       # 'wednesday': wednesday,
-                       # 'thursday': thursday,
-                       # 'friday': friday,
-                       # 'saturday': saturday,
-                       # 'sunday': sunday,
->>>>>>> d5188fa3a87b1fed3e5fe13b553856498228ff83
                        }
         else:
 
