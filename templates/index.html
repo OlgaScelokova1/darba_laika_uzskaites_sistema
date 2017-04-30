@@ -12,9 +12,9 @@
           <div class = "row" id = "Table">
 
 
-                <div class = "container col-sm-1">
+                <div class = "container col-sm-1" id = "weekChange">
 
-                    <form method='POST' class = "Button"  role="form" action="/darba_laiks/">{% csrf_token %}
+                    <form method='POST' role="form" action="/darba_laiks/">{% csrf_token %}
                         <input type="hidden" name="monday" id = "mondaySend">
                         <input type="hidden" name="tuesday" id = "tuesdaySend" >
                         <input type="hidden" name="wednesday" id = "wednesdaySend">
@@ -22,7 +22,10 @@
                         <input type="hidden" name="friday" id = "fridaySend">
                         <input type="hidden" name="saturday" id = "saturdaySend">
                         <input type="hidden" name="sunday" id = "sundaySend">
-                        <input id= "Up" type = "submit" value = "Saglabāt">
+                        <button class="Button">
+                            <span class="glyphicon glyphicon-menu-up arrow"></span>
+                            <input id= "Up" type = "submit" value = "Saglabāt">
+                        </button>
                     </form>
 
 
@@ -33,15 +36,18 @@
                     <div id="WeekDate">{{week}}</div>
                     <div id = "Week" >nedēļa</div>
 
-                     <form method='POST' class = "Button" id= "Down" role="form" action="/darba_laiks/">{% csrf_token %}
+                     <form method='POST' role="form" action="/darba_laiks/">{% csrf_token %}
                         <input type="hidden" name="mondayDown" id = "mondaySendDown">
                         <input type="hidden" name="tuesdayDown" id = "tuesdaySendDown">
                         <input type="hidden" name="wednesdayDown" id = "wednesdaySendDown">
                         <input type="hidden" name="thursdayDown" id = "thursdaySendDown">
                         <input type="hidden" name="fridayDown" id = "fridaySendDown">
-                         <input type="hidden" name="friday" id = "saturdaySendDown">
-                        <input type="hidden" name="friday" id = "sundaySendDown">
-                        <input type = "submit" value = "Saglabāt">
+                         <input type="hidden" name="saturdayDown" id = "saturdaySendDown">
+                        <input type="hidden" name="sundayDown" id = "sundaySendDown">
+                         <button class="Button" id = "buttonDown">
+                            <span class="glyphicon glyphicon-menu-down arrow"></span>
+                            <input id= "Down" type = "submit" value = "">
+                         </button>
                     </form>
 
                     <!--<button type="button" class="Button" id="Down">-->

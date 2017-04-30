@@ -8,6 +8,18 @@
     font-size: 12px;
 }
 
+#weekChange{
+    margin-top: 3em;
+}
+
+.arrow {
+    padding-top: 0.3em;
+}
+
+#buttonDown{
+    margin-top: 0.6em;
+}
+
 .dayBox{
     padding-left: 0px;
     padding-right: 145px;
