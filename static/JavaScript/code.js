@@ -1,6 +1,26 @@
 $( document ).ready(function() {
 
+var monday = document.getElementById("mondayReceived").innerHTML;
+var tuesday = document.getElementById("tuesdayReceived").innerHTML;
+var wednesday = document.getElementById("wednesdayReceived").innerHTML;
+var thursday = document.getElementById("thursdayReceived").innerHTML;
+var friday = document.getElementById("fridayReceived").innerHTML;
+var saturday = document.getElementById("saturdayReceived").innerHTML;
+var sunday = document.getElementById("sundayReceived").innerHTML;
 
+
+
+function datesInDateFormat(){
+    monday = new Date(monday);
+    tuesday = new Date(tuesday);
+    wednesday = new Date (wednesday);
+    thursday = new Date (thursday);
+    friday = new Date (friday);
+    saturday = new Date (saturday);
+    sunday = new Date (sunday);
+}
+
+datesInDateFormat();
 
 function formatDate(myDate) {
     var tmp = myDate;
@@ -17,11 +37,92 @@ function formatDate(myDate) {
 } //funkcija, kas pārveido datumu pareizā formātā : dd.mm
 
 
+
+var formattedDateMonday;
+var formattedDateTuesday;
+var formattedDateWednesday;
+var formattedDateThursday;
+var formattedDateFriday;
+var formattedDateSaturday;
+var formattedDateSunday;
+
+function formatAllDates(){
+    formattedDateMonday = formatDate(monday);
+    formattedDateTuesday = formatDate(tuesday);
+    formattedDateWednesday = formatDate(wednesday);
+    formattedDateThursday = formatDate(thursday);
+    formattedDateFriday = formatDate(friday);
+    formattedDateSaturday = formatDate(saturday);
+    formattedDateSunday = formatDate(sunday);
+
+}
+formatAllDates();
+
+console.log(formattedDateMonday);
+console.log(formattedDateTuesday);
+console.log(formattedDateWednesday);
+console.log(formattedDateThursday);
+console.log(formattedDateFriday);
+console.log(formattedDateSaturday);
+console.log(formattedDateSunday);
+
+function writeDates(){
+    document.getElementById("MondayDate").innerHTML = formattedDateMonday;
+    document.getElementById("TuesdayDate").innerHTML = formattedDateTuesday;
+    document.getElementById("WednesdayDate").innerHTML = formattedDateWednesday;
+    document.getElementById("ThursdayDate").innerHTML = formattedDateThursday;
+    document.getElementById("FridayDate").innerHTML = formattedDateFriday;
+    document.getElementById("SaturdayDate").innerHTML = formattedDateSaturday;
+    document.getElementById("SundayDate").innerHTML = formattedDateSunday;
+}
+
+writeDates();
+
 function addDays(date, days) {
     var result = new Date(date);
     result.setDate(result.getDate() + days);
     return result;
 } // funckija, kas pievieno dienas konkrētajai dienai
+
+function addDates (){
+    monday = addDays(monday, 7);
+    tuesday = addDays(tuesday, 7);
+    wednesday = addDays(wednesday, 7);
+    thursday = addDays(thursday, 7);
+    friday = addDays(friday, 7);
+    saturday = addDays(saturday, 7);
+    sunday = addDays(sunday, 7);
+}
+
+
+console.log(monday);
+console.log(tuesday);
+console.log(wednesday);
+console.log(thursday);
+console.log(friday);
+console.log(saturday);
+console.log(sunday);
+
+function setValuesForForm (){
+    addDates();
+    document.getElementById("mondaySend").value = monday;
+    document.getElementById("tuesdaySend").value = tuesday;
+    document.getElementById("wednesdaySend").value = wednesday;
+    document.getElementById("thursdaySend").value = thursday;
+    document.getElementById("fridaySend").value = friday;
+    document.getElementById("saturdaySend").value = saturday;
+    document.getElementById("sundaySend").value = sunday;
+
+    document.getElementById("mondaySendDown").value = monday;
+    document.getElementById("tuesdaySendDown").value = tuesday;
+    document.getElementById("wednesdaySendDown").value = wednesday;
+    document.getElementById("thursdaySendDown").value = thursday;
+    document.getElementById("fridaySendDown").value = friday;
+    document.getElementById("saturdaySendDown").value = saturday;
+    document.getElementById("sundaySendDown").value = sunday;
+}
+
+setValuesForForm();
 
 
 function getWeek(date) {
@@ -35,101 +136,6 @@ function getWeek(date) {
                         - 3 + (week1.getDay() + 6) % 7) / 7);
 } // funkcija, kas nosaka nedēļu atkarībā no padotā datuma
 
-
-
-var dateMonday = new Date(); // pagaidām pirmdienā ir šodienas datums
-
-while (dateMonday.getDay() !== 1) {
-    dateMonday.setDate(dateMonday.getDate()-1);
-} // tiek piešķirts pirmdienas datums
-
-
-var dateTuesday = addDays(dateMonday, 1);
-var dateWednesday = addDays(dateMonday, 2);
-var dateThursday = addDays(dateMonday, 3);
-var dateFriday = addDays(dateMonday, 4);
-var dateSaturday = addDays(dateMonday, 5);
-var dateSunday = addDays(dateMonday, 6); // tiek definētas visas pārējās dienas un piešķirti datumi konkrētajai nedēļai
-
-function formatAllDates(){
-    var formattedDateMonday = formatDate(dateMonday);
-    var formattedDateTuesday = formatDate(dateTuesday);
-    var formattedDateWednesday = formatDate(dateWednesday);
-    var formattedDateThursday = formatDate(dateThursday);
-    var formattedDateFriday = formatDate(dateFriday);
-    var formattedDateSaturday = formatDate(dateSaturday);
-    var formattedDateSunday = formatDate(dateSunday);
-
-    document.getElementById("MondayDate").innerHTML = formattedDateMonday;
-    document.getElementById("TuesdayDate").innerHTML = formattedDateTuesday;
-    document.getElementById("WednesdayDate").innerHTML = formattedDateWednesday;
-    document.getElementById("ThursdayDate").innerHTML = formattedDateThursday;
-    document.getElementById("FridayDate").innerHTML = formattedDateFriday;
-    document.getElementById("SaturdayDate").innerHTML = formattedDateSaturday;
-    document.getElementById("SundayDate").innerHTML = formattedDateSunday;
-}
-// visi datumi tiek pārveidoti nepieciešamajā formātā un ierakstīti dokumentā
-
-formatAllDates();
-
-var box = document.getElementsByClassName("box2"); // pie box tiek ielikti visi elementi, kam klase box2
-    console.log(box);
-
-function setValuesForForm (){
-    document.getElementById("mondaySend").value = dateMonday;
-    document.getElementById("tuesdaySend").value = dateTuesday;
-    document.getElementById("wednesdaySend").value = dateWednesday;
-    document.getElementById("thursdaySend").value = dateThursday;
-    document.getElementById("fridaySend").value = dateFriday;
-
-    document.getElementById("mondaySendDown").value = dateMonday;
-    document.getElementById("tuesdaySendDown").value = dateTuesday;
-    document.getElementById("wednesdaySendDown").value = dateWednesday;
-    document.getElementById("thursdaySendDown").value = dateThursday;
-    document.getElementById("fridaySendDown").value = dateFriday;
-}
-
-setValuesForForm();
-
-$('#Up').click(function(){
-
-    dateMonday = addDays(dateTuesday, 6);
-    dateTuesday = addDays(dateTuesday, 7);
-    dateWednesday = addDays(dateWednesday, 7);
-    dateThursday = addDays(dateThursday, 7);
-    dateFriday = addDays(dateFriday, 7);
-    dateSaturday = addDays(dateSaturday, 7);
-    dateSunday = addDays(dateSunday, 7);
-
-
-    setValuesForForm();
-    formatAllDates(); // datumu formāts
-    setMonthAndWeek(); // piešķir nedēļu attiecīgi pēc padotajiem datiem
-    getTodayDate(); // ja atkal uziet uz šodienas, tiek piešķirti nepieciešamie parametri
-    getDates();
-    setColors();
-
-
-});
-
-
-$('#Down').click(function(){
-    dateMonday = addDays(dateTuesday, -8);
-    dateTuesday = addDays(dateTuesday, -7);
-    dateWednesday = addDays(dateWednesday, -7);
-    dateThursday = addDays(dateThursday, -7);
-    dateFriday = addDays(dateFriday, -7);
-    dateSaturday = addDays(dateSaturday, -7);
-    dateSunday = addDays(dateSunday, -7);
-    // tiek piešķirti visi datumi iepriekšējai nedēļai
-
-    formatAllDates();
-    setMonthAndWeek();
-    getTodayDate(); // ja atkal uziet uz šodienas, tiek piešķirti nepieciešamie parametri
-});
-
-
-
 var months =['JANVĀRIS','FEBRUĀRIS','MARTS','APRĪLIS','MAIJS','JŪNIJS','JŪLIJS','AUGUSTS','SEPTEMBRIS','OKTOBRIS','NOVEMBRIS','DECEMBRIS'];
 //masīvā tiek sarakstīti visi mēneši
 
@@ -137,15 +143,24 @@ function setMonthAndWeek() {
     var weekStarts = document.getElementById("MondayDate");
     var thisMonth = weekStarts.innerText.slice(3);
     if(thisMonth<10){
-    thisMonth=thisMonth.slice(1);
+        thisMonth=thisMonth.slice(1);
     }
     document.getElementById("Month").innerHTML = months[thisMonth-1]; // tiek ierakstīts mēnesis
 
-    document.getElementById("WeekDate").innerHTML = getWeek(dateMonday); // tiek ierakstīts nedēļas kārtas numurs
+    document.getElementById("WeekDate").innerHTML = getWeek(addDays(monday, -7)); // tiek ierakstīts nedēļas kārtas numurs
 
 }
 
 setMonthAndWeek();
+
+var dateMonday = new Date(); // pagaidām pirmdienā ir šodienas datums
+
+while (dateMonday.getDay() !== 1) {
+    dateMonday.setDate(dateMonday.getDate()-1);
+} // tiek piešķirts pirmdienas datums
+
+var box = document.getElementsByClassName("box2"); // pie box tiek ielikti visi elementi, kam klase box2
+    console.log(box);
 
 
 

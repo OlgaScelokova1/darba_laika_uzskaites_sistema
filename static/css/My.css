@@ -220,10 +220,6 @@ input {
     padding-left:-6px;
 }
 
-/*#description{*/
-    /*display: none;*/
-/*}*/
-
 
 
 .insert {
@@ -235,28 +231,6 @@ input {
 #dataForFill{
     font-size:0px;
 }
-
-
-
-/*#Days {*/
-  /*width: 55px;*/
-	/*height: 15px;*/
-	/*font-size: 12px;*/
-	/*color: #3b3b3b;*/
-/*}*/
-/*!**/
-/*font-weight: bold;*/
-/*color: #259adb;*/
-/*sis bus konkretajai dienai, kura ir izveleta*/
-/**!*/
-
-
-/*!**/
-/*font-weight: bold;*/
-/*color: #262626;*/
-/*sis bus konkretajai dienai, kas ir izveleta*/
-/**!*/
-
 
 .box2 + .tooltip > .tooltip-inner {
     width: 99px !important;
@@ -281,3 +255,6 @@ input {
   filter:alpha(opacity=100);
 }
 
+.dates{
+    font-size: 0;
+}
