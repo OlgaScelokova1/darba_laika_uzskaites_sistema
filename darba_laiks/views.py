@@ -269,6 +269,7 @@ def darbinieki(request):
         #     Darba_laiks.objects.filter(lietotajs__id=c)[0] for c in collection_ids
         #     ]
         visi=User.objects.all()
+        datums = datetime.date.today()
 
 
         darba_laika_id = Darba_laiks.objects.filter(datums=datetime.date.today()).values_list('id',flat=True).distinct()
@@ -297,10 +298,12 @@ def darbinieki(request):
                    'iemesli': iemesli,
                    'atstrada': atstrada,
                    'lietotaja_saglabatie': lietotaja_saglabatie,
+                   'datums': datums,
                 }
         return render(request, 'visi.html', context)
 
     if request.method == 'POST':
+        datums = datetime.date.today()
 
         visi=User.objects.all()
 
@@ -359,14 +362,14 @@ def darbinieki(request):
 
         if date:
             print "xx"
-            date=date
+            datums=date
             context = {'visi': visi,
                        'izmainitie': izmainitie,
                        'iemesli': iemesli,
                        'atstrada': atstrada,
                        'lietotaja_saglabatie': lietotaja_saglabatie,
                        'saglabata_id': saglabata_id,
-                       'date': date,
+                       'datums': datums,
                        }
 
         return render(request, 'visi.html', context)

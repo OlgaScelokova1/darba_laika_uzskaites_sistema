@@ -1,16 +1,12 @@
-var today = new Date();
+var givenDate = document.getElementById("givenDate").innerHTML;
+var today = new Date(givenDate);
 console.log(today);
-
-var day = today.getDay();
-var days = ['SVĒTDIENA', 'PIRMDIENA', 'OTRDIENA', 'TREŠDIENA', 'CETURTDIENA', 'PIEKTDIENA', 'SESTDIENA'];
 
 function formatDate(myDate) {
     var tmp = myDate;
     var month = tmp.getMonth() + 1;
     var day = tmp.getDate();
-    console.log(tmp);
     var year = tmp.getFullYear();
-    console.log(year);
     if(day<10){
         day = "0" + day;
     }
@@ -19,14 +15,12 @@ function formatDate(myDate) {
     }
 
     return (day + "." + month + "." + year + ".");
-}
+} //funkcija, kas pārveido datumu pareizā formātā : dd.mm
+
+
 
 var formattedDay = formatDate(today);
-
-document.getElementById("today").innerHTML = days[day] + ", " + formattedDay;
-
-document.getElementById("dateToLeft").value = addDays(today, -1);
-document.getElementById("dateToRight").value = addDays (today, 1);
+console.log(formattedDay);
 
 
 function addDays(date, days) {
@@ -35,23 +29,13 @@ function addDays(date, days) {
     return result;
 }
 
-$('#Left').click(function(){
-    today = addDays(today, -1);
-    day = today.getDay();
-    formattedDay = formatDate(today);
+document.getElementById("dateToLeft").value = addDays(givenDate, -1);
+document.getElementById("dateToRight").value = addDays (givenDate, 1);
 
-    document.getElementById("today").innerHTML = days[day] + ", " + formattedDay;
+var day = today.getDay();
+var days = ['SVĒTDIENA', 'PIRMDIENA', 'OTRDIENA', 'TREŠDIENA', 'CETURTDIENA', 'PIEKTDIENA', 'SESTDIENA'];
 
-});
-
-
-$('#Right').click(function(){
-    today = addDays(today, 1);
-    day = today.getDay();
-    formattedDay = formatDate(today);
-    document.getElementById("today").innerHTML = days[day] + ", " + formattedDay;
-
-});
+document.getElementById("today").innerHTML = days[day] + ", " + formattedDay;
 
 var all = document.getElementsByClassName("oneReason");
 var willWorkWhen = document.getElementById("offWork");
