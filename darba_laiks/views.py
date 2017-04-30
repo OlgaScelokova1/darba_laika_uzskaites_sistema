@@ -71,6 +71,7 @@ def darba_laiks(request):
 
     if request.method =='POST':
         monday = request.POST.get("monday")
+        monday2 = request.POST.get("mondayDown")
 
         lietotajs=request.user
         nebus=Darba_laiks.objects.filter(lietotajs=lietotajs)
@@ -79,6 +80,27 @@ def darba_laiks(request):
 
         if monday:
             monday=monday
+            tuesday = request.POST.get("tuesday")
+            wednesday= request.POST.get("wednesday")
+            thursday = request.POST.get("thursday")
+            friday = request.POST.get("friday")
+            saturday = request.POST.get("saturday")
+            sunday = request.POST.get("sunday")
+
+
+            context = {'nebus': nebus,
+                       'iemesls': iemesls,
+                       'atstrada': atstrada,
+                       'monday': monday,
+                       'tuesday': tuesday,
+                       'wednesday': wednesday,
+                       'thursday': thursday,
+                       'friday': friday,
+                       'saturday': saturday,
+                       'sunday': sunday,
+                       }
+        elif monday2:
+            monday=monday2
             tuesday = request.POST.get("tuesday")
             wednesday= request.POST.get("wednesday")
             thursday = request.POST.get("thursday")
