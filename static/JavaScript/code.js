@@ -1,5 +1,13 @@
 $( document ).ready(function() {
 
+var today = new Date();
+var thisWeek = getWeek(today);
+var documentWeek = document.getElementById("WeekDate").innerHTML;
+
+if (thisWeek != documentWeek){
+    $(".OneDay").slideUp(1).delay(200).slideDown('fast');
+}
+
 var monday = document.getElementById("mondayReceived").innerHTML;
 var tuesday = document.getElementById("tuesdayReceived").innerHTML;
 var wednesday = document.getElementById("wednesdayReceived").innerHTML;
