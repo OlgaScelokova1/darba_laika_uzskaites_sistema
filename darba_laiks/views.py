@@ -355,6 +355,20 @@ def darbinieki(request):
                    'lietotaja_saglabatie': lietotaja_saglabatie,
                    'saglabata_id': saglabata_id,
                    }
+        date = request.POST.get("date")
+
+        if date:
+            print "xx"
+            date=date
+            context = {'visi': visi,
+                       'izmainitie': izmainitie,
+                       'iemesli': iemesli,
+                       'atstrada': atstrada,
+                       'lietotaja_saglabatie': lietotaja_saglabatie,
+                       'saglabata_id': saglabata_id,
+                       'date': date,
+                       }
+
         return render(request, 'visi.html', context)
 
 
