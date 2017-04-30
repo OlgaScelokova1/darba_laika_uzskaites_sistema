@@ -25,6 +25,9 @@ var formattedDay = formatDate(today);
 
 document.getElementById("today").innerHTML = days[day] + ", " + formattedDay;
 
+document.getElementById("dateToLeft").value = addDays(today, -1);
+document.getElementById("dateToRight").value = addDays (today, 1);
+
 
 function addDays(date, days) {
     var result = new Date(date);

@@ -9,14 +9,27 @@
         <div class = "row" id = "firstRow">
 
             <span class = "pull-left" id="line">
-
                 <div id = "today"> </div>
-                 <button type="button" class="Button" id="Left">
-                      <span class="glyphicon glyphicon-chevron-left"></span>
-                 </button>
-                 <button type="button" class="Button" id="Right">
-                      <span class="glyphicon glyphicon-chevron-right"></span>
-                 </button>
+
+                <form method='POST' role="form" action="/visi/">{% csrf_token %}
+                        <input type="hidden" name="date" id = "dateToLeft">
+                        <button type="button" class="Button" id="left">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                            <input id= "leftInput" type = "submit" value = "">
+                        </button>
+                </form>
+
+                <form method='POST' role="form" action="/visi/">{% csrf_token %}
+                        <input type="hidden" name="date" id = "dateToRight">
+                        <button type="button" class="Button" id="right">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                            <input id= "rightInput" type = "submit" value = "">
+                        </button>
+                </form>
+
+
+
+
                 <button type="button" class="Button" id="Calendar">
                       <span class="glyphicon glyphicon-calendar"></span>
                  </button>
