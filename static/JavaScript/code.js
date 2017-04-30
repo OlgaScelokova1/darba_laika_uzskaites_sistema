@@ -92,16 +92,41 @@ function addDays(date, days) {
     return result;
 } // funckija, kas pievieno dienas konkrētajai dienai
 
+var addMonday;
+var addTuesday;
+var addWednesday;
+var addThursday;
+var addFriday;
+var addSaturday;
+var addSunday;
+
 function addDates (){
-    monday = addDays(monday, 7);
-    tuesday = addDays(tuesday, 7);
-    wednesday = addDays(wednesday, 7);
-    thursday = addDays(thursday, 7);
-    friday = addDays(friday, 7);
-    saturday = addDays(saturday, 7);
-    sunday = addDays(sunday, 7);
+    addMonday = addDays(monday, 7);
+    addTuesday = addDays(tuesday, 7);
+    addWednesday = addDays(wednesday, 7);
+    addThursday = addDays(thursday, 7);
+    addFriday = addDays(friday, 7);
+    addSaturday = addDays(saturday, 7);
+    addSunday = addDays(sunday, 7);
 }
 
+var removeMonday;
+var removeTuesday;
+var removeWednesday;
+var removeThursday;
+var removeFriday;
+var removeSaturday;
+var removeSunday;
+
+function removeDates(){
+    removeMonday = addDays(monday, -7);
+    removeTuesday = addDays(tuesday, -7);
+    removeWednesday = addDays(wednesday, -7);
+    removeThursday = addDays(thursday, -7);
+    removeFriday = addDays(friday, -7);
+    removeSaturday = addDays(saturday, -7);
+    removeSunday = addDays(sunday, -7);
+}
 
 console.log(monday);
 console.log(tuesday);
@@ -111,26 +136,31 @@ console.log(friday);
 console.log(saturday);
 console.log(sunday);
 
-function setValuesForForm (){
+function setValuesForFormUp (){
     addDates();
-    document.getElementById("mondaySend").value = monday;
-    document.getElementById("tuesdaySend").value = tuesday;
-    document.getElementById("wednesdaySend").value = wednesday;
-    document.getElementById("thursdaySend").value = thursday;
-    document.getElementById("fridaySend").value = friday;
-    document.getElementById("saturdaySend").value = saturday;
-    document.getElementById("sundaySend").value = sunday;
-
-    document.getElementById("mondaySendDown").value = monday;
-    document.getElementById("tuesdaySendDown").value = tuesday;
-    document.getElementById("wednesdaySendDown").value = wednesday;
-    document.getElementById("thursdaySendDown").value = thursday;
-    document.getElementById("fridaySendDown").value = friday;
-    document.getElementById("saturdaySendDown").value = saturday;
-    document.getElementById("sundaySendDown").value = sunday;
+    document.getElementById("mondaySend").value = addMonday;
+    document.getElementById("tuesdaySend").value = addTuesday;
+    document.getElementById("wednesdaySend").value = addWednesday;
+    document.getElementById("thursdaySend").value = addThursday;
+    document.getElementById("fridaySend").value = addFriday;
+    document.getElementById("saturdaySend").value = addSaturday;
+    document.getElementById("sundaySend").value = addSunday;
 }
 
-setValuesForForm();
+function setValuesForFormDown(){
+    removeDates();
+    document.getElementById("mondaySendDown").value = removeMonday;
+    document.getElementById("tuesdaySendDown").value = removeTuesday;
+    document.getElementById("wednesdaySendDown").value = removeWednesday;
+    document.getElementById("thursdaySendDown").value = removeThursday;
+    document.getElementById("fridaySendDown").value = removeFriday;
+    document.getElementById("saturdaySendDown").value = removeSaturday;
+    document.getElementById("sundaySendDown").value = removeSunday;
+}
+
+
+setValuesForFormUp();
+setValuesForFormDown();
 
 
 function getWeek(date) {
@@ -147,6 +177,8 @@ function getWeek(date) {
 var months =['JANVĀRIS','FEBRUĀRIS','MARTS','APRĪLIS','MAIJS','JŪNIJS','JŪLIJS','AUGUSTS','SEPTEMBRIS','OKTOBRIS','NOVEMBRIS','DECEMBRIS'];
 //masīvā tiek sarakstīti visi mēneši
 
+console.log(monday);
+
 function setMonthAndWeek() {
     var weekStarts = document.getElementById("MondayDate");
     var thisMonth = weekStarts.innerText.slice(3);
@@ -155,7 +187,7 @@ function setMonthAndWeek() {
     }
     document.getElementById("Month").innerHTML = months[thisMonth-1]; // tiek ierakstīts mēnesis
 
-    document.getElementById("WeekDate").innerHTML = getWeek(addDays(monday, -7)); // tiek ierakstīts nedēļas kārtas numurs
+    document.getElementById("WeekDate").innerHTML = getWeek(monday); // tiek ierakstīts nedēļas kārtas numurs
 
 }
 

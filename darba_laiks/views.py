@@ -87,7 +87,6 @@ def darba_laiks(request):
             saturday = request.POST.get("saturday")
             sunday = request.POST.get("sunday")
 
-
             context = {'nebus': nebus,
                        'iemesls': iemesls,
                        'atstrada': atstrada,
