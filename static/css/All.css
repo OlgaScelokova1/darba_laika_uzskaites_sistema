@@ -116,17 +116,17 @@
   box-shadow: none;
 }
 
-.userId{
-    font-size: 0px;
-}
 
-#info{
-    font-size: 0px;
-}
+/*.userId{*/
+    /*font-size: 0px;*/
+/*}*/
+/*#info{*/
+    /*font-size: 0px;*/
+/*}*/
 
-#atstradaList{
-   font-size: 0px;
-}
+/*#atstradaList{*/
+   /*font-size: 0px;*/
+/*}*/
 
 .box2 + .tooltip > .tooltip-inner {
     width: 99px !important;

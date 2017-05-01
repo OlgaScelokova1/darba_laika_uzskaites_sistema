@@ -42,6 +42,7 @@
                     <form method="POST" action="">{% csrf_token %}
 
                             <input type="text" name="q" placeholder="Meklēt lietotāju" value="{{ request.get.q }}"/>
+                          <input type="text" name="datums-meklesanai" value="2017-05-01"/>
                             <input type="submit" value="Meklēt"/>
 
                     </form>
