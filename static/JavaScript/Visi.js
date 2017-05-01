@@ -2,6 +2,21 @@ var givenDate = document.getElementById("givenDate").innerHTML;
 var today = new Date(givenDate);
 console.log(today);
 
+function formatDateForForm(myDate){
+    var tmp = myDate;
+    var month = tmp.getMonth() + 1;
+    var day = tmp.getDate();
+    var year = tmp.getFullYear();
+    if(day<10){
+        day = "0" + day;
+    }
+    if(month<10){
+        month = "0" + month;
+    }
+
+    return (year + "-" + month + "-"  + day);
+}
+
 function formatDate(myDate) {
     var tmp = myDate;
     var month = tmp.getMonth() + 1;
@@ -29,8 +44,8 @@ function addDays(date, days) {
     return result;
 }
 
-document.getElementById("dateToLeft").value = addDays(givenDate, -1);
-document.getElementById("dateToRight").value = addDays (givenDate, 1);
+document.getElementById("dateToLeft").value = formatDateForForm(addDays(givenDate, -1));
+document.getElementById("dateToRight").value = formatDateForForm(addDays(givenDate, 1)) ;
 
 var day = today.getDay();
 var days = ['SVĒTDIENA', 'PIRMDIENA', 'OTRDIENA', 'TREŠDIENA', 'CETURTDIENA', 'PIEKTDIENA', 'SESTDIENA'];
