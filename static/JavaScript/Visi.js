@@ -47,7 +47,11 @@ function addDays(date, days) {
 
 document.getElementById("dateToLeft").value = formatDateForForm(addDays(givenDate, -1));
 document.getElementById("dateToRight").value = formatDateForForm(addDays(givenDate, 1));
-document.getElementById("dateSearch").value = formatDateForForm(today);
+
+var dateSearch = document.getElementById("dateSearch")
+if(dateSearch){
+    dateSearch.value = formatDateForForm(today)
+};
 
 var day = today.getDay();
 var days = ['SVĒTDIENA', 'PIRMDIENA', 'OTRDIENA', 'TREŠDIENA', 'CETURTDIENA', 'PIEKTDIENA', 'SESTDIENA'];
