@@ -449,11 +449,13 @@ def darbinieka_darba_laiks(request, pk):
 
 def saglabatie(request):
     if request.method == 'GET':
+        datums = datetime.date.today()
         lietotajs_kurs_pievienoja=request.user
         lietotaja_saglabatie=Saglabatie.objects.filter(lietotajs_kurs_pievienoja=lietotajs_kurs_pievienoja)
 
 
         context= {'lietotaja_saglabatie': lietotaja_saglabatie,
+                  'datums': datums,
 
                  }
 
@@ -461,19 +463,26 @@ def saglabatie(request):
 
     if request.method == 'POST':
         saglabata_id=request.POST.get("id")
+        date = request.POST.get("date")
         lietotajs_kurs_pievienoja = request.user
         lietotaja_saglabatie = Saglabatie.objects.filter(lietotajs_kurs_pievienoja=lietotajs_kurs_pievienoja)
-        lietotajs_kuru_pievienoja = User.objects.get(id=saglabata_id)
+
 
         if saglabata_id:
+            lietotajs_kuru_pievienoja = User.objects.get(id=saglabata_id)
             i = Saglabatie.objects.filter(lietotajs_kuru_pievienoja=lietotajs_kuru_pievienoja)
             i.delete()
+            context = {'lietotaja_saglabatie': lietotaja_saglabatie,
+                       }
 
+        if date:
+            datums=date
 
+            context = {'lietotaja_saglabatie': lietotaja_saglabatie,
+                       'datums': datums,
 
-        context= {'lietotaja_saglabatie': lietotaja_saglabatie,
+                       }
 
-                 }
 
         return render(request, 'saglabatie.html', context)
 

@@ -10,7 +10,7 @@
             <span class = "pull-left" id="line">
                 <div id = "today"> </div>
 
-                 <form method='POST' role="form" action="/darba_laiks/darbinieki/">{% csrf_token %}
+                 <form method='POST' role="form" action="/darba_laiks/saglabatie/">{% csrf_token %}
                         <input type="hidden" name="date" id = "dateToLeft" value = "">
                         <button type="button" class="Button" id="left">
                             <span class="glyphicon glyphicon-chevron-left"></span>
@@ -19,7 +19,7 @@
                 </form>
 
 
-                <form method='POST' role="form" action="/darba_laiks/darbinieki/">{% csrf_token %}
+                <form method='POST' role="form" action="/darba_laiks/saglabatie/">{% csrf_token %}
                         <input type="hidden" name="date" id = "dateToRight" value = "">
                         <button type="button" class="Button" id="right">
                             <span class="glyphicon glyphicon-chevron-right"></span>
@@ -95,6 +95,7 @@
         </div>
     </div>
 
+     <div id = "givenDate">{{datums}}</div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script type="text/javascript" src="{% static 'JavaScript/Visi.js' %}"></script>
 
