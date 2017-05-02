@@ -44,13 +44,17 @@ function addDays(date, days) {
     return result;
 }
 
+
 document.getElementById("dateToLeft").value = formatDateForForm(addDays(givenDate, -1));
-document.getElementById("dateToRight").value = formatDateForForm(addDays(givenDate, 1)) ;
+document.getElementById("dateToRight").value = formatDateForForm(addDays(givenDate, 1));
+document.getElementById("dateSearch").value = formatDateForForm(today);
 
 var day = today.getDay();
 var days = ['SVĒTDIENA', 'PIRMDIENA', 'OTRDIENA', 'TREŠDIENA', 'CETURTDIENA', 'PIEKTDIENA', 'SESTDIENA'];
 
 document.getElementById("today").innerHTML = days[day] + ", " + formattedDay;
+
+
 
 var all = document.getElementsByClassName("oneReason");
 var willWorkWhen = document.getElementById("offWork");

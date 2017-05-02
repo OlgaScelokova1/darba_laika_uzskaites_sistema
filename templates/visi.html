@@ -12,7 +12,7 @@
                 <div id = "today"> </div>
 
                 <form method='POST' role="form" action="/darba_laiks/darbinieki/">{% csrf_token %}
-                        <input type="hidden" name="date" id = "dateToLeft" value = "1">
+                        <input type="hidden" name="date" id = "dateToLeft" value = "">
                         <button type="button" class="Button" id="left">
                             <span class="glyphicon glyphicon-chevron-left"></span>
                             <input id= "leftInput" type = "submit" value = "">
@@ -21,7 +21,7 @@
 
 
                 <form method='POST' role="form" action="/darba_laiks/darbinieki/">{% csrf_token %}
-                        <input type="hidden" name="date" id = "dateToRight" value = "2">
+                        <input type="hidden" name="date" id = "dateToRight" value = "">
                         <button type="button" class="Button" id="right">
                             <span class="glyphicon glyphicon-chevron-right"></span>
                             <input id= "rightInput" type = "submit" value = "">
@@ -40,9 +40,9 @@
             <span class="pull-right">
                 <div id = "search">
                     <form method="POST" action="">{% csrf_token %}
-
-                            <input type="text" name="q" placeholder="Meklēt lietotāju" value="{{ request.get.q }}"/>
-                            <input type="submit" value="Meklēt"/>
+                        <input type="text" name="q" placeholder="Meklēt lietotāju" value="{{ request.get.q }}"/>
+                        <input type="hidden" name="datums-meklesanai" id = "dateSearch" value=""/>
+                        <input type="submit" value="Meklēt"/>
 
                     </form>
                  </div>

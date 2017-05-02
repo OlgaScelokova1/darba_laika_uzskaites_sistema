@@ -116,7 +116,7 @@
   box-shadow: none;
 }
 
-/*.userId{
+.userId{
     font-size: 0px;
 }
 
@@ -126,7 +126,7 @@
 
 #atstradaList{
    font-size: 0px;
-}*/
+}
 
 .box2 + .tooltip > .tooltip-inner {
     width: 99px !important;
@@ -167,4 +167,8 @@
 
 .starFavorites{
     color: #f8e81c;
+}
+
+#givenDate{
+    font-size: 0;
 }

@@ -303,13 +303,13 @@ def darbinieki(request):
         return render(request, 'visi.html', context)
 
     if request.method == 'POST':
-        datums = datetime.date.today()
+        datums = request.POST.get("date")
 
         visi=User.objects.all()
 
-        darba_laika_id = Darba_laiks.objects.filter(datums=datetime.date.today()).values_list('id',flat=True).distinct()
+        darba_laika_id = Darba_laiks.objects.filter(datums=datums).values_list('id',flat=True).distinct()
 
-        collection_ids = Darba_laiks.objects.filter(datums=datetime.date.today()).values_list('lietotajs',flat=True).distinct()
+        collection_ids = Darba_laiks.objects.filter(datums=datums).values_list('lietotajs',flat=True).distinct()
         izmainitie = [
             Darba_laiks.objects.filter(lietotajs__id=c)[0] for c in collection_ids
             ]
@@ -328,6 +328,21 @@ def darbinieki(request):
         saglabata_id=request.POST.get("id")
 
         if saglabata_id:
+            datums=datetime.date.today()
+            darba_laika_id = Darba_laiks.objects.filter(datums=datums).values_list('id', flat=True).distinct()
+
+            collection_ids = Darba_laiks.objects.filter(datums=datums).values_list('lietotajs', flat=True).distinct()
+            izmainitie = [
+                Darba_laiks.objects.filter(lietotajs__id=c)[0] for c in collection_ids
+            ]
+
+            iemesli = [
+                Iemesls.objects.filter(darba_laiks__id=c)[0] for c in darba_laika_id
+            ]
+
+            atstrada = Atstrada.objects.filter(darba_laiks__id__in=darba_laika_id)
+
+
             lietotajs_kuru_pievienoja = User.objects.get(id=saglabata_id)
             i = Saglabatie.objects.filter(lietotajs_kuru_pievienoja=lietotajs_kuru_pievienoja)
 
@@ -345,6 +360,23 @@ def darbinieki(request):
 
         query=request.POST.get("q")
         if query:
+            datums = request.POST.get("datums-meklesanai")
+            visi = User.objects.all()
+
+            darba_laika_id = Darba_laiks.objects.filter(datums=datums).values_list('id', flat=True).distinct()
+
+            collection_ids = Darba_laiks.objects.filter(datums=datums).values_list('lietotajs', flat=True).distinct()
+            izmainitie = [
+                Darba_laiks.objects.filter(lietotajs__id=c)[0] for c in collection_ids
+            ]
+
+            iemesli = [
+                Iemesls.objects.filter(darba_laiks__id=c)[0] for c in darba_laika_id
+            ]
+
+            atstrada = Atstrada.objects.filter(darba_laiks__id__in=darba_laika_id)
+
+            datums = request.POST.get("datums-meklesanai")
             visi=visi.filter(
                     Q(username__icontains=query) |
                     Q(first_name__icontains=query) |
@@ -357,6 +389,7 @@ def darbinieki(request):
                    'atstrada': atstrada,
                    'lietotaja_saglabatie': lietotaja_saglabatie,
                    'saglabata_id': saglabata_id,
+                   'datums': datums,
                    }
         date = request.POST.get("date")
 
