@@ -1120,6 +1120,27 @@ function setColors(){
 
 setColors();
 
+var save = document.getElementById("Save");
+var inputReason = document.getElementById("InputReason");
+
+
+var sickInput = document.getElementById("Sick");
+var lectureInput = document.getElementById("Lecture");
+var workFromHomeInput = document.getElementById("WorkFromHome");
+var workloadInput = document.getElementById("Workload");
+var otherInput = document.getElementById("Other");
+
+console.log(sickInput);
+
+
+
+
+if(save.disabled){
+    save.style.backgroundColor = "grey";
+}
+
+
+
 
 
 $(function(){
