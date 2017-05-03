@@ -12,7 +12,7 @@
 
                  <form method='POST' role="form" action="/darba_laiks/saglabatie/">{% csrf_token %}
                         <input type="hidden" name="date" id = "dateToLeft" value = "">
-                        <button type="button" class="Button" id="left">
+                        <button class="Button" id="left">
                             <span class="glyphicon glyphicon-chevron-left"></span>
                             <input id= "leftInput" type = "submit" value = "">
                         </button>
@@ -21,7 +21,7 @@
 
                 <form method='POST' role="form" action="/darba_laiks/saglabatie/">{% csrf_token %}
                         <input type="hidden" name="date" id = "dateToRight" value = "">
-                        <button type="button" class="Button" id="right">
+                        <button class="Button" id="right">
                             <span class="glyphicon glyphicon-chevron-right"></span>
                             <input id= "rightInput" type = "submit" value = "">
                         </button>
@@ -94,9 +94,71 @@
 
         </div>
 
-         <div id = "givenDate">{{datums}}</div>
+
 
     </div>
+
+    <div class = "tooltip" id = "description">
+                <div class = "text">Laiks:</div>
+                <div class = "insert" id = "offTime"></div>
+                <div class = "text">Iemesls:</div>
+                <div class = "insert" id = "offReason"></div>
+                <div class = "text">Tiks atstrādāts:</div>
+                <div class = "insert" id = "offWork"></div>
+    </div>
+
+
+     <div id = "givenDate">{{datums}}</div>
+
+    <div id = info>
+        {%  for izmainits in izmainitie %}
+            <div class = "oneReason">{{izmainits.lietotajs.id}} {{izmainits}}</div>
+        {%  endfor %}
+    </div>
+
+    <div class="row">
+        <ul id = "atstradaList">
+            {% for i in atstrada%}
+                <li class = "one">
+                    <ul class = "willWork" id = "atstrada">
+                        <li id = "nebusKad"> {{ i.darba_laiks }} </li>
+                        <li class = "reason" id = "nebusKapec">{{ i.lietotajs.id }} {{ i.iemesls }}</li>
+                        <li class = "iemesls_id">{{ i.iemesls.id }}</li>
+                        <li class = "atstradasNo" id = "atstradasNo">{{i.no|time:"H:i"}}</li>
+                        <li class = "atstradasLidz" id = "atstradasLidz">{{i.lidz|time:"H:i"}}</li>
+                        <li class = "atstradasKad" id = "atstradasKad">{{i.datums|date:"d.m"}}</li>
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!--{%  for izmainits in izmainitie %}-->
+    <!--{{ izmainits.lietotajs }} </br>-->
+    <!--{% endfor %}-->
+
+        <!--{%  for iemesls in iemesli %}-->
+    <!--{{ iemesls}} </br>-->
+    <!--{% endfor %}-->
+
+            <!--{%  for atstradas in atstrada%}-->
+    <!--{{ atstradas}} </br>-->
+    <!--{% endfor %}-->
+
+
+        {% for i in atstrada%}
+               {{ i.darba_laiks }}
+                {{ i.lietotajs.id }}
+                {{ i.iemesls }}
+
+                        {{ i.iemesls.id }}
+                        {{i.no|time:"H:i"}}
+                        {{i.lidz|time:"H:i"}}
+                        {{i.datums|date:"d.m"}}
+
+            {% endfor %}
+
+
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

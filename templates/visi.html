@@ -13,7 +13,7 @@
 
                 <form method='POST' role="form" action="/darba_laiks/darbinieki/">{% csrf_token %}
                         <input type="hidden" name="date" id = "dateToLeft" value = "">
-                        <button type="button" class="Button" id="left">
+                        <button class="Button" id="left">
                             <span class="glyphicon glyphicon-chevron-left"></span>
                             <input id= "leftInput" type = "submit" value = "">
                         </button>
@@ -22,7 +22,7 @@
 
                 <form method='POST' role="form" action="/darba_laiks/darbinieki/">{% csrf_token %}
                         <input type="hidden" name="date" id = "dateToRight" value = "">
-                        <button type="button" class="Button" id="right">
+                        <button class="Button" id="right">
                             <span class="glyphicon glyphicon-chevron-right"></span>
                             <input id= "rightInput" type = "submit" value = "">
                         </button>
@@ -112,18 +112,11 @@
 
         </div>
     </div>
+
     <div id = info>
-        {% for lietot in izmainitie %}
-
-        {{ lietot.lietotajs.username}}  </br>
-
-        {%  endfor %}
-
-
 
         {% for lietot in iemesli %}
             <div class = "oneReason">{{lietot.lietotajs.id}} {{lietot}}</div>
-
         {%  endfor %}
     </div>
 
@@ -138,40 +131,6 @@
 
 
         <div class = "container" id = "dataForFill">
-
-            <div class="row">
-                <ul id = "nebusList">
-                    {% for i in nebus %}
-                        <li class = "one">
-                            <ul id = "nebus">
-                                <li id = "datumsNebus"> {{ i.datums }} </li>
-                                <li id = "nebusNo"> {{ i.no }} </li>
-                                <li id = "nebusLidz"> {{ i.lidz }} </li>
-                                <li id = "ir_mainis"> {{ i.ir_mainits }}</li>
-                            </ul>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-
-            <div class="row">
-                <ul id = "iemeslsList">
-                    {% for i in iemesls %}
-                        <li class = "one">
-                            <ul id = "iemesls">
-                                <li id = "kadNebus"> {{ i.darba_laiks }} </li>
-                                <li id = "slimiba"> {{ i.slimiba }} </li>
-                                <li id = "atvalinajums"> {{ i.atvalinajums }} </li>
-                                <li id = "lekcijas"> {{ i.lekcijas }} </li>
-                                <li id = "noMajam"> {{ i.darbs_no_majam }} </li>
-                                <li class="less" id = "slodze"> {{ i.mazaka_slodze }} </li>
-                                <li id = "cits"> {{ i.cits }} </li>
-                            </ul>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-
             <div class="row">
                 <ul id = "atstradaList">
                     {% for i in atstrada %}
@@ -195,8 +154,8 @@
                 {% endfor %}
             </div>
 
-            j
 
+    <div id = "givenDate">{{datums}}</div>
 
 
 

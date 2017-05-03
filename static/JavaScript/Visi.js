@@ -61,6 +61,7 @@ document.getElementById("today").innerHTML = days[day] + ", " + formattedDay;
 
 
 var all = document.getElementsByClassName("oneReason");
+console.log(all);
 var willWorkWhen = document.getElementById("offWork");
 var reason = document.getElementsByClassName("reason");
 console.log(reason);
@@ -71,11 +72,14 @@ var workDate = document.getElementsByClassName("atstradasKad");
 var forInputWork = [];
 var k = 0 ;
 console.log(reason.length);
+console.log(reason);
+console.log(all);
 
 for (i = 0 ; i < reason.length ; ){
     if(reason[i].innerHTML == all[k].innerHTML ){
         forInputWork[k] = workDate[i].innerHTML + "  " + workFrom[i].innerHTML + "-" + workUntil[i].innerHTML;
         i++;
+        console.log(i);
     }
     else {
         forInputWork[i] = 0;
