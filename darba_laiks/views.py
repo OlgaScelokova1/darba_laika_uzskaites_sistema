@@ -436,16 +436,93 @@ class RedigetBildi(UpdateView):
     fields=['avatar']
 
 def darbinieka_darba_laiks(request, pk):
-    lietotajs = User.objects.get(pk=pk)
-    nebus = Darba_laiks.objects.filter(lietotajs=lietotajs)
-    iemesls = Iemesls.objects.filter(lietotajs=lietotajs)
-    atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
 
-    context = {'nebus': nebus,
-               'iemesls': iemesls,
-               'atstrada': atstrada,
-               }
-    return render(request, 'darbinieka-darba-laiks.html', context)
+    if request.method == 'GET':
+        lietotajs=User.objects.get(pk=pk)
+        nebus=Darba_laiks.objects.filter(lietotajs=lietotajs)
+        iemesls=Iemesls.objects.filter(lietotajs=lietotajs)
+        atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
+        date = datetime.date.today()
+        monday = date - datetime.timedelta(date.weekday())
+        sunday = monday + datetime.timedelta(6)
+        tuesday = monday + datetime.timedelta(1)
+        wednesday = monday + datetime.timedelta(2)
+        thursday = monday + datetime.timedelta(3)
+        friday = monday + datetime.timedelta(4)
+        saturday = monday + datetime.timedelta(5)
+        week = datetime.date.today().strftime("%V")
+        '24'
+
+
+
+        context = {'nebus': nebus,
+                   'iemesls': iemesls,
+                   'atstrada': atstrada,
+                   'monday': monday,
+                   'tuesday': tuesday,
+                   'wednesday': wednesday,
+                   'thursday': thursday,
+                   'friday': friday,
+                   'saturday': saturday,
+                   'sunday': sunday,
+                   'week': week,
+                   }
+
+
+        return render(request, "darbinieka-darba-laiks.html", context)
+
+    if request.method =='POST':
+        monday = request.POST.get("monday")
+        monday2 = request.POST.get("mondayDown")
+
+        lietotajs=User.objects.get(pk=pk)
+        nebus=Darba_laiks.objects.filter(lietotajs=lietotajs)
+        iemesls=Iemesls.objects.filter(lietotajs=lietotajs)
+        atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
+
+        if monday:
+            monday=monday
+            tuesday = request.POST.get("tuesday")
+            wednesday= request.POST.get("wednesday")
+            thursday = request.POST.get("thursday")
+            friday = request.POST.get("friday")
+            saturday = request.POST.get("saturday")
+            sunday = request.POST.get("sunday")
+
+            context = {'nebus': nebus,
+                       'iemesls': iemesls,
+                       'atstrada': atstrada,
+                       'monday': monday,
+                       'tuesday': tuesday,
+                       'wednesday': wednesday,
+                       'thursday': thursday,
+                       'friday': friday,
+                       'saturday': saturday,
+                       'sunday': sunday,
+                       }
+        elif monday2:
+            monday=monday2
+            tuesday = request.POST.get("tuesday")
+            wednesday= request.POST.get("wednesday")
+            thursday = request.POST.get("thursday")
+            friday = request.POST.get("friday")
+            saturday = request.POST.get("saturday")
+            sunday = request.POST.get("sunday")
+
+
+            context = {'nebus': nebus,
+                       'iemesls': iemesls,
+                       'atstrada': atstrada,
+                       'monday': monday,
+                       'tuesday': tuesday,
+                       'wednesday': wednesday,
+                       'thursday': thursday,
+                       'friday': friday,
+                       'saturday': saturday,
+                       'sunday': sunday,
+                       }
+
+        return render(request, "darbinieka-darba-laiks.html", context)
 
 def saglabatie(request):
     if request.method == 'GET':
