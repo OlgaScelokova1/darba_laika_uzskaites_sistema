@@ -62,7 +62,7 @@
 
                                     <a href="{% url 'darba_laiks:darbinieka-darba-laiks' izmainits.lietotajs_kuru_pievienoja.id %}">{{izmainits.lietotajs_kuru_pievienoja.first_name}} {{izmainits.lietotajs_kuru_pievienoja.last_name}}</a>
                                 </div>
-                                <div class = "userId">{{izmainits.id}}</div>
+                                <div class = "userId">{{izmainits.lietotajs_kuru_pievienoja.id}}</div>
                             </div>
                         </div>
 
@@ -111,7 +111,7 @@
      <div id = "givenDate">{{datums}}</div>
 
     <div id = info>
-        {%  for izmainits in izmainitie %}
+        {%  for izmainits in iemesli %}
             <div class = "oneReason">{{izmainits.lietotajs.id}} {{izmainits}}</div>
         {%  endfor %}
     </div>
@@ -132,33 +132,6 @@
             {% endfor %}
         </ul>
     </div>
-
-    <!--{%  for izmainits in izmainitie %}-->
-    <!--{{ izmainits.lietotajs }} </br>-->
-    <!--{% endfor %}-->
-
-        <!--{%  for iemesls in iemesli %}-->
-    <!--{{ iemesls}} </br>-->
-    <!--{% endfor %}-->
-
-            <!--{%  for atstradas in atstrada%}-->
-    <!--{{ atstradas}} </br>-->
-    <!--{% endfor %}-->
-
-
-        {% for i in atstrada%}
-               {{ i.darba_laiks }}
-                {{ i.lietotajs.id }}
-                {{ i.iemesls }}
-
-                        {{ i.iemesls.id }}
-                        {{i.no|time:"H:i"}}
-                        {{i.lidz|time:"H:i"}}
-                        {{i.datums|date:"d.m"}}
-
-            {% endfor %}
-
-
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

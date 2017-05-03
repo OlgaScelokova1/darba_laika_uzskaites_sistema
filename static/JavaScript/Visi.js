@@ -71,9 +71,7 @@ var workDate = document.getElementsByClassName("atstradasKad");
 
 var forInputWork = [];
 var k = 0 ;
-console.log(reason.length);
-console.log(reason);
-console.log(all);
+
 
 for (i = 0 ; i < reason.length ; ){
     if(reason[i].innerHTML == all[k].innerHTML ){
@@ -103,6 +101,7 @@ function setReasons(){
     for(i=0; i<everyId.length ; i++){
         everyIdtmp[i] = everyId[i].innerHTML;
     }
+    console.log(everyId);
     console.log(everyIdtmp);
 
     for (i=0 ; i<all.length ; i++){
@@ -250,9 +249,6 @@ var everyFavorite = document.getElementsByClassName("everyFavorite");
 var everyUserId = document.getElementsByClassName("everyUserId");
 var star = document.getElementsByClassName("star1");
 
-console.log(everyFavorite);
-console.log(everyUserId);
-console.log(star);
 
 
 for (i=0; i< everyUserId.length; i++){
