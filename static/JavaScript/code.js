@@ -1124,8 +1124,8 @@ var untilForm = document.getElementById("untilForm");
 
 function setDeleteForm(date, from, Until){
     dateForm.value = date;
-    fromForm.value = from + ":00:00";
-    untilForm.value = Until + ":00:00";
+    fromForm.value = from + ":00";
+    untilForm.value = Until + ":00";
 };
 
 function setColoredBox(target, date, from, Until){

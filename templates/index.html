@@ -306,10 +306,10 @@
     </div>
 
 
-    <form class = "container" action="/darba_laiks/" id = "delete">{% csrf_token %}
-        <input  type= "hidden" id="dateForm" value = "">
-        <input  type= "hidden" id="fromForm" value = "">
-        <input  type= "hidden" id="untilForm" value = "">
+    <form method='POST' role="form" class = "container" action="/darba_laiks/" id = "delete">>{% csrf_token %}
+        <input  type= "hidden" id="dateForm" name="datums-dzesanai" value = "">
+        <input  type= "hidden" id="fromForm" name="no-dzesanai" value = "">
+        <input  type= "hidden" id="untilForm" name="lidz-dzesanai" value = "">
         <input type = "submit" value = "Dzēst" id = "deleteButton">
     </form>
 
@@ -317,6 +317,7 @@
 
 
 </div>
+
 
 
 
