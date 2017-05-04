@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/My.css' %}" />
 <div class = "container">
 
-<div class = "Month" id = "Month"></div>
+    <div class = "Month" id = "Month"></div>
           <div class = "row" id = "Table">
 
 
@@ -231,7 +231,6 @@
 
 
         <div class = "tooltip" id = "description">
-            <!--<button class="glyphicon glyphicon-remove"><span class="pull-right"></span></button>-->
                 <div class = "text">Laiks:</div>
                 <div class = "insert" id = "offTime"></div>
                 <div class = "text">Iemesls:</div>
@@ -248,6 +247,7 @@
                     {% for i in nebus %}
                         <li class = "one">
                             <ul id = "nebus">
+                                <li id = "datumsNebus"> {{ i.datums }} </li>
                                 <li id = "datumsNebus"> {{ i.datums }} </li>
                                 <li id = "nebusNo"> {{ i.no }} </li>
                                 <li id = "nebusLidz"> {{ i.lidz }} </li>
@@ -306,8 +306,17 @@
     </div>
 
 
-</div>
+    <form class = "container" action="/darba_laiks/" id = "delete">{% csrf_token %}
+        <input  type= "hidden" id="dateForm" value = "">
+        <input  type= "hidden" id="fromForm" value = "">
+        <input  type= "hidden" id="untilForm" value = "">
+        <input type = "submit" value = "Dzēst" id = "deleteButton">
+    </form>
 
+
+
+
+</div>
 
 
 
