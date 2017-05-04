@@ -1,4 +1,4 @@
-$( document ).ready(function() {
+$(document).ready(function() {
 
 var today = new Date();
 var thisWeek = getWeek(today);
@@ -249,6 +249,7 @@ $(FillBox).click(function(event){
     event.stopPropagation();
 }); // ja uzspiež uz kastītes, tā netiek paslēpt
 
+if(FillBox){
 
 $(box).click(function(event){
         FillBox.style.display = "block";
@@ -284,7 +285,7 @@ $(box).click(function(event){
     event.stopPropagation();
 }); // kastītes novietojums un default vērtības
 
-
+}
 function getCookie(name) {
      var cookieValue = null;
      if (document.cookie && document.cookie !== '') {
@@ -1128,6 +1129,7 @@ function setDeleteForm(date, from, Until){
     untilForm.value = Until + ":00:00";
 };
 
+
 function setColoredBox(target, date, from, Until){
     target.style.color = "#ffffff";
 
@@ -1180,11 +1182,11 @@ console.log(sickInput);
 
 
 
-
+if(save){
 if(save.disabled){
     save.style.backgroundColor = "grey";
 }
-
+}
 
 
 $(function(){

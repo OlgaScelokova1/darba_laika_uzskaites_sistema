@@ -3,8 +3,8 @@
 }
 
 .img{
-    width: 250px;
-    height: 250px;
+    width: 180px;
+    height: 180px;
 }
 
 #first {
@@ -17,7 +17,6 @@
 }
 
 #oneUser .row {
-    margin-left: 1em;
     margin-right: 5em;
 }
 
@@ -29,5 +28,43 @@
     font-weight: bold;
     color: #000000;
     border-bottom: solid 2.7px #29abe2;
+}
+
+#name{
+    margin-left: 0.2em;
+}
+
+
+
+.button{
+    height: 30px;
+    background-color: #29abe2;
+    font-size: 16px;
+    border-color: #29abe2;
+    border-width: 1.5px;
+    margin-top:0.5em;
+}
+
+
+
+.text{
+    color: #ffffff;
+    font-size: 12px;
+}
+
+.createButton{
+    width: 200px;
+    height: 30px;
+    background-color:  #29abe2;
+    font-size: 16px;
+    border-color: #29abe2;
+    border-width: 1.5px;
+    margin-top:0.5em;
+    margin-left: 5em;
+}
+
+#textCreate{
+    color: #ffffff;
+    font-size: 16px;
 }
 

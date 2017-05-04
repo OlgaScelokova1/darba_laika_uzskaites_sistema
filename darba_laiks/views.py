@@ -466,6 +466,7 @@ def darbinieka_darba_laiks(request, pk):
                    'saturday': saturday,
                    'sunday': sunday,
                    'week': week,
+                   'lietotajs': lietotajs,
                    }
 
 
@@ -499,6 +500,7 @@ def darbinieka_darba_laiks(request, pk):
                        'friday': friday,
                        'saturday': saturday,
                        'sunday': sunday,
+                       'lietotajs': lietotajs,
                        }
         elif monday2:
             monday=monday2

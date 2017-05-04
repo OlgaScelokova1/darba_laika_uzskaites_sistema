@@ -1,20 +1,6 @@
 body {
   background-color: #f2f2f2;
   font-family: 'Oxygen';
-  text-align: center;
-  margin-top: 200px;
-}
-
-#text{
-    font-size: 30px;
-}
-
-#id_username{
-    margin-left:5px;
-    width : 180px;
-    height: 30px;
-    border-radius: 7px;
-    border-width: 1px;
 }
 
 .container{
@@ -30,15 +16,11 @@ body {
     margin-left: -250px;
 }
 
-#id_password1, #id_password2{
-    margin-left:5px;
-    width : 180px;
-    height: 30px;
-    border-radius: 7px;
-    border-width: 1px;
+.row{
+    margin-left: 7em;
 }
 
-.btn {
+#save {
     width : 200px;
     height: 30px;
     margin-top: 20px;
@@ -50,26 +32,6 @@ body {
     border-radius: 7px;
 }
 
-li{
-    list-style-type: none;
+form {
+    padding-right: 9em;
 }
-
-
-
-
-
-.form-group{
-    margin-top: 15px;
-}
-
-
-#error{
-    font-size: 14px;
-}
-
-.errorList{
-    padding-left:0px;
-}
-
-
-

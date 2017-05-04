@@ -1,4 +1,23 @@
-<form action="" method="post">{% csrf_token %}
-    <p>Vai esat drošs, ka gribat izdzēst šo lietotāju?</p>
-    <input type="submit" value="Jā" />
-</form>
+{% load staticfiles %}
+
+
+<link rel="stylesheet" href="https://maxcdn.bootsdivapcdn.com/bootsdivap/3.3.7/css/bootsdivap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link href="http://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet" type="text/css">
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/delete.css' %}">
+<body>
+
+    <div class = "container">
+        <div class = "row">
+            <form action="" method="post">{% csrf_token %}
+                <p>Vai esat drošs, ka gribat izdzēst šo lietotāju?</p>
+                <input type="submit" value="Jā" id="save">
+            </form>
+        </div>
+    </div>
+
+</body>
+
+

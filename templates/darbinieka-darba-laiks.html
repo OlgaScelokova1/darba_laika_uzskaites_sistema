@@ -7,8 +7,11 @@
     {% load staticfiles %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/My.css' %}" />
 <div class = "container">
-
-<div class = "Month" id = "Month"></div>
+    <div id = "userProfile">
+        <div id="forUser">LIETOTĀJS:</div>
+        {{lietotajs.first_name}} {{lietotajs.last_name}}
+    </div>
+    <div class = "Month" id = "Month"></div>
           <div class = "row" id = "Table">
 
 
@@ -197,37 +200,37 @@
         </div>
 
 
-        <div class = "row" id = "FillRow">
-            <form class = "container" action="/darba_laiks/" id = "Fill">{% csrf_token %}
-                <div class = "container" id ="data">
+        <!--<div class = "row" id = "FillRow">-->
+            <!--<form class = "container" action="/darba_laiks/" id = "Fill">{% csrf_token %}-->
+                <!--<div class = "container" id ="data">-->
 
-                    <p id="Time">Laiks:</p>
+                    <!--<p id="Time">Laiks:</p>-->
 
-                    <input class = "FirstLine DateField" id = "InputDate" type = "date" name = "dateWhenIs">
-                    <input class = "FirstLine TimeField" id = "InputFrom" name = "timeFrom">
-                    <p class = "FirstLine">-</p>
-                    <input class = "FirstLine TimeField" id = "InputUntil"  name = "timeTill">
+                    <!--<input class = "FirstLine DateField" id = "InputDate" type = "date" name = "dateWhenIs">-->
+                    <!--<input class = "FirstLine TimeField" id = "InputFrom" name = "timeFrom">-->
+                    <!--<p class = "FirstLine">-</p>-->
+                    <!--<input class = "FirstLine TimeField" id = "InputUntil"  name = "timeTill">-->
 
-                    <p>Iemesls:</p>
+                    <!--<p>Iemesls:</p>-->
 
-                    <select id="InputReason" name = "reason" list = "Reason">
-                        <option id = "Sick">Slimiba</option>
-                        <option id = "Lecture">Lekcijas</option>
-                        <option id = "WorkFromHome">Darbs no majam</option>
-                        <option id = "Workload">Mazaka slodze</option>
-                        <option id = "Other">Cits</option>
-                    </select>
+                    <!--<select id="InputReason" name = "reason" list = "Reason">-->
+                        <!--<option id = "Sick">Slimiba</option>-->
+                        <!--<option id = "Lecture">Lekcijas</option>-->
+                        <!--<option id = "WorkFromHome">Darbs no majam</option>-->
+                        <!--<option id = "Workload">Mazaka slodze</option>-->
+                        <!--<option id = "Other">Cits</option>-->
+                    <!--</select>-->
 
-                    <p>Tiks atstrādāts</p>
+                    <!--<p>Tiks atstrādāts</p>-->
 
-                    <input class = "SecondLine DateField" id = "AfterDate" type = "date" name = "dateWhenWill">
-                    <input class = "SecondLine TimeField" id = "AfterFrom" name = "timeWillStart">
-                    <p class = "SecondLine">-</p>
-                    <input class = "SecondLine TimeField" id = "AfterUntil"  name = "timeWillEnd">
-                </div>
-                <input type = "submit" value = "Saglabāt" id="Save">
-            </form>
-        </div>
+                    <!--<input class = "SecondLine DateField" id = "AfterDate" type = "date" name = "dateWhenWill">-->
+                    <!--<input class = "SecondLine TimeField" id = "AfterFrom" name = "timeWillStart">-->
+                    <!--<p class = "SecondLine">-</p>-->
+                    <!--<input class = "SecondLine TimeField" id = "AfterUntil"  name = "timeWillEnd">-->
+                <!--</div>-->
+                <!--<input type = "submit" value = "Saglabāt" id="Save">-->
+            <!--</form>-->
+        <!--</div>-->
 
 
         <div class = "tooltip" id = "description">

@@ -18,16 +18,20 @@ body {
 }
 
 .container{
-    border: solid 0.5px #29abe2;
+   border: solid 0.5px #29abe2;
     width: 500px;
     background-color: white;
     padding-top: 2em;
     padding-bottom: 2em;
-    text-align: right;
+    text-align: center;
     position: fixed;
-    top: 15%;
-    left: 40%;
+    top: 25%;
+    left: 50%;
+    margin-left: -250px;
+}
 
+.row{
+    margin-left: 3em;
 }
 
 .inputField {

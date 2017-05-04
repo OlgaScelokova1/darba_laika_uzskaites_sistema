@@ -290,3 +290,16 @@ input {
     font-size: 0;
 }
 
+#userProfile{
+
+	font-size: 16.3px;
+
+
+    margin-left: 230px;
+    margin-bottom: 17px;
+}
+
+#forUser{
+    color: #259adb;
+    font-weight: bold;
+}

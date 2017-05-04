@@ -239,6 +239,17 @@ function setReasons(){
 
 }
 
+var thisDate = new Date();
+thisDate = formatDate(thisDate);
+var documentDate = document.getElementById("today").innerHTML.slice(-11);
+
+console.log(documentDate);
+console.log(thisDate);
+
+if (thisDate != documentDate){
+    $(".dayBox").slideUp(1).delay(200).slideDown('fast');
+}
+
 setReasons();
 
 $(function(){

@@ -8,14 +8,14 @@
  <div class = "row" id = "first">
 
      <div id = "Create">
-                <a  href="{% url 'darba_laiks:create_user' %}">Izveidot lietotāju</a>
+         <button class = "createButton"><a id = "textCreate" href="{% url 'darba_laiks:create_user' %}">Izveidot lietotāju</a></button>
      </div>
 
      <div id = "search">
          <span class="pull-right">
              <form method="GET" action="">
                      <input type="text" name="q" placeholder="Meklēt lietotāju" value="{{ request.get.q }}"/>
-                     <input type="submit" value="Meklēt"/>
+                     <input id= "searchButton" type="submit" value="Meklēt"/>
              </form>
          </span>
      </div>
@@ -36,11 +36,11 @@
             {% endif %}
 
 
-                <div class = "row">{{darbinieks.username}} {{darbinieks.first_name}} {{darbinieks.last_name}} </div>
-                <div class = "row">
-                    <a href="{% url 'darba_laiks:update' darbinieks.id %}"> Rediģēt </a> &nbsp
-                    <a href="{% url 'darba_laiks:bilde' darbinieks.userprofile.id %}"> Rediģēt bildi </a> &nbsp
-                    <a href="{% url 'darba_laiks:dzest' darbinieks.id %}"> Dzēst </a>
+                <div class = "row" id="name">{{darbinieks.first_name}} {{darbinieks.last_name}} </div>
+                <div class = "row" id = "buttonRow">
+                    <button class = "button"><a class = "text" href="{% url 'darba_laiks:update' darbinieks.id %}"> Rediģēt </a> &nbsp</button>
+                    <button class = "button"><a class = "text" href="{% url 'darba_laiks:bilde' darbinieks.userprofile.id %}"> Rediģēt bildi </a> &nbsp</button>
+                    <button class = "button"><a class = "text" href="{% url 'darba_laiks:dzest' darbinieks.id %}"> Dzēst </a></button>
                 </div>
 
              <br>
