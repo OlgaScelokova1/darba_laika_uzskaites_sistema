@@ -28,11 +28,6 @@
                         </button>
                     </form>
 
-
-                    <!--<button type="button" class="Button" id="Up">-->
-                        <!--<span class="glyphicon glyphicon-menu-up arrow"></span>-->
-                    <!--</button>-->
-
                     <div id="WeekDate">{{week}}</div>
                     <div id = "Week" >nedēļa</div>
 
@@ -50,9 +45,6 @@
                          </button>
                     </form>
 
-                    <!--<button type="button" class="Button" id="Down">-->
-                        <!--<span class="glyphicon glyphicon-menu-down arrow"></span>-->
-                    <!--</button>-->
                 </div>
 
                 <div class = "container col-sm-2 OneDay" id="MondayList">
@@ -306,10 +298,11 @@
     </div>
 
 
-    <form class = "container" action="/darba_laiks/" id = "delete">{% csrf_token %}
-        <input type= "hidden" id="dateForm" value = "">
-        <input type= "hidden" id="fromForm" value = "">
-        <input type= "hidden" id="untilForm" value = "">
+
+    <form method='POST' role="form" class = "container" action="/darba_laiks/" id = "delete">>{% csrf_token %}
+        <input  type= "hidden" id="dateForm" name="datums-dzesanai" value = "">
+        <input  type= "hidden" id="fromForm" name="no-dzesanai" value = "">
+        <input  type= "hidden" id="untilForm" name="lidz-dzesanai" value = "">
         <input type = "submit" value = "Dzēst" id = "deleteButton">
     </form>
 
@@ -317,6 +310,7 @@
 
 
 </div>
+
 
 
 

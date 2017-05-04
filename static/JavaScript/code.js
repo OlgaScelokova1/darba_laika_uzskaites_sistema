@@ -251,39 +251,39 @@ $(FillBox).click(function(event){
 
 if(FillBox){
 
-$(box).click(function(event){
-        FillBox.style.display = "block";
-        FillBox.style.position = "absolute";
+    $(box).click(function(event){
+            FillBox.style.display = "block";
+            FillBox.style.position = "absolute";
 
-        var now = $(this).attr('id');
+            var now = $(this).attr('id');
 
-        if (now.startsWith("M")){
-            document.getElementById("InputDate").defaultValue = date2[0];
-            $("#Mo" ).append($("#FillRow"));
-        }
-        else if (now.startsWith("Tu")){
-            document.getElementById("InputDate").defaultValue = date2[1];
-            $("#Tu" ).append($("#FillRow"));
-        }
-        else if (now.startsWith("We")){
-            document.getElementById("InputDate").defaultValue = date2[2];
-            $("#We" ).append($("#FillRow"));
-        }
-        else if (now.startsWith("Th")){
-            document.getElementById("InputDate").defaultValue = date2[3];
-            $("#Th" ).append($("#FillRow"));
-        }
-        else if (now.startsWith("F")){
-            document.getElementById("InputDate").defaultValue = date2[4];
-            $("#Fr" ).append($("#FillRow"));
-        } // atkarībā no tā, kurā dienā atrodas laiks, uz kura lietotājs uzspiedis, tiek novietota aizpildāmā forma
+            if (now.startsWith("M")){
+                document.getElementById("InputDate").defaultValue = date2[0];
+                $("#Mo" ).append($("#FillRow"));
+            }
+            else if (now.startsWith("Tu")){
+                document.getElementById("InputDate").defaultValue = date2[1];
+                $("#Tu" ).append($("#FillRow"));
+            }
+            else if (now.startsWith("We")){
+                document.getElementById("InputDate").defaultValue = date2[2];
+                $("#We" ).append($("#FillRow"));
+            }
+            else if (now.startsWith("Th")){
+                document.getElementById("InputDate").defaultValue = date2[3];
+                $("#Th" ).append($("#FillRow"));
+            }
+            else if (now.startsWith("F")){
+                document.getElementById("InputDate").defaultValue = date2[4];
+                $("#Fr" ).append($("#FillRow"));
+            } // atkarībā no tā, kurā dienā atrodas laiks, uz kura lietotājs uzspiedis, tiek novietota aizpildāmā forma
 
-        document.getElementById('InputFrom').defaultValue = now.slice(2,4) + ":00";
-        document.getElementById('InputUntil').defaultValue = now.slice(5) + ":00";
-        // tiek uzstādītas default vērtības atkarībā no tā, kādi laiki ir kastītē, uz kuru uzspiests
+            document.getElementById('InputFrom').defaultValue = now.slice(2,4) + ":00";
+            document.getElementById('InputUntil').defaultValue = now.slice(5) + ":00";
+            // tiek uzstādītas default vērtības atkarībā no tā, kādi laiki ir kastītē, uz kuru uzspiests
 
-    event.stopPropagation();
-}); // kastītes novietojums un default vērtības
+        event.stopPropagation();
+    }); // kastītes novietojums un default vērtības
 
 }
 function getCookie(name) {
@@ -1125,8 +1125,8 @@ var untilForm = document.getElementById("untilForm");
 
 function setDeleteForm(date, from, Until){
     dateForm.value = date;
-    fromForm.value = from + ":00:00";
-    untilForm.value = Until + ":00:00";
+    fromForm.value = from + ":00";
+    untilForm.value = Until + ":00";
 };
 
 
