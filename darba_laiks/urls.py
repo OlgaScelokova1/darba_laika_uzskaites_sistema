@@ -17,6 +17,8 @@ urlpatterns = [
     url(r'^visi/(?P<pk>[0-9]+)/pievienot-bildi/$', views.RedigetBildi.as_view(), name='bilde'),
     url(r'^darbinieki/(?P<pk>[0-9]+)/$', views.darbinieka_darba_laiks, name='darbinieka-darba-laiks'),
     url(r'^saglabatie/$', views.saglabatie, name='saglabatie'),
+    url(r'^device_info/$', views.device_info, name='device_info'),
+
     # url(r'^saglabatie/(?P<pk>[0-9]+)/$', views.pievienot_favoritiem,name='pievienot_favoritiem'),
     # url(r'^saglabatie/(?P<pk>[0-9]+)/dzest/$', views.Dzest_favoritu.as_view(), name='dzest_favoritu'),
 

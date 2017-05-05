@@ -24,12 +24,70 @@ from .forms import UserCreationForm
 from .models import UserProfile, Iemesls, Atstrada, Saglabatie
 import datetime
 from datetime import timedelta
+from django_user_agents.utils import get_user_agent
+
 
 
 
 # Create your views here.
+
+def device_info(request):
+
+    # Let's assume that the visitor uses an iPhone...
+    is_mobile=request.user_agent.is_mobile # returns True
+    is_tablet=request.user_agent.is_tablet # returns False
+    is_touch_capable=request.user_agent.is_touch_capable # returns True
+    is_pc=request.user_agent.is_pc # returns False
+    is_bot=request.user_agent.is_bot # returns False
+
+    # Accessing user agent's browser attributes
+    browser=request.user_agent.browser  # returns Browser(family=u'Mobile Safari', version=(5, 1), version_string='5.1')
+    browser_family=request.user_agent.browser.family  # returns 'Mobile Safari'
+    browser_version=request.user_agent.browser.version  # returns (5, 1)
+    browser_version_string=request.user_agent.browser.version_string   # returns '5.1'
+
+    # Operating System properties
+    user_agent_os=request.user_agent.os  # returns OperatingSystem(family=u'iOS', version=(5, 1), version_string='5.1')
+    user_agent_os_family=request.user_agent.os.family  # returns 'iOS'
+    user_agent_os_version=request.user_agent.os.version  # returns (5, 1)
+    user_agent_os_version_string=request.user_agent.os.version_string  # returns '5.1'
+
+    # Device properties
+    user_agent_device=request.user_agent.device  # returns Device(family='iPhone')
+    user_agent_device_family=request.user_agent.device.family  # returns 'iPhone'
+
+    context= {'is_mobile': is_mobile,
+              'is_tablet': is_tablet,
+              'is_touch_capable': is_touch_capable,
+              'is_pc': is_pc,
+              'is_bot': is_bot,
+              'browser': browser,
+              'browser_family': browser_family,
+              'browser_version': browser_version,
+              'browser_version_string': browser_version_string,
+              'user_agent_os': user_agent_os,
+              'user_agent_os_family': user_agent_os_family,
+              'user_agent_os_version': user_agent_os_version,
+              'user_agent_os_version_string':  user_agent_os_version_string,
+              'user_agent_device': user_agent_device,
+              'user_agent_device_family': user_agent_device_family,
+
+              }
+
+    return render(request, "device_info.html", context)
+
+
 def darba_laiks(request):
     if request.method == 'GET':
+        # user_agent = get_user_agent(request)
+        # if user_agent.is_pc:
+        #     x=request.user_agent.os.family
+        #
+        # elif user_agent.is_tablet:
+        #     x="tablet"
+
+
+
         lietotajs=request.user
         nebus=Darba_laiks.objects.filter(lietotajs=lietotajs)
         iemesls=Iemesls.objects.filter(lietotajs=lietotajs)
@@ -58,6 +116,7 @@ def darba_laiks(request):
                    'saturday': saturday,
                    'sunday': sunday,
                    'week': week,
+
                    }
         urls = [
             'index.html',
