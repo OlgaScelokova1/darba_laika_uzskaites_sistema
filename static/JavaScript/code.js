@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+$.ajaxSetup({ cache: false });
+
 var today = new Date();
 var thisWeek = getWeek(today);
 var documentWeek = document.getElementById("WeekDate").innerHTML;
@@ -66,14 +68,6 @@ function formatAllDates(){
 }
 formatAllDates();
 
-console.log(formattedDateMonday);
-console.log(formattedDateTuesday);
-console.log(formattedDateWednesday);
-console.log(formattedDateThursday);
-console.log(formattedDateFriday);
-console.log(formattedDateSaturday);
-console.log(formattedDateSunday);
-
 function writeDates(){
     document.getElementById("MondayDate").innerHTML = formattedDateMonday;
     document.getElementById("TuesdayDate").innerHTML = formattedDateTuesday;
@@ -128,13 +122,6 @@ function removeDates(){
     removeSunday = addDays(sunday, -7);
 }
 
-console.log(monday);
-console.log(tuesday);
-console.log(wednesday);
-console.log(thursday);
-console.log(friday);
-console.log(saturday);
-console.log(sunday);
 
 function setValuesForFormUp (){
     addDates();
@@ -177,7 +164,6 @@ function getWeek(date) {
 var months =['JANVĀRIS','FEBRUĀRIS','MARTS','APRĪLIS','MAIJS','JŪNIJS','JŪLIJS','AUGUSTS','SEPTEMBRIS','OKTOBRIS','NOVEMBRIS','DECEMBRIS'];
 //masīvā tiek sarakstīti visi mēneši
 
-console.log(monday);
 
 function setMonthAndWeek() {
     var weekStarts = document.getElementById("MondayDate");
@@ -200,10 +186,6 @@ while (dateMonday.getDay() !== 1) {
 } // tiek piešķirts pirmdienas datums
 
 var box = document.getElementsByClassName("box2"); // pie box tiek ielikti visi elementi, kam klase box2
-    console.log(box);
-
-
-
 
 
 var Monday = document.getElementById("mondayBox");
@@ -311,7 +293,6 @@ frm.submit(function () {
         url: frm.attr('action'),
         data: frm.serialize(),
         success: function (data) {
-            console.log(data);
         },
         error: function(data) {
         }
@@ -337,7 +318,6 @@ function getTodayDate(){
     }
     today = yyyy+'-'+mm+'-'+dd;
 
-    console.log(today);
     if (today == date2[0]){
         Monday.style.border = "2px solid #259adb";
         document.getElementById("Monday").style.color = "#259adb";
@@ -435,17 +415,12 @@ function setSlimiba (){
     var sickDate = [];
     var sickFrom = [];
     var sickUntil = [];
-    console.log(laiks);
 
     for (p = 0 ; p < laiks.length ; p++) {
         sickDate[p] = laiks[p][m];
         sickFrom[p] = laiks[p][m+1].slice(0,2);
         sickUntil[p] = laiks[p][m+3].slice(0,2);
     } // saliek pa masiviem datumus un laikus, kad slimo
-
-    console.log(sickDate);
-    console.log(sickFrom);
-    console.log(sickUntil);
 
     var from = 0;
     var Until = 0;
@@ -468,7 +443,7 @@ function setSlimiba (){
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
                                     offWork.innerHTML = willWorkSick[a];
                                     box[k].title = insert.textContent;
-                                    setColoredBox(box[k], laiks[a][0], from, Until);
+                                    setColoredBox(box[k], laiks[a][0], from, Until, willWorkSick[a]);
                                     n++;
                                     k++;
                                 }
@@ -485,7 +460,7 @@ function setSlimiba (){
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
                                     offWork.innerHTML = willWorkSick[a];
                                     box[k].title = insert.textContent;
-                                    setColoredBox(box[k], laiks[a][0], from, Until);
+                                    setColoredBox(box[k], laiks[a][0], from, Until, willWorkSick[a]);
                                     n++;
                                     k++;
 
@@ -503,7 +478,7 @@ function setSlimiba (){
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
                                     offWork.innerHTML = willWorkSick[a];
                                     box[k].title = insert.textContent;
-                                    setColoredBox(box[k], laiks[a][0], from, Until);
+                                    setColoredBox(box[k], laiks[a][0], from, Until,willWorkSick[a]);
                                     n++;
                                     k++;
                                 }
@@ -519,7 +494,7 @@ function setSlimiba (){
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
                                     offWork.innerHTML = willWorkSick[a];
                                     box[k].title = insert.textContent;
-                                    setColoredBox(box[k], laiks[a][0], from, Until);
+                                    setColoredBox(box[k], laiks[a][0], from, Until, willWorkSick[a]);
                                     n++;
                                     k++;
                                 }
@@ -535,7 +510,7 @@ function setSlimiba (){
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
                                     offWork.innerHTML = willWorkSick[a];
                                     box[k].title = insert.textContent;
-                                    setColoredBox(box[k], laiks[a][0], from, Until);
+                                    setColoredBox(box[k], laiks[a][0], from, Until, willWorkSick[a]);
                                     n++;
                                     k++;
                                 }
@@ -597,7 +572,7 @@ function setLekcijas(){
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
                                     offWork.innerHTML = willWorkUni[a];
                                     box[k].title = insert.textContent;
-                                    setColoredBox(box[k], laiks[a][0], from, Until);
+                                    setColoredBox(box[k], laiks[a][0], from, Until, willWorkUni[a]);
                                     n++;
                                     k++;
                                 }
@@ -614,7 +589,7 @@ function setLekcijas(){
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
                                     offWork.innerHTML = willWorkUni[a];
                                     box[k].title = insert.textContent;
-                                    setColoredBox(box[k], laiks[a][0], from, Until);
+                                    setColoredBox(box[k], laiks[a][0], from, Until), willWorkUni[a];
                                     n++;
                                     k++;
                                 }
@@ -631,7 +606,7 @@ function setLekcijas(){
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
                                     offWork.innerHTML = willWorkUni[a];
                                     box[k].title = insert.textContent;
-                                    setColoredBox(box[k], laiks[a][0], from, Until);
+                                    setColoredBox(box[k], laiks[a][0], from, Until, willWorkUni[a]);
                                     n++;
                                     k++;
                                 }
@@ -647,7 +622,7 @@ function setLekcijas(){
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
                                     offWork.innerHTML = willWorkUni[a];
                                     box[k].title = insert.textContent;
-                                    setColoredBox(box[k], laiks[a][0], from, Until);
+                                    setColoredBox(box[k], laiks[a][0], from, Until, willWorkUni[a]);
                                     n++;
                                     k++;
                                 }
@@ -663,7 +638,7 @@ function setLekcijas(){
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
                                     offWork.innerHTML = willWorkUni[a];
                                     box[k].title = insert.textContent;
-                                    setColoredBox(box[k], laiks[a][0], from, Until);
+                                    setColoredBox(box[k], laiks[a][0], from, Until, willWorkUni[a]);
                                     n++;
                                     k++;
                                 }
@@ -982,7 +957,7 @@ function setOther(){
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
                                     offWork.innerHTML = willWorkOther[a];
                                     box[k].title = insert.textContent;
-                                    setColoredBox(box[k], laiks[a][0], from, Until);
+                                    setColoredBox(box[k], laiks[a][0], from, Until, willWorkOther[a]);
                                     n++;
                                     k++;
                                 }
@@ -999,7 +974,7 @@ function setOther(){
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
                                     offWork.innerHTML = willWorkOther[a];
                                     box[k].title = insert.textContent;
-                                    setColoredBox(box[k], laiks[a][0], from, Until);
+                                    setColoredBox(box[k], laiks[a][0], from, Until, willWorkOther[a]);
                                     n++;
                                     k++;
                                 }
@@ -1016,7 +991,7 @@ function setOther(){
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
                                     offWork.innerHTML = willWorkOther[a];
                                     box[k].title = insert.textContent;
-                                    setColoredBox(box[k], laiks[a][0], from, Until);
+                                    setColoredBox(box[k], laiks[a][0], from, Until, willWorkOther[a]);
                                     n++;
                                     k++;
                                 }
@@ -1032,7 +1007,7 @@ function setOther(){
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
                                     offWork.innerHTML = willWorkOther[a];
                                     box[k].title = insert.textContent;
-                                    setColoredBox(box[k], laiks[a][0], from, Until);
+                                    setColoredBox(box[k], laiks[a][0], from, Until, willWorkOther[a]);
                                     n++;
                                     k++;
                                 }
@@ -1048,7 +1023,7 @@ function setOther(){
                                     offTime.innerHTML = from + ":00" + "-" + Until + ":00";
                                     offWork.innerHTML = willWorkOther[a];
                                     box[k].title = insert.textContent;
-                                    setColoredBox(box[k], laiks[a][0], from, Until);
+                                    setColoredBox(box[k], laiks[a][0], from, Until, willWorkOther[a]);
                                     n++;
                                     k++;
                                 }
@@ -1071,7 +1046,6 @@ var willWorkOther = [];
 function setColors(){
     iemeslsList = document.getElementById("iemeslsList").getElementsByClassName("one");
     //ieliek masīvā atsevišķi visus iemeslus, vēlāk tiks izmantots, lai katru iemeslu atsevišķi ieliktu citā masīvā
-    console.log(iemeslsList);
     var workFrom = document.getElementsByClassName("atstradasNo");
     var workUntil = document.getElementsByClassName("atstradasLidz");
     var workDate = document.getElementsByClassName("atstradasKad");
@@ -1080,8 +1054,6 @@ function setColors(){
     var k = 0 ;
     var j = 0;
     var s = 0;
-
-    console.log(willWorkReason);
 
     for (i = 0; i< willWorkReason.length; i++) {
         if (willWorkReason[i].innerHTML.startsWith('Slimiba')) {
@@ -1097,10 +1069,6 @@ function setColors(){
             s++;
         }
     }
-
-    console.log(willWorkSick);
-    console.log(willWorkUni);
-    console.log(willWorkOther);
 
 
 
@@ -1130,12 +1098,13 @@ function setDeleteForm(date, from, Until){
 };
 
 
-function setColoredBox(target, date, from, Until){
+function setColoredBox(target, date, from, Until, willWork){
     target.style.color = "#ffffff";
 
     $(target).click(function(event){
         deleteBox.style.display = "block";
         deleteBox.style.position = "absolute";
+        delete willWork;
 
         var now = $(this).attr('id');
         if (now.startsWith("M")){
@@ -1177,8 +1146,6 @@ var lectureInput = document.getElementById("Lecture");
 var workFromHomeInput = document.getElementById("WorkFromHome");
 var workloadInput = document.getElementById("Workload");
 var otherInput = document.getElementById("Other");
-
-console.log(sickInput);
 
 
 

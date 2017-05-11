@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'django_user_agents',
     'darba_laiks.apps.DarbaLaiksConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
-MIDDLEWARE = [
+MIDDLEWARE_CLASSES = [
+    'django_user_agents.middleware.UserAgentMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -132,3 +134,6 @@ MEDIA_ROOT=os.path.join(BASE_DIR, "media_cdn")
 MEDIA_URL='/media/'
 
 AUTH_PROFILE_MODULE = 'darba_laiks.UserProfile'
+
+USER_AGENTS_CACHE = 'default'
+

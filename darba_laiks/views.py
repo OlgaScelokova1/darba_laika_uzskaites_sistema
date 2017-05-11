@@ -24,112 +24,71 @@ from .forms import UserCreationForm
 from .models import UserProfile, Iemesls, Atstrada, Saglabatie
 import datetime
 from datetime import timedelta
+from django_user_agents.utils import get_user_agent
+
 
 
 
 # Create your views here.
+
+def device_info(request):
+
+    # Let's assume that the visitor uses an iPhone...
+    is_mobile=request.user_agent.is_mobile # returns True
+    is_tablet=request.user_agent.is_tablet # returns False
+    is_touch_capable=request.user_agent.is_touch_capable # returns True
+    is_pc=request.user_agent.is_pc # returns False
+    is_bot=request.user_agent.is_bot # returns False
+
+    # Accessing user agent's browser attributes
+    browser=request.user_agent.browser  # returns Browser(family=u'Mobile Safari', version=(5, 1), version_string='5.1')
+    browser_family=request.user_agent.browser.family  # returns 'Mobile Safari'
+    browser_version=request.user_agent.browser.version  # returns (5, 1)
+    browser_version_string=request.user_agent.browser.version_string   # returns '5.1'
+
+    # Operating System properties
+    user_agent_os=request.user_agent.os  # returns OperatingSystem(family=u'iOS', version=(5, 1), version_string='5.1')
+    user_agent_os_family=request.user_agent.os.family  # returns 'iOS'
+    user_agent_os_version=request.user_agent.os.version  # returns (5, 1)
+    user_agent_os_version_string=request.user_agent.os.version_string  # returns '5.1'
+
+    # Device properties
+    user_agent_device=request.user_agent.device  # returns Device(family='iPhone')
+    user_agent_device_family=request.user_agent.device.family  # returns 'iPhone'
+
+    context= {'is_mobile': is_mobile,
+              'is_tablet': is_tablet,
+              'is_touch_capable': is_touch_capable,
+              'is_pc': is_pc,
+              'is_bot': is_bot,
+              'browser': browser,
+              'browser_family': browser_family,
+              'browser_version': browser_version,
+              'browser_version_string': browser_version_string,
+              'user_agent_os': user_agent_os,
+              'user_agent_os_family': user_agent_os_family,
+              'user_agent_os_version': user_agent_os_version,
+              'user_agent_os_version_string':  user_agent_os_version_string,
+              'user_agent_device': user_agent_device,
+              'user_agent_device_family': user_agent_device_family,
+
+              }
+
+    return render(request, "device_info.html", context)
+
+
 def darba_laiks(request):
-    if request.method == 'GET':
-        lietotajs=request.user
-        nebus=Darba_laiks.objects.filter(lietotajs=lietotajs)
-        iemesls=Iemesls.objects.filter(lietotajs=lietotajs)
-        atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
-        date = datetime.date.today()
-        monday = date - datetime.timedelta(date.weekday())
-        sunday = monday + datetime.timedelta(6)
-        tuesday = monday + datetime.timedelta(1)
-        wednesday = monday + datetime.timedelta(2)
-        thursday = monday + datetime.timedelta(3)
-        friday = monday + datetime.timedelta(4)
-        saturday = monday + datetime.timedelta(5)
-        week = datetime.date.today().strftime("%V")
-        '24'
+    user_agent = get_user_agent(request)
+    if user_agent.is_pc:
+        x=request.user_agent.browser.family
+
+        if request.method == 'GET':
 
 
 
-        context = {'nebus': nebus,
-                   'iemesls': iemesls,
-                   'atstrada': atstrada,
-                   'monday': monday,
-                   'tuesday': tuesday,
-                   'wednesday': wednesday,
-                   'thursday': thursday,
-                   'friday': friday,
-                   'saturday': saturday,
-                   'sunday': sunday,
-                   'week': week,
-                   }
-        urls = [
-            'index.html',
-            'visi.html',
-        ]
-
-        if request.user.is_authenticated():
-            return render(request, urls, context)
-        else:
-            return HttpResponseRedirect('/darba_laiks/login/')
-
-    if request.method =='POST':
-        monday = request.POST.get("monday")
-        monday2 = request.POST.get("mondayDown")
-        datums_dzesanai=request.POST.get("datums-dzesanai")
-
-        lietotajs=request.user
-        nebus=Darba_laiks.objects.filter(lietotajs=lietotajs)
-        iemesls=Iemesls.objects.filter(lietotajs=lietotajs)
-        atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
-
-
-
-        if monday:
-            monday=monday
-            tuesday = request.POST.get("tuesday")
-            wednesday= request.POST.get("wednesday")
-            thursday = request.POST.get("thursday")
-            friday = request.POST.get("friday")
-            saturday = request.POST.get("saturday")
-            sunday = request.POST.get("sunday")
-
-
-            context = {'nebus': nebus,
-                       'iemesls': iemesls,
-                       'atstrada': atstrada,
-                       'monday': monday,
-                       'tuesday': tuesday,
-                       'wednesday': wednesday,
-                       'thursday': thursday,
-                       'friday': friday,
-                       'saturday': saturday,
-                       'sunday': sunday,
-                       }
-        elif monday2:
-            monday=monday2
-            tuesday = request.POST.get("tuesday")
-            wednesday= request.POST.get("wednesday")
-            thursday = request.POST.get("thursday")
-            friday = request.POST.get("friday")
-            saturday = request.POST.get("saturday")
-            sunday = request.POST.get("sunday")
-
-
-            context = {'nebus': nebus,
-                       'iemesls': iemesls,
-                       'atstrada': atstrada,
-                       'monday': monday,
-                       'tuesday': tuesday,
-                       'wednesday': wednesday,
-                       'thursday': thursday,
-                       'friday': friday,
-                       'saturday': saturday,
-                       'sunday': sunday,
-                       }
-        elif datums_dzesanai:
-            no_dzesanai=request.POST.get("no-dzesanai")
-            i=Darba_laiks.objects.filter(lietotajs=lietotajs, datums=datums_dzesanai, no=no_dzesanai)
-            i.delete()
-
-            nebus = Darba_laiks.objects.filter(lietotajs=lietotajs)
-            iemesls = Iemesls.objects.filter(lietotajs=lietotajs)
+            lietotajs=request.user
+            nebus=Darba_laiks.objects.filter(lietotajs=lietotajs)
+            iemesls=Iemesls.objects.filter(lietotajs=lietotajs)
             atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
             date = datetime.date.today()
             monday = date - datetime.timedelta(date.weekday())
@@ -142,6 +101,8 @@ def darba_laiks(request):
             week = datetime.date.today().strftime("%V")
             '24'
 
+
+
             context = {'nebus': nebus,
                        'iemesls': iemesls,
                        'atstrada': atstrada,
@@ -153,77 +114,200 @@ def darba_laiks(request):
                        'saturday': saturday,
                        'sunday': sunday,
                        'week': week,
+                       'x': x,
+
                        }
+            urls = [
+                'index.html',
+                'visi.html',
+            ]
 
-        else:
-
-            iemesls = request.POST.get("reason")
-            a=Darba_laiks.objects.create(
-                lietotajs = request.user,
-                no=request.POST.get("timeFrom", ""),
-                datums=request.POST.get("dateWhenIs", ""),
-                lidz=request.POST.get("timeTill",""),
-                ir_mainits='True'
-            )
-
-            darba_laiks_id=a.id
-
-
-            if iemesls=='Slimiba':
-                 b=Iemesls.objects.create(
-                     lietotajs=request.user,
-                     darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
-                     slimiba='True',
-                 )
-            elif iemesls=='Atvalinajums':
-                 b=Iemesls.objects.create(
-                     lietotajs=request.user,
-                     darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
-                     atvalinajums='True',
-                 )
-
-            elif iemesls=='Lekcijas':
-                 b=Iemesls.objects.create(
-                     lietotajs=request.user,
-                     darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
-                     lekcijas='True',
-                 )
-
-            elif iemesls=='Darbs no majam':
-                 b=Iemesls.objects.create(
-                     lietotajs=request.user,
-                     darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
-                     darbs_no_majam='True',
-                 )
-            elif iemesls=='Mazaka slodze':
-                 b=Iemesls.objects.create(
-                     lietotajs=request.user,
-                     darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
-                     mazaka_slodze='True',
-                 )
+            if request.user.is_authenticated():
+                return render(request, urls, context)
             else:
-                b=Iemesls.objects.create(
+                return HttpResponseRedirect('/darba_laiks/login/')
+
+        if request.method =='POST':
+            monday = request.POST.get("monday")
+            monday2 = request.POST.get("mondayDown")
+            datums_dzesanai=request.POST.get("datums-dzesanai")
+
+            lietotajs=request.user
+            nebus=Darba_laiks.objects.filter(lietotajs=lietotajs)
+            iemesls=Iemesls.objects.filter(lietotajs=lietotajs)
+            atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
+
+
+
+            if monday:
+                monday=monday
+                tuesday = request.POST.get("tuesday")
+                wednesday= request.POST.get("wednesday")
+                thursday = request.POST.get("thursday")
+                friday = request.POST.get("friday")
+                saturday = request.POST.get("saturday")
+                sunday = request.POST.get("sunday")
+
+
+                context = {'nebus': nebus,
+                           'iemesls': iemesls,
+                           'atstrada': atstrada,
+                           'monday': monday,
+                           'tuesday': tuesday,
+                           'wednesday': wednesday,
+                           'thursday': thursday,
+                           'friday': friday,
+                           'saturday': saturday,
+                           'sunday': sunday,
+                           }
+            elif monday2:
+                monday=monday2
+                tuesday = request.POST.get("tuesday")
+                wednesday= request.POST.get("wednesday")
+                thursday = request.POST.get("thursday")
+                friday = request.POST.get("friday")
+                saturday = request.POST.get("saturday")
+                sunday = request.POST.get("sunday")
+
+
+                context = {'nebus': nebus,
+                           'iemesls': iemesls,
+                           'atstrada': atstrada,
+                           'monday': monday,
+                           'tuesday': tuesday,
+                           'wednesday': wednesday,
+                           'thursday': thursday,
+                           'friday': friday,
+                           'saturday': saturday,
+                           'sunday': sunday,
+                           }
+            elif datums_dzesanai:
+                no_dzesanai=request.POST.get("no-dzesanai")
+                i=Darba_laiks.objects.filter(lietotajs=lietotajs, datums=datums_dzesanai, no=no_dzesanai)
+                i.delete()
+
+                nebus = Darba_laiks.objects.filter(lietotajs=lietotajs)
+                iemesls = Iemesls.objects.filter(lietotajs=lietotajs)
+                atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
+                date = datetime.date.today()
+                monday = date - datetime.timedelta(date.weekday())
+                sunday = monday + datetime.timedelta(6)
+                tuesday = monday + datetime.timedelta(1)
+                wednesday = monday + datetime.timedelta(2)
+                thursday = monday + datetime.timedelta(3)
+                friday = monday + datetime.timedelta(4)
+                saturday = monday + datetime.timedelta(5)
+                week = datetime.date.today().strftime("%V")
+                '24'
+
+                context = {'nebus': nebus,
+                           'iemesls': iemesls,
+                           'atstrada': atstrada,
+                           'monday': monday,
+                           'tuesday': tuesday,
+                           'wednesday': wednesday,
+                           'thursday': thursday,
+                           'friday': friday,
+                           'saturday': saturday,
+                           'sunday': sunday,
+                           'week': week,
+                           }
+
+            else:
+
+                iemesls = request.POST.get("reason")
+                a=Darba_laiks.objects.create(
+                    lietotajs = request.user,
+                    no=request.POST.get("timeFrom", ""),
+                    datums=request.POST.get("dateWhenIs", ""),
+                    lidz=request.POST.get("timeTill",""),
+                    ir_mainits='True'
+                )
+
+                darba_laiks_id=a.id
+
+
+                if iemesls=='Slimiba':
+                     b=Iemesls.objects.create(
+                         lietotajs=request.user,
+                         darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
+                         slimiba='True',
+                     )
+                elif iemesls=='Atvalinajums':
+                     b=Iemesls.objects.create(
+                         lietotajs=request.user,
+                         darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
+                         atvalinajums='True',
+                     )
+
+                elif iemesls=='Lekcijas':
+                     b=Iemesls.objects.create(
+                         lietotajs=request.user,
+                         darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
+                         lekcijas='True',
+                     )
+
+                elif iemesls=='Darbs no majam':
+                     b=Iemesls.objects.create(
+                         lietotajs=request.user,
+                         darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
+                         darbs_no_majam='True',
+                     )
+                elif iemesls=='Mazaka slodze':
+                     b=Iemesls.objects.create(
+                         lietotajs=request.user,
+                         darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
+                         mazaka_slodze='True',
+                     )
+                else:
+                    b=Iemesls.objects.create(
+                        lietotajs=request.user,
+                        darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
+                        cits='True',
+                    )
+                iemesls_id = b.id
+
+                Atstrada.objects.create(
                     lietotajs=request.user,
                     darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
-                    cits='True',
+                    iemesls=Iemesls.objects.get(id=iemesls_id),
+                    no=request.POST.get("timeWillStart", ""),
+                    datums=request.POST.get("dateWhenWill", ""),
+                    lidz=request.POST.get("timeWillEnd", ""),
                 )
-            iemesls_id = b.id
 
-            Atstrada.objects.create(
-                lietotajs=request.user,
-                darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
-                iemesls=Iemesls.objects.get(id=iemesls_id),
-                no=request.POST.get("timeWillStart", ""),
-                datums=request.POST.get("dateWhenWill", ""),
-                lidz=request.POST.get("timeWillEnd", ""),
-            )
+                context = {
+                           }
+            if request.user.is_authenticated():
+                return render(request, "index.html", context)
+            else:
+                return HttpResponseRedirect('/darba_laiks/login/')
+    else:
+        x = request.user_agent.browser.family
 
-            context = {
+        if request.method == 'GET':
+
+            lietotajs = request.user
+            nebus = Darba_laiks.objects.filter(lietotajs=lietotajs)
+            iemesls = Iemesls.objects.filter(lietotajs=lietotajs)
+            atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
+            week = datetime.date.today().strftime("%V")
+            '24'
+
+            context = {'nebus': nebus,
+                       'iemesls': iemesls,
+                       'atstrada': atstrada,
+                       'week': week,
+                       'lietotajs': lietotajs,
+                       'x': x,
+
                        }
-        if request.user.is_authenticated():
-            return render(request, "index.html", context)
-        else:
-            return HttpResponseRedirect('/darba_laiks/login/')
+
+            if request.user.is_authenticated():
+                return render(request, "index_mobile.html", context)
+            else:
+                return HttpResponseRedirect('/darba_laiks/login/')
+
 
 
 
@@ -299,139 +383,130 @@ class UserFormView(View):
         return render(request, self.template_name, {'form': form})
 
 def darbinieki(request):
-    if request.method == 'GET':
-        # collection_ids = Darba_laiks.objects.filter(datums=datetime.date.today()).values_list('lietotajs',flat=True).distinct()
-        # izmainitie = [
-        #     Darba_laiks.objects.filter(lietotajs__id=c)[0] for c in collection_ids
-        #     ]
-        visi=User.objects.all()
-        datums = datetime.date.today()
+    user_agent = get_user_agent(request)
+    if user_agent.is_pc:
+        x=request.user_agent.browser.family
+        if request.method == 'GET':
+            # collection_ids = Darba_laiks.objects.filter(datums=datetime.date.today()).values_list('lietotajs',flat=True).distinct()
+            # izmainitie = [
+            #     Darba_laiks.objects.filter(lietotajs__id=c)[0] for c in collection_ids
+            #     ]
+            visi=User.objects.all()
+            datums = datetime.date.today()
 
 
-        darba_laika_id = Darba_laiks.objects.filter(datums=datetime.date.today()).values_list('id',flat=True).distinct()
+            darba_laika_id = Darba_laiks.objects.filter(datums=datetime.date.today()).values_list('id',flat=True).distinct()
 
 
-        collection_ids = Darba_laiks.objects.filter(datums=datetime.date.today()).values_list('lietotajs',flat=True).distinct()
-        izmainitie = [
-            Darba_laiks.objects.filter(lietotajs__id=c)[0] for c in collection_ids
-            ]
-
-
-        iemesli = [
-            Iemesls.objects.filter(darba_laiks__id=c)[0] for c in darba_laika_id
-            ]
-
-        atstrada= Atstrada.objects.filter(darba_laiks__id__in=darba_laika_id)
-
-        lietotajs_kurs_pievienoja = request.user
-        lietotaja_saglabatie = Saglabatie.objects.filter(lietotajs_kurs_pievienoja=lietotajs_kurs_pievienoja)
-
-
-
-
-        context = {'visi': visi,
-                   'izmainitie': izmainitie,
-                   'iemesli': iemesli,
-                   'atstrada': atstrada,
-                   'lietotaja_saglabatie': lietotaja_saglabatie,
-                   'datums': datums,
-                }
-        return render(request, 'visi.html', context)
-
-    if request.method == 'POST':
-        datums = request.POST.get("date")
-
-        visi=User.objects.all()
-
-        darba_laika_id = Darba_laiks.objects.filter(datums=datums).values_list('id',flat=True).distinct()
-
-        collection_ids = Darba_laiks.objects.filter(datums=datums).values_list('lietotajs',flat=True).distinct()
-        izmainitie = [
-            Darba_laiks.objects.filter(lietotajs__id=c)[0] for c in collection_ids
-            ]
-
-
-        iemesli = [
-            Iemesls.objects.filter(darba_laiks__id=c)[0] for c in darba_laika_id
-            ]
-
-        atstrada = Atstrada.objects.filter(darba_laiks__id__in=darba_laika_id)
-
-        lietotajs_kurs_pievienoja = request.user
-        lietotaja_saglabatie = Saglabatie.objects.filter(lietotajs_kurs_pievienoja=lietotajs_kurs_pievienoja)
-
-
-        saglabata_id=request.POST.get("id")
-
-        if saglabata_id:
-            datums=datetime.date.today()
-            darba_laika_id = Darba_laiks.objects.filter(datums=datums).values_list('id', flat=True).distinct()
-
-            collection_ids = Darba_laiks.objects.filter(datums=datums).values_list('lietotajs', flat=True).distinct()
+            collection_ids = Darba_laiks.objects.filter(datums=datetime.date.today()).values_list('lietotajs',flat=True).distinct()
             izmainitie = [
                 Darba_laiks.objects.filter(lietotajs__id=c)[0] for c in collection_ids
-            ]
+                ]
+
 
             iemesli = [
                 Iemesls.objects.filter(darba_laiks__id=c)[0] for c in darba_laika_id
-            ]
+                ]
 
-            atstrada = Atstrada.objects.filter(darba_laiks__id__in=darba_laika_id)
+            atstrada= Atstrada.objects.filter(darba_laiks__id__in=darba_laika_id)
 
-
-            lietotajs_kuru_pievienoja = User.objects.get(id=saglabata_id)
-            i = Saglabatie.objects.filter(lietotajs_kuru_pievienoja=lietotajs_kuru_pievienoja)
-
-            if not i:
-
-                Saglabatie.objects.create(
-                    lietotajs_kurs_pievienoja=request.user,
-                    lietotajs_kuru_pievienoja=lietotajs_kuru_pievienoja
-                )
-            else:
-                dzest=i
-                dzest.delete()
+            lietotajs_kurs_pievienoja = request.user
+            lietotaja_saglabatie = Saglabatie.objects.filter(lietotajs_kurs_pievienoja=lietotajs_kurs_pievienoja)
 
 
 
-        query=request.POST.get("q")
-        if query:
-            datums = request.POST.get("datums-meklesanai")
-            visi = User.objects.all()
 
-            darba_laika_id = Darba_laiks.objects.filter(datums=datums).values_list('id', flat=True).distinct()
+            context = {'visi': visi,
+                       'izmainitie': izmainitie,
+                       'iemesli': iemesli,
+                       'atstrada': atstrada,
+                       'lietotaja_saglabatie': lietotaja_saglabatie,
+                       'datums': datums,
+                       'x': x,
+                    }
+            return render(request, 'visi.html', context)
 
-            collection_ids = Darba_laiks.objects.filter(datums=datums).values_list('lietotajs', flat=True).distinct()
+        if request.method == 'POST':
+            datums = request.POST.get("date")
+
+            visi=User.objects.all()
+
+            darba_laika_id = Darba_laiks.objects.filter(datums=datums).values_list('id',flat=True).distinct()
+
+            collection_ids = Darba_laiks.objects.filter(datums=datums).values_list('lietotajs',flat=True).distinct()
             izmainitie = [
                 Darba_laiks.objects.filter(lietotajs__id=c)[0] for c in collection_ids
-            ]
+                ]
+
 
             iemesli = [
                 Iemesls.objects.filter(darba_laiks__id=c)[0] for c in darba_laika_id
-            ]
+                ]
 
             atstrada = Atstrada.objects.filter(darba_laiks__id__in=darba_laika_id)
 
-            datums = request.POST.get("datums-meklesanai")
-            visi=visi.filter(
-                    Q(username__icontains=query) |
-                    Q(first_name__icontains=query) |
-                    Q(last_name__icontains=query)
-                )
+            lietotajs_kurs_pievienoja = request.user
+            lietotaja_saglabatie = Saglabatie.objects.filter(lietotajs_kurs_pievienoja=lietotajs_kurs_pievienoja)
 
-        context = {'visi': visi,
-                   'izmainitie': izmainitie,
-                   'iemesli': iemesli,
-                   'atstrada': atstrada,
-                   'lietotaja_saglabatie': lietotaja_saglabatie,
-                   'saglabata_id': saglabata_id,
-                   'datums': datums,
-                   }
-        date = request.POST.get("date")
 
-        if date:
-            print "xx"
-            datums=date
+            saglabata_id=request.POST.get("id")
+
+            if saglabata_id:
+                datums=datetime.date.today()
+                darba_laika_id = Darba_laiks.objects.filter(datums=datums).values_list('id', flat=True).distinct()
+
+                collection_ids = Darba_laiks.objects.filter(datums=datums).values_list('lietotajs', flat=True).distinct()
+                izmainitie = [
+                    Darba_laiks.objects.filter(lietotajs__id=c)[0] for c in collection_ids
+                ]
+
+                iemesli = [
+                    Iemesls.objects.filter(darba_laiks__id=c)[0] for c in darba_laika_id
+                ]
+
+                atstrada = Atstrada.objects.filter(darba_laiks__id__in=darba_laika_id)
+
+
+                lietotajs_kuru_pievienoja = User.objects.get(id=saglabata_id)
+                i = Saglabatie.objects.filter(lietotajs_kuru_pievienoja=lietotajs_kuru_pievienoja)
+
+                if not i:
+
+                    Saglabatie.objects.create(
+                        lietotajs_kurs_pievienoja=request.user,
+                        lietotajs_kuru_pievienoja=lietotajs_kuru_pievienoja
+                    )
+                else:
+                    dzest=i
+                    dzest.delete()
+
+
+
+            query=request.POST.get("q")
+            if query:
+                datums = request.POST.get("datums-meklesanai")
+                visi = User.objects.all()
+
+                darba_laika_id = Darba_laiks.objects.filter(datums=datums).values_list('id', flat=True).distinct()
+
+                collection_ids = Darba_laiks.objects.filter(datums=datums).values_list('lietotajs', flat=True).distinct()
+                izmainitie = [
+                    Darba_laiks.objects.filter(lietotajs__id=c)[0] for c in collection_ids
+                ]
+
+                iemesli = [
+                    Iemesls.objects.filter(darba_laiks__id=c)[0] for c in darba_laika_id
+                ]
+
+                atstrada = Atstrada.objects.filter(darba_laiks__id__in=darba_laika_id)
+
+                datums = request.POST.get("datums-meklesanai")
+                visi=visi.filter(
+                        Q(username__icontains=query) |
+                        Q(first_name__icontains=query) |
+                        Q(last_name__icontains=query)
+                    )
+
             context = {'visi': visi,
                        'izmainitie': izmainitie,
                        'iemesli': iemesli,
@@ -440,8 +515,21 @@ def darbinieki(request):
                        'saglabata_id': saglabata_id,
                        'datums': datums,
                        }
+            date = request.POST.get("date")
 
-        return render(request, 'visi.html', context)
+            if date:
+                print "xx"
+                datums=date
+                context = {'visi': visi,
+                           'izmainitie': izmainitie,
+                           'iemesli': iemesli,
+                           'atstrada': atstrada,
+                           'lietotaja_saglabatie': lietotaja_saglabatie,
+                           'saglabata_id': saglabata_id,
+                           'datums': datums,
+                           }
+
+            return render(request, 'visi.html', context)
 
 
 def visi(request):
@@ -563,77 +651,88 @@ def darbinieka_darba_laiks(request, pk):
         return render(request, "darbinieka-darba-laiks.html", context)
 
 def saglabatie(request):
-    if request.method == 'GET':
-        datums = datetime.date.today()
-        darba_laika_id = Darba_laiks.objects.filter(datums=datetime.date.today()).values_list('id',flat=True).distinct()
+    user_agent = get_user_agent(request)
+    if user_agent.is_pc:
+        x=request.user_agent.browser.family
+        if request.method == 'GET':
+            datums = datetime.date.today()
+            darba_laika_id = Darba_laiks.objects.filter(datums=datetime.date.today()).values_list('id',flat=True).distinct()
 
 
-        collection_ids = Darba_laiks.objects.filter(datums=datetime.date.today()).values_list('lietotajs',flat=True).distinct()
-        izmainitie = [
-            Darba_laiks.objects.filter(lietotajs__id=c)[0] for c in collection_ids
+            collection_ids = Darba_laiks.objects.filter(datums=datetime.date.today()).values_list('lietotajs',flat=True).distinct()
+            izmainitie = [
+                Darba_laiks.objects.filter(lietotajs__id=c)[0] for c in collection_ids
+                ]
+
+
+            iemesli = [
+                Iemesls.objects.filter(darba_laiks__id=c)[0] for c in darba_laika_id
+                ]
+
+            atstrada= Atstrada.objects.filter(darba_laiks__id__in=darba_laika_id)
+
+            lietotajs_kurs_pievienoja=request.user
+            lietotaja_saglabatie=Saglabatie.objects.filter(lietotajs_kurs_pievienoja=lietotajs_kurs_pievienoja)
+
+
+            context= {'lietotaja_saglabatie': lietotaja_saglabatie,
+                      'datums': datums,
+                      'izmainitie': izmainitie,
+                      'iemesli': iemesli,
+                      'atstrada': atstrada,
+                      'x': x,
+                     }
+
+            return render(request, 'saglabatie.html', context)
+
+        if request.method == 'POST':
+            saglabata_id=request.POST.get("id")
+            datums = request.POST.get("date")
+            lietotajs_kurs_pievienoja = request.user
+            lietotaja_saglabatie = Saglabatie.objects.filter(lietotajs_kurs_pievienoja=lietotajs_kurs_pievienoja)
+
+            darba_laika_id = Darba_laiks.objects.filter(datums=datums).values_list('id', flat=True).distinct()
+
+            collection_ids = Darba_laiks.objects.filter(datums=datums).values_list('lietotajs',flat=True).distinct()
+            izmainitie = [
+                Darba_laiks.objects.filter(lietotajs__id=c)[0] for c in collection_ids
             ]
 
-
-        iemesli = [
-            Iemesls.objects.filter(darba_laiks__id=c)[0] for c in darba_laika_id
+            iemesli = [
+                Iemesls.objects.filter(darba_laiks__id=c)[0] for c in darba_laika_id
             ]
 
-        atstrada= Atstrada.objects.filter(darba_laiks__id__in=darba_laika_id)
+            atstrada = Atstrada.objects.filter(darba_laiks__id__in=darba_laika_id)
 
-        lietotajs_kurs_pievienoja=request.user
-        lietotaja_saglabatie=Saglabatie.objects.filter(lietotajs_kurs_pievienoja=lietotajs_kurs_pievienoja)
-
-
-        context= {'lietotaja_saglabatie': lietotaja_saglabatie,
-                  'datums': datums,
-                  'izmainitie': izmainitie,
-                  'iemesli': iemesli,
-                  'atstrada': atstrada,
-                 }
-
-        return render(request, 'saglabatie.html', context)
-
-    if request.method == 'POST':
-        saglabata_id=request.POST.get("id")
-        datums = request.POST.get("date")
-        lietotajs_kurs_pievienoja = request.user
-        lietotaja_saglabatie = Saglabatie.objects.filter(lietotajs_kurs_pievienoja=lietotajs_kurs_pievienoja)
-
-        darba_laika_id = Darba_laiks.objects.filter(datums=datums).values_list('id', flat=True).distinct()
-
-        collection_ids = Darba_laiks.objects.filter(datums=datums).values_list('lietotajs',flat=True).distinct()
-        izmainitie = [
-            Darba_laiks.objects.filter(lietotajs__id=c)[0] for c in collection_ids
-        ]
-
-        iemesli = [
-            Iemesls.objects.filter(darba_laiks__id=c)[0] for c in darba_laika_id
-        ]
-
-        atstrada = Atstrada.objects.filter(darba_laiks__id__in=darba_laika_id)
-
-        lietotajs_kurs_pievienoja = request.user
-        lietotaja_saglabatie = Saglabatie.objects.filter(lietotajs_kurs_pievienoja=lietotajs_kurs_pievienoja)
+            lietotajs_kurs_pievienoja = request.user
+            lietotaja_saglabatie = Saglabatie.objects.filter(lietotajs_kurs_pievienoja=lietotajs_kurs_pievienoja)
 
 
 
 
-        if saglabata_id:
-            lietotajs_kuru_pievienoja = User.objects.get(id=saglabata_id)
-            i = Saglabatie.objects.filter(lietotajs_kuru_pievienoja=lietotajs_kuru_pievienoja)
-            i.delete()
+            if saglabata_id:
+                lietotajs_kuru_pievienoja = User.objects.get(id=saglabata_id)
+                i = Saglabatie.objects.filter(lietotajs_kuru_pievienoja=lietotajs_kuru_pievienoja)
+                i.delete()
 
 
 
-        context = {'lietotaja_saglabatie': lietotaja_saglabatie,
-                   'datums': datums,
-                   'izmainitie': izmainitie,
-                   'iemesli': iemesli,
-                   'atstrada': atstrada,
-                   }
+            context = {'lietotaja_saglabatie': lietotaja_saglabatie,
+                       'datums': datums,
+                       'izmainitie': izmainitie,
+                       'iemesli': iemesli,
+                       'atstrada': atstrada,
+                       }
 
 
-        return render(request, 'saglabatie.html', context)
+            return render(request, 'saglabatie.html', context)
+    else:
+        x = request.user_agent.browser.family
+        context= {
+            'x':x,
+
+        }
+        return render(request, 'saglabatie_mobile.html', context)
 
 
 # def pievienot_favoritiem(request, pk):
