@@ -1,7 +1,5 @@
 $(document).ready(function() {
 
-$.ajaxSetup({ cache: false });
-
 var today = new Date();
 var thisWeek = getWeek(today);
 var documentWeek = document.getElementById("WeekDate").innerHTML;
@@ -293,11 +291,12 @@ frm.submit(function () {
         url: frm.attr('action'),
         data: frm.serialize(),
         success: function (data) {
+         location.reload();
         },
         error: function(data) {
+         location.reload();
         }
     });
-    frm.cleanData(); // forma tiek notīrīta
     return false;
 }); // kad uzspiež "submit", padotie dati tiek sūtīti uz datu bāzi, kur tie tiek apstrādāti
 

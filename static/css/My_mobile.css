@@ -1,0 +1,83 @@
+body {
+  background-color: #f2f2f2;
+  font-family: 'Oxygen';
+
+}
+
+.col-sm-2 {
+    font-size: 12px;
+}
+
+li {
+  list-style-type: none;
+}
+
+#Table ul li {
+    width: 145px;
+	height: 22.7px;
+    text-align: center;
+}
+
+
+
+.box1{
+    background-color: #ffffff;
+}
+
+.box2{
+    background-color: #e2edf8;
+}
+
+
+.box2:focus{
+  background-color: #d6e2ea;
+  border: none;
+  overflow: auto;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+#FillRow{
+    margin-top:5px;
+    margin-left: 1.5px;
+}
+
+#Fill {
+    display: none;
+  	width: 145px;
+    height: 136px;
+	background-color: #ffffff;
+    font-size: 10px;
+    padding-left:0px;
+}
+
+
+#Fill p {
+    color: #9cb5cc;
+    -webkit-margin-after: 0px;
+    -webkit-margin-before: 0.5em;
+}
+
+#delete {
+    display: none;
+  	width: 145px;
+    height: 40px;
+	background-color:  #29abe2;
+    padding-left:0px;
+    text-align:center;
+
+}
+
+#deleteButton{
+    background-color:  #29abe2;
+    color: #ffffff;
+    border:0;
+    font-size: 16px;
+    padding-top: 0.5em;
+}
+
+#dataForFill{
+    font-size: 0;
+}
