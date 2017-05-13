@@ -254,7 +254,6 @@ input {
 
 
 .insert {
-
 	color: #2d3439;
     margin-bottom: 5px;
 }
@@ -291,10 +290,7 @@ input {
 }
 
 #userProfile{
-
 	font-size: 16.3px;
-
-
     margin-left: 230px;
     margin-bottom: 17px;
 }

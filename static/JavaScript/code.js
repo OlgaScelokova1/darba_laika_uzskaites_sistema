@@ -219,7 +219,6 @@ function getDates(){
 getDates();
 
 
-
 $(document).click(function(event){
     FillBox.style.display = "none";
     deleteBox.style.display =  "none";
