@@ -1,6 +1,7 @@
 body {
   background-color: #f2f2f2;
   font-family: 'Oxygen';
+  width: 300px;
 
 }
 
@@ -24,7 +25,11 @@ li {
     text-align: center;
 }
 
-
+#Month {
+    font-size: 16px;
+	font-weight: bold;
+	color: #259adb;
+}
 
 .box1{
     background-color: #ffffff;
