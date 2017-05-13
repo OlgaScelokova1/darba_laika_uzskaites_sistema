@@ -287,21 +287,41 @@ def darba_laiks(request):
 
         if request.method == 'GET':
 
+            datums=datetime.date.today()
             lietotajs = request.user
             nebus = Darba_laiks.objects.filter(lietotajs=lietotajs)
             iemesls = Iemesls.objects.filter(lietotajs=lietotajs)
             atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
-            week = datetime.date.today().strftime("%V")
-            '24'
+
 
             context = {'nebus': nebus,
                        'iemesls': iemesls,
                        'atstrada': atstrada,
-                       'week': week,
                        'lietotajs': lietotajs,
                        'x': x,
-
+                       'datums': datums,
                        }
+
+            if request.user.is_authenticated():
+                return render(request, "index_mobile.html", context)
+            else:
+                return HttpResponseRedirect('/darba_laiks/login/')
+
+        if request.method == 'POST':
+            date = request.POST.get("date")
+            lietotajs = request.user
+            nebus = Darba_laiks.objects.filter(lietotajs=lietotajs)
+            iemesls = Iemesls.objects.filter(lietotajs=lietotajs)
+            atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
+
+            if date:
+                datums = date
+                context = {'nebus': nebus,
+                           'iemesls': iemesls,
+                           'atstrada': atstrada,
+                           'lietotajs': lietotajs,
+                           'datums': datums,
+                           }
 
             if request.user.is_authenticated():
                 return render(request, "index_mobile.html", context)
