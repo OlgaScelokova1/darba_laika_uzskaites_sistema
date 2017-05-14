@@ -404,7 +404,6 @@ function setSlimiba (){
             laiks[m] = iemeslsList[p].innerText.slice(0,31);
             laiks[m] = laiks[m].split(" ");
             m++;
-
         }
     } // saliek masiva pec kartas visus laikus, kad ir slimiba  (datums, no , līdz)
 
@@ -515,7 +514,7 @@ function setSlimiba (){
                             }
                             else k++;
                         }
-                    }
+                    }console.log(willWorkSick);
             }
         }
     }

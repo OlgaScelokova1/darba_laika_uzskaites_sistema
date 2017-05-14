@@ -1,3 +1,46 @@
+.oneColor {
+    display: flex;
+    height: 30px;
+    font-size: 12px;
+}
+
+#workColor {
+  width: 20px;
+  height: 20px;
+  background: #e2edf8;
+}
+
+#sickColor {
+  width: 20px;
+  height: 20px;
+  background: #ba1d79;
+}
+
+#uniColor {
+  width: 20px;
+  height: 20px;
+  background: #f15a24;
+}
+
+#homeColor {
+  width: 20px;
+  height: 20px;
+  background: #29abe2;
+}
+
+#lessColor {
+  width: 20px;
+  height: 20px;
+  background: #22b573;
+}
+
+#otherColor {
+  width: 20px;
+  height: 20px;
+  background: #662d91;
+}
+
+
 .My {
     font-weight: bold;
     color: #000000;
@@ -53,7 +96,7 @@
 	font-size: 16.3px;
 	font-weight: bold;
 	color: #259adb;
-    margin-left: 230px;
+    margin-left: 130px;
     margin-bottom: 17px;
 }
 
@@ -64,7 +107,7 @@
 
 #Table {
     font-size: 12px;
-    margin-left: 150px;
+    margin-left: 50px;
 }
 
 #Table ul li {
@@ -250,7 +293,6 @@ input {
     text-align:center;
     padding-left:-6px;
 }
-
 
 
 .insert {
