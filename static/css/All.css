@@ -1,3 +1,47 @@
+.oneColor {
+    display: flex;
+    height: 30px;
+    font-size: 12px;
+    height: 3em;
+}
+
+#workColor {
+  width: 20px;
+  height: 20px;
+  background: #e2edf8;
+}
+
+#sickColor {
+  width: 20px;
+  height: 20px;
+  background: #ba1d79;
+}
+
+#uniColor {
+  width: 20px;
+  height: 20px;
+  background: #f15a24;
+}
+
+#homeColor {
+  width: 20px;
+  height: 20px;
+  background: #29abe2;
+}
+
+#lessColor {
+  width: 20px;
+  height: 20px;
+  background: #22b573;
+}
+
+#otherColor {
+  width: 20px;
+  height: 20px;
+  background: #662d91;
+}
+
+
 .All {
     font-weight: bold;
     color: #000000;
@@ -9,11 +53,9 @@
     margin-bottom: 2em;
 }
 
-#people {
-    padding-left:0px;
+#underDate{
+    margin-top: -180px;
 }
-
-
 
 #today {
 	font-size: 16px;
@@ -67,8 +109,6 @@
     left:110px;
 
 }
-
-
 
 
 .form-control-feedback {

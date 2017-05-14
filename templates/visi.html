@@ -4,7 +4,41 @@
     {% load staticfiles %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/All.css' %}" />
 
-    <div class = "container">
+<div class = "container col-sm-1">
+    <div class = "row">
+        <div class = "oneColor">
+            <div id="workColor"></div>
+            <div> - Darba laiks</div>
+        </div>
+
+        <div class = "oneColor">
+            <div id="sickColor"></div>
+            <div>- Slimība</div>
+        </div>
+
+        <div class = "oneColor">
+            <div id="uniColor"></div>
+            <div> - Lekcijas</div>
+        </div>
+
+        <div class = "oneColor">
+            <div id="homeColor"></div>
+            <div> - Darbs no mājām</div>
+        </div>
+
+        <div class = "oneColor">
+            <div id="lessColor"></div>
+            <div> - Mazāka slodze</div>
+        </div>
+
+        <div class = "oneColor">
+            <div id="otherColor"></div>
+            <div> - Cits</div>
+        </div>
+    </div>
+</div>
+
+    <div class = "container" >
 
         <div class = "row" id = "firstRow">
 
@@ -40,6 +74,7 @@
             </span>
         </div>
 
+        <div id = "underDate">
         <div class = "row" id = "secondRow"></div>
 
 
@@ -101,6 +136,7 @@
 
 
 
+        </div>
         </div>
     </div>
 

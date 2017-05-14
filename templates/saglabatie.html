@@ -1,38 +1,73 @@
 {%extends "base.html" %}
 {% block content %}
 
-    {% load staticfiles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/All.css' %}" />
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/All.css' %}" />
 
-    <div class = "container">
-
-        <div class = "row" id = "firstRow">
-            <span class = "pull-left" id="line">
-                <div id = "today"> </div>
-
-                 <form method='POST' role="form" action="/darba_laiks/saglabatie/">{% csrf_token %}
-                        <input type="hidden" name="date" id = "dateToLeft" value = "">
-                        <button class="Button" id="left">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
-                            <input class = "input" id= "leftInput" type = "submit" value = "">
-                        </button>
-                </form>
-
-
-                <form method='POST' role="form" action="/darba_laiks/saglabatie/">{% csrf_token %}
-                        <input type="hidden" name="date" id = "dateToRight" value = "">
-                        <button class="Button" id="right">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                            <input class = "input" id= "rightInput" type = "submit" value = "">
-                        </button>
-                </form>
-
-                <!--<button type="button" class="Button" id="Calendar">-->
-                      <!--<span class="glyphicon glyphicon-calendar"></span>-->
-                 <!--</button>-->
-            </span>
+<div class = "container col-sm-1">
+    <div class = "row">
+        <div class = "oneColor">
+            <div id="workColor"></div>
+            <div> - Darba laiks</div>
         </div>
 
+        <div class = "oneColor">
+            <div id="sickColor"></div>
+            <div>- Slimība</div>
+        </div>
+
+        <div class = "oneColor">
+            <div id="uniColor"></div>
+            <div> - Lekcijas</div>
+        </div>
+
+        <div class = "oneColor">
+            <div id="homeColor"></div>
+            <div> - Darbs no mājām</div>
+        </div>
+
+        <div class = "oneColor">
+            <div id="lessColor"></div>
+            <div> - Mazāka slodze</div>
+        </div>
+
+        <div class = "oneColor">
+            <div id="otherColor"></div>
+            <div> - Cits</div>
+        </div>
+    </div>
+</div>
+
+<div class = "container">
+
+    <div class = "row" id = "firstRow">
+        <span class = "pull-left" id="line">
+            <div id = "today"> </div>
+
+             <form method='POST' role="form" action="/darba_laiks/saglabatie/">{% csrf_token %}
+                    <input type="hidden" name="date" id = "dateToLeft" value = "">
+                    <button class="Button" id="left">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <input class = "input" id= "leftInput" type = "submit" value = "">
+                    </button>
+            </form>
+
+
+            <form method='POST' role="form" action="/darba_laiks/saglabatie/">{% csrf_token %}
+                    <input type="hidden" name="date" id = "dateToRight" value = "">
+                    <button class="Button" id="right">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <input class = "input" id= "rightInput" type = "submit" value = "">
+                    </button>
+            </form>
+
+            <!--<button type="button" class="Button" id="Calendar">-->
+                  <!--<span class="glyphicon glyphicon-calendar"></span>-->
+             <!--</button>-->
+        </span>
+    </div>
+
+    <div id = "underDate">
         <div class = "row" id = "secondRow"></div>
 
         <div class = "row" id = "people">
@@ -93,51 +128,50 @@
 
 
         </div>
-
-
-
-    </div>
-
-    <div class = "tooltip" id = "description">
-                <div class = "text">Laiks:</div>
-                <div class = "insert" id = "offTime"></div>
-                <div class = "text">Iemesls:</div>
-                <div class = "insert" id = "offReason"></div>
-                <div class = "text">Tiks atstrādāts:</div>
-                <div class = "insert" id = "offWork"></div>
     </div>
 
 
-     <div id = "givenDate">{{datums}}</div> </br>
 
-    <div id = info>
-        {%  for izmainits in iemesli %}
-            <div class = "oneReason">{{izmainits.lietotajs.id}} {{izmainits}}</div>
-        {%  endfor %}
-    </div>
+</div>
 
-    <div class="row">
-        <ul id = "atstradaList">
-            {% for i in atstrada%}
-                <li class = "one">
-                    <ul class = "willWork" id = "atstrada">
-                        <li id = "nebusKad"> {{ i.darba_laiks }} </li>
-                        <li class = "reason" id = "nebusKapec">{{ i.lietotajs.id }} {{ i.iemesls }}</li>
-                        <li class = "iemesls_id">{{ i.iemesls.id }}</li>
-                        <li class = "atstradasNo" id = "atstradasNo">{{i.no|time:"H:i"}}</li>
-                        <li class = "atstradasLidz" id = "atstradasLidz">{{i.lidz|time:"H:i"}}</li>
-                        <li class = "atstradasKad" id = "atstradasKad">{{i.datums|date:"d.m"}}</li>
-                    </ul>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
-
-    {{ x }}
+<div class = "tooltip" id = "description">
+            <div class = "text">Laiks:</div>
+            <div class = "insert" id = "offTime"></div>
+            <div class = "text">Iemesls:</div>
+            <div class = "insert" id = "offReason"></div>
+            <div class = "text">Tiks atstrādāts:</div>
+            <div class = "insert" id = "offWork"></div>
+</div>
 
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script type="text/javascript" src="{% static 'JavaScript/Visi.js' %}"></script>
+ <div id = "givenDate">{{datums}}</div> </br>
+
+<div id = info>
+    {%  for izmainits in iemesli %}
+        <div class = "oneReason">{{izmainits.lietotajs.id}} {{izmainits}}</div>
+    {%  endfor %}
+</div>
+
+<div class="row">
+    <ul id = "atstradaList">
+        {% for i in atstrada%}
+            <li class = "one">
+                <ul class = "willWork" id = "atstrada">
+                    <li id = "nebusKad"> {{ i.darba_laiks }} </li>
+                    <li class = "reason" id = "nebusKapec">{{ i.lietotajs.id }} {{ i.iemesls }}</li>
+                    <li class = "iemesls_id">{{ i.iemesls.id }}</li>
+                    <li class = "atstradasNo" id = "atstradasNo">{{i.no|time:"H:i"}}</li>
+                    <li class = "atstradasLidz" id = "atstradasLidz">{{i.lidz|time:"H:i"}}</li>
+                    <li class = "atstradasKad" id = "atstradasKad">{{i.datums|date:"d.m"}}</li>
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
 
 
-  {% endblock %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'JavaScript/Visi.js' %}"></script>
+
+
+{% endblock %}
