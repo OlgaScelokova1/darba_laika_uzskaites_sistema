@@ -1,6 +1,7 @@
-body {
-  background-color: #f2f2f2;
-  font-family: 'Oxygen';
+#content{
+    margin-left: 50px;
+    margin-top: 10px;
+    margin-right: 50px;
 }
 
 .col-sm-2 {
@@ -197,7 +198,6 @@ li {
 
 
 #dayForward{
-	margin-left: 380px;
-	margin-top: 380px;
+    margin-top: 380px;
+    margin-left: 450px;
 }
-

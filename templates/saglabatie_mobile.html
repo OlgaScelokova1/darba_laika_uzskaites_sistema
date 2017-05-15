@@ -8,8 +8,30 @@
 
 
 
-        <div class = "container-fluid">
-        <div id = "today"> </div>
+        <div class = "container-fluid" id = "content">
+            <div class = "Month" id = "Month"></div>
+            <div class = "row" id = "dateRow">
+                <div id = "today"> </div>
+                <div id = "dayBack">
+                        <form method='POST' role="form" action="/darba_laiks/saglabatie/">{% csrf_token %}
+                            <input type="hidden" name="date" id = "dateToLeft" value = "">
+                            <button class="Button">
+                                <span class="glyphicon glyphicon-chevron-left arrow"></span>
+                            <input id= "Left" type = "submit" value = "">
+                            </button>
+                        </form>
+                </div>
+
+                <div id = "dayForward">
+                    <form method='POST' role="form" action="/darba_laiks/saglabatie/">{% csrf_token %}
+                        <input type="hidden" name="date" id = "dateToRight" value = "">
+                        <button class="Button" id = "buttonDown">
+                            <span class="glyphicon glyphicon-chevron-right arrow"></span>
+                        <input id= "Right" type = "submit" value = "">
+                        </button>
+                    </form>
+                </div>
+            </div>
 
 
             {% for izmainits in lietotaja_saglabatie %}
@@ -18,15 +40,7 @@
                 {% else %}
                <div class = "row" id = "people">
 
-                <div class = "container col-sm-1" id = "dayBack">
-                    <form method='POST' role="form" action="/darba_laiks/saglabatie/">{% csrf_token %}
-                        <input type="hidden" name="date" id = "dateToLeft" value = "">
-                        <button class="Button">
-                            <span class="glyphicon glyphicon-chevron-left arrow"></span>
-                        <input id= "Left" type = "submit" value = "">
-                        </button>
-                    </form>
-                </div>
+
 
 
 
@@ -42,13 +56,14 @@
                                         <span class="glyphicon glyphicon-star starFavorites"></span>
                                     </button>
                                 </form>
+
                             <div id = "userInfo">
 
                                     <img src="{{izmainits.lietotajs_kuru_pievienoja.userprofile.avatar.url}}" class="img">
 
                                 <div id ="userName">
 
-                                    <a href="{% url 'darba_laiks:darbinieka-darba-laiks' izmainits.lietotajs_kuru_pievienoja.id %}">{{izmainits.lietotajs_kuru_pievienoja.first_name}} {{izmainits.lietotajs_kuru_pievienoja.last_name}}</a>
+                                    <div>{{izmainits.lietotajs_kuru_pievienoja.first_name}} {{izmainits.lietotajs_kuru_pievienoja.last_name}}</div>
                                 </div>
                                 <div class = "userId">{{izmainits.lietotajs_kuru_pievienoja.id}}</div>
                             </div>
@@ -69,15 +84,7 @@
                              <li class = "box1" id = "18">18:00 - 19:00</li>
                          </ul>
                      </div>
-            <div class = "container col-sm-1" id = "dayForward">
-                <form method='POST' role="form" action="/darba_laiks/saglabatie/">{% csrf_token %}
-                    <input type="hidden" name="date" id = "dateToRight" value = "">
-                    <button class="Button" id = "buttonDown">
-                        <span class="glyphicon glyphicon-chevron-right arrow"></span>
-                    <input id= "Right" type = "submit" value = "">
-                    </button>
-                </form>
-            </div>
+
 
                 </div>
 
