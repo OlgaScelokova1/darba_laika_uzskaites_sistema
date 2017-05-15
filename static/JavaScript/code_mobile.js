@@ -235,31 +235,31 @@ function setColors (){
                             box[i].style.backgroundColor = '#ba1d79';
 //                            offReason.innerHTML = "Slimība";
 //                            offWork = writeWillWork[k];
-                            setColoredBox(box[i], allReasonsListDoc[k]);
+                            setColoredBox(box[i], wontFrom, wontUntil);
                         }
                         else if (reason[k] == "Lekcijas"){
                             box[i].style.backgroundColor = '#f15a24';
 //                            offReason.innerHTML = "Lekcijas";
 //                            offWork = writeWillWork[k];
-                            setColoredBox(box[i], allReasonsListDoc[k]);
+                            setColoredBox(box[i], wontFrom, wontUntil);
                         }
                         else if (reason[k] == "Darbs"){
                             box[i].style.backgroundColor = '#29abe2';
 //                            offReason.innerHTML = "Darbs no mājām";
 //                            offWork = "-";
-                            setColoredBox(box[i], allReasonsListDoc[k]);
+                            setColoredBox(box[i], wontFrom, wontUntil);
                         }
                         else if (reason[k] == "Mazaka"){
                             box[i].style.backgroundColor = '#22b573';
 //                            offReason.innerHTML = "Mazāka slodze";
 //                            offWork = "-";
-                            setColoredBox(box[i], allReasonsListDoc[k]);
+                            setColoredBox(box[i], wontFrom, wontUntil);
                         }
                         else if (reason[k] == "Cits"){
                             box[i].style.backgroundColor = '#662d91';
 //                            offReason.innerHTML = "Cits";
 //                            offWork = writeWillWork[k];
-                            setColoredBox(box[i], allReasonsListDoc[k]);
+                            setColoredBox(box[i], wontFrom, wontUntil);
                         }
 
 
@@ -298,9 +298,11 @@ frm.submit(function () {
 
 
 var dateForm = document.getElementById("dateForm");
+var fromForm = document.getElementById("fromForm");
+var untilForm = document.getElementById("untilForm");
 
 
-function setColoredBox(target, date){
+function setColoredBox(target, from, until){
     target.style.color = "#ffffff";
 
     $(target).click(function(event){
@@ -310,7 +312,9 @@ function setColoredBox(target, date){
 
         var now = $(this).attr('id');
             $("#Mo" ).append($("#delete"));
-            dateForm = date;
+            dateForm.value = thisDay;
+            fromForm.value = from + ":00";
+            untilForm.value = until + ":00";
             FillBox.style.display = "none";
 
     });

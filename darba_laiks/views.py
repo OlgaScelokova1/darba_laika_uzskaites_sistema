@@ -79,7 +79,7 @@ def device_info(request):
 
 def darba_laiks(request):
     user_agent = get_user_agent(request)
-    if not user_agent.is_pc:
+    if user_agent.is_pc:
         x=request.user_agent.browser.family
 
         if request.method == 'GET':
