@@ -490,7 +490,7 @@ class UserFormView(View):
 
 def darbinieki(request):
     user_agent = get_user_agent(request)
-    if user_agent.is_pc:
+    if not user_agent.is_pc:
         x=request.user_agent.browser.family
         if request.method == 'GET':
             # collection_ids = Darba_laiks.objects.filter(datums=datetime.date.today()).values_list('lietotajs',flat=True).distinct()
@@ -636,6 +636,150 @@ def darbinieki(request):
                            }
 
             return render(request, 'visi.html', context)
+    else:
+        if request.method == 'GET':
+            # collection_ids = Darba_laiks.objects.filter(datums=datetime.date.today()).values_list('lietotajs',flat=True).distinct()
+            # izmainitie = [
+            #     Darba_laiks.objects.filter(lietotajs__id=c)[0] for c in collection_ids
+            #     ]
+            visi=User.objects.all()
+            datums = datetime.date.today()
+
+
+            darba_laika_id = Darba_laiks.objects.filter(datums=datetime.date.today()).values_list('id',flat=True).distinct()
+
+
+            collection_ids = Darba_laiks.objects.filter(datums=datetime.date.today()).values_list('lietotajs',flat=True).distinct()
+            izmainitie = [
+                Darba_laiks.objects.filter(lietotajs__id=c)[0] for c in collection_ids
+                ]
+
+
+            iemesli = [
+                Iemesls.objects.filter(darba_laiks__id=c)[0] for c in darba_laika_id
+                ]
+
+            atstrada= Atstrada.objects.filter(darba_laiks__id__in=darba_laika_id)
+
+            lietotajs_kurs_pievienoja = request.user
+            lietotaja_saglabatie = Saglabatie.objects.filter(lietotajs_kurs_pievienoja=lietotajs_kurs_pievienoja)
+
+
+
+
+            context = {'visi': visi,
+                       'izmainitie': izmainitie,
+                       'iemesli': iemesli,
+                       'atstrada': atstrada,
+                       'lietotaja_saglabatie': lietotaja_saglabatie,
+                       'datums': datums,
+                    }
+            return render(request, 'visi.html', context)
+
+        if request.method == 'POST':
+            datums = request.POST.get("date")
+
+            visi=User.objects.all()
+
+            darba_laika_id = Darba_laiks.objects.filter(datums=datums).values_list('id',flat=True).distinct()
+
+            collection_ids = Darba_laiks.objects.filter(datums=datums).values_list('lietotajs',flat=True).distinct()
+            izmainitie = [
+                Darba_laiks.objects.filter(lietotajs__id=c)[0] for c in collection_ids
+                ]
+
+
+            iemesli = [
+                Iemesls.objects.filter(darba_laiks__id=c)[0] for c in darba_laika_id
+                ]
+
+            atstrada = Atstrada.objects.filter(darba_laiks__id__in=darba_laika_id)
+
+            lietotajs_kurs_pievienoja = request.user
+            lietotaja_saglabatie = Saglabatie.objects.filter(lietotajs_kurs_pievienoja=lietotajs_kurs_pievienoja)
+
+
+            saglabata_id=request.POST.get("id")
+
+            if saglabata_id:
+                datums=datetime.date.today()
+                darba_laika_id = Darba_laiks.objects.filter(datums=datums).values_list('id', flat=True).distinct()
+
+                collection_ids = Darba_laiks.objects.filter(datums=datums).values_list('lietotajs', flat=True).distinct()
+                izmainitie = [
+                    Darba_laiks.objects.filter(lietotajs__id=c)[0] for c in collection_ids
+                ]
+
+                iemesli = [
+                    Iemesls.objects.filter(darba_laiks__id=c)[0] for c in darba_laika_id
+                ]
+
+                atstrada = Atstrada.objects.filter(darba_laiks__id__in=darba_laika_id)
+
+
+                lietotajs_kuru_pievienoja = User.objects.get(id=saglabata_id)
+                i = Saglabatie.objects.filter(lietotajs_kuru_pievienoja=lietotajs_kuru_pievienoja)
+
+                if not i:
+
+                    Saglabatie.objects.create(
+                        lietotajs_kurs_pievienoja=request.user,
+                        lietotajs_kuru_pievienoja=lietotajs_kuru_pievienoja
+                    )
+                else:
+                    dzest=i
+                    dzest.delete()
+
+
+
+            query=request.POST.get("q")
+            if query:
+                datums = request.POST.get("datums-meklesanai")
+                visi = User.objects.all()
+
+                darba_laika_id = Darba_laiks.objects.filter(datums=datums).values_list('id', flat=True).distinct()
+
+                collection_ids = Darba_laiks.objects.filter(datums=datums).values_list('lietotajs', flat=True).distinct()
+                izmainitie = [
+                    Darba_laiks.objects.filter(lietotajs__id=c)[0] for c in collection_ids
+                ]
+
+                iemesli = [
+                    Iemesls.objects.filter(darba_laiks__id=c)[0] for c in darba_laika_id
+                ]
+
+                atstrada = Atstrada.objects.filter(darba_laiks__id__in=darba_laika_id)
+
+                datums = request.POST.get("datums-meklesanai")
+                visi=visi.filter(
+                        Q(username__icontains=query) |
+                        Q(first_name__icontains=query) |
+                        Q(last_name__icontains=query)
+                    )
+
+            context = {'visi': visi,
+                       'izmainitie': izmainitie,
+                       'iemesli': iemesli,
+                       'atstrada': atstrada,
+                       'lietotaja_saglabatie': lietotaja_saglabatie,
+                       'saglabata_id': saglabata_id,
+                       'datums': datums,
+                       }
+            date = request.POST.get("date")
+
+            if date:
+
+                datums=date
+                context = {'visi': visi,
+                           'izmainitie': izmainitie,
+                           'iemesli': iemesli,
+                           'atstrada': atstrada,
+                           'lietotaja_saglabatie': lietotaja_saglabatie,
+                           'saglabata_id': saglabata_id,
+                           'datums': datums,
+                           }
+
+            return render(request, 'visi_mobile.html', context)
 
 
 def visi(request):
