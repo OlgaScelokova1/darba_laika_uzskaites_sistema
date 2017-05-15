@@ -337,28 +337,12 @@ def darba_laiks(request):
                 nebus = Darba_laiks.objects.filter(lietotajs=lietotajs)
                 iemesls = Iemesls.objects.filter(lietotajs=lietotajs)
                 atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
-                date = datetime.date.today()
-                monday = date - datetime.timedelta(date.weekday())
-                sunday = monday + datetime.timedelta(6)
-                tuesday = monday + datetime.timedelta(1)
-                wednesday = monday + datetime.timedelta(2)
-                thursday = monday + datetime.timedelta(3)
-                friday = monday + datetime.timedelta(4)
-                saturday = monday + datetime.timedelta(5)
-                week = datetime.date.today().strftime("%V")
-                '24'
+                datums = datetime.date.today()
 
                 context = {'nebus': nebus,
                            'iemesls': iemesls,
                            'atstrada': atstrada,
-                           'monday': monday,
-                           'tuesday': tuesday,
-                           'wednesday': wednesday,
-                           'thursday': thursday,
-                           'friday': friday,
-                           'saturday': saturday,
-                           'sunday': sunday,
-                           'week': week,
+                           'datums': datums,
                            }
 
             else:
@@ -849,12 +833,75 @@ def saglabatie(request):
 
             return render(request, 'saglabatie.html', context)
     else:
-        x = request.user_agent.browser.family
-        context= {
-            'x':x,
+        if request.method == 'GET':
+            datums = datetime.date.today()
+            darba_laika_id = Darba_laiks.objects.filter(datums=datetime.date.today()).values_list('id',flat=True).distinct()
 
-        }
-        return render(request, 'saglabatie_mobile.html', context)
+
+            collection_ids = Darba_laiks.objects.filter(datums=datetime.date.today()).values_list('lietotajs',flat=True).distinct()
+            izmainitie = [
+                Darba_laiks.objects.filter(lietotajs__id=c)[0] for c in collection_ids
+                ]
+
+
+            iemesli = [
+                Iemesls.objects.filter(darba_laiks__id=c)[0] for c in darba_laika_id
+                ]
+
+            atstrada= Atstrada.objects.filter(darba_laiks__id__in=darba_laika_id)
+
+            lietotajs_kurs_pievienoja=request.user
+            lietotaja_saglabatie=Saglabatie.objects.filter(lietotajs_kurs_pievienoja=lietotajs_kurs_pievienoja)
+
+
+            context= {'lietotaja_saglabatie': lietotaja_saglabatie,
+                      'datums': datums,
+                      'izmainitie': izmainitie,
+                      'iemesli': iemesli,
+                      'atstrada': atstrada,
+                     }
+
+            return render(request, 'saglabatie_mobile.html', context)
+
+        if request.method == 'POST':
+            saglabata_id=request.POST.get("id")
+            datums = request.POST.get("date")
+
+            darba_laika_id = Darba_laiks.objects.filter(datums=datums).values_list('id', flat=True).distinct()
+
+            collection_ids = Darba_laiks.objects.filter(datums=datums).values_list('lietotajs',flat=True).distinct()
+            izmainitie = [
+                Darba_laiks.objects.filter(lietotajs__id=c)[0] for c in collection_ids
+            ]
+
+            iemesli = [
+                Iemesls.objects.filter(darba_laiks__id=c)[0] for c in darba_laika_id
+            ]
+
+            atstrada = Atstrada.objects.filter(darba_laiks__id__in=darba_laika_id)
+
+            lietotajs_kurs_pievienoja = request.user
+            lietotaja_saglabatie = Saglabatie.objects.filter(lietotajs_kurs_pievienoja=lietotajs_kurs_pievienoja)
+
+
+
+
+            if saglabata_id:
+                lietotajs_kuru_pievienoja = User.objects.get(id=saglabata_id)
+                i = Saglabatie.objects.filter(lietotajs_kuru_pievienoja=lietotajs_kuru_pievienoja)
+                i.delete()
+
+
+
+            context = {'lietotaja_saglabatie': lietotaja_saglabatie,
+                       'datums': datums,
+                       'izmainitie': izmainitie,
+                       'iemesli': iemesli,
+                       'atstrada': atstrada,
+                       }
+
+
+            return render(request, 'saglabatie_mobile.html', context)
 
 
 # def pievienot_favoritiem(request, pk):
