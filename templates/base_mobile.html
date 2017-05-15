@@ -57,14 +57,6 @@
 
 
           <ul class="nav navbar-nav navbar-right">
-                 {% if user.is_superuser or user.is_staff %}
-              <li class="">
-                    <a href="{% url 'darba_laiks:visi' %}">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;
-                        Darbinieku saraksts
-                    </a>
-              </li>
-              {% endif %}
               <li class="">
                     <a href="{% url 'darba_laiks:logout' %}">
                         <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;

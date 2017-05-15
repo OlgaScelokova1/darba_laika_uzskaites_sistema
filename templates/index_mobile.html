@@ -1,30 +1,11 @@
+{%extends "base_mobile.html" %}
+{% block content %}
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link href="http://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet" type="text/css">
-
-   {% load staticfiles %}
+{% load staticfiles %}
 
 <link rel="stylesheet" type="text/css" href="{% static 'css/My_mobile.css' %}">
 
 
-
-
-<!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
-      @import url('https://fonts.googleapis.com/css?family=Oxygen');
-    </style>
-  </head>
-
-
-
-<body>
 <div class = "container">
 
     <div class = "Month" id = "Month"></div>
@@ -84,7 +65,7 @@
 
                     <p id="Time">Laiks:</p>
 
-                    <input class = "FirstLine DateField" id = "InputDate" type = "date" name = "dateWhenIs">
+                    <input class = "FirstLine DateField" id = "InputDate" name = "dateWhenIs">
                     <input class = "FirstLine TimeField" id = "InputFrom" name = "timeFrom">
                     <p class = "FirstLine">-</p>
                     <input class = "FirstLine TimeField" id = "InputUntil"  name = "timeTill">
@@ -101,7 +82,7 @@
 
                     <p>Tiks atstrādāts</p>
 
-                    <input class = "SecondLine DateField" id = "AfterDate" type = "date" name = "dateWhenWill">
+                    <input class = "SecondLine DateField" id = "AfterDate"  name = "dateWhenWill">
                     <input class = "SecondLine TimeField" id = "AfterFrom" name = "timeWillStart">
                     <p class = "SecondLine">-</p>
                     <input class = "SecondLine TimeField" id = "AfterUntil"  name = "timeWillEnd">
@@ -164,7 +145,4 @@
 <script type="text/javascript" src="{% static 'JavaScript/code_mobile.js' %}"></script>
 
 
-</body>
-
-</html>
-
+{% endblock %}

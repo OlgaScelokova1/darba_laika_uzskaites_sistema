@@ -2,3 +2,109 @@ body {
   background-color: #f2f2f2;
   font-family: 'Oxygen';
 }
+
+body {
+  background-color: #f2f2f2;
+  font-family: 'Oxygen';
+}
+
+.img{
+    width: 25px;
+	height: 25px;
+    float:left;
+    margin-right:0.25em;
+    border-radius: 50%;
+}
+
+li {
+  list-style-type: none;
+}
+
+
+.col-sm-2 {
+    font-size:45px;
+}
+
+
+#oneUser {
+    width: 500px;
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+#Month {
+    font-size: 60px;
+	font-weight: bold;
+	color: #259adb;
+	text-align: center;
+    padding-bottom: 1em;
+}
+
+.DayDate {
+    display: flex;
+}
+
+
+#day{
+	padding-left: 1em;
+}
+
+#date{
+	padding-left: 4em;
+    color: #a8b6c3;
+}
+
+.box1{
+    background-color: #ffffff;
+    color: #e0e0e0;
+}
+
+.box2{
+    background-color: #e2edf8;
+    color: #a8b6c3;
+}
+
+.Button {
+  width: 110px;
+  height: 110px;
+  border-radius: 68px;
+  background-color: #e6e6e6;
+  border: 0;
+  outline:none;
+}
+
+.arrow{
+	font-size: 58px;
+    color: #9d9d9d;
+    display: block;
+    margin-top: 30px;
+}
+
+#Left {
+    opacity: 0;
+}
+
+#Right {
+    opacity: 0;
+}
+
+#dayBack{
+	padding-right: 100px;
+	margin-top:380px;
+}
+
+
+
+#dayForward{
+	margin-left: 500px;
+	margin-top: -560px;
+}
+
+.box2:focus{
+  border: none;
+  overflow: auto;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
