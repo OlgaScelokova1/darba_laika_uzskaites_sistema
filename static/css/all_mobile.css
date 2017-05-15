@@ -2,6 +2,11 @@
    	margin-top: 10px;
 }
 
+#searchField{
+    width: 100%;
+    font-size:30px;
+}
+
 #today{
     font-size: 30px;
 }

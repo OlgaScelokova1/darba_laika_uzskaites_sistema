@@ -490,7 +490,7 @@ class UserFormView(View):
 
 def darbinieki(request):
     user_agent = get_user_agent(request)
-    if not user_agent.is_pc:
+    if user_agent.is_pc:
         x=request.user_agent.browser.family
         if request.method == 'GET':
             # collection_ids = Darba_laiks.objects.filter(datums=datetime.date.today()).values_list('lietotajs',flat=True).distinct()
@@ -674,7 +674,7 @@ def darbinieki(request):
                        'lietotaja_saglabatie': lietotaja_saglabatie,
                        'datums': datums,
                     }
-            return render(request, 'visi.html', context)
+            return render(request, 'visi_mobile.html', context)
 
         if request.method == 'POST':
             datums = request.POST.get("date")

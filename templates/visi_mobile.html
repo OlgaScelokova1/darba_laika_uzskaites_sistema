@@ -1,89 +1,56 @@
-{%extends "base.html" %}
+{%extends "base_mobile.html" %}
 {% block content %}
 
-    {% load staticfiles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/All.css' %}" />
+{% load staticfiles %}
 
-<div class = "container col-sm-1">
-    <div class = "row">
-        <div class = "oneColor">
-            <div id="workColor"></div>
-            <div> - Darba laiks</div>
+<link rel="stylesheet" type="text/css" href="{% static 'css/all_mobile.css' %}">
+
+        <div class="row">
+            <div id = "search">
+                <form method="POST" action="">{% csrf_token %}
+                    <input type="text" name="q"  id = "searchField" placeholder="Meklēt lietotāju" value="{{ request.get.q }}"/>
+                    <input type="hidden" name="datums-meklesanai" id = "dateSearch" value=""/>
+                    <input type="hidden" type="submit" value="Meklēt"/>
+                </form>
+             </div>
         </div>
 
-        <div class = "oneColor">
-            <div id="sickColor"></div>
-            <div>- Slimība</div>
-        </div>
 
-        <div class = "oneColor">
-            <div id="uniColor"></div>
-            <div> - Lekcijas</div>
-        </div>
-
-        <div class = "oneColor">
-            <div id="homeColor"></div>
-            <div> - Darbs no mājām</div>
-        </div>
-
-        <div class = "oneColor">
-            <div id="lessColor"></div>
-            <div> - Mazāka slodze</div>
-        </div>
-
-        <div class = "oneColor">
-            <div id="otherColor"></div>
-            <div> - Cits</div>
-        </div>
-    </div>
-</div>
-
-    <div class = "container" >
-
-        <div class = "row" id = "firstRow">
-
-            <span class = "pull-left" id="line">
+        <div class = "container-fluid" id = "content">
+            <div class = "Month" id = "Month"></div>
+            <div class = "row" id = "dateRow">
                 <div id = "today"> </div>
+                <div id = "dayBack">
+                        <form method='POST' role="form" action="/darba_laiks/darbinieki/">{% csrf_token %}
+                            <input type="hidden" name="date" id = "dateToLeft" value = "">
+                            <button class="Button">
+                                <span class="glyphicon glyphicon-chevron-left arrow"></span>
+                            <input id= "Left" type = "submit" value = "">
+                            </button>
+                        </form>
+                </div>
 
-                <form method='POST' role="form" action="/darba_laiks/darbinieki/">{% csrf_token %}
-                        <input type="hidden" name="date" id = "dateToLeft" value = "">
-                        <button class="Button" id="left">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
-                            <input class = "input" id= "leftInput" type = "submit" value = "">
-                        </button>
-                </form>
-
-
-                <form method='POST' role="form" action="/darba_laiks/darbinieki/">{% csrf_token %}
+                <div id = "dayForward">
+                    <form method='POST' role="form" action="/darba_laiks/darbinieki/">{% csrf_token %}
                         <input type="hidden" name="date" id = "dateToRight" value = "">
-                        <button class="Button" id="right">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                            <input class = "input" id= "rightInput" type = "submit" value = "">
+                        <button class="Button" id = "buttonDown">
+                            <span class="glyphicon glyphicon-chevron-right arrow"></span>
+                        <input id= "Right" type = "submit" value = "">
                         </button>
-                </form>
-            </span>
-
-            <span class="pull-right">
-                <div id = "search">
-                    <form method="POST" action="">{% csrf_token %}
-                        <input type="text" name="q" placeholder="Meklēt lietotāju" value="{{ request.get.q }}"/>
-                        <input type="hidden" name="datums-meklesanai" id = "dateSearch" value=""/>
-                        <input type="submit" value="Meklēt"/>
                     </form>
-                 </div>
-            </span>
-        </div>
+                </div>
+            </div>
 
-        <div id = "underDate">
-        <div class = "row" id = "secondRow"></div>
-
-
-        <div class = "row" id = "people">
 
             {% for izmainits in visi %}
                 {% if request.user == izmainits%}
 
                 {% else %}
+               <div class = "row" id = "people">
+
+
+
+
 
                 <div class = "col-sm-2" id ="oneUser">
 
@@ -92,7 +59,7 @@
                         <div id = "user">
 
                                 <form method='POST' class = "star" role="form" action="/darba_laiks/darbinieki/">{% csrf_token %}
-                                    <input type="hidden" name="id" class = "everyUserId" value="{{ izmainits.id}}">
+                                    <input type="hidden" name="id" class = "everyUserId" value="{{izmainits.id}}">
                                     <button type = "submit" value = "Saglabāt" id="Save">
                                         <span class="glyphicon glyphicon-star star1"></span>
                                     </button>
@@ -104,7 +71,7 @@
 
                                 <div id ="userName">
 
-                                    <a href="{% url 'darba_laiks:darbinieka-darba-laiks' izmainits.id %}">{{izmainits.first_name}} {{izmainits.last_name}} </a>
+                                    <div>{{izmainits.first_name}} {{izmainits.last_name}}</div>
                                 </div>
                                 <div class = "userId">{{izmainits.id}}</div>
                             </div>
@@ -129,7 +96,10 @@
 
                 </div>
 
-                {% endif %}
+
+
+ </div>
+                   {% endif %}
 
             {% endfor %}
 
@@ -137,27 +107,16 @@
 
 
         </div>
-        </div>
-    </div>
 
-    <div id = info>
+        <div id = "dataForFill">
 
-        {% for lietot in iemesli %}
-            <div class = "oneReason">{{lietot.lietotajs.id}} {{lietot}}</div>
-        {%  endfor %}
-    </div>
+                <div id = info>
 
-        <div class = "tooltip" id = "description">
-                <div class = "text">Laiks:</div>
-                <div class = "insert" id = "offTime"></div>
-                <div class = "text">Iemesls:</div>
-                <div class = "insert" id = "offReason"></div>
-                <div class = "text">Tiks atstrādāts:</div>
-                <div class = "insert" id = "offWork"></div>
-        </div>
+                    {% for lietot in iemesli %}
+                        <div class = "oneReason">{{lietot.lietotajs.id}} {{lietot}}</div>
+                    {%  endfor %}
+                </div>
 
-
-        <div class = "container" id = "dataForFill">
             <div class="row">
                 <ul id = "atstradaList">
                     {% for i in atstrada %}
@@ -173,7 +132,6 @@
                         </li>
                     {% endfor %}
                 </ul>
-            </div>
 
             <div class = "favorites">
                 {% for i in lietotaja_saglabatie %}
@@ -184,13 +142,11 @@
 
     <div id = "givenDate">{{datums}}</div>
 
-        {{ x }}
+        </div>
 
 
 
+     <script type="text/javascript" src="{% static 'JavaScript/Visi.js' %}"></script>
 
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script type="text/javascript" src="{% static 'JavaScript/Visi.js' %}"></script>
 
 {% endblock %}
