@@ -58,6 +58,22 @@ var days = ['SVĒTDIENA', 'PIRMDIENA', 'OTRDIENA', 'TREŠDIENA', 'CETURTDIENA', 
 
 document.getElementById("today").innerHTML = days[day] + ", " + formattedDay;
 
+var months =['JANVĀRIS','FEBRUĀRIS','MARTS','APRĪLIS','MAIJS','JŪNIJS','JŪLIJS','AUGUSTS','SEPTEMBRIS','OKTOBRIS','NOVEMBRIS','DECEMBRIS'];
+//masīvā tiek sarakstīti visi mēneši
+
+function setMonth() {
+    var dateMonth = document.getElementById("today");
+    var thisMonth = dateMonth.innerText.slice(-8, -6 );
+    if(thisMonth<10){
+        thisMonth=thisMonth.slice(1);
+    }
+    document.getElementById("Month").innerHTML = months[thisMonth-1]; // tiek ierakstīts mēnesis
+}
+
+if (document.getElementById("Month")){
+    setMonth();
+} //ja mobilajā skatā, tad tiek ierakstīts arī mēnesis
+
 
 
 var all = document.getElementsByClassName("oneReason");
