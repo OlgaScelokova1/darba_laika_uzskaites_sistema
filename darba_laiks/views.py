@@ -79,7 +79,7 @@ def device_info(request):
 
 def darba_laiks(request):
     user_agent = get_user_agent(request)
-    if user_agent.is_pc:
+    if not user_agent.is_pc:
         x=request.user_agent.browser.family
 
         if request.method == 'GET':
@@ -307,27 +307,129 @@ def darba_laiks(request):
             else:
                 return HttpResponseRedirect('/darba_laiks/login/')
 
-        if request.method == 'POST':
+        if request.method =='POST':
             date = request.POST.get("date")
-            lietotajs = request.user
-            nebus = Darba_laiks.objects.filter(lietotajs=lietotajs)
-            iemesls = Iemesls.objects.filter(lietotajs=lietotajs)
+
+            datums_dzesanai=request.POST.get("datums-dzesanai")
+
+            lietotajs=request.user
+            nebus=Darba_laiks.objects.filter(lietotajs=lietotajs)
+            iemesls=Iemesls.objects.filter(lietotajs=lietotajs)
             atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
 
+
+
             if date:
-                datums = date
+                datums=date
+
+
                 context = {'nebus': nebus,
                            'iemesls': iemesls,
                            'atstrada': atstrada,
-                           'lietotajs': lietotajs,
                            'datums': datums,
                            }
 
+            elif datums_dzesanai:
+                no_dzesanai=request.POST.get("no-dzesanai")
+                i=Darba_laiks.objects.filter(lietotajs=lietotajs, datums=datums_dzesanai, no=no_dzesanai)
+                i.delete()
+
+                nebus = Darba_laiks.objects.filter(lietotajs=lietotajs)
+                iemesls = Iemesls.objects.filter(lietotajs=lietotajs)
+                atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
+                date = datetime.date.today()
+                monday = date - datetime.timedelta(date.weekday())
+                sunday = monday + datetime.timedelta(6)
+                tuesday = monday + datetime.timedelta(1)
+                wednesday = monday + datetime.timedelta(2)
+                thursday = monday + datetime.timedelta(3)
+                friday = monday + datetime.timedelta(4)
+                saturday = monday + datetime.timedelta(5)
+                week = datetime.date.today().strftime("%V")
+                '24'
+
+                context = {'nebus': nebus,
+                           'iemesls': iemesls,
+                           'atstrada': atstrada,
+                           'monday': monday,
+                           'tuesday': tuesday,
+                           'wednesday': wednesday,
+                           'thursday': thursday,
+                           'friday': friday,
+                           'saturday': saturday,
+                           'sunday': sunday,
+                           'week': week,
+                           }
+
+            else:
+
+                iemesls = request.POST.get("reason")
+                a=Darba_laiks.objects.create(
+                    lietotajs = request.user,
+                    no=request.POST.get("timeFrom", ""),
+                    datums=request.POST.get("dateWhenIs", ""),
+                    lidz=request.POST.get("timeTill",""),
+                    ir_mainits='True'
+                )
+
+                darba_laiks_id=a.id
+
+
+                if iemesls=='Slimiba':
+                     b=Iemesls.objects.create(
+                         lietotajs=request.user,
+                         darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
+                         slimiba='True',
+                     )
+                elif iemesls=='Atvalinajums':
+                     b=Iemesls.objects.create(
+                         lietotajs=request.user,
+                         darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
+                         atvalinajums='True',
+                     )
+
+                elif iemesls=='Lekcijas':
+                     b=Iemesls.objects.create(
+                         lietotajs=request.user,
+                         darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
+                         lekcijas='True',
+                     )
+
+                elif iemesls=='Darbs no majam':
+                     b=Iemesls.objects.create(
+                         lietotajs=request.user,
+                         darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
+                         darbs_no_majam='True',
+                     )
+                elif iemesls=='Mazaka slodze':
+                     b=Iemesls.objects.create(
+                         lietotajs=request.user,
+                         darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
+                         mazaka_slodze='True',
+                     )
+                else:
+                    b=Iemesls.objects.create(
+                        lietotajs=request.user,
+                        darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
+                        cits='True',
+                    )
+                iemesls_id = b.id
+
+                Atstrada.objects.create(
+                    lietotajs=request.user,
+                    darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
+                    iemesls=Iemesls.objects.get(id=iemesls_id),
+                    no=request.POST.get("timeWillStart", ""),
+                    datums=request.POST.get("dateWhenWill", ""),
+                    lidz=request.POST.get("timeWillEnd", ""),
+                )
+
+                context = {
+                           }
             if request.user.is_authenticated():
                 return render(request, "index_mobile.html", context)
             else:
                 return HttpResponseRedirect('/darba_laiks/login/')
-
 
 
 
