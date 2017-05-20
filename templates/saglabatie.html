@@ -83,8 +83,9 @@
 
                         <div id = "user">
 
-                                <form method='POST' class = "star" role="form" action="/darba_laiks/darbinieki/">{% csrf_token %}
+                                <form method='POST' class = "star" role="form" action="/darba_laiks/saglabatie/">{% csrf_token %}
                                     <input type="hidden" name="id" class = "everyUserId" value="{{ izmainits.lietotajs_kuru_pievienoja.id}}">
+                                    <input type="hidden" name="datums1"  value="{{ datums}}">
                                     <button type = "submit" value = "Saglabāt" id="Save">
                                         <span class="glyphicon glyphicon-star starFavorites"></span>
                                     </button>

@@ -276,8 +276,6 @@ def darba_laiks(request):
                     lidz=request.POST.get("timeWillEnd", ""),
                 )
 
-                context = {
-                           }
             if request.user.is_authenticated():
                 return render(request, "index.html", context)
             else:
@@ -483,7 +481,6 @@ class UserFormView(View):
 
             if user is not None:
                 if user.is_active:
-                    login(request,user)
                     return redirect('darba_laiks:visi')
 
         return render(request, self.template_name, {'form': form})
@@ -963,6 +960,7 @@ def saglabatie(request):
             if saglabata_id:
                 lietotajs_kuru_pievienoja = User.objects.get(id=saglabata_id)
                 i = Saglabatie.objects.filter(lietotajs_kuru_pievienoja=lietotajs_kuru_pievienoja)
+                datums=request.POST.get("datums1")
                 i.delete()
 
 

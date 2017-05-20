@@ -1,57 +1,43 @@
-{%extends "base.html" %}
 
-{% block content %}
+{% load staticfiles %}
 
-    {% load staticfiles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/Users.css' %}" />
 
- <div class = "row" id = "first">
+<link rel="stylesheet" type="text/css" href="{% static 'css/Users.css' %}" />
+<script type="text/javascript" src="{% static 'JavaScript/test.js' %}"></script>
+
 
      <div id = "Create">
          <button class = "createButton"><a id = "textCreate" href="{% url 'darba_laiks:create_user' %}">Izveidot lietotāju</a></button>
      </div>
 
-     <div id = "search">
-         <span class="pull-right">
-             <form method="GET" action="">
-                     <input type="text" name="q" placeholder="Meklēt lietotāju" value="{{ request.get.q }}"/>
-                     <input id= "searchButton" type="submit" value="Meklēt"/>
-             </form>
-         </span>
-     </div>
-
- </div>
-
-<div class = "container">
-
 {% for darbinieks in visi %}
 
-    <div class = "col-sm-4" id = "oneUser">
+<div class="container">
 
-            {% if darbinieks.userprofile.avatar %}
-                <img src="{{darbinieks.userprofile.avatar.url}}" class="img">
-
-            {% else %}
-                <img src="/media/avatar.jpg" class="img">
-            {% endif %}
-
-
-                <div class = "row" id="name">{{darbinieks.first_name}} {{darbinieks.last_name}} </div>
-                <div class = "row" id = "buttonRow">
-                    <button class = "button"><a class = "text" href="{% url 'darba_laiks:update' darbinieks.id %}"> Rediģēt </a> &nbsp</button>
-                    <button class = "button"><a class = "text" href="{% url 'darba_laiks:bilde' darbinieks.userprofile.id %}"> Rediģēt bildi </a> &nbsp</button>
-                    <button class = "button"><a class = "text" href="{% url 'darba_laiks:dzest' darbinieks.id %}"> Dzēst </a></button>
-                </div>
-
-             <br>
+  <a target="_blank" href="https://unsplash.com/photos/_snqARKTgoc">
+    <div class="images">
+      <img src="{{darbinieks.userprofile.avatar.url}}" alt="" class="img" width="600" height="400">
+      <p class="description">
+          <span>{{darbinieks.first_name}} {{darbinieks.last_name}} </span><br>
+          <button class = "button"><a class = "text" href="{% url 'darba_laiks:update' darbinieks.id %}"> Rediģēt </a> &nbsp</button>
+          <button class = "button"><a class = "text" href="{% url 'darba_laiks:bilde' darbinieks.userprofile.id %}"> Rediģēt bildi </a> &nbsp</button>
+          <button class = "button"><a class = "text" href="{% url 'darba_laiks:dzest' darbinieks.id %}"> Dzēst </a></button>
+      </p>
     </div>
+  </a>
+
+
+
+</div><!-- /container -->
+
 
 {% endfor %}
 
 
-    </div>
 
 
-  {% endblock %}
+
+
+
 
 

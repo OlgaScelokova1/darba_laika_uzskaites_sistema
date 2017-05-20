@@ -1,12 +1,69 @@
-{% load staticfiles %}
-
-
 <link rel="stylesheet" href="https://maxcdn.bootsdivapcdn.com/bootsdivap/3.3.7/css/bootsdivap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 
 <link href="http://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet" type="text/css">
 
-<link rel="stylesheet" type="text/css" href="{% static 'css/createUser.css' %}">
+<link rel="stylesheet" type="text/css" href="/static/css/createUser.css">
+
+<script type="text/javascript">
+
+      function validate()
+      {
+
+         if( document.myForm.username.value == "" )
+         {
+            alert( "Lūdzu, ievadiet lietotājvārdu!" );
+            document.myForm.username.focus() ;
+            return false;
+         }
+
+         if( document.myForm.username.value.length< 5)
+         {
+             alert( "Lietotājvārdam jābūt vismaz 5 simbolu garam!" );
+            document.myForm.username.focus() ;
+            return false;
+         }
+
+          if( document.myForm.password1.value == "" )
+         {
+            alert( "Lūdzu, ievadiet paroli!" );
+            document.myForm.username.focus() ;
+            return false;
+         }
+
+          if( document.myForm.password1.value.length< 8)
+         {
+             alert( "Parolei jābūt vismaz 8 simbolu garai!" );
+            document.myForm.username.focus() ;
+            return false;
+         }
+
+          if( document.myForm.password2.value == "" )
+         {
+            alert( "Lūdzu, ievadiet paroli atkārtoti!" );
+            document.myForm.username.focus() ;
+            return false;
+         }
+
+          if( document.myForm.password2.value.length< 8)
+         {
+             alert( "Parolei jābūt vismaz 8 simbolu garai!" );
+            document.myForm.username.focus() ;
+            return false;
+         }
+
+          if( document.myForm.password1.value !== document.myForm.password2.value)
+         {
+            alert( "Paroles nesakrīt!" );
+            document.myForm.username.focus() ;
+            return false;
+         }
+
+
+         return( true );
+      }
+
+</script>
 
 
 <body>
@@ -18,26 +75,46 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <h3 id = "text">Pievienot jaunu lietotāju</h3>
-                        <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
-                            {% csrf_token %}
+                        <form name="myForm" class="form-horizontal" action="" method="POST" enctype="multipart/form-data" onsubmit="return(validate());"> {% csrf_token %}
 
 
-                            {% for field in form %}
+
 
                                <div class="form-group">
                                    <div class="col-sm-offset-2 col-sm-10">
-                                       <span class="text-danger small">{{ field.errors }}</span>
+                                       <span class="text-danger small"></span>
                                    </div>
-                               <label class="control-label col-sm-2">{{ field.label_tag }}</label>
-                               <div class="col-sm-10">{{ field }}</div>
+                               <label class="control-label col-sm-2"><label for="id_username">Lietotājvārds:</label></label>
+                               <div class="col-sm-10"><input id="id_username" maxlength="50" name="username" type="text" required></div>
                                </div>
 
-                            {% endfor %}
+
+
+                               <div class="form-group">
+                                   <div class="col-sm-offset-2 col-sm-10">
+                                       <span class="text-danger small"></span>
+                                   </div>
+                               <label class="control-label col-sm-2"><label for="id_password1">Parole:</label></label>
+                               <div class="col-sm-10"><input id="id_password1" name="password1" maxlength="24" type="password" required /></div>
+                               </div>
+
+
+
+                               <div class="form-group">
+                                   <div class="col-sm-offset-2 col-sm-10">
+                                       <span class="text-danger small"></span>
+                                   </div>
+                               <label class="control-label col-sm-2"><label for="id_password2">Parole atkārtoti:</label></label>
+                               <div class="col-sm-10"><input id="id_password2" name="password2" maxlength="24" type="password" required /></div>
+                               </div>
+
+
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
                                     <button type="submit" class="btn btn-success">Ok</button>
                                 </div>
                             </div>
+
 
                         </form>
 
@@ -47,7 +124,12 @@
         </div>
     </div>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="{% static 'JavaScript/createUser.js' %}"></script>
+    <script type="text/javascript" src="/static/JavaScript/createUser.js"></script>
 
 </body>
+
+
+
+
+
 

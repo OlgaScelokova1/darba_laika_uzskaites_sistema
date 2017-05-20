@@ -51,10 +51,7 @@ class UserProfileForm(forms.ModelForm):
         return avatar
 
 class UserCreationForm(forms.ModelForm):
-    """
-    A form that creates a user, with no privileges, from the given username and
-    password.
-    """
+
     error_messages = {
         'password_mismatch': _("The two password fields didn't match."),
     }
