@@ -20,7 +20,6 @@ from django.core.urlresolvers import reverse_lazy
 from .models import Darba_laiks, Iemesls, Atstrada
 from django import forms
 from django.utils.translation import ugettext, ugettext_lazy as _
-from .forms import UserCreationForm
 from .models import UserProfile, Iemesls, Atstrada, Saglabatie, Virsstundas
 import datetime
 from datetime import timedelta
@@ -526,32 +525,7 @@ class LoginView(FormView):
             redirect_to = self.success_url
         return redirect_to
 
-class UserFormView(View):
-    form_class=UserCreationForm
-    template_name='registration_form.html'
 
-    #display blank form
-    def get(self,request):
-        form=self.form_class(None)
-        return render(request, self.template_name, {'form':form})
-
-    def post(self, request):
-        form = self.form_class(request.POST)
-
-        if form.is_valid():
-
-            #create a user
-            user=form.save(commit=False)
-
-            #cleaned data
-
-            user.save() #save to database
-
-            if user is not None:
-                if user.is_active:
-                    return redirect('darba_laiks:visi')
-
-        return render(request, self.template_name, {'form': form})
 
 def darbinieki(request):
     user_agent = get_user_agent(request)
@@ -848,14 +822,48 @@ def darbinieki(request):
 
 
 def visi(request):
-    visi = User.objects.all()
+    if request.method == 'GET':
+        visi = User.objects.all()
 
 
 
 
-    context = {'visi': visi,
-               }
-    return render(request, 'lietotaji.html', context)
+        context = {'visi': visi,
+                   }
+        return render(request, 'lietotaji.html', context)
+
+    if request.method == 'POST':
+        visi = User.objects.all()
+        username = request.POST.get("username")
+        first_name = request.POST.get("first-name")
+        last_name = request.POST.get("last-name")
+        password = request.POST.get("password")
+        password_again = request.POST.get("password-again")
+
+        atrastie = User.objects.filter(username=username)
+
+        if username:
+
+            if atrastie:
+                error = "Username already exists"
+                context = {'error': error,
+                           'visi': visi,
+                           }
+
+            else:
+                User.objects.create(
+                    username=username,
+                    first_name=first_name,
+                    last_name=last_name,
+                    password=password,
+                )
+
+                context={
+                    'atrastie_lietotaji': atrastie,
+                    'visi': visi,
+                }
+
+            return render(request, 'lietotaji.html', context)
 
 class Rediget(UpdateView):
     template_name='rediget.html'

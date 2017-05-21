@@ -4,15 +4,56 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'css/Users.css' %}" />
 <script type="text/javascript" src="{% static 'JavaScript/test.js' %}"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 
-     <div id = "Create">
-         <button class = "createButton"><a id = "textCreate" href="{% url 'darba_laiks:create_user' %}">Izveidot lietotāju</a></button>
-     </div>
+
+<div class="container">
+<div class="row">
+
+<!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal3">Izveidot lietotāju</button>
+
+<!-- Modal -->
+<div id="myModal3" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Izveidot lietotāju</h4>
+              </div>
+        <br class="modal-body">
+
+            <form method='POST' role="form" action="/darba_laiks/visi/">{% csrf_token %}
+                <label>Lietotājvārds:</label>
+                        <input type="text" name="username" value=""></br>
+                <label>Vārds:</label>
+                        <input type="text" name="first-name" value=""></br>
+                <label>Uzvārds:</label>
+                <input type="text" name="last-name" value=""></br>
+               <label>Parole:</label>
+                <input type="text" name="password" value=""></br>
+                <label>Parole atkārtoti:</label>
+                        <input type="text" name="password-again" value=""></br>
+                        <input type="submit" value="OK">
+          </form>
+
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
 
 {% for darbinieks in visi %}
 
-<div class="container">
+
 
   <a class="link" target="_blank" href="https://unsplash.com/photos/_snqARKTgoc">
     <div class="images">
@@ -28,12 +69,16 @@
 
 
 
+
+
 </div><!-- /container -->
 
 
 {% endfor %}
+{{ error }}
 
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
 
