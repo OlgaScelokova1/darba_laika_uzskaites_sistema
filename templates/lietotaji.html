@@ -14,14 +14,14 @@
 
 <div class="container">
 
-  <a target="_blank" href="https://unsplash.com/photos/_snqARKTgoc">
+  <a class="link" target="_blank" href="https://unsplash.com/photos/_snqARKTgoc">
     <div class="images">
       <img src="{{darbinieks.userprofile.avatar.url}}" alt="" class="img" width="600" height="400">
       <p class="description">
           <span>{{darbinieks.first_name}} {{darbinieks.last_name}} </span><br>
-          <button class = "button"><a class = "text" href="{% url 'darba_laiks:update' darbinieks.id %}"> Rediģēt </a> &nbsp</button>
-          <button class = "button"><a class = "text" href="{% url 'darba_laiks:bilde' darbinieks.userprofile.id %}"> Rediģēt bildi </a> &nbsp</button>
-          <button class = "button"><a class = "text" href="{% url 'darba_laiks:dzest' darbinieks.id %}"> Dzēst </a></button>
+          <a class = "button" href="{% url 'darba_laiks:update' darbinieks.id %}"> Rediģēt </a> &nbsp
+          <a class = "button" href="{% url 'darba_laiks:bilde' darbinieks.userprofile.id %}"> Rediģēt bildi </a> &nbsp
+          <a class = "button" href="{% url 'darba_laiks:dzest' darbinieks.id %}"> Dzēst </a>
       </p>
     </div>
   </a>

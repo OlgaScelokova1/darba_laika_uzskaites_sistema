@@ -57,3 +57,14 @@ a:hover{
 li {
   list-style-type: none;
 }
+
+
+
+#modal-button {
+  border: none;
+  background-color: white;
+  font-size: 14px;
+  color: #9d9d9d;
+  margin-top: 10px;
+}
+

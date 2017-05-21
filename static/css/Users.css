@@ -114,7 +114,7 @@ body{
   font-family: 'Roboto', sans-serif;
 }
 
-a{
+.link{
   text-decoration: none;
   color: inherit;
 }
@@ -164,8 +164,10 @@ div.images img {
 
 p.description {
   color: #777;
-  padding: 15px;
+  padding: 15px 15px 10px 15px;
   text-align: center;
+
+
 }
 
 div.clear{
@@ -213,4 +215,20 @@ p.information{
   div.images{
     width: 280px;
   }
+}
+
+.button {
+  padding: 2px 2px;
+  margin: 10px 0 0 -5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  color: black;
+  font-size: 12px;
+  background-color: white;
+  border: solid 1px #cecece;
+}
+
+.button:hover {
+  background-color: #cecece;
 }

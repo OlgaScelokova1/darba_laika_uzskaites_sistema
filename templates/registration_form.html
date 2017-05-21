@@ -9,54 +9,85 @@
 
       function validate()
       {
+          var un=document.getElementById('username').value;
+          var password1=document.getElementById('password1').value;
+          var password2=document.getElementById('password2').value;
 
-         if( document.myForm.username.value == "" )
+         if( un == "" )
          {
             alert( "Lūdzu, ievadiet lietotājvārdu!" );
-            document.myForm.username.focus() ;
+             document.getElementById('username').style.borderColor = "red";
             return false;
          }
 
-         if( document.myForm.username.value.length< 5)
+         else {
+             document.getElementById('username').style.borderColor = "black";
+         }
+
+
+         if( un.length< 5)
          {
              alert( "Lietotājvārdam jābūt vismaz 5 simbolu garam!" );
-            document.myForm.username.focus() ;
+             document.getElementById('username').style.borderColor = "red";
             return false;
          }
 
-          if( document.myForm.password1.value == "" )
+         else {
+             document.getElementById('username').style.borderColor = "black";
+         }
+
+          if( password1 == "" )
          {
             alert( "Lūdzu, ievadiet paroli!" );
-            document.myForm.username.focus() ;
+            document.getElementById('password1').style.borderColor = "red";
             return false;
          }
 
-          if( document.myForm.password1.value.length< 8)
+          else {
+             document.getElementById('password1').style.borderColor = "black";
+         }
+
+          if( password1.length< 8)
          {
              alert( "Parolei jābūt vismaz 8 simbolu garai!" );
-            document.myForm.username.focus() ;
+            document.getElementById('password1').style.borderColor = "red";
             return false;
          }
+          else {
+             document.getElementById('password1').style.borderColor = "black";
+         }
 
-          if( document.myForm.password2.value == "" )
+          if( password2 == "" )
          {
             alert( "Lūdzu, ievadiet paroli atkārtoti!" );
-            document.myForm.username.focus() ;
+             document.getElementById('password2').style.borderColor = "red";
             return false;
          }
 
-          if( document.myForm.password2.value.length< 8)
+          else {
+             document.getElementById('password2').style.borderColor = "black";
+         }
+
+          if( password2.length< 8)
          {
              alert( "Parolei jābūt vismaz 8 simbolu garai!" );
-            document.myForm.username.focus() ;
+             document.getElementById('password2').style.borderColor = "red";
             return false;
          }
 
-          if( document.myForm.password1.value !== document.myForm.password2.value)
+                   else {
+             document.getElementById('password1').style.borderColor = "black";
+         }
+
+          if( password1!== password2)
          {
             alert( "Paroles nesakrīt!" );
-            document.myForm.username.focus() ;
+            document.getElementById('password1').style.borderColor = "red";
+            document.getElementById('password2').style.borderColor = "red";
             return false;
+         }
+          else {
+             document.getElementById('password1').style.borderColor = "black";
          }
 
 
@@ -79,34 +110,28 @@
 
 
 
-
                                <div class="form-group">
                                    <div class="col-sm-offset-2 col-sm-10">
                                        <span class="text-danger small"></span>
                                    </div>
+
                                <label class="control-label col-sm-2"><label for="id_username">Lietotājvārds:</label></label>
-                               <div class="col-sm-10"><input id="id_username" maxlength="50" name="username" type="text" required></div>
-                               </div>
+                              <div class="input-wrapper">
+                                <input type="text" placeholder="" id="username" name="username" maxlength="150"/>
+                              </div>
 
 
-
-                               <div class="form-group">
-                                   <div class="col-sm-offset-2 col-sm-10">
-                                       <span class="text-danger small"></span>
-                                   </div>
                                <label class="control-label col-sm-2"><label for="id_password1">Parole:</label></label>
-                               <div class="col-sm-10"><input id="id_password1" name="password1" maxlength="24" type="password" required /></div>
-                               </div>
+                               <div class="input-wrapper">
+                                <input type="text" placeholder="" id="password1" name="password1" maxlength="24" type="password" required/>
+                              </div>
 
 
 
-                               <div class="form-group">
-                                   <div class="col-sm-offset-2 col-sm-10">
-                                       <span class="text-danger small"></span>
-                                   </div>
                                <label class="control-label col-sm-2"><label for="id_password2">Parole atkārtoti:</label></label>
-                               <div class="col-sm-10"><input id="id_password2" name="password2" maxlength="24" type="password" required /></div>
-                               </div>
+                               <div class="input-wrapper">
+                                <input type="text" placeholder="" id="password2" name="password2" maxlength="24" type="password" required/>
+                              </div>
 
 
                             <div class="form-group">

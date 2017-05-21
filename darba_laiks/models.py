@@ -73,3 +73,15 @@ class Saglabatie(models.Model):
 
     def __str__(self):
         return str(self.lietotajs_kurs_pievienoja)+'  '+ str(self.lietotajs_kuru_pievienoja)
+
+class Virsstundas(models.Model):
+    lietotajs = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    datums = models.DateField()
+    no = models.TimeField()
+    lidz = models.TimeField()
+    komentars= models.TextField(max_length=500)
+
+    def __str__(self):
+        return str(self.datums)+'  '+ str(self.no)+' - '+ str(self.lidz)+' - '+ str(self.komentars)
+
+

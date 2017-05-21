@@ -21,7 +21,7 @@ from .models import Darba_laiks, Iemesls, Atstrada
 from django import forms
 from django.utils.translation import ugettext, ugettext_lazy as _
 from .forms import UserCreationForm
-from .models import UserProfile, Iemesls, Atstrada, Saglabatie
+from .models import UserProfile, Iemesls, Atstrada, Saglabatie, Virsstundas
 import datetime
 from datetime import timedelta
 from django_user_agents.utils import get_user_agent
@@ -131,6 +131,8 @@ def darba_laiks(request):
             monday = request.POST.get("monday")
             monday2 = request.POST.get("mondayDown")
             datums_dzesanai=request.POST.get("datums-dzesanai")
+            datums_virsstundas = request.POST.get("datums-virsstundas")
+            datums_no_virsstundas_atlasit = request.POST.get("datums-no-virsstundas-atlasit")
 
             lietotajs=request.user
             nebus=Darba_laiks.objects.filter(lietotajs=lietotajs)
@@ -211,6 +213,72 @@ def darba_laiks(request):
                            'saturday': saturday,
                            'sunday': sunday,
                            'week': week,
+                           }
+            elif datums_virsstundas:
+                no_virsstundas = request.POST.get("no-virsstundas")
+                lidz_virsstundas = request.POST.get("lidz-virsstundas")
+                komentars_virsstundas = request.POST.get("komentars-virsstundas", "")
+                date = datetime.date.today()
+                monday = date - datetime.timedelta(date.weekday())
+                sunday = monday + datetime.timedelta(6)
+                tuesday = monday + datetime.timedelta(1)
+                wednesday = monday + datetime.timedelta(2)
+                thursday = monday + datetime.timedelta(3)
+                friday = monday + datetime.timedelta(4)
+                saturday = monday + datetime.timedelta(5)
+                week = datetime.date.today().strftime("%V")
+                '24'
+
+                Virsstundas.objects.create(
+                    lietotajs = request.user,
+                    datums=datums_virsstundas,
+                    no=no_virsstundas,
+                    lidz=lidz_virsstundas,
+                    komentars=komentars_virsstundas,
+                )
+
+                context = {'nebus': nebus,
+                           'iemesls': iemesls,
+                           'atstrada': atstrada,
+                           'monday': monday,
+                           'tuesday': tuesday,
+                           'wednesday': wednesday,
+                           'thursday': thursday,
+                           'friday': friday,
+                           'saturday': saturday,
+                           'sunday': sunday,
+                           'week': week,
+                           }
+            elif datums_no_virsstundas_atlasit:
+                lietotajs=request.user
+                datums_lidz_virsstundas_atlasit = request.POST.get("datums-lidz-virsstundas-atlasit")
+                atlasiti_dati=Virsstundas.objects.filter(lietotajs=lietotajs, datums__gte=datums_no_virsstundas_atlasit, datums__lte=datums_lidz_virsstundas_atlasit)
+
+                date = datetime.date.today()
+                monday = date - datetime.timedelta(date.weekday())
+                sunday = monday + datetime.timedelta(6)
+                tuesday = monday + datetime.timedelta(1)
+                wednesday = monday + datetime.timedelta(2)
+                thursday = monday + datetime.timedelta(3)
+                friday = monday + datetime.timedelta(4)
+                saturday = monday + datetime.timedelta(5)
+                week = datetime.date.today().strftime("%V")
+                '24'
+
+
+                context = {
+                    'nebus': nebus,
+                           'iemesls': iemesls,
+                           'atstrada': atstrada,
+                           'monday': monday,
+                           'tuesday': tuesday,
+                           'wednesday': wednesday,
+                           'thursday': thursday,
+                           'friday': friday,
+                           'saturday': saturday,
+                           'sunday': sunday,
+                           'week': week,
+                           'atlasiti_dati': atlasiti_dati,
                            }
 
             else:
@@ -1044,6 +1112,9 @@ def saglabatie(request):
 
 
             return render(request, 'saglabatie_mobile.html', context)
+
+
+
 
 
 # def pievienot_favoritiem(request, pk):
