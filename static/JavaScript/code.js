@@ -1,12 +1,12 @@
 $(document).ready(function() {
 
 var today = new Date();
-var thisWeek = getWeek(today);
+var thisWeek = getWeek(today); // tiek iegūta šī nedēļa
 var documentWeek = document.getElementById("WeekDate").innerHTML;
 
 if (thisWeek != documentWeek){
     $(".OneDay").slideUp(1).delay(200).slideDown('fast');
-}
+} // ja nav šī nedēļa, tad, pāršķirot lapu, efekts
 
 var monday = document.getElementById("mondayReceived").innerHTML;
 var tuesday = document.getElementById("tuesdayReceived").innerHTML;
@@ -26,7 +26,7 @@ function datesInDateFormat(){
     friday = new Date (friday);
     saturday = new Date (saturday);
     sunday = new Date (sunday);
-}
+} // visi datumi tiek pārveidoti par datumiem
 
 datesInDateFormat();
 
@@ -63,7 +63,8 @@ function formatAllDates(){
     formattedDateSaturday = formatDate(saturday);
     formattedDateSunday = formatDate(sunday);
 
-}
+} // funkcija, kas citos mainīgajos ievieto noformētus nedēļas datumus
+
 formatAllDates();
 
 function writeDates(){
@@ -74,7 +75,7 @@ function writeDates(){
     document.getElementById("FridayDate").innerHTML = formattedDateFriday;
     document.getElementById("SaturdayDate").innerHTML = formattedDateSaturday;
     document.getElementById("SundayDate").innerHTML = formattedDateSunday;
-}
+} // funkcija, kas ieraksta datumus html
 
 writeDates();
 
@@ -100,7 +101,7 @@ function addDates (){
     addFriday = addDays(friday, 7);
     addSaturday = addDays(saturday, 7);
     addSunday = addDays(sunday, 7);
-}
+} // funkcija, kas pievieno dienas priekš nākamās nedēļas
 
 var removeMonday;
 var removeTuesday;
@@ -118,7 +119,7 @@ function removeDates(){
     removeFriday = addDays(friday, -7);
     removeSaturday = addDays(saturday, -7);
     removeSunday = addDays(sunday, -7);
-}
+} // funkcija, kas atņem dienas priekš iepriekšējās nedēļas
 
 
 function setValuesForFormUp (){
@@ -130,7 +131,7 @@ function setValuesForFormUp (){
     document.getElementById("fridaySend").value = addFriday;
     document.getElementById("saturdaySend").value = addSaturday;
     document.getElementById("sundaySend").value = addSunday;
-}
+}   // funkcija, kas ievieto formā (pogā uz augšu) vērtības priekš nākamās nedēļas
 
 function setValuesForFormDown(){
     removeDates();
@@ -141,7 +142,7 @@ function setValuesForFormDown(){
     document.getElementById("fridaySendDown").value = removeFriday;
     document.getElementById("saturdaySendDown").value = removeSaturday;
     document.getElementById("sundaySendDown").value = removeSunday;
-}
+} // funkcija, kas ievieto formā (pogā uz leju) vērtības priekš iepriekšējās nedēļas
 
 
 setValuesForFormUp();
@@ -173,7 +174,7 @@ function setMonthAndWeek() {
 
     document.getElementById("WeekDate").innerHTML = getWeek(monday); // tiek ierakstīts nedēļas kārtas numurs
 
-}
+}// ar šo funkciju dokumenā tiek ierakstīts mēnesis un nedēļa pēc kārtas
 
 setMonthAndWeek();
 
@@ -265,6 +266,7 @@ if(FillBox){
     }); // kastītes novietojums un default vērtības
 
 }
+
 function getCookie(name) {
      var cookieValue = null;
      if (document.cookie && document.cookie !== '') {
@@ -301,6 +303,16 @@ frm.submit(function () {
 
 
 var today;
+var forResize; // šis mainīgais tiks izmantots vēlāk, kad tiks mainīts ekrāna lielums
+
+var mondayList = document.getElementById("MondayList");
+var tuesdayList = document.getElementById("TuesdayList");
+var wednesdayList = document.getElementById("WednesdayList");
+var thursdayList = document.getElementById("ThursdayList");
+var fridayList = document.getElementById("FridayList");
+
+var dayLists = [mondayList, tuesdayList, wednesdayList, thursdayList, fridayList];
+
 
 function getTodayDate(){
     today = new Date()
@@ -315,57 +327,61 @@ function getTodayDate(){
         mm='0'+mm;
     }
     today = yyyy+'-'+mm+'-'+dd;
+    //tiek iegūts šodienas datums formātā, kādā ir date2[] masīvā datumi
+
+    var mondayTime = document.getElementById("Monday");
+    var mondayDate = document.getElementById("MondayDate");
+    var tuesdayTime = document.getElementById("Tuesday");
+    var tuesdayDate = document.getElementById("TuesdayDate");
+    var wednesdayTime = document.getElementById("Wednesday");
+    var wednesdayDate = document.getElementById("WednesdayDate");
+    var thursdayTime = document.getElementById("Thursday");
+    var thursdayDate = document.getElementById("ThursdayDate");
+    var fridayTime = document.getElementById("Friday");
+    var fridayDate = document.getElementById("FridayDate");
+    var saturdayTime = document.getElementById("Saturday");
+    var saturdayDate = document.getElementById("SaturdayDate");
+    var sundayTime = document.getElementById("Sunday");
+    var sundayDate = document.getElementById("SundayDate");
+    // tiek salikti mainīgajos visi elementi, kas var tikt mainīti
+
 
     if (today == date2[0]){
-        Monday.style.border = "2px solid #259adb";
-        document.getElementById("Monday").style.color = "#259adb";
-        document.getElementById("Monday").style.fontWeight = "bold";
-        document.getElementById("MondayDate").style.color = "#262626";
-        document.getElementById("MondayDate").style.color = "#262626";
-    }
+        setSpecificDay(Monday, mondayTime, mondayDate);
+        forResize = mondayList;
+    } //ja šodien ir attēlotās nedēļas pirmdiena, tad pirmdiena tiks izcelta
     else if (today == date2[1]){
-         Tuesday.style.border = "2px solid #259adb";
-         document.getElementById("Tuesday").style.color = "#259adb";
-         document.getElementById("Tuesday").style.fontWeight = "bold";
-         document.getElementById("TuesdayDate").style.color = "#262626";
-         document.getElementById("TuesdayDate").style.fontWeight = "bold";
-    }
+         setSpecificDay(Tuesday, tuesdayTime, tuesdayDate);
+         forResize = tuesdayList;
+    } //ja šodien ir attēlotās nedēļas otrdiena, tad otrdiena tiks izcelta
     else if (today == date2[2]){
-         Wednesday.style.border = "2px solid #259adb";
-         document.getElementById("Wednesday").style.color = "#259adb";
-         document.getElementById("Wednesday").style.fontWeight = "bold";
-         document.getElementById("WednesdayDate").style.color = "#262626";
-         document.getElementById("WednesdayDate").style.fontWeight = "bold";
-    }
+        setSpecificDay(Wednesday, wednesdayTime, wednesdayDate);
+        forResize = wednesdayList;
+    } //ja šodien ir attēlotās nedēļas trešdiena, tad trešdiena tiks izcelta
     else if (today == date2[3]){
-         Thursday.style.border = "2px solid #259adb";
-         document.getElementById("Thursday").style.color = "#259adb";
-         document.getElementById("Thursday").style.fontWeight = "bold";
-         document.getElementById("ThursdayDate").style.color = "#262626";
-         document.getElementById("ThursdayDate").style.fontWeight = "bold";
-    }
+         setSpecificDay(Thursday, thursdayTime, thursdayDate);
+         forResize = thursdayList;
+    }//ja šodien ir attēlotās nedēļas ceturtdiena, tad ceturtdiena tiks izcelta
     else if (today == date2[4]){
-         Friday.style.border = "2px solid #259adb";
-         document.getElementById("Friday").style.color = "#259adb";
-         document.getElementById("Friday").style.fontWeight = "bold";
-         document.getElementById("FridayDate").style.color = "#262626";
-         document.getElementById("FridayDate").style.fontWeight = "bold";
-    }
+         setSpecificDay(Friday, fridayTime, fridayDate);
+         forResize = fridayList;
+    }//ja šodien ir attēlotās nedēļas piektdiena, tad piektdiena tiks izcelta
     else if (today == date2[5]){
-         Saturday.style.border = "2px solid #259adb";
-         document.getElementById("Saturday").style.color = "#259adb";
-         document.getElementById("Saturday").style.fontWeight = "bold";
-         document.getElementById("SaturdayDate").style.color = "#262626";
-         document.getElementById("SaturdayDate").style.fontWeight = "bold";
-    }
+         setSpecificDay(Saturday, saturdayTime, saturdayDate);
+    }//ja šodien ir attēlotās nedēļas sestdiena, tad sestdiena tiks izcelta
     else if (today == date2[6]){
-         Sunday.style.border = "2px solid #259adb";
-         document.getElementById("Sunday").style.color = "#259adb";
-         document.getElementById("Sunday").style.fontWeight = "bold";
-         document.getElementById("SundayDate").style.color = "#262626";
-         document.getElementById("SundayDate").style.fontWeight = "bold";
-    }
+         setSpecificDay(Sunday, sundayTime, sundayDate);
+    }//ja šodien ir attēlotās nedēļas svētdiena, tad svētdiena tiks izcelta
 } // šodienai tiek piešķirts rāmos, citi burtu parametri
+
+function setSpecificDay(day, dayTime, date){
+    day.style.border = "2px solid #259adb";
+    dayTime.style.color = "#259adb";
+    dayTime.style.fontWeight = "bold";
+    date.style.color = "#262626";
+    date.style.fontWeight = "bold";
+} // ar šo funkciju tiek noteikti parametri, kas tiek mainīti attiecīgajai dienai
+
 
 getTodayDate();
 
@@ -514,7 +530,7 @@ function setSlimiba (){
                             }
                             else k++;
                         }
-                    }console.log(willWorkSick);
+                    }
             }
         }
     }
@@ -1174,6 +1190,92 @@ $('[data-toggle = "tooltip" ]').tooltip();
 
 
 
+$('.DateField').datepicker({
+        format: 'yyyy-mm-dd',
+        language: "lv",
+        daysOfWeekHighlighted: "0,6",
+        todayHighlight: true,
+});
+
+$('.timepicker1').timepicker({
+    timeFormat: 'HH:mm',
+    interval: 30,
+    dynamic: true,
+});
+
+$('.timepicker2').timepicker({
+    timeFormat: 'HH:mm',
+    interval: 30,
+    dynamic: true,
+});
+
+console.log($(window).width());
+
+window.onresize = function() {
+    toggle();
+}
+console.log(forResize);
+console.log(dayLists);
+
+function toggle() {
+    if ($(window).width()<995){
+            if(forResize){
+                for (i=0; i<dayLists.length; i++){
+                    if(dayLists[i]!=forResize){
+                        dayLists[i].style.display = "none";
+                    }
+                }
+            }
+            else{
+                for(i=1; i<dayLists.length; i++){
+                    dayLists[i].style.display = "none";
+                }
+
+            }
+            document.getElementById("HolidayList").style.display="none";
+
+    }
+    else if ($(window).width()<1200){
+        document.getElementById("HolidayList").style.display="none";
+    }
+    else {
+        document.getElementById("HolidayList").style.display="block";
+        for(i=0; i<dayLists.length; i++){
+            dayLists[i].style.display = "block";
+        }
+
+    }
+}
+
+toggle();
+
+if ($(window).width()<995){
+        if(forResize){
+            for (i=0; i<dayLists.length; i++){
+                if(dayLists[i]!=forResize){
+                    dayLists[i].style.display = "none";
+                }
+            }
+        }
+        else{
+            for(i=1; i<dayLists.length; i++){
+                dayLists[i].style.display = "none";
+            }
+
+        }
+        document.getElementById("HolidayList").style.display="none";
+
+}
+else if ($(window).width()<1200){
+    document.getElementById("HolidayList").style.display="none";
+}
+else {
+    document.getElementById("HolidayList").style.display="block";
+    for(i=0; i<dayLists.length; i++){
+        dayLists[i].style.display = "block";
+    }
+
+}
 
 
 });
