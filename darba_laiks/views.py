@@ -213,72 +213,6 @@ def darba_laiks(request):
                            'sunday': sunday,
                            'week': week,
                            }
-            elif datums_virsstundas:
-                no_virsstundas = request.POST.get("no-virsstundas")
-                lidz_virsstundas = request.POST.get("lidz-virsstundas")
-                komentars_virsstundas = request.POST.get("komentars-virsstundas", "")
-                date = datetime.date.today()
-                monday = date - datetime.timedelta(date.weekday())
-                sunday = monday + datetime.timedelta(6)
-                tuesday = monday + datetime.timedelta(1)
-                wednesday = monday + datetime.timedelta(2)
-                thursday = monday + datetime.timedelta(3)
-                friday = monday + datetime.timedelta(4)
-                saturday = monday + datetime.timedelta(5)
-                week = datetime.date.today().strftime("%V")
-                '24'
-
-                Virsstundas.objects.create(
-                    lietotajs = request.user,
-                    datums=datums_virsstundas,
-                    no=no_virsstundas,
-                    lidz=lidz_virsstundas,
-                    komentars=komentars_virsstundas,
-                )
-
-                context = {'nebus': nebus,
-                           'iemesls': iemesls,
-                           'atstrada': atstrada,
-                           'monday': monday,
-                           'tuesday': tuesday,
-                           'wednesday': wednesday,
-                           'thursday': thursday,
-                           'friday': friday,
-                           'saturday': saturday,
-                           'sunday': sunday,
-                           'week': week,
-                           }
-            elif datums_no_virsstundas_atlasit:
-                lietotajs=request.user
-                datums_lidz_virsstundas_atlasit = request.POST.get("datums-lidz-virsstundas-atlasit")
-                atlasiti_dati=Virsstundas.objects.filter(lietotajs=lietotajs, datums__gte=datums_no_virsstundas_atlasit, datums__lte=datums_lidz_virsstundas_atlasit)
-
-                date = datetime.date.today()
-                monday = date - datetime.timedelta(date.weekday())
-                sunday = monday + datetime.timedelta(6)
-                tuesday = monday + datetime.timedelta(1)
-                wednesday = monday + datetime.timedelta(2)
-                thursday = monday + datetime.timedelta(3)
-                friday = monday + datetime.timedelta(4)
-                saturday = monday + datetime.timedelta(5)
-                week = datetime.date.today().strftime("%V")
-                '24'
-
-
-                context = {
-                    'nebus': nebus,
-                           'iemesls': iemesls,
-                           'atstrada': atstrada,
-                           'monday': monday,
-                           'tuesday': tuesday,
-                           'wednesday': wednesday,
-                           'thursday': thursday,
-                           'friday': friday,
-                           'saturday': saturday,
-                           'sunday': sunday,
-                           'week': week,
-                           'atlasiti_dati': atlasiti_dati,
-                           }
 
             else:
 
@@ -1122,7 +1056,46 @@ def saglabatie(request):
             return render(request, 'saglabatie_mobile.html', context)
 
 
+def virsstundas(request):
 
+    if request.method == "GET":
+        lietotajs=request.user
+        atlasiti_dati=Virsstundas.objects.filter(lietotajs=lietotajs).order_by('-datums')
+        context= {
+            'atlasiti_dati': atlasiti_dati,
+        }
+        return render(request, 'virsstundas.html', context)
+
+    if request.method == "POST":
+        datums_virsstundas = request.POST.get("datums-virsstundas")
+        datums_no_virsstundas_atlasit = request.POST.get("datums-no-virsstundas-atlasit")
+        if datums_virsstundas:
+            no_virsstundas = request.POST.get("no-virsstundas")
+            lidz_virsstundas = request.POST.get("lidz-virsstundas")
+            komentars_virsstundas = request.POST.get("komentars-virsstundas", "")
+
+            Virsstundas.objects.create(
+                lietotajs=request.user,
+                datums=datums_virsstundas,
+                no=no_virsstundas,
+                lidz=lidz_virsstundas,
+                komentars=komentars_virsstundas,
+            )
+
+            context = {
+                       }
+            return render(request, 'virsstundas.html', context)
+        elif datums_no_virsstundas_atlasit:
+            lietotajs = request.user
+            datums_lidz_virsstundas_atlasit = request.POST.get("datums-lidz-virsstundas-atlasit")
+            atlasiti_dati = Virsstundas.objects.filter(lietotajs=lietotajs, datums__gte=datums_no_virsstundas_atlasit,
+                                                       datums__lte=datums_lidz_virsstundas_atlasit)
+
+
+            context = {
+                'atlasiti_dati': atlasiti_dati,
+            }
+        return render(request, 'virsstundas.html', context)
 
 
 # def pievienot_favoritiem(request, pk):

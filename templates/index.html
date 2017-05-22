@@ -7,7 +7,7 @@
 {% load staticfiles %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/My.css' %}" />
 
- {% load tagi_html %}
+
 
 <div class = "container col-sm-1">
     <div class = "row">
@@ -346,37 +346,7 @@
 
 </div>
 
-{% if atlasiti_dati %}
 
-    <div id="manasvirsstundas">Manas virsstundas</div>
-
-    <table class="table" style="width:30%; background-color:white; font-size: 12px" >
-    <thead>
-      <tr>
-        <th>Datums</th>
-        <th>No</th>
-        <th>Līdz</th>
-          <th>Stundu skaits</th>
-      </tr>
-    </thead>
-
-    <tdody>
-        {% for atlasits in atlasiti_dati %}
-            <tr>
-        <td>{{atlasits.datums|date:"d.m.Y"}}</td>
-        <td>{{atlasits.no|time:"H:i"}}</td>
-        <td>{{atlasits.lidz|time:"H:i"}}</td>
-        <td>{{atlasits.no|stundas_starp:atlasits.lidz }}</td>
-         </tr>
-            {% endfor %}
-    </tbody>
-
-  </table>
-
-
-
-
-{% endif %}
 
 
 
