@@ -1,3 +1,5 @@
+
+
 .oneColor {
     display: flex;
     font-size: 12px;
@@ -252,12 +254,15 @@
 .DateField {
 	width: 46px;
 	height: 16.5px;
+	padding:0;
+	font-size: 10px;
 }
 
 .TimeField {
   width: 35px;
   height: 16.5px;
-
+  padding:0;
+  font-size: 10px;
 }
 
 input {
@@ -342,6 +347,7 @@ input {
     font-weight: bold;
 }
 
+
 #manasvirsstundas{
     font-weight: bold;
     color: #259adb;
@@ -353,3 +359,4 @@ input {
 #table1{
     width: 50%;
 }
+
