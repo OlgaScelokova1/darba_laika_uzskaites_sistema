@@ -1,0 +1,107 @@
+ {% extends "base.html" %}
+ {% load tagi_html %}
+ {% block content %}
+     {% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/My.css' %}" />
+
+
+                          <button id="modal-button" type="button"  data-toggle="modal" data-target="#myModal">Pievienot virsstundas</button>
+
+                          <button id="modal-button" type="button"  data-toggle="modal" data-target="#myModal2">Atlasīt virsstundas</button>
+
+
+
+      </ul>
+
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Pievienot virsstundas</h4>
+        </div>
+        <br class="modal-body">
+
+            <form method='POST' role="form" action="/darba_laiks/virsstundas/">{% csrf_token %}
+                <label>Datums:</label>
+                        <input type="text" name="datums-virsstundas" value=""></br>
+                <label>No:</label>
+                        <input type="text" name="no-virsstundas" value=""></br>
+                <label>Līdz:</label>
+                <input type="text" name="lidz-virsstundas" value=""></br>
+               <label>Komentārs:</label>
+                <input type="text" name="komentars-virsstundas" value=""></br>
+                        <input type="submit" value="OK">
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="modal fade" id="myModal2" role="dialog">
+    <div class="modal-dialog">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Ievadiet laika periodu, kurā Jūs gribētu atlasīt virsstundas</h4>
+        </div>
+        <br class="modal-body">
+
+            <form method='POST' role="form" action="/darba_laiks/virsstundas/">{% csrf_token %}
+                <label>Datums no:</label>
+                        <input type="text" name="datums-no-virsstundas-atlasit" value=""></br>
+                <label>Datums līdz:</label>
+                        <input type="text" name="datums-lidz-virsstundas-atlasit" value=""></br>
+                        <input type="submit" value="Atlasīt">
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+
+     {% if atlasiti_dati %}
+
+    <div id="manasvirsstundas">Manas virsstundas</div>
+
+    <table class="table" style="width:30%; background-color:white; font-size: 12px" >
+    <thead>
+      <tr>
+        <th>Datums</th>
+        <th>No</th>
+        <th>Līdz</th>
+          <th>Stundu skaits</th>
+      </tr>
+    </thead>
+
+    <tdody>
+        {% for atlasits in atlasiti_dati %}
+            <tr>
+        <td>{{atlasits.datums|date:"d.m.Y"}}</td>
+        <td>{{atlasits.no|time:"H:i"}}</td>
+        <td>{{atlasits.lidz|time:"H:i"}}</td>
+        <td>{{atlasits.no|stundas_starp:atlasits.lidz }}</td>
+         </tr>
+            {% endfor %}
+    </tbody>
+
+  </table>
+
+
+
+
+{% endif %}
+
+ {% endblock %}
+
+
