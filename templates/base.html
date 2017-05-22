@@ -67,6 +67,14 @@
                     </a>
                 </li>
                 {% endif %}
+                {% if user.is_superuser or user.is_staff %}
+                <li class="">
+                    <a href="{% url 'darba_laiks:virsstundas_admin' %}">
+                        <span class="" aria-hidden="true"></span>&nbsp;
+                        Virsstundas
+                    </a>
+                </li>
+                {% endif %}
             </ul>
 
 

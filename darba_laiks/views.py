@@ -1097,6 +1097,27 @@ def virsstundas(request):
             }
         return render(request, 'virsstundas.html', context)
 
+def virsstundas_admin(request):
+
+    if request.method == "GET":
+        atlasiti_dati = Virsstundas.objects.all().order_by('-datums')
+        context = {
+                'atlasiti_dati': atlasiti_dati,
+            }
+        return render(request, 'virsstundas_admin.html', context)
+
+    if request.method == "POST":
+        datums_no_virsstundas_atlasit = request.POST.get("datums-no-virsstundas-atlasit")
+
+        if datums_no_virsstundas_atlasit:
+            datums_lidz_virsstundas_atlasit = request.POST.get("datums-lidz-virsstundas-atlasit")
+            atlasiti_dati = Virsstundas.objects.filter(datums__gte=datums_no_virsstundas_atlasit,
+                                                           datums__lte=datums_lidz_virsstundas_atlasit)
+
+            context = {
+                    'atlasiti_dati': atlasiti_dati,
+                }
+            return render(request, 'virsstundas_admin.html', context)
 
 # def pievienot_favoritiem(request, pk):
 #     lietotajs_kuru_pievienoja = User.objects.get(pk=pk)
