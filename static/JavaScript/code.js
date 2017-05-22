@@ -30,6 +30,16 @@ function datesInDateFormat(){
 
 datesInDateFormat();
 
+document.getElementById("mondayFill").value = monday;
+document.getElementById("tuesdayFill").value = tuesday;
+document.getElementById("wednesdayFill").value = wednesday;
+document.getElementById("thursdayFill").value = thursday;
+document.getElementById("fridayFill").value = friday;
+document.getElementById("saturdayFill").value = saturday;
+document.getElementById("sundayFill").value = sunday;
+// formā, kur tiek atzīmēti kavējumi, tiek padoti datumi, lai, atzīmējot tos citā nedēļā, nedēļa nepāršķirtos
+
+
 function formatDate(myDate) {
     var tmp = myDate;
     var month = tmp.getMonth() + 1;
@@ -177,6 +187,8 @@ function setMonthAndWeek() {
 }// ar šo funkciju dokumenā tiek ierakstīts mēnesis un nedēļa pēc kārtas
 
 setMonthAndWeek();
+console.log(monday);
+
 
 var dateMonday = new Date(); // pagaidām pirmdienā ir šodienas datums
 
@@ -310,6 +322,16 @@ frm.submit(function () {
             return false;
         }
     } // formu pārbaude, ja ievadīti iemesli, kas jāatstrādā, tiek pieprasīts ievadīt atstrādāšanas laikus
+
+    var isValidFrom1 = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(from1.value);
+    var isValidUntil1 = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(until1.value);
+    var isValidFrom2 = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(from2.value);
+    var isValidUntil2 = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(until2.value);
+
+    if(!isValidFrom1 || !isValidFrom2 || !isValidUntil1 || !isValidUntil2){
+        alert("Nepareizi ievadīts laiks!")
+            return false;
+    }
 
     $.ajax({
         type: 'POST',
@@ -1317,34 +1339,6 @@ function toggle() {
 }
 
 toggle();
-
-if ($(window).width()<995){
-        if(forResize){
-            for (i=0; i<dayLists.length; i++){
-                if(dayLists[i]!=forResize){
-                    dayLists[i].style.display = "none";
-                }
-            }
-        }
-        else{
-            for(i=1; i<dayLists.length; i++){
-                dayLists[i].style.display = "none";
-            }
-
-        }
-        document.getElementById("HolidayList").style.display="none";
-
-}
-else if ($(window).width()<1200){
-    document.getElementById("HolidayList").style.display="none";
-}
-else {
-    document.getElementById("HolidayList").style.display="block";
-    for(i=0; i<dayLists.length; i++){
-        dayLists[i].style.display = "block";
-    }
-
-}
 
 
 });

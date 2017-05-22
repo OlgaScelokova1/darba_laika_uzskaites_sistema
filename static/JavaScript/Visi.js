@@ -1,6 +1,5 @@
 var givenDate = document.getElementById("givenDate").innerHTML;
 var today = new Date(givenDate);
-console.log(today);
 
 function formatDateForForm(myDate){
     var tmp = myDate;
@@ -35,7 +34,6 @@ function formatDate(myDate) {
 
 
 var formattedDay = formatDate(today);
-console.log(formattedDay);
 
 
 function addDays(date, days) {
@@ -77,10 +75,8 @@ if (document.getElementById("Month")){
 
 
 var all = document.getElementsByClassName("oneReason");
-console.log(all);
 var willWorkWhen = document.getElementById("offWork");
 var reason = document.getElementsByClassName("reason");
-console.log(reason);
 var workFrom = document.getElementsByClassName("atstradasNo");
 var workUntil = document.getElementsByClassName("atstradasLidz");
 var workDate = document.getElementsByClassName("atstradasKad");
@@ -93,7 +89,6 @@ for (i = 0 ; i < reason.length ; ){
     if(reason[i].innerHTML == all[k].innerHTML ){
         forInputWork[k] = workDate[i].innerHTML + "  " + workFrom[i].innerHTML + "-" + workUntil[i].innerHTML;
         i++;
-        console.log(i);
     }
     else {
         forInputWork[i] = 0;
@@ -101,7 +96,6 @@ for (i = 0 ; i < reason.length ; ){
     }
 }
 
-console.log(forInputWork);
 
 var everyId = document.getElementsByClassName("userId");
 
@@ -109,7 +103,6 @@ function setReasons(){
 
 
     var box = document.getElementsByClassName("dayBox");
-    console.log(box);
     // dabūju katru iemeslu ar id
     var allText = [];
     var everyIdtmp = [];
@@ -117,14 +110,10 @@ function setReasons(){
     for(i=0; i<everyId.length ; i++){
         everyIdtmp[i] = everyId[i].innerHTML;
     }
-    console.log(everyId);
-    console.log(everyIdtmp);
 
     for (i=0 ; i<all.length ; i++){
         allText[i] = all[i].innerHTML;
     }
-    console.log(all);
-    console.log(allText);
 
 
     var id = [];
@@ -140,9 +129,6 @@ function setReasons(){
         }
     }
 
-    console.log(id);
-    console.log(id.length);
-    console.log(everyIdtmp.length);
     var lidz = [];
     var no = [];
     var iemesls = [];
@@ -275,8 +261,6 @@ var thisDate = new Date();
 thisDate = formatDate(thisDate);
 var documentDate = document.getElementById("today").innerHTML.slice(-11);
 
-console.log(documentDate);
-console.log(thisDate);
 
 if(document.getElementById("description")){
     if (thisDate != documentDate){
@@ -307,13 +291,68 @@ for (i=0; i< everyUserId.length; i++){
     }
 }
 
+var userName = document.getElementsByClassName("userFull");
+var userBox = document.getElementsByClassName("dayBox");
 
-$('#search-input1').on('input', function() {
+$('#searchField').on('input', function() {
     var input_value = $(this).val();
-    $('.user-full-name1').each (function () {
-        if ($(this).text().toLowerCase().indexOf(input_value) >= 0) { $(this).show(); }
-        else {$(this).hide();}
-    })
+    for (i=0; i<userName.length; i++){
+        if (userName[i].innerHTML.toLowerCase().indexOf(input_value) >= 0) {
+            userBox[i].style.display = "block";
+            userBox[i].style.cssFloat = "left";
+
+         }
+        else {
+            userBox[i].style.display = "none";
+
+        }
+        }
+
 });
+
+
+
+console.log($(window).width());
+
+window.onresize = function() {
+    toggle();
+}
+
+
+
+function toggle() {
+    var userBox = document.getElementsByClassName("userBox");
+    if ($(window).width()<760){
+        document.getElementById("secondRow").style.display="none";
+        document.getElementById("firstRow").style.marginLeft="200px";
+        document.getElementById("firstRow").style.marginTop="-200px";
+        document.getElementById("oneUser").style.marginTop="200px";
+        for (i=0 ; i<userBox.length; i++){
+            userBox[i].style.marginLeft = "150px";
+        }
+    }
+    else if ($(window).width()<1000){
+
+
+    }
+    else if ($(window).width()<1200){
+        for (i=0 ; i<userBox.length; i++){
+            userBox[i].style.marginRight = "30px";
+        }
+    }
+    else {
+        document.getElementById("secondRow").style.display="flex";
+        document.getElementById("firstRow").style.marginLeft="10px";
+        document.getElementById("firstRow").style.marginTop="10px";
+        document.getElementById("oneUser").style.marginTop="0";
+        for (i=0 ; i<userBox.length; i++){
+            userBox[i].style.marginRight = "0";
+            userBox[i].style.marginLeft = "0";
+        }
+
+    }
+}
+
+toggle();
 
 
