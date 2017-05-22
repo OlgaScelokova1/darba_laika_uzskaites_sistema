@@ -286,12 +286,37 @@ function getCookie(name) {
 var frm = $(FillBox);
 
 frm.submit(function () {
+    var date1 = document.getElementById("InputDate");
+    var from1 = document.getElementById("InputFrom");
+    var until1 = document.getElementById("InputUntil");
+    var date2 = document.getElementById("AfterDate");
+    var from2 = document.getElementById("AfterFrom");
+    var until2 = document.getElementById("AfterUntil");
+    var reason = document.getElementById("InputReason");
+
+    if (from1.value>until1.value){
+        alert("Nepareizi ievadīts laiks!")
+        return false;
+    } // formu pārbaude, ja ievadītais laiks no ir lielāks par laiku līdz, tiek izvadīts paziņojums
+
+    if (from2.value>until2.value){
+        alert("Nepareizi ievadīts laiks!")
+        return false;
+    } // formu pārbaude, ja ievadītais laiks no ir lielāks par laiku līdz, tiek izvadīts paziņojums
+
+    if(reason.value == "Slimiba" || reason.value == "Lekcijas" || reason.value == "Cits"){
+        if(!date2.value || !from2.value || !until2.value){
+            alert("Lūdzu, ievadiet laiku, kad tiks atstrādāts!")
+            return false;
+        }
+    } // formu pārbaude, ja ievadīti iemesli, kas jāatstrādā, tiek pieprasīts ievadīt atstrādāšanas laikus
 
     $.ajax({
         type: 'POST',
         url: frm.attr('action'),
         data: frm.serialize(),
         success: function (data) {
+
          location.reload();
         },
         error: function(data) {
@@ -1191,23 +1216,67 @@ $('[data-toggle = "tooltip" ]').tooltip();
 
 
 $('.DateField').datepicker({
+        autoclose: true,
         format: 'yyyy-mm-dd',
         language: "lv",
         daysOfWeekHighlighted: "0,6",
         todayHighlight: true,
 });
 
-$('.timepicker1').timepicker({
+$('.timepicker').timepicker({
     timeFormat: 'HH:mm',
     interval: 30,
     dynamic: true,
 });
 
-$('.timepicker2').timepicker({
-    timeFormat: 'HH:mm',
-    interval: 30,
-    dynamic: true,
+$('#InputUntil').on('input', function() {
+        var from = document.getElementById("InputFrom");
+        var until = document.getElementById("InputUntil");
+        if(from.value>until.value){
+            until.style.borderColor = "red";
+        }
+        else{
+            until.style.borderColor = "#c7d8eb";
+        }
 });
+
+$('#InputFrom').on('input', function() {
+        var from = document.getElementById("InputFrom");
+        var until = document.getElementById("InputUntil");
+        if(from.value>until.value){
+            until.style.borderColor = "red";
+        }
+        else{
+            until.style.borderColor = "#c7d8eb";
+        }
+});
+
+
+$('#AfterUntil').on('input', function() {
+        var from = document.getElementById("AfterFrom");
+        var until = document.getElementById("AfterUntil");
+        if(from.value>until.value){
+            until.style.borderColor = "red";
+        }
+        else{
+            until.style.borderColor = "#c7d8eb";
+        }
+});
+
+
+$('#AfterFrom').on('input', function() {
+        var from = document.getElementById("AfterFrom");
+        var until = document.getElementById("AfterUntil");
+        if(from.value>until.value){
+            until.style.borderColor = "red";
+        }
+        else{
+            until.style.borderColor = "#c7d8eb";
+        }
+});
+
+
+
 
 console.log($(window).width());
 

@@ -308,3 +308,12 @@ for (i=0; i< everyUserId.length; i++){
 }
 
 
+$('#search-input1').on('input', function() {
+    var input_value = $(this).val();
+    $('.user-full-name1').each (function () {
+        if ($(this).text().toLowerCase().indexOf(input_value) >= 0) { $(this).show(); }
+        else {$(this).hide();}
+    })
+});
+
+

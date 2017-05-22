@@ -233,26 +233,26 @@
                     <p id="Time">Laiks:</p>
 
                     <input class = "FirstLine DateField form-control" id = "InputDate" name = "dateWhenIs">
-                    <input class = "FirstLine TimeField timepicker1" id = "InputFrom" name = "timeFrom">
+                    <input class = "FirstLine TimeField timepicker" id = "InputFrom" name = "timeFrom">
                     <p class = "FirstLine">-</p>
-                    <input class = "FirstLine TimeField timepicker1" id = "InputUntil"  name = "timeTill">
+                    <input class = "FirstLine TimeField timepicker" id = "InputUntil"  name = "timeTill">
 
                     <p>Iemesls:</p>
 
                     <select id="InputReason" name = "reason" list = "Reason">
-                        <option id = "Sick">Slimiba</option>
+                        <option id = "Sick" value = "Slimiba">Slimība</option>
                         <option id = "Lecture">Lekcijas</option>
-                        <option id = "WorkFromHome">Darbs no majam</option>
-                        <option id = "Workload">Mazaka slodze</option>
+                        <option id = "WorkFromHome" value = "Darbs no majam">Darbs no mājām</option>
+                        <option id = "Workload" value = "Mazaka slodze">Mazāka slodze</option>
                         <option id = "Other">Cits</option>
                     </select>
 
                     <p>Tiks atstrādāts</p>
 
                     <input class = "SecondLine DateField form-control" id = "AfterDate" name = "dateWhenWill">
-                    <input class = "SecondLine TimeField timepicker2" id = "AfterFrom" name = "timeWillStart">
+                    <input class = "SecondLine TimeField timepicker" id = "AfterFrom" name = "timeWillStart">
                     <p class = "SecondLine">-</p>
-                    <input class = "SecondLine TimeField timepicker2" id = "AfterUntil"  name = "timeWillEnd">
+                    <input class = "SecondLine TimeField timepicker" id = "AfterUntil"  name = "timeWillEnd">
                 </div>
 
                 <input type = "submit" value = "Saglabāt" id="Save">
@@ -360,7 +360,7 @@
       </tr>
     </thead>
 
-    <tdody>
+    <tbody>
         {% for atlasits in atlasiti_dati %}
             <tr>
         <td>{{atlasits.datums|date:"d.m.Y"}}</td>
