@@ -30,13 +30,13 @@ function datesInDateFormat(){
 
 datesInDateFormat();
 
-document.getElementById("mondayFill").value = monday;
-document.getElementById("tuesdayFill").value = tuesday;
-document.getElementById("wednesdayFill").value = wednesday;
-document.getElementById("thursdayFill").value = thursday;
-document.getElementById("fridayFill").value = friday;
-document.getElementById("saturdayFill").value = saturday;
-document.getElementById("sundayFill").value = sunday;
+// document.getElementById("mondayFill").value = monday;
+// document.getElementById("tuesdayFill").value = tuesday;
+// document.getElementById("wednesdayFill").value = wednesday;
+// document.getElementById("thursdayFill").value = thursday;
+// document.getElementById("fridayFill").value = friday;
+// document.getElementById("saturdayFill").value = saturday;
+// document.getElementById("sundayFill").value = sunday;
 // formā, kur tiek atzīmēti kavējumi, tiek padoti datumi, lai, atzīmējot tos citā nedēļā, nedēļa nepāršķirtos
 
 
@@ -239,7 +239,7 @@ $(document).click(function(event){
 
 $(FillBox).click(function(event){
     event.stopPropagation();
-}); // ja uzspiež uz kastītes, tā netiek paslēpt
+}); // ja uzspiež uz kastītes, tā netiek paslēpta
 
 if(FillBox){
 
@@ -278,6 +278,14 @@ if(FillBox){
     }); // kastītes novietojums un default vērtības
 
 }
+
+// $(document).on('click', 'li.ui-menu-item, a.ui-corner-all', function(e) {
+//     e.stopPropagation();
+// });
+
+$(document).on('click', 'li.ui-menu-item', function(e) {
+    e.stopPropagation();
+});
 
 function getCookie(name) {
      var cookieValue = null;

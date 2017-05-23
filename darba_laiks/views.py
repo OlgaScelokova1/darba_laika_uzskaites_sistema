@@ -79,12 +79,9 @@ def device_info(request):
 def darba_laiks(request):
     user_agent = get_user_agent(request)
     if user_agent.is_pc:
-        x=request.user_agent.browser.family
 
         if request.method == 'GET':
-
-
-
+            x="random"
             lietotajs=request.user
             nebus=Darba_laiks.objects.filter(lietotajs=lietotajs)
             iemesls=Iemesls.objects.filter(lietotajs=lietotajs)
@@ -116,31 +113,22 @@ def darba_laiks(request):
                        'x': x,
 
                        }
-            urls = [
-                'index.html',
-                'visi.html',
-            ]
 
-            if request.user.is_authenticated():
-                return render(request, urls, context)
-            else:
-                return HttpResponseRedirect('/darba_laiks/login/')
+            return render(request, "index.html", context)
 
         if request.method =='POST':
             monday = request.POST.get("monday")
             monday2 = request.POST.get("mondayDown")
             datums_dzesanai=request.POST.get("datums-dzesanai")
-            datums_virsstundas = request.POST.get("datums-virsstundas")
-            datums_no_virsstundas_atlasit = request.POST.get("datums-no-virsstundas-atlasit")
-
-            lietotajs=request.user
-            nebus=Darba_laiks.objects.filter(lietotajs=lietotajs)
-            iemesls=Iemesls.objects.filter(lietotajs=lietotajs)
-            atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
+            monday3 = request.POST.get("monday2")
 
 
 
             if monday:
+                lietotajs = request.user
+                nebus = Darba_laiks.objects.filter(lietotajs=lietotajs)
+                iemesls = Iemesls.objects.filter(lietotajs=lietotajs)
+                atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
                 monday=monday
                 tuesday = request.POST.get("tuesday")
                 wednesday= request.POST.get("wednesday")
@@ -161,7 +149,14 @@ def darba_laiks(request):
                            'saturday': saturday,
                            'sunday': sunday,
                            }
-            elif monday2:
+
+                return render(request, "index.html", context)
+
+            if monday2:
+                lietotajs = request.user
+                nebus = Darba_laiks.objects.filter(lietotajs=lietotajs)
+                iemesls = Iemesls.objects.filter(lietotajs=lietotajs)
+                atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
                 monday=monday2
                 tuesday = request.POST.get("tuesday")
                 wednesday= request.POST.get("wednesday")
@@ -182,7 +177,13 @@ def darba_laiks(request):
                            'saturday': saturday,
                            'sunday': sunday,
                            }
-            elif datums_dzesanai:
+                return render(request, "index.html", context)
+
+            if datums_dzesanai:
+                lietotajs = request.user
+                nebus = Darba_laiks.objects.filter(lietotajs=lietotajs)
+                iemesls = Iemesls.objects.filter(lietotajs=lietotajs)
+                atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
                 no_dzesanai=request.POST.get("no-dzesanai")
                 i=Darba_laiks.objects.filter(lietotajs=lietotajs, datums=datums_dzesanai, no=no_dzesanai)
                 i.delete()
@@ -213,8 +214,21 @@ def darba_laiks(request):
                            'sunday': sunday,
                            'week': week,
                            }
+                return render(request, "index.html", context)
 
-            else:
+            if monday3:
+                lietotajs = request.user
+                nebus = Darba_laiks.objects.filter(lietotajs=lietotajs)
+                iemesls = Iemesls.objects.filter(lietotajs=lietotajs)
+                atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
+                monday = request.POST.get("monday2")
+                tuesday = request.POST.get("tuesday2")
+                wednesday = request.POST.get("wednesday2")
+                thursday = request.POST.get("thursday2")
+                friday = request.POST.get("friday2")
+                saturday = request.POST.get("saturday2")
+                sunday = request.POST.get("sunday2")
+
 
                 iemesls = request.POST.get("reason")
                 a=Darba_laiks.objects.create(
@@ -260,7 +274,7 @@ def darba_laiks(request):
                          darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
                          mazaka_slodze='True',
                      )
-                else:
+                elif iemesls=='Cits':
                     b=Iemesls.objects.create(
                         lietotajs=request.user,
                         darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
@@ -277,13 +291,21 @@ def darba_laiks(request):
                     lidz=request.POST.get("timeWillEnd", ""),
                 )
 
-            if request.user.is_authenticated():
-                return render(request, "index.html", context)
-            else:
-                return HttpResponseRedirect('/darba_laiks/login/')
-    else:
-        x = request.user_agent.browser.family
 
+                context = {'nebus': nebus,
+                           'iemesls': iemesls,
+                           'atstrada': atstrada,
+                           'monday': monday,
+                           'tuesday': tuesday,
+                           'wednesday': wednesday,
+                           'thursday': thursday,
+                           'friday': friday,
+                           'saturday': saturday,
+                           'sunday': sunday,
+                           }
+
+                return render(request, "index.html", context)
+    else:
         if request.method == 'GET':
 
             datums=datetime.date.today()
@@ -297,7 +319,6 @@ def darba_laiks(request):
                        'iemesls': iemesls,
                        'atstrada': atstrada,
                        'lietotajs': lietotajs,
-                       'x': x,
                        'datums': datums,
                        }
 
@@ -773,6 +794,10 @@ def visi(request):
         last_name = request.POST.get("last-name")
         password = request.POST.get("password")
         password_again = request.POST.get("password-again")
+        user_id_update = request.POST.get("user-id-update")
+        user_id_update_photo = request.POST.get("user-id-update-photo")
+        user_id_delete = request.POST.get("user-id-delete")
+
 
         atrastie = User.objects.filter(username=username)
 
@@ -799,22 +824,49 @@ def visi(request):
 
             return render(request, 'lietotaji.html', context)
 
-class Rediget(UpdateView):
-    template_name='rediget.html'
-    success_url = reverse_lazy('darba_laiks:visi')
-    model = User
-    fields = ["username", "first_name", "last_name"]
+        if user_id_update:
+            lietotajs = User.objects.get(id=user_id_update)
+            username_update=request.POST.get("username-update", "")
+            first_name_update = request.POST.get("first-name-update", "")
+            last_name_update = request.POST.get("last-name-update", "")
+            lietotajs.username = username_update
+            lietotajs.first_name = first_name_update
+            lietotajs.last_name = last_name_update
+            lietotajs.save()
 
-class Dzest(DeleteView):
-    template_name = 'izdzest.html'
-    model=User
-    success_url=reverse_lazy('darba_laiks:visi')
+            visi = User.objects.all()
 
-class RedigetBildi(UpdateView):
-    template_name='rediget.html'
-    success_url=reverse_lazy('darba_laiks:visi')
-    model=UserProfile
-    fields=['avatar']
+            context = {'visi': visi,
+                       }
+
+            return render(request, 'lietotaji.html', context)
+
+        if user_id_update_photo:
+            image = request.FILES["image"]
+            lietotajs = User.objects.get(id=user_id_update_photo)
+            lietotajs_userprofile= UserProfile.objects.get(user=lietotajs)
+            lietotajs_userprofile.avatar=image
+            lietotajs_userprofile.save()
+
+            visi = User.objects.all()
+
+            context = {'visi': visi,
+                       }
+
+            return render(request, 'lietotaji.html', context)
+
+        if user_id_delete:
+            lietotajs = User.objects.get(id=user_id_delete)
+            lietotajs.delete()
+
+            visi = User.objects.all()
+
+            context = {'visi': visi,
+                       }
+
+            return render(request, 'lietotaji.html', context)
+
+
 
 def darbinieka_darba_laiks(request, pk):
 

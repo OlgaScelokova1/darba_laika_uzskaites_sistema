@@ -54,32 +54,113 @@
 {% for darbinieks in visi %}
 
 
-
-  <a class="link" target="_blank" href="https://unsplash.com/photos/_snqARKTgoc">
     <div class="images">
       <img src="{{darbinieks.userprofile.avatar.url}}" alt="" class="img" width="600" height="400">
       <p class="description">
           <span>{{darbinieks.first_name}} {{darbinieks.last_name}} </span><br>
-          <a class = "button" href="{% url 'darba_laiks:update' darbinieks.id %}"> Rediģēt </a> &nbsp
-          <a class = "button" href="{% url 'darba_laiks:bilde' darbinieks.userprofile.id %}"> Rediģēt bildi </a> &nbsp
-          <a class = "button" href="{% url 'darba_laiks:dzest' darbinieks.id %}"> Dzēst </a>
+          <button type="button" data-toggle="modal" data-target="#{{darbinieks.id}}">Rediģēt</button> &nbsp
+          <button type="button" data-toggle="modal" data-target="#1{{darbinieks.id}}">Rediģēt bildi</button> &nbsp
+          <button type="button" data-toggle="modal" data-target="#2{{darbinieks.id}}">Dzēst</button> &nbsp
       </p>
     </div>
-  </a>
 
 
 
+<div id="{{darbinieks.id}}" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
 
-</div><!-- /container -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Rediģēt lietotāja datus</h4>
+
+              </div>
+        <br class="modal-body">
+
+            <form method='POST' role="form" action="/darba_laiks/visi/">{% csrf_token %}
+                <input type="hidden" name="user-id-update" value="{{ darbinieks.id }}">
+
+                <label>Lietotājvārds:</label>
+                        <input type="text" name="username-update" value=""></br>
+                <label>Vārds:</label>
+                        <input type="text" name="first-name-update" value=""></br>
+                <label>Uzvārds:</label>
+                <input type="text" name="last-name-update" value=""></br>
+
+                        <input type="submit" value="OK">
+          </form>
+
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+
+ <div id="1{{darbinieks.id}}" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Rediģēt lietotāja profila bildi</h4>
+
+              </div>
+        <br class="modal-body">
+
+    <form action="/darba_laiks/visi/" method="POST" enctype="multipart/form-data">{% csrf_token %}
+         <input type="hidden" name="user-id-update-photo" value="{{ darbinieks.id }}">
+        <p>
+            <input id="id_image" type="file" class="" name="image">
+        </p>
+        <input type="submit" value="Saglabāt" />
+    </form>
+
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+
+
+     <div id="2{{darbinieks.id}}" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Dzēst lietotāju</h4>
+
+              </div>
+        <br class="modal-body">
+
+    <form action="/darba_laiks/visi/" method="POST" enctype="multipart/form-data">{% csrf_token %}
+         <input type="hidden" name="user-id-delete" value="{{ darbinieks.id }}">
+        <p>
+            Vai Jūs tiešām gribat dzēst šo lietotāju?
+        </p>
+        <input type="submit" value="Saglabāt" />
+    </form>
+
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
 
 
 {% endfor %}
 {{ error }}
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 {% endblock %}
 
