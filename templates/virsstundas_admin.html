@@ -1,68 +1,87 @@
-  {% extends "base.html" %}
- {% load tagi_html %}
- {% block content %}
-     {% load staticfiles %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/My.css' %}" />
-
-      <button id="modal-button" type="button"  data-toggle="modal" data-target="#myModal2">Atlasīt virsstundas</button>
+{% extends "base.html" %}
+{% load tagi_html %}
+{% block content %}
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/overtime.css' %}" />
 
 
-         <div class="modal fade" id="myModal2" role="dialog">
-    <div class="modal-dialog">
 
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Ievadiet laika periodu, kurā Jūs gribētu atlasīt virsstundas</h4>
-        </div>
-        <br class="modal-body">
 
-            <form method='POST' role="form" action="/darba_laiks/virsstundas-admin/">{% csrf_token %}
-                <label>Datums no:</label>
-                        <input type="text" name="datums-no-virsstundas-atlasit" value=""></br>
-                <label>Datums līdz:</label>
-                        <input type="text" name="datums-lidz-virsstundas-atlasit" value=""></br>
-                        <input type="submit" value="Atlasīt">
-          </form>
+    <div class="modal fade" id="myModal2" role="dialog">
+        <div class="modal-dialog">
 
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Ievadiet laika periodu, kurā Jūs gribētu atlasīt virsstundas</h4>
+            </div>
+            <br class="modal-body">
+
+                <form method='POST' role="form" action="/darba_laiks/virsstundas-admin/">{% csrf_token %}
+                    <label>Datums no:</label>
+                            <input type="text" name="datums-no-virsstundas-atlasit" class = "form-control date" value=""></br>
+                    <label>Datums līdz:</label>
+                            <input type="text" name="datums-lidz-virsstundas-atlasit" class = "form-control date" value=""></br>
+                            <input type="submit" value="Atlasīt">
+              </form>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
 
     </div>
 
 
      {% if atlasiti_dati %}
 
-    <div id="manasvirsstundas">Manas virsstundas</div>
+    <div id="title">Darbinieku virsstundas</div>
 
-    <table class="table" style="width:30%; background-color:white; font-size: 12px" >
-    <thead>
-      <tr>
-        <th>Datums</th>
-        <th>No</th>
-        <th>Līdz</th>
-          <th>Stundu skaits</th>
-      </tr>
-    </thead>
+    <button class="modal-button" id = "select" type="button"  data-toggle="modal" data-target="#myModal2">Atlasīt virsstundas</button>
+    <div class = "container">
+        <table class="table" id="table">
+            <thead>
+              <tr>
+                <th>Lietotājs</th>
+                <th>Datums</th>
+                <th>No</th>
+                <th>Līdz</th>
+                <th>Stundu skaits</th>
+                <th>Statuss</th>
+              </tr>
+            </thead>
 
-    <tdody>
-        {% for atlasits in atlasiti_dati %}
-            <tr>
-        <td>{{atlasits.datums|date:"d.m.Y"}}</td>
-        <td>{{atlasits.no|time:"H:i"}}</td>
-        <td>{{atlasits.lidz|time:"H:i"}}</td>
-        <td>{{atlasits.no|stundas_starp:atlasits.lidz }}</td>
-         </tr>
-            {% endfor %}
-    </tbody>
+            <tbody>
+                {% for atlasits in atlasiti_dati %}
+                <form class = "container" action="darba_laiks/virsstundas-admin/" id = "overtimeStatus">{% csrf_token %}
+                    <tr>
+                        <td>{{atlasits.first_name}} {{atlasits.last_name}}</td>
+                        <td>{{atlasits.datums|date:"d.m.Y"}}</td>
+                        <td>{{atlasits.no|time:"H:i"}}</td>
+                        <td>{{atlasits.lidz|time:"H:i"}}</td>
+                        <td>{{atlasits.no|stundas_starp:atlasits.lidz }}</td>
+                        <td>
+                            <select id="InputReason" name = "reason" list = "Reason">
+                                <option id = "Waiting" value = "Gaida">Gaida</option>
+                                <option id = "Approved" value = "Apstiprināt">Apstiprināts</option>
+                                <option id = "Rejected" value = "Noraidīt">Noraidīts</option>
+                            </select>
+                            <input type = "submit" value = "Saglabāt" class="Save">
+                        </td>
+                     </tr>
+                </form>
+                    {% endfor %}
+            </tbody>
 
-  </table>
+        </table>
+    </div>
 
 
+<script type="text/javascript" src="{% static 'datepicker/js/bootstrap-datepicker.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'datepicker/locales/bootstrap-datepicker.lv.min.js' %}"></script>
 
+<script type="text/javascript" src="{% static 'JavaScript/overtime.js' %}"></script>
 
 {% endif %}
 
