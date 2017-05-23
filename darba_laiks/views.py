@@ -773,6 +773,10 @@ def visi(request):
         last_name = request.POST.get("last-name")
         password = request.POST.get("password")
         password_again = request.POST.get("password-again")
+        user_id_update = request.POST.get("user-id-update")
+        user_id_update_photo = request.POST.get("user-id-update-photo")
+        user_id_delete = request.POST.get("user-id-delete")
+
 
         atrastie = User.objects.filter(username=username)
 
@@ -799,22 +803,49 @@ def visi(request):
 
             return render(request, 'lietotaji.html', context)
 
-class Rediget(UpdateView):
-    template_name='rediget.html'
-    success_url = reverse_lazy('darba_laiks:visi')
-    model = User
-    fields = ["username", "first_name", "last_name"]
+        if user_id_update:
+            lietotajs = User.objects.get(id=user_id_update)
+            username_update=request.POST.get("username-update", "")
+            first_name_update = request.POST.get("first-name-update", "")
+            last_name_update = request.POST.get("last-name-update", "")
+            lietotajs.username = username_update
+            lietotajs.first_name = first_name_update
+            lietotajs.last_name = last_name_update
+            lietotajs.save()
 
-class Dzest(DeleteView):
-    template_name = 'izdzest.html'
-    model=User
-    success_url=reverse_lazy('darba_laiks:visi')
+            visi = User.objects.all()
 
-class RedigetBildi(UpdateView):
-    template_name='rediget.html'
-    success_url=reverse_lazy('darba_laiks:visi')
-    model=UserProfile
-    fields=['avatar']
+            context = {'visi': visi,
+                       }
+
+            return render(request, 'lietotaji.html', context)
+
+        if user_id_update_photo:
+            image = request.FILES["image"]
+            lietotajs = User.objects.get(id=user_id_update_photo)
+            lietotajs_userprofile= UserProfile.objects.get(user=lietotajs)
+            lietotajs_userprofile.avatar=image
+            lietotajs_userprofile.save()
+
+            visi = User.objects.all()
+
+            context = {'visi': visi,
+                       }
+
+            return render(request, 'lietotaji.html', context)
+
+        if user_id_delete:
+            lietotajs = User.objects.get(id=user_id_delete)
+            lietotajs.delete()
+
+            visi = User.objects.all()
+
+            context = {'visi': visi,
+                       }
+
+            return render(request, 'lietotaji.html', context)
+
+
 
 def darbinieka_darba_laiks(request, pk):
 
