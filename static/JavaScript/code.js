@@ -321,14 +321,19 @@ frm.submit(function () {
             alert("Lūdzu, ievadiet laiku, kad tiks atstrādāts!")
             return false;
         }
+        var isValidFrom2 = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(from2.value);
+        var isValidUntil2 = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(until2.value);
+        if(!isValidFrom2 || !isValidUntil2){
+            alert("Nepareizi ievadīts laiks!")
+            return false;
+        }
     } // formu pārbaude, ja ievadīti iemesli, kas jāatstrādā, tiek pieprasīts ievadīt atstrādāšanas laikus
 
     var isValidFrom1 = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(from1.value);
     var isValidUntil1 = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(until1.value);
-    var isValidFrom2 = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(from2.value);
-    var isValidUntil2 = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(until2.value);
 
-    if(!isValidFrom1 || !isValidFrom2 || !isValidUntil1 || !isValidUntil2){
+
+    if(!isValidFrom1 || !isValidUntil1){
         alert("Nepareizi ievadīts laiks!")
             return false;
     }
@@ -338,7 +343,6 @@ frm.submit(function () {
         url: frm.attr('action'),
         data: frm.serialize(),
         success: function (data) {
-
          location.reload();
         },
         error: function(data) {
@@ -352,13 +356,13 @@ frm.submit(function () {
 var today;
 var forResize; // šis mainīgais tiks izmantots vēlāk, kad tiks mainīts ekrāna lielums
 
-var mondayList = document.getElementById("MondayList");
-var tuesdayList = document.getElementById("TuesdayList");
-var wednesdayList = document.getElementById("WednesdayList");
-var thursdayList = document.getElementById("ThursdayList");
-var fridayList = document.getElementById("FridayList");
+//var mondayList = document.getElementById("MondayList");
+//var tuesdayList = document.getElementById("TuesdayList");
+//var wednesdayList = document.getElementById("WednesdayList");
+//var thursdayList = document.getElementById("ThursdayList");
+//var fridayList = document.getElementById("FridayList");
 
-var dayLists = [mondayList, tuesdayList, wednesdayList, thursdayList, fridayList];
+var dayLists = document.getElementsByClassName("OneDay");
 
 
 function getTodayDate(){
@@ -395,23 +399,23 @@ function getTodayDate(){
 
     if (today == date2[0]){
         setSpecificDay(Monday, mondayTime, mondayDate);
-        forResize = mondayList;
+        forResize = dayLists[0];
     } //ja šodien ir attēlotās nedēļas pirmdiena, tad pirmdiena tiks izcelta
     else if (today == date2[1]){
          setSpecificDay(Tuesday, tuesdayTime, tuesdayDate);
-         forResize = tuesdayList;
+         forResize = dayLists[1];
     } //ja šodien ir attēlotās nedēļas otrdiena, tad otrdiena tiks izcelta
     else if (today == date2[2]){
         setSpecificDay(Wednesday, wednesdayTime, wednesdayDate);
-        forResize = wednesdayList;
+        forResize = dayLists[2];
     } //ja šodien ir attēlotās nedēļas trešdiena, tad trešdiena tiks izcelta
     else if (today == date2[3]){
          setSpecificDay(Thursday, thursdayTime, thursdayDate);
-         forResize = thursdayList;
+         forResize = dayLists[3];
     }//ja šodien ir attēlotās nedēļas ceturtdiena, tad ceturtdiena tiks izcelta
     else if (today == date2[4]){
          setSpecificDay(Friday, fridayTime, fridayDate);
-         forResize = fridayList;
+         forResize = dayLists[4];
     }//ja šodien ir attēlotās nedēļas piektdiena, tad piektdiena tiks izcelta
     else if (today == date2[5]){
          setSpecificDay(Saturday, saturdayTime, saturdayDate);
@@ -1309,32 +1313,72 @@ console.log(forResize);
 console.log(dayLists);
 
 function toggle() {
-    if ($(window).width()<995){
+    if ($(window).width()<768){
+
             if(forResize){
                 for (i=0; i<dayLists.length; i++){
                     if(dayLists[i]!=forResize){
                         dayLists[i].style.display = "none";
                     }
                 }
+                forResize.style.marginTop="-50px";
+            }
+            else{
+                for(i=1; i<dayLists.length; i++){
+                    dayLists[i].style.display = "none";
+                    console.log(dayLists[i]);
+                }
+                dayLists[0].style.marginTop="-50px";
+                console.log(dayLists);
+
+            }
+            document.getElementById("Month").style.marginTop="-200px";
+            document.getElementById("weekChange").style.marginLeft="50px";
+
+    }
+    else if ($(window).width()<995){
+            if(forResize){
+                for (i=0; i<dayLists.length; i++){
+                    if(dayLists[i]!=forResize){
+                        dayLists[i].style.display = "none";
+                    }
+                }
+                forResize.style.marginTop="0";
             }
             else{
                 for(i=1; i<dayLists.length; i++){
                     dayLists[i].style.display = "none";
                 }
+                dayLists[0].style.marginTop="0";
 
             }
-            document.getElementById("HolidayList").style.display="none";
+            document.getElementById("Month").style.marginTop="0";
 
     }
     else if ($(window).width()<1200){
         document.getElementById("HolidayList").style.display="none";
+        document.getElementById("Month").style.marginTop="0";
+        for(i=0; i<5; i++){
+            dayLists[i].style.display = "block";
+        }
+        if(forResize){
+            forResize.style.marginTop="0";
+        }
+        else{
+            dayLists[0].style.marginTop="0";
+        }
     }
     else {
-        document.getElementById("HolidayList").style.display="block";
         for(i=0; i<dayLists.length; i++){
             dayLists[i].style.display = "block";
         }
-
+        document.getElementById("Month").style.marginTop="0";
+        if(forResize){
+            forResize.style.marginTop="0";
+        }
+        else{
+            dayLists[0].style.marginTop="0";
+        }
     }
 }
 

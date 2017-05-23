@@ -298,8 +298,10 @@ $('#searchField').on('input', function() {
     var input_value = $(this).val();
     for (i=0; i<userName.length; i++){
         if (userName[i].innerHTML.toLowerCase().indexOf(input_value) >= 0) {
-            userBox[i].style.display = "block";
-            userBox[i].style.cssFloat = "left";
+            document.getElementById("oneUser").style.align = "left";
+            userBox[i].style.display = "inherit";
+            userBox[i].style.marginRight = "40px";
+
 
          }
         else {
@@ -341,7 +343,7 @@ function toggle() {
         }
     }
     else {
-        document.getElementById("secondRow").style.display="flex";
+        document.getElementById("secondRow").style.display="block";
         document.getElementById("firstRow").style.marginLeft="10px";
         document.getElementById("firstRow").style.marginTop="10px";
         document.getElementById("oneUser").style.marginTop="0";
