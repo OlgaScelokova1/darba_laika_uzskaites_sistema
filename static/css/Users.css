@@ -1,56 +1,7 @@
-/*#user{*/
-    /*width: 300px;*/
-/*}*/
-
 .img{
     width: 180px;
     height: 180px;
 }
-
-/*#first {*/
-    /*margin-bottom: 2em;*/
-    /*margin-right: 5em;*/
-/*}*/
-
-/*#oneUser{*/
-    /*margin-bottom: 2em;*/
-/*}*/
-
-/*#oneUser .row {*/
-    /*margin-right: 5em;*/
-/*}*/
-
-/*#Create{*/
-    /*margin-left: 5em;*/
-/*}*/
-
-/*#List{*/
-    /*font-weight: bold;*/
-    /*color: #000000;*/
-    /*border-bottom: solid 2.7px #29abe2;*/
-/*}*/
-
-/*#name{*/
-    /*margin-left: 0.2em;*/
-/*}*/
-
-
-
-/*.button{*/
-    /*height: 30px;*/
-    /*background-color: #29abe2;*/
-    /*font-size: 16px;*/
-    /*border-color: #29abe2;*/
-    /*border-width: 1.5px;*/
-    /*margin-top:0.5em;*/
-/*}*/
-
-
-
-/*.text{*/
-    /*color: #ffffff;*/
-    /*font-size: 12px;*/
-/*}*/
 
 .createButton{
     width: 200px;
@@ -63,41 +14,6 @@
     margin-left: 8.5em;
     margin-bottom: 3em;
 }
-
-/*#textCreate{*/
-    /*color: #ffffff;*/
-    /*font-size: 16px;*/
-/*}*/
-
-
-
-
-
-
-
-
-
-/*div.gallery {*/
-    /*margin: 5px;*/
-    /*border: 1px solid #ccc;*/
-    /*float: left;*/
-    /*width: 180px;*/
-/*}*/
-
-/*div.gallery:hover {*/
-    /*border: 1px solid #777;*/
-/*}*/
-
-
-
-/*div.desc {*/
-    /*padding: 15px;*/
-    /*text-align: center;*/
-/*}*/
-
-
-
-
 
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 
@@ -231,4 +147,34 @@ p.information{
 
 .button:hover {
   background-color: #cecece;
+}
+
+
+#fill{
+    margin-left: 20px;
+}
+
+.inputAdd{
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+#surnameText{
+    margin-left: 160px;
+}
+
+#passTextAgain{
+    margin-left: 160px;
+}
+
+#addUser{
+  background-color: white;
+  border: solid 1px #bfbfbf;
+  background-color: #F5F5F5;
+  outline:none;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size:16px;
+  padding-left: 20px;
+  padding-right:20px;
 }
