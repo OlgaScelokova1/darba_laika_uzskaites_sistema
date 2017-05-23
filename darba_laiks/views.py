@@ -215,7 +215,13 @@ def darba_laiks(request):
                            }
 
             else:
-
+                monday2 = request.POST.get("monday2")
+                tuesday2 = request.POST.get("tuesday2")
+                wednesday2 = request.POST.get("wednesday2")
+                thursday2 = request.POST.get("thursday2")
+                friday2 = request.POST.get("friday2")
+                saturday2 = request.POST.get("saturday2")
+                sunday2 = request.POST.get("sunday2")
                 iemesls = request.POST.get("reason")
                 a=Darba_laiks.objects.create(
                     lietotajs = request.user,
@@ -276,6 +282,15 @@ def darba_laiks(request):
                     datums=request.POST.get("dateWhenWill", ""),
                     lidz=request.POST.get("timeWillEnd", ""),
                 )
+
+                context = {'monday2': monday2,
+                           'tuesday2': tuesday2,
+                           'wednesday2': wednesday2,
+                           'thursday2': thursday2,
+                           'friday2': friday2,
+                           'saturday2': saturday2,
+                           'sunday2': sunday2,
+                           }
 
             if request.user.is_authenticated():
                 return render(request, "index.html", context)

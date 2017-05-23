@@ -30,14 +30,16 @@ function datesInDateFormat(){
 
 datesInDateFormat();
 
-document.getElementById("mondayFill").value = monday;
-document.getElementById("tuesdayFill").value = tuesday;
-document.getElementById("wednesdayFill").value = wednesday;
-document.getElementById("thursdayFill").value = thursday;
-document.getElementById("fridayFill").value = friday;
-document.getElementById("saturdayFill").value = saturday;
-document.getElementById("sundayFill").value = sunday;
-// formā, kur tiek atzīmēti kavējumi, tiek padoti datumi, lai, atzīmējot tos citā nedēļā, nedēļa nepāršķirtos
+if(document.getElementById("mondayFill")){
+    document.getElementById("mondayFill").value = monday;
+    document.getElementById("tuesdayFill").value = tuesday;
+    document.getElementById("wednesdayFill").value = wednesday;
+    document.getElementById("thursdayFill").value = thursday;
+    document.getElementById("fridayFill").value = friday;
+    document.getElementById("saturdayFill").value = saturday;
+    document.getElementById("sundayFill").value = sunday;
+    // formā, kur tiek atzīmēti kavējumi, tiek padoti datumi, lai, atzīmējot tos citā nedēļā, nedēļa nepāršķirtos
+}
 
 
 function formatDate(myDate) {
@@ -231,17 +233,15 @@ function getDates(){
 
 getDates();
 
-
-$(document).click(function(event){
-    FillBox.style.display = "none";
-    deleteBox.style.display =  "none";
-}); // ja uzspiež jebkur lapā, kastīte tiek paslēpta
-
-$(FillBox).click(function(event){
-    event.stopPropagation();
-}); // ja uzspiež uz kastītes, tā netiek paslēpt
-
 if(FillBox){
+    $(document).click(function(event){
+        FillBox.style.display = "none";
+        deleteBox.style.display =  "none";
+    }); // ja uzspiež jebkur lapā, kastīte tiek paslēpta
+
+    $(FillBox).click(function(event){
+        event.stopPropagation();
+    }); // ja uzspiež uz kastītes, tā netiek paslēpt
 
     $(box).click(function(event){
             FillBox.style.display = "block";
@@ -1240,20 +1240,22 @@ $('[data-toggle = "tooltip" ]').tooltip();
 
 
 
+if(FillBox){
+    $('.DateField').datepicker({
+            autoclose: true,
+            format: 'yyyy-mm-dd',
+            language: "lv",
+            daysOfWeekHighlighted: "0,6",
+            todayHighlight: true,
+    });
 
-$('.DateField').datepicker({
-        autoclose: true,
-        format: 'yyyy-mm-dd',
-        language: "lv",
-        daysOfWeekHighlighted: "0,6",
-        todayHighlight: true,
-});
+    $('.timepicker').timepicker({
+        timeFormat: 'HH:mm',
+        interval: 30,
+        dynamic: true,
+    });
+}
 
-$('.timepicker').timepicker({
-    timeFormat: 'HH:mm',
-    interval: 30,
-    dynamic: true,
-});
 
 $('#InputUntil').on('input', function() {
         var from = document.getElementById("InputFrom");

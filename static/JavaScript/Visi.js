@@ -14,7 +14,7 @@ function formatDateForForm(myDate){
     }
 
     return (year + "-" + month + "-"  + day);
-}
+} // tiek noformatēts datums tā, lai tas varētu tikt pasniegts formā un vēlāk izmantots priekš dienu pārslēgšanas
 
 function formatDate(myDate) {
     var tmp = myDate;
@@ -29,8 +29,7 @@ function formatDate(myDate) {
     }
 
     return (day + "." + month + "." + year + ".");
-} //funkcija, kas pārveido datumu pareizā formātā : dd.mm
-
+} //funkcija, kas pārveido datumu pareizā formātā, lai ierakstītu dokumentā: dd.mm
 
 
 var formattedDay = formatDate(today);
@@ -40,21 +39,23 @@ function addDays(date, days) {
     var result = new Date(date);
     result.setDate(result.getDate() + days);
     return result;
-}
+} // funkcija, kas padotajam datumam pievieno padoto skaitu dienu
 
 
 document.getElementById("dateToLeft").value = formatDateForForm(addDays(givenDate, -1));
 document.getElementById("dateToRight").value = formatDateForForm(addDays(givenDate, 1));
+//formā tiek savadīti datumi: bultiņā pa kreisi diena atpakaļ, bultiņā pa labi diena uz priekšu
 
-var dateSearch = document.getElementById("dateSearch")
-if(dateSearch){
-    dateSearch.value = formatDateForForm(today)
-};
+//var dateSearch = document.getElementById("dateSearch")
+//if(dateSearch){
+//    dateSearch.value = formatDateForForm(today)
+//}; // priekš meklētāja caur backend
 
 var day = today.getDay();
 var days = ['SVĒTDIENA', 'PIRMDIENA', 'OTRDIENA', 'TREŠDIENA', 'CETURTDIENA', 'PIEKTDIENA', 'SESTDIENA'];
 
 document.getElementById("today").innerHTML = days[day] + ", " + formattedDay;
+// tiek ierakstīta šodienas diena un datums dokumentā
 
 var months =['JANVĀRIS','FEBRUĀRIS','MARTS','APRĪLIS','MAIJS','JŪNIJS','JŪLIJS','AUGUSTS','SEPTEMBRIS','OKTOBRIS','NOVEMBRIS','DECEMBRIS'];
 //masīvā tiek sarakstīti visi mēneši
@@ -295,11 +296,12 @@ var userName = document.getElementsByClassName("userFull");
 var userBox = document.getElementsByClassName("dayBox");
 
 $('#searchField').on('input', function() {
-    var input_value = $(this).val();
+    var input  = $(this).val();
+    input = input.toString().toLowerCase();
     for (i=0; i<userName.length; i++){
-        if (userName[i].innerHTML.toLowerCase().indexOf(input_value) >= 0) {
+        if (userName[i].innerHTML.toLowerCase().indexOf(input) >= 0) {
             document.getElementById("oneUser").style.align = "left";
-            userBox[i].style.display = "inherit";
+            userBox[i].style.display = "block";
             userBox[i].style.marginRight = "40px";
 
 
