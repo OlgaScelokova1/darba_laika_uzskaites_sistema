@@ -5,3 +5,9 @@ $('.date').datepicker({
         daysOfWeekHighlighted: "0,6",
         todayHighlight: true,
 });
+
+$('.time').timepicker({
+    timeFormat: 'HH:mm',
+    interval: 30,
+    dynamic: true,
+});

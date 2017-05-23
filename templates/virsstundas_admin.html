@@ -56,7 +56,7 @@
                 {% for atlasits in atlasiti_dati %}
                 <form class = "container" action="darba_laiks/virsstundas-admin/" id = "overtimeStatus">{% csrf_token %}
                     <tr>
-                        <td>{{atlasits.first_name}} {{atlasits.last_name}}</td>
+                        <td>{{atlasits.lietotajs.first_name}} {{atlasits.lietotajs.last_name}}</td>
                         <td>{{atlasits.datums|date:"d.m.Y"}}</td>
                         <td>{{atlasits.no|time:"H:i"}}</td>
                         <td>{{atlasits.lidz|time:"H:i"}}</td>
@@ -78,11 +78,12 @@
     </div>
 
 
+
+{% endif %}
+
 <script type="text/javascript" src="{% static 'datepicker/js/bootstrap-datepicker.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'datepicker/locales/bootstrap-datepicker.lv.min.js' %}"></script>
 
 <script type="text/javascript" src="{% static 'JavaScript/overtime.js' %}"></script>
-
-{% endif %}
 
  {% endblock %}

@@ -1,17 +1,11 @@
- {% extends "base.html" %}
- {% load tagi_html %}
- {% block content %}
-     {% load staticfiles %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/My.css' %}" />
-
-
-      <button class="modal-button" type="button"  data-toggle="modal" data-target="#myModal">Pievienot virsstundas</button>
-
-      <button class="modal-button" type="button"  data-toggle="modal" data-target="#myModal2">Atlasīt virsstundas</button>
+{% extends "base.html" %}
+{% load tagi_html %}
+{% block content %}
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/overtime.css' %}" />
 
 
 
-      </ul>
 
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
@@ -25,11 +19,11 @@
 
             <form method='POST' role="form" action="/darba_laiks/virsstundas/">{% csrf_token %}
                 <label>Datums:</label>
-                        <input type="text" name="datums-virsstundas" value=""></br>
+                        <input type="text" name="datums-virsstundas" class = "form-control date" value=""></br>
                 <label>No:</label>
-                        <input type="text" name="no-virsstundas" value=""></br>
+                        <input type="text" name="no-virsstundas" class = "time" value=""></br>
                 <label>Līdz:</label>
-                <input type="text" name="lidz-virsstundas" value=""></br>
+                <input type="text" name="lidz-virsstundas" class = "time" value=""></br>
                <label>Komentārs:</label>
                 <input type="text" name="komentars-virsstundas" value=""></br>
                         <input type="submit" value="OK">
@@ -56,9 +50,9 @@
 
             <form method='POST' role="form" action="/darba_laiks/virsstundas/">{% csrf_token %}
                 <label>Datums no:</label>
-                        <input type="text" name="datums-no-virsstundas-atlasit" value=""></br>
+                        <input type="text" name="datums-no-virsstundas-atlasit" class = "form-control date" value=""></br>
                 <label>Datums līdz:</label>
-                        <input type="text" name="datums-lidz-virsstundas-atlasit" value=""></br>
+                        <input type="text" name="datums-lidz-virsstundas-atlasit" class = "form-control date" value=""></br>
                         <input type="submit" value="Atlasīt">
           </form>
 
@@ -70,37 +64,53 @@
 
     </div>
 
-     {% if atlasiti_dati %}
 
-    <div id="manasvirsstundas">Manas virsstundas</div>
 
-    <table class="table" style="width:30%; background-color:white; font-size: 12px" >
-    <thead>
-      <tr>
-        <th>Datums</th>
-        <th>No</th>
-        <th>Līdz</th>
-          <th>Stundu skaits</th>
-      </tr>
-    </thead>
+    <div id="title">Manas virsstundas</div>
 
-    <tdody>
-        {% for atlasits in atlasiti_dati %}
-            <tr>
-        <td>{{atlasits.datums|date:"d.m.Y"}}</td>
-        <td>{{atlasits.no|time:"H:i"}}</td>
-        <td>{{atlasits.lidz|time:"H:i"}}</td>
-        <td>{{atlasits.no|stundas_starp:atlasits.lidz }}</td>
-         </tr>
-            {% endfor %}
-    </tbody>
 
-  </table>
+    <button class="modal-button" type="button"  data-toggle="modal" data-target="#myModal">Pievienot virsstundas</button>
+    <button class="modal-button" id = "select" type="button"  data-toggle="modal" data-target="#myModal2">Atlasīt virsstundas</button>
+{% if atlasiti_dati %}
+    <div class = "container">
+        <table class="table" id="table">
+            <thead>
+              <tr>
+                <th>Datums</th>
+                <th>No</th>
+                <th>Līdz</th>
+                <th>Stundu skaits</th>
+                <th>Statuss</th>
+              </tr>
+            </thead>
+
+            <tbody>
+                {% for atlasits in atlasiti_dati %}
+                <form class = "container" action="darba_laiks/virsstundas-admin/" id = "overtimeStatus">{% csrf_token %}
+                    <tr>
+                        <td>{{atlasits.datums|date:"d.m.Y"}}</td>
+                        <td>{{atlasits.no|time:"H:i"}}</td>
+                        <td>{{atlasits.lidz|time:"H:i"}}</td>
+                        <td>{{atlasits.no|stundas_starp:atlasits.lidz }}</td>
+                        <td>Šeit būs statuss</td>
+                     </tr>
+                </form>
+                    {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
 
 
 
 
 {% endif %}
+
+<script type="text/javascript" src="{% static 'datepicker/js/bootstrap-datepicker.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'datepicker/locales/bootstrap-datepicker.lv.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'timepicker/jquery.timepicker.min.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'JavaScript/overtime.js' %}"></script>
 
  {% endblock %}
 
