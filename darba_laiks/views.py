@@ -79,12 +79,9 @@ def device_info(request):
 def darba_laiks(request):
     user_agent = get_user_agent(request)
     if user_agent.is_pc:
-        x=request.user_agent.browser.family
 
         if request.method == 'GET':
-
-
-
+            x="random"
             lietotajs=request.user
             nebus=Darba_laiks.objects.filter(lietotajs=lietotajs)
             iemesls=Iemesls.objects.filter(lietotajs=lietotajs)
@@ -116,31 +113,22 @@ def darba_laiks(request):
                        'x': x,
 
                        }
-            urls = [
-                'index.html',
-                'visi.html',
-            ]
 
-            if request.user.is_authenticated():
-                return render(request, urls, context)
-            else:
-                return HttpResponseRedirect('/darba_laiks/login/')
+            return render(request, "index.html", context)
 
         if request.method =='POST':
             monday = request.POST.get("monday")
             monday2 = request.POST.get("mondayDown")
             datums_dzesanai=request.POST.get("datums-dzesanai")
-            datums_virsstundas = request.POST.get("datums-virsstundas")
-            datums_no_virsstundas_atlasit = request.POST.get("datums-no-virsstundas-atlasit")
-
-            lietotajs=request.user
-            nebus=Darba_laiks.objects.filter(lietotajs=lietotajs)
-            iemesls=Iemesls.objects.filter(lietotajs=lietotajs)
-            atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
+            monday3 = request.POST.get("monday2")
 
 
 
             if monday:
+                lietotajs = request.user
+                nebus = Darba_laiks.objects.filter(lietotajs=lietotajs)
+                iemesls = Iemesls.objects.filter(lietotajs=lietotajs)
+                atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
                 monday=monday
                 tuesday = request.POST.get("tuesday")
                 wednesday= request.POST.get("wednesday")
@@ -161,7 +149,14 @@ def darba_laiks(request):
                            'saturday': saturday,
                            'sunday': sunday,
                            }
-            elif monday2:
+
+                return render(request, "index.html", context)
+
+            if monday2:
+                lietotajs = request.user
+                nebus = Darba_laiks.objects.filter(lietotajs=lietotajs)
+                iemesls = Iemesls.objects.filter(lietotajs=lietotajs)
+                atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
                 monday=monday2
                 tuesday = request.POST.get("tuesday")
                 wednesday= request.POST.get("wednesday")
@@ -182,7 +177,13 @@ def darba_laiks(request):
                            'saturday': saturday,
                            'sunday': sunday,
                            }
-            elif datums_dzesanai:
+                return render(request, "index.html", context)
+
+            if datums_dzesanai:
+                lietotajs = request.user
+                nebus = Darba_laiks.objects.filter(lietotajs=lietotajs)
+                iemesls = Iemesls.objects.filter(lietotajs=lietotajs)
+                atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
                 no_dzesanai=request.POST.get("no-dzesanai")
                 i=Darba_laiks.objects.filter(lietotajs=lietotajs, datums=datums_dzesanai, no=no_dzesanai)
                 i.delete()
@@ -213,8 +214,21 @@ def darba_laiks(request):
                            'sunday': sunday,
                            'week': week,
                            }
+                return render(request, "index.html", context)
 
-            else:
+            if monday3:
+                lietotajs = request.user
+                nebus = Darba_laiks.objects.filter(lietotajs=lietotajs)
+                iemesls = Iemesls.objects.filter(lietotajs=lietotajs)
+                atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
+                monday = request.POST.get("monday2")
+                tuesday = request.POST.get("tuesday2")
+                wednesday = request.POST.get("wednesday2")
+                thursday = request.POST.get("thursday2")
+                friday = request.POST.get("friday2")
+                saturday = request.POST.get("saturday2")
+                sunday = request.POST.get("sunday2")
+
 
                 iemesls = request.POST.get("reason")
                 a=Darba_laiks.objects.create(
@@ -260,7 +274,7 @@ def darba_laiks(request):
                          darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
                          mazaka_slodze='True',
                      )
-                else:
+                elif iemesls=='Cits':
                     b=Iemesls.objects.create(
                         lietotajs=request.user,
                         darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
@@ -277,13 +291,21 @@ def darba_laiks(request):
                     lidz=request.POST.get("timeWillEnd", ""),
                 )
 
-            if request.user.is_authenticated():
-                return render(request, "index.html", context)
-            else:
-                return HttpResponseRedirect('/darba_laiks/login/')
-    else:
-        x = request.user_agent.browser.family
 
+                context = {'nebus': nebus,
+                           'iemesls': iemesls,
+                           'atstrada': atstrada,
+                           'monday': monday,
+                           'tuesday': tuesday,
+                           'wednesday': wednesday,
+                           'thursday': thursday,
+                           'friday': friday,
+                           'saturday': saturday,
+                           'sunday': sunday,
+                           }
+
+                return render(request, "index.html", context)
+    else:
         if request.method == 'GET':
 
             datums=datetime.date.today()
@@ -297,7 +319,6 @@ def darba_laiks(request):
                        'iemesls': iemesls,
                        'atstrada': atstrada,
                        'lietotajs': lietotajs,
-                       'x': x,
                        'datums': datums,
                        }
 

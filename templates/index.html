@@ -7,6 +7,7 @@
 {% load staticfiles %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/My.css' %}" />
 
+    {{ x }}
 
 
 <div class = "container col-sm-1">
@@ -227,7 +228,7 @@
 
 
         <div class = "row" id = "FillRow">
-            <form class = "container" action="/darba_laiks/" id = "Fill">{% csrf_token %}
+            <form class = "container" method="POST" action="/darba_laiks/" id = "Fill">{% csrf_token %}
                 <div class = "container" id ="data">
 
                     <p id="Time">Laiks:</p>
@@ -255,13 +256,23 @@
                     <input class = "SecondLine TimeField timepicker" id = "AfterUntil"  name = "timeWillEnd">
                 </div>
 
-                <input type="hidden" name="monday2" id = "mondayFill">
-                <input type="hidden" name="tuesday2" id = "tuesdayFill" >
-                <input type="hidden" name="wednesday2" id = "wednesdayFill">
-                <input type="hidden" name="thursday2" id = "thursdayFill">
-                <input type="hidden" name="friday2" id = "fridayFill">
-                <input type="hidden" name="saturday2" id = "saturdayFill">
-                <input type="hidden" name="sunday2" id = "sundayFill">
+                <input type="hidden" name="monday2" value = "{{ monday }}">
+                <input type="hidden" name="tuesday2" value = "{{ tuesday }}">
+                <input type="hidden" name="wednesday2" value = "{{ wednesday }}">
+                <input type="hidden" name="thursday2" value = "{{ thursday }}">
+                <input type="hidden" name="friday2" value = "{{ friday }}">
+                <input type="hidden" name="saturday2" value = "{{ saturday }}">
+                <input type="hidden" name="sunday2" value = "{{ sunday }}">
+
+
+{##}
+{#                <input type="hidden" name="monday2" id = "mondayFill" >#}
+{#                <input type="hidden" name="tuesday2" id = "tuesdayFill" >#}
+{#                <input type="hidden" name="wednesday2" id = "wednesdayFill">#}
+{#                <input type="hidden" name="thursday2" id = "thursdayFill">#}
+{#                <input type="hidden" name="friday2" id = "fridayFill">#}
+{#                <input type="hidden" name="saturday2" id = "saturdayFill">#}
+{#                <input type="hidden" name="sunday2" id = "sundayFill">#}
 
                 <input type = "submit" value = "Saglabāt" id="Save">
             </form>
@@ -331,7 +342,7 @@
             </div>
         </div>
 
-    <div class="dates">
+{#    <div class="dates">#}
         <div id = "mondayReceived">{{monday}}</div>
         <div id = "tuesdayReceived">{{tuesday}}</div>
         <div id = "wednesdayReceived">{{wednesday}}</div>
@@ -340,7 +351,7 @@
         <div id = "saturdayReceived">{{saturday}}</div>
         <div id = "sundayReceived">{{sunday}}</div>
 
-    </div>
+{#    </div>#}
 
 
 
