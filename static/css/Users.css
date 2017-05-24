@@ -150,7 +150,7 @@ p.information{
 }
 
 
-#fill{
+.fill{
     margin-left: 20px;
 }
 
@@ -163,11 +163,15 @@ p.information{
     margin-left: 160px;
 }
 
+#surname{
+    margin-left: 1.5em;
+}
+
 #passTextAgain{
     margin-left: 160px;
 }
 
-#addUser{
+.submitButton{
   background-color: white;
   border: solid 1px #bfbfbf;
   background-color: #F5F5F5;
@@ -175,6 +179,24 @@ p.information{
   font-weight: bold;
   margin-bottom: 10px;
   font-size:16px;
+  padding-left: 20px;
+  padding-right:20px;
+}
+
+#delete{
+    display: flex;
+    margin-left: 2em;
+    margin-bottom: 2em;
+}
+
+#deleteSubmit{
+  background-color: white;
+  border: solid 1px #bfbfbf;
+  background-color: #F5F5F5;
+  outline:none;
+  font-weight: bold;
+  font-size:16px;
+  margin-left: 2em;
   padding-left: 20px;
   padding-right:20px;
 }

@@ -26,8 +26,8 @@
               </div>
         <br class="modal-body">
 
-            <form method='POST' role="form" action="/darba_laiks/visi/">{% csrf_token %}
-                <div class = "container" id = "fill">
+            <form method='POST' role="form" action="/darba_laiks/visi/" id="addUserForm">{% csrf_token %}
+                <div class = "container fill">
                     <label>Lietotājvārds:</label><br>
                     <input type="text" name="username" value="" class = "inputAdd" id="username"><br>
                     <label id="nameText">Vārds:</label>
@@ -36,9 +36,9 @@
                     <input type="text" name="last-name" value="" class = "inputAdd" id="lastName"><br>
                     <label id="passText">Parole:</label>
                     <label id="passTextAgain">Parole atkārtoti:</label><br>
-                    <input type="text" name="password" value="" class = "inputAdd" id="password">
-                    <input type="text" name="password-again" value="" class = "inputAdd" id="password-again"><br>
-                    <input type="submit" value="Pievienot lietotāju" id="addUser">
+                    <input type="password" name="password" value="" class = "inputAdd" id="password">
+                    <input type="password" name="password-again" value="" class = "inputAdd" id="password-again"><br>
+                    <input type="submit" value="Pievienot lietotāju" class = "submitButton" id="addUser">
                 </div>
           </form>
 
@@ -77,25 +77,27 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Rediģēt lietotāja datus</h4>
 
-              </div>
+      </div>
         <br class="modal-body">
 
-            <form method='POST' role="form" action="/darba_laiks/visi/">{% csrf_token %}
+            <form method='POST' role="form"  action="/darba_laiks/visi/" class="updateForm" >{% csrf_token %}
+                <div class = "container fill">
                 <input type="hidden" name="user-id-update" value="{{ darbinieks.id }}">
 
                 <label>Lietotājvārds:</label>
-                        <input type="text" name="username-update" value=""></br>
+                        <input type="text" name="username-update" id="username-update" class = "inputAdd username-update" value="{{ darbinieks.username }}"></br>
                 <label>Vārds:</label>
-                        <input type="text" name="first-name-update" value=""></br>
-                <label>Uzvārds:</label>
-                <input type="text" name="last-name-update" value=""></br>
+                        <input type="text" name="first-name-update" id = "first-name-update" class = "inputAdd first-name-update" value="{{darbinieks.first_name}}">
+                <label id= "surname">Uzvārds:</label>
+                <input type="text" name="last-name-update" id="last-name-update" class = "inputAdd last-name-update" value="{{darbinieks.last_name}}"></br>
 
-                        <input type="submit" value="OK">
+                        <input type="submit" class = "submitButton" value="Saglabāt">
+                </div>
           </form>
 
         </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Aizvērt</button>
       </div>
     </div>
 
@@ -114,16 +116,18 @@
         <br class="modal-body">
 
     <form action="/darba_laiks/visi/" method="POST" enctype="multipart/form-data">{% csrf_token %}
-         <input type="hidden" name="user-id-update-photo" value="{{ darbinieks.id }}">
-        <p>
-            <input id="id_image" type="file" class="" name="image">
-        </p>
-        <input type="submit" value="Saglabāt" />
+        <div class = "container fill">
+             <input type="hidden" name="user-id-update-photo" value="{{ darbinieks.id }}">
+            <p>
+                <input id="id_image" type="file" class="" name="image" accept="image/*">
+            </p>
+            <input type="submit" class = "submitButton" value="Saglabāt">
+        </div>
     </form>
 
         </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Aizvērt</button>
       </div>
     </div>
 
@@ -143,16 +147,18 @@
         <br class="modal-body">
 
     <form action="/darba_laiks/visi/" method="POST" enctype="multipart/form-data">{% csrf_token %}
-         <input type="hidden" name="user-id-delete" value="{{ darbinieks.id }}">
-        <p>
-            Vai Jūs tiešām gribat dzēst šo lietotāju?
-        </p>
-        <input type="submit" value="Saglabāt" />
+        <div class = "container fill">
+            <input type="hidden" name="user-id-delete" value="{{ darbinieks.id }}">
+            <div class="row" id="delete">
+                <div>Vai Jūs tiešām gribat dzēst šo lietotāju?</div>
+                <input type="submit" id="deleteSubmit" value="Dzēst" />
+            </div>
+        </div>
     </form>
 
         </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Aizvērt</button>
       </div>
     </div>
 
@@ -162,7 +168,15 @@
 {% endfor %}
 {{ error }}
 
+
+{% for darbinieks in visi %}
+
+<div class = "allUsername">{{darbinieks.username}}</div>
+
+{% endfor %}
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="{% static 'JavaScript/users.js' %}"></script>
 
 {% endblock %}
 

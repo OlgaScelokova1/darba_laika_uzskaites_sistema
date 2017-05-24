@@ -17,21 +17,27 @@
         </div>
         <br class="modal-body">
 
-            <form method='POST' role="form" action="/darba_laiks/virsstundas/">{% csrf_token %}
-                <label>Datums:</label>
-                        <input type="text" name="datums-virsstundas" class = "form-control date" value=""></br>
-                <label>No:</label>
-                        <input type="text" name="no-virsstundas" class = "time" value=""></br>
-                <label>Līdz:</label>
-                <input type="text" name="lidz-virsstundas" class = "time" value=""></br>
-               <label>Komentārs:</label>
-                <input type="text" name="komentars-virsstundas" value=""></br>
-                        <input type="submit" value="OK">
-          </form>
+            <form method='POST' role="form" action="/darba_laiks/virsstundas/" id="addForm">{% csrf_token %}
+                <div class = "row oneRow">
+                    <label>Datums:</label>
+                    <input type="text" name="datums-virsstundas" class = "form-control date" value="">
+                </div>
+                <div class = "row oneRow">
+                    <label>No:</label>
+                     <input type="text" name="no-virsstundas" id="fromInput" class = "field time" value="">
+                    <label id="untilAdd">Līdz:</label>
+                    <input type="text" name="lidz-virsstundas" id="untilInput" class = "field time" value="">
+                </div>
+                <div class = "row oneRow">
+                    <label>Komentārs:</label>
+                    <input type="text" name="komentars-virsstundas" id="comment" class = "field" value="">
+                </div>
+                        <input type="submit" class= "buttonToSubmit" id="addOvertime" value="Pievienot">
+             </form>
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Aizvērt</button>
         </div>
       </div>
 
@@ -48,17 +54,22 @@
         </div>
         <br class="modal-body">
 
-            <form method='POST' role="form" action="/darba_laiks/virsstundas/">{% csrf_token %}
-                <label>Datums no:</label>
-                        <input type="text" name="datums-no-virsstundas-atlasit" class = "form-control date" value=""></br>
-                <label>Datums līdz:</label>
-                        <input type="text" name="datums-lidz-virsstundas-atlasit" class = "form-control date" value=""></br>
-                        <input type="submit" value="Atlasīt" id ="choose">
-          </form>
+            <form method='POST' role="form" action="/darba_laiks/virsstundas/" id="searchForm">{% csrf_token %}
+                    <div class = "row oneRow">
+                        <label>Datums no:</label>
+                            <input type="text" name="datums-no-virsstundas-atlasit" class = "form-control date" id="from" value=""></br>
+                    </div>
+                    <div class = "row oneRow">
+                        <label>Datums līdz:</label>
+                            <input type="text" name="datums-lidz-virsstundas-atlasit" class = "form-control date" id = "until" value=""></br>
+                    </div>
+                    <input type="submit" class= "buttonToSubmit" value="Atlasīt" id ="choose">
+
+              </form>
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Aizvērt</button>
         </div>
       </div>
 
@@ -69,7 +80,7 @@
     <div id="title">Manas virsstundas</div>
 
 
-    <button class="modal-button" type="button"  data-toggle="modal" data-target="#myModal">Pievienot virsstundas</button>
+    <button class="modal-button" id = "add" type="button"  data-toggle="modal" data-target="#myModal">Pievienot virsstundas</button>
     <button class="modal-button" id = "select" type="button"  data-toggle="modal" data-target="#myModal2">Atlasīt virsstundas</button>
 {% if atlasiti_dati %}
     <div class = "container">
@@ -80,19 +91,21 @@
                 <th>No</th>
                 <th>Līdz</th>
                 <th>Stundu skaits</th>
+                  <th>Komentārs</th>
                 <th>Statuss</th>
               </tr>
             </thead>
 
             <tbody>
                 {% for atlasits in atlasiti_dati %}
-                <form class = "container" action="darba_laiks/virsstundas-admin/" id = "overtimeStatus">{% csrf_token %}
+                <form class = "container" action="darba_laiks/virsstundas/" id = "overtimeStatus">{% csrf_token %}
                     <tr>
                         <td>{{atlasits.datums|date:"d.m.Y"}}</td>
                         <td>{{atlasits.no|time:"H:i"}}</td>
                         <td>{{atlasits.lidz|time:"H:i"}}</td>
                         <td>{{atlasits.no|stundas_starp:atlasits.lidz }}</td>
-                        <td>Šeit būs statuss</td>
+                        <td>{{ atlasits.komentars }}</td>
+                        <td class = "statusOvertime">{{ atlasits.statuss }}</td>
                      </tr>
                 </form>
                     {% endfor %}

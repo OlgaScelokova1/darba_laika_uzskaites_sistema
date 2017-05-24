@@ -10,9 +10,9 @@ from django.db.models.signals import post_save
 # Create your models here.
 class Darba_laiks(models.Model):
     lietotajs=models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    datums = models.DateField()
-    no = models.TimeField(default='9:00')
-    lidz=models.TimeField(default='18:00')
+    datums = models.DateField(blank=True, null=True,)
+    no = models.TimeField(blank=True, null=True, default='9:00')
+    lidz=models.TimeField(blank=True, null=True, default='18:00')
     ir_mainits = models.BooleanField(default=False)
 
     def __str__(self):
@@ -80,6 +80,7 @@ class Virsstundas(models.Model):
     no = models.TimeField()
     lidz = models.TimeField()
     komentars= models.TextField(max_length=500)
+    statuss= models.CharField(max_length=50, default="gaida")
 
     def __str__(self):
         return str(self.datums)+'  '+ str(self.no)+' - '+ str(self.lidz)+' - '+ str(self.komentars)

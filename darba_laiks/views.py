@@ -188,9 +188,7 @@ def darba_laiks(request):
                 i=Darba_laiks.objects.filter(lietotajs=lietotajs, datums=datums_dzesanai, no=no_dzesanai)
                 i.delete()
 
-                nebus = Darba_laiks.objects.filter(lietotajs=lietotajs)
-                iemesls = Iemesls.objects.filter(lietotajs=lietotajs)
-                atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
+
                 date = datetime.date.today()
                 monday = date - datetime.timedelta(date.weekday())
                 sunday = monday + datetime.timedelta(6)
@@ -219,7 +217,6 @@ def darba_laiks(request):
             if monday3:
                 lietotajs = request.user
                 nebus = Darba_laiks.objects.filter(lietotajs=lietotajs)
-                iemesls = Iemesls.objects.filter(lietotajs=lietotajs)
                 atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
                 monday = request.POST.get("monday2")
                 tuesday = request.POST.get("tuesday2")
@@ -228,6 +225,7 @@ def darba_laiks(request):
                 friday = request.POST.get("friday2")
                 saturday = request.POST.get("saturday2")
                 sunday = request.POST.get("sunday2")
+                lidz = request.POST.get("timeWillEnd")
 
                 iemesls = request.POST.get("reason")
                 a=Darba_laiks.objects.create(
@@ -273,22 +271,22 @@ def darba_laiks(request):
                          darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
                          mazaka_slodze='True',
                      )
-                elif iemesls=='Cits':
+                else:
                     b=Iemesls.objects.create(
                         lietotajs=request.user,
                         darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
                         cits='True',
                     )
                 iemesls_id = b.id
-
-                Atstrada.objects.create(
-                    lietotajs=request.user,
-                    darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
-                    iemesls=Iemesls.objects.get(id=iemesls_id),
-                    no=request.POST.get("timeWillStart", ""),
-                    datums=request.POST.get("dateWhenWill", ""),
-                    lidz=request.POST.get("timeWillEnd", ""),
-                )
+                if lidz:
+                    Atstrada.objects.create(
+                        lietotajs=request.user,
+                        darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
+                        iemesls=Iemesls.objects.get(id=iemesls_id),
+                        no=request.POST.get("timeWillStart", ""),
+                        datums=request.POST.get("dateWhenWill", ""),
+                        lidz=request.POST.get("timeWillEnd", ""),
+                    )
 
                 context = {'nebus': nebus,
                            'iemesls': iemesls,
@@ -326,6 +324,7 @@ def darba_laiks(request):
 
         if request.method =='POST':
             date = request.POST.get("date")
+            lidz = request.POST.get("timeWillEnd")
 
             datums_dzesanai=request.POST.get("datums-dzesanai")
 
@@ -416,14 +415,15 @@ def darba_laiks(request):
                     )
                 iemesls_id = b.id
 
-                Atstrada.objects.create(
-                    lietotajs=request.user,
-                    darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
-                    iemesls=Iemesls.objects.get(id=iemesls_id),
-                    no=request.POST.get("timeWillStart", ""),
-                    datums=request.POST.get("dateWhenWill", ""),
-                    lidz=request.POST.get("timeWillEnd", ""),
-                )
+                if lidz:
+                    Atstrada.objects.create(
+                        lietotajs=request.user,
+                        darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
+                        iemesls=Iemesls.objects.get(id=iemesls_id),
+                        no=request.POST.get("timeWillStart", ""),
+                        datums=request.POST.get("dateWhenWill", ""),
+                        lidz=request.POST.get("timeWillEnd", ""),
+                    )
 
                 context = {
                            }
@@ -1118,7 +1118,10 @@ def virsstundas(request):
     if request.method == "POST":
         datums_virsstundas = request.POST.get("datums-virsstundas")
         datums_no_virsstundas_atlasit = request.POST.get("datums-no-virsstundas-atlasit")
+
         if datums_virsstundas:
+            lietotajs = request.user
+            atlasiti_dati = Virsstundas.objects.filter(lietotajs=lietotajs).order_by('-datums')
             no_virsstundas = request.POST.get("no-virsstundas")
             lidz_virsstundas = request.POST.get("lidz-virsstundas")
             komentars_virsstundas = request.POST.get("komentars-virsstundas", "")
@@ -1131,9 +1134,10 @@ def virsstundas(request):
                 komentars=komentars_virsstundas,
             )
 
-            context = {
+            context = {'atlasiti_dati': atlasiti_dati,
                        }
             return render(request, 'virsstundas.html', context)
+
         elif datums_no_virsstundas_atlasit:
             lietotajs = request.user
             datums_lidz_virsstundas_atlasit = request.POST.get("datums-lidz-virsstundas-atlasit")
@@ -1144,7 +1148,8 @@ def virsstundas(request):
             context = {
                 'atlasiti_dati': atlasiti_dati,
             }
-        return render(request, 'virsstundas.html', context)
+
+            return render(request, 'virsstundas.html', context)
 
 def virsstundas_admin(request):
 
@@ -1157,12 +1162,25 @@ def virsstundas_admin(request):
 
     if request.method == "POST":
         datums_no_virsstundas_atlasit = request.POST.get("datums-no-virsstundas-atlasit")
+        atlasits_id = request.POST.get("atlasits_id")
 
         if datums_no_virsstundas_atlasit:
             datums_lidz_virsstundas_atlasit = request.POST.get("datums-lidz-virsstundas-atlasit")
             atlasiti_dati = Virsstundas.objects.filter(datums__gte=datums_no_virsstundas_atlasit,
                                                            datums__lte=datums_lidz_virsstundas_atlasit)
 
+            context = {
+                    'atlasiti_dati': atlasiti_dati,
+                }
+            return render(request, 'virsstundas_admin.html', context)
+
+        if atlasits_id:
+            ieraksts= Virsstundas.objects.get(id=atlasits_id)
+            statuss=request.POST.get("reason")
+            ieraksts.statuss=statuss
+            ieraksts.save()
+
+            atlasiti_dati = Virsstundas.objects.all().order_by('-datums')
             context = {
                     'atlasiti_dati': atlasiti_dati,
                 }

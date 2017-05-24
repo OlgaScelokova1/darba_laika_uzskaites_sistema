@@ -322,7 +322,7 @@ frm.submit(function () {
         var isValidFrom2 = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(from2.value);
         var isValidUntil2 = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(until2.value);
         if(!isValidFrom2 || !isValidUntil2){
-            alert("Nepareizi ievadīts laiks!")
+            alert("Laiks ievadīts nepareizā formātā!")
             return false;
         }
     } // formu pārbaude, ja ievadīti iemesli, kas jāatstrādā, tiek pieprasīts ievadīt atstrādāšanas laikus
@@ -332,22 +332,23 @@ frm.submit(function () {
 
 
     if(!isValidFrom1 || !isValidUntil1){
-        alert("Nepareizi ievadīts laiks!")
+        alert("Laiks ievadīts nepareizā formātā!")
             return false;
     }
 
-    $.ajax({
-        type: 'POST',
-        url: frm.attr('action'),
-        data: frm.serialize(),
-        success: function (data) {
-         location.reload();
-        },
-        error: function(data) {
-         location.reload();
-        }
-    });
-    return false;
+
+    // $.ajax({
+    //     type: 'POST',
+    //     url: frm.attr('action'),
+    //     data: frm.serialize(),
+    //     success: function (data) {
+    //      location.reload();
+    //     },
+    //     error: function(data) {
+    //      location.reload();
+    //     }
+    // });
+    // return false;
 }); // kad uzspiež "submit", padotie dati tiek sūtīti uz datu bāzi, kur tie tiek apstrādāti
 
 
