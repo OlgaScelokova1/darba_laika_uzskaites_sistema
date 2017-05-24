@@ -188,9 +188,7 @@ def darba_laiks(request):
                 i=Darba_laiks.objects.filter(lietotajs=lietotajs, datums=datums_dzesanai, no=no_dzesanai)
                 i.delete()
 
-                nebus = Darba_laiks.objects.filter(lietotajs=lietotajs)
-                iemesls = Iemesls.objects.filter(lietotajs=lietotajs)
-                atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
+
                 date = datetime.date.today()
                 monday = date - datetime.timedelta(date.weekday())
                 sunday = monday + datetime.timedelta(6)
@@ -219,7 +217,6 @@ def darba_laiks(request):
             if monday3:
                 lietotajs = request.user
                 nebus = Darba_laiks.objects.filter(lietotajs=lietotajs)
-                iemesls = Iemesls.objects.filter(lietotajs=lietotajs)
                 atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
                 monday = request.POST.get("monday2")
                 tuesday = request.POST.get("tuesday2")
@@ -228,6 +225,7 @@ def darba_laiks(request):
                 friday = request.POST.get("friday2")
                 saturday = request.POST.get("saturday2")
                 sunday = request.POST.get("sunday2")
+                lidz = request.POST.get("timeWillEnd")
 
 
                 iemesls = request.POST.get("reason")
@@ -281,15 +279,15 @@ def darba_laiks(request):
                         cits='True',
                     )
                 iemesls_id = b.id
-
-                Atstrada.objects.create(
-                    lietotajs=request.user,
-                    darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
-                    iemesls=Iemesls.objects.get(id=iemesls_id),
-                    no=request.POST.get("timeWillStart", ""),
-                    datums=request.POST.get("dateWhenWill", ""),
-                    lidz=request.POST.get("timeWillEnd", ""),
-                )
+                if lidz:
+                    Atstrada.objects.create(
+                        lietotajs=request.user,
+                        darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
+                        iemesls=Iemesls.objects.get(id=iemesls_id),
+                        no=request.POST.get("timeWillStart", ""),
+                        datums=request.POST.get("dateWhenWill", ""),
+                        lidz=request.POST.get("timeWillEnd", ""),
+                    )
 
 
                 context = {'nebus': nebus,
@@ -329,6 +327,7 @@ def darba_laiks(request):
 
         if request.method =='POST':
             date = request.POST.get("date")
+            lidz = request.POST.get("timeWillEnd")
 
             datums_dzesanai=request.POST.get("datums-dzesanai")
 
@@ -419,14 +418,15 @@ def darba_laiks(request):
                     )
                 iemesls_id = b.id
 
-                Atstrada.objects.create(
-                    lietotajs=request.user,
-                    darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
-                    iemesls=Iemesls.objects.get(id=iemesls_id),
-                    no=request.POST.get("timeWillStart", ""),
-                    datums=request.POST.get("dateWhenWill", ""),
-                    lidz=request.POST.get("timeWillEnd", ""),
-                )
+                if lidz:
+                    Atstrada.objects.create(
+                        lietotajs=request.user,
+                        darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
+                        iemesls=Iemesls.objects.get(id=iemesls_id),
+                        no=request.POST.get("timeWillStart", ""),
+                        datums=request.POST.get("dateWhenWill", ""),
+                        lidz=request.POST.get("timeWillEnd", ""),
+                    )
 
                 context = {
                            }
