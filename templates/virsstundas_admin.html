@@ -17,12 +17,17 @@
             </div>
             <br class="modal-body">
 
-                <form method='POST' role="form" action="/darba_laiks/virsstundas-admin/">{% csrf_token %}
-                    <label>Datums no:</label>
-                            <input type="text" name="datums-no-virsstundas-atlasit" class = "form-control date" value=""></br>
-                    <label>Datums līdz:</label>
-                            <input type="text" name="datums-lidz-virsstundas-atlasit" class = "form-control date" value=""></br>
-                            <input type="submit" value="Atlasīt">
+                <form method='POST' role="form" action="/darba_laiks/virsstundas-admin/" id="searchForm">{% csrf_token %}
+                    <div class = "row oneRow">
+                        <label>Datums no:</label>
+                            <input type="text" name="datums-no-virsstundas-atlasit" class = "form-control date" id="from" value=""></br>
+                    </div>
+                    <div class = "row oneRow">
+                        <label>Datums līdz:</label>
+                            <input type="text" name="datums-lidz-virsstundas-atlasit" class = "form-control date" id = "until" value=""></br>
+                    </div>
+                    <input type="submit" value="Atlasīt" id ="choose">
+
               </form>
 
             </div>
@@ -32,11 +37,15 @@
           </div>
 
     </div>
-
+    <div id="title">Darbinieku virsstundas</div>
+    <div id="search">
+        <input type="text" name="q" placeholder="Meklēt lietotāju" id="searchField">
+        <input type="submit" value="Meklēt">
+    </div>
 
      {% if atlasiti_dati %}
 
-    <div id="title">Darbinieku virsstundas</div>
+
 
     <button class="modal-button" id = "select" type="button"  data-toggle="modal" data-target="#myModal2">Atlasīt virsstundas</button>
     <div class = "container">
@@ -54,9 +63,9 @@
 
             <tbody>
                 {% for atlasits in atlasiti_dati %}
-                <form class = "container" action="darba_laiks/virsstundas-admin/" id = "overtimeStatus">{% csrf_token %}
-                    <tr>
-                        <td>{{atlasits.lietotajs.first_name}} {{atlasits.lietotajs.last_name}}</td>
+                <form class = "container " action="darba_laiks/virsstundas-admin/" id = "overtimeStatus">{% csrf_token %}
+                    <tr class = "oneForm">
+                        <td class = "userName">{{atlasits.lietotajs.first_name}} {{atlasits.lietotajs.last_name}}</td>
                         <td>{{atlasits.datums|date:"d.m.Y"}}</td>
                         <td>{{atlasits.no|time:"H:i"}}</td>
                         <td>{{atlasits.lidz|time:"H:i"}}</td>
@@ -83,6 +92,7 @@
 
 <script type="text/javascript" src="{% static 'datepicker/js/bootstrap-datepicker.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'datepicker/locales/bootstrap-datepicker.lv.min.js' %}"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <script type="text/javascript" src="{% static 'JavaScript/overtime.js' %}"></script>
 

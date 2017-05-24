@@ -227,7 +227,6 @@ def darba_laiks(request):
                 sunday = request.POST.get("sunday2")
                 lidz = request.POST.get("timeWillEnd")
 
-
                 iemesls = request.POST.get("reason")
                 a=Darba_laiks.objects.create(
                     lietotajs = request.user,
@@ -289,7 +288,6 @@ def darba_laiks(request):
                         lidz=request.POST.get("timeWillEnd", ""),
                     )
 
-
                 context = {'nebus': nebus,
                            'iemesls': iemesls,
                            'atstrada': atstrada,
@@ -301,7 +299,6 @@ def darba_laiks(request):
                            'saturday': saturday,
                            'sunday': sunday,
                            }
-
                 return render(request, "index.html", context)
     else:
         if request.method == 'GET':
