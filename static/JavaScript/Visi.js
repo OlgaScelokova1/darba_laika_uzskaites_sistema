@@ -293,7 +293,8 @@ for (i=0; i< everyUserId.length; i++){
 }
 
 var userName = document.getElementsByClassName("userFull");
-var userBox = document.getElementsByClassName("dayBox");
+var userBox = document.getElementsByClassName("userBox");
+console.log(userBox);
 
 $('#searchField').on('input', function() {
     var input  = $(this).val();
@@ -302,7 +303,6 @@ $('#searchField').on('input', function() {
         if (userName[i].innerHTML.toLowerCase().indexOf(input) >= 0) {
             document.getElementById("oneUser").style.align = "left";
             userBox[i].style.display = "block";
-            userBox[i].style.marginRight = "40px";
 
 
          }
