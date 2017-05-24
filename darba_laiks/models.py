@@ -80,6 +80,7 @@ class Virsstundas(models.Model):
     no = models.TimeField()
     lidz = models.TimeField()
     komentars= models.TextField(max_length=500)
+    statuss= models.CharField(max_length=50, default="gaida")
 
     def __str__(self):
         return str(self.datums)+'  '+ str(self.no)+' - '+ str(self.lidz)+' - '+ str(self.komentars)

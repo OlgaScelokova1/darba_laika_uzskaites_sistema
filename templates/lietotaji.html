@@ -84,18 +84,18 @@
                 <input type="hidden" name="user-id-update" value="{{ darbinieks.id }}">
 
                 <label>Lietotājvārds:</label>
-                        <input type="text" name="username-update" value=""></br>
+                        <input type="text" name="username-update" value="{{ darbinieks.username }}"></br>
                 <label>Vārds:</label>
-                        <input type="text" name="first-name-update" value=""></br>
+                        <input type="text" name="first-name-update" value="{{darbinieks.first_name}}"></br>
                 <label>Uzvārds:</label>
-                <input type="text" name="last-name-update" value=""></br>
+                <input type="text" name="last-name-update" value="{{darbinieks.last_name}}"></br>
 
                         <input type="submit" value="OK">
           </form>
 
         </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Aizvērt</button>
       </div>
     </div>
 

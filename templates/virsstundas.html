@@ -80,6 +80,7 @@
                 <th>No</th>
                 <th>Līdz</th>
                 <th>Stundu skaits</th>
+                  <th>Komentārs</th>
                 <th>Statuss</th>
               </tr>
             </thead>
@@ -92,7 +93,8 @@
                         <td>{{atlasits.no|time:"H:i"}}</td>
                         <td>{{atlasits.lidz|time:"H:i"}}</td>
                         <td>{{atlasits.no|stundas_starp:atlasits.lidz }}</td>
-                        <td>Šeit būs statuss</td>
+                        <td>{{ atlasits.komentars }}</td>
+                        <td>{{ atlasits.statuss }}</td>
                      </tr>
                 </form>
                     {% endfor %}

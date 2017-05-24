@@ -57,25 +57,29 @@
                 <th>No</th>
                 <th>Līdz</th>
                 <th>Stundu skaits</th>
+                  <th>Komentārs</th>
                 <th>Statuss</th>
+
               </tr>
             </thead>
 
             <tbody>
                 {% for atlasits in atlasiti_dati %}
-                <form class = "container " action="darba_laiks/virsstundas-admin/" id = "overtimeStatus">{% csrf_token %}
+                <form class = "container " method="POST" role="form" action="/darba_laiks/virsstundas-admin/" id = "overtimeStatus">{% csrf_token %}
                     <tr class = "oneForm">
                         <td class = "userName">{{atlasits.lietotajs.first_name}} {{atlasits.lietotajs.last_name}}</td>
                         <td>{{atlasits.datums|date:"d.m.Y"}}</td>
                         <td>{{atlasits.no|time:"H:i"}}</td>
                         <td>{{atlasits.lidz|time:"H:i"}}</td>
                         <td>{{atlasits.no|stundas_starp:atlasits.lidz }}</td>
+                        <td>{{atlasits.komentars }}</td>
                         <td>
                             <select id="InputReason" name = "reason" list = "Reason">
-                                <option id = "Waiting" value = "Gaida">Gaida</option>
-                                <option id = "Approved" value = "Apstiprināt">Apstiprināts</option>
-                                <option id = "Rejected" value = "Noraidīt">Noraidīts</option>
+                                <option id = "Waiting" name = "statuss" value = "gaida">Gaida</option>
+                                <option id = "Approved" name = "statuss" value = "apstiprinats">Apstiprināts</option>
+                                <option id = "Rejected" name = "statuss" value = "noraidits">Noraidīts</option>
                             </select>
+                             <input type = "hidden" name= "atlasits_id" value = "{{ atlasits.id }}">
                             <input type = "submit" value = "Saglabāt" class="Save">
                         </td>
                      </tr>
