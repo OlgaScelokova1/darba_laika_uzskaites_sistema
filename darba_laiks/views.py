@@ -1186,6 +1186,56 @@ def virsstundas_admin(request):
                 }
             return render(request, 'virsstundas_admin.html', context)
 
+def lietotaja_profils(request):
+    if request.method == "GET":
+        lietotajs=request.user
+        userprofile=UserProfile.objects.get(user=lietotajs)
+
+        context= {
+            'userprofile': userprofile,
+            'lietotajs': lietotajs,
+        }
+
+        return render(request, 'lietotaja_profils.html', context)
+
+    if request.method == "POST":
+        user_id_update_photo = request.POST.get("user-id-update-photo")
+        user_id_update = request.POST.get("user-id-update")
+
+
+        if user_id_update_photo:
+            image = request.FILES["image"]
+            lietotajs_userprofile= UserProfile.objects.get(id=user_id_update_photo)
+            lietotajs_userprofile.avatar=image
+            lietotajs_userprofile.save()
+
+            lietotajs = request.user
+            userprofile = UserProfile.objects.get(user=lietotajs)
+
+            context = {
+                'userprofile': userprofile,
+                'lietotajs': lietotajs,
+            }
+            return render(request, 'lietotaja_profils.html', context)
+
+        if user_id_update:
+            lietotajs = User.objects.get(id=user_id_update)
+            first_name_update = request.POST.get("first-name-update", "")
+            last_name_update = request.POST.get("last-name-update", "")
+            lietotajs.first_name = first_name_update
+            lietotajs.last_name = last_name_update
+            lietotajs.save()
+
+            lietotajs = request.user
+            userprofile = UserProfile.objects.get(user=lietotajs)
+
+            context = {
+                'userprofile': userprofile,
+                'lietotajs': lietotajs,
+            }
+            return render(request, 'lietotaja_profils.html', context)
+
+
 # def pievienot_favoritiem(request, pk):
 #     lietotajs_kuru_pievienoja = User.objects.get(pk=pk)
 #     lietotajs_kurs_pievienoja=request.user

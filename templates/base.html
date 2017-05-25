@@ -89,6 +89,13 @@
                         Darbinieku saraksts
                     </a>
               </li>
+                 {% else %}
+                    <li class="">
+                    <a href="{% url 'darba_laiks:lietotaja_profils' %}">
+                        <span class="" aria-hidden="true"></span>&nbsp;
+                        Mans profils
+                    </a>
+                </li>
               {% endif %}
               <li class="">
                     <a href="{% url 'darba_laiks:logout' %}">
