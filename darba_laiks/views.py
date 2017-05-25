@@ -188,17 +188,13 @@ def darba_laiks(request):
                 i=Darba_laiks.objects.filter(lietotajs=lietotajs, datums=datums_dzesanai, no=no_dzesanai)
                 i.delete()
 
-
-                date = datetime.date.today()
-                monday = date - datetime.timedelta(date.weekday())
-                sunday = monday + datetime.timedelta(6)
-                tuesday = monday + datetime.timedelta(1)
-                wednesday = monday + datetime.timedelta(2)
-                thursday = monday + datetime.timedelta(3)
-                friday = monday + datetime.timedelta(4)
-                saturday = monday + datetime.timedelta(5)
-                week = datetime.date.today().strftime("%V")
-                '24'
+                monday = request.POST.get("monday3")
+                tuesday = request.POST.get("tuesday3")
+                wednesday = request.POST.get("wednesday3")
+                thursday = request.POST.get("thursday3")
+                friday = request.POST.get("friday3")
+                saturday = request.POST.get("saturday3")
+                sunday = request.POST.get("sunday3")
 
                 context = {'nebus': nebus,
                            'iemesls': iemesls,
@@ -210,7 +206,6 @@ def darba_laiks(request):
                            'friday': friday,
                            'saturday': saturday,
                            'sunday': sunday,
-                           'week': week,
                            }
                 return render(request, "index.html", context)
 
