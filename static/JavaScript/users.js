@@ -50,7 +50,7 @@ $(document).ready(function() {
             return false;
         }
 
-        if($('#password').val().length<8 || $('#password').val().length<24 ){
+        if($('#password').val().length<8 || $('#password').val().length>24 ){
             alert("Paroles garumam jābūt 8-24 simboli!")
             return false;
         }
