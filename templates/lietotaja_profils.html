@@ -18,6 +18,7 @@
  <div class="container">
   <button type="button" data-toggle="modal" data-target="#1">Rediģēt bildi</button>
   <button type="button" data-toggle="modal" data-target="#2">Rediģēt profila datus</button>
+     <button type="button" data-toggle="modal" data-target="#3">Mainīt paroli</button>
 
 
 
@@ -75,6 +76,42 @@
                         <input type="text" name="first-name-update" id = "first-name-update" class = "inputAdd first-name-update" value="{{lietotajs.first_name}}">
                 <label id= "surname">Uzvārds:</label>
                 <input type="text" name="last-name-update" id="last-name-update" class = "inputAdd last-name-update" value="{{lietotajs.last_name}}"></br>
+
+                        <input type="submit" class = "submitButton" value="Saglabāt">
+                </div>
+          </form>
+
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Aizvērt</button>
+      </div>
+    </div>
+
+  </div>
+
+
+ <div id="3" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Mainīt paroli</h4>
+
+      </div>
+        <br class="modal-body">
+
+            <form method='POST' role="form"  action="/darba_laiks/mans-profils/" class="updateForm" >{% csrf_token %}
+                <div class = "container fill">
+                <input type="hidden" name="user-id-update-password" value="{{ lietotajs.id }}">
+
+
+                <label>Ievadiet paroli:</label>
+                        <input type="password" name="password-update" value="">
+
+                <label>Ievadiet paroli atkārtoti:</label>
+                <input type="password" name="password-update-again" value=""></br>
 
                         <input type="submit" class = "submitButton" value="Saglabāt">
                 </div>
