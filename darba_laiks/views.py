@@ -81,7 +81,7 @@ def darba_laiks(request):
     if user_agent.is_pc:
 
         if request.method == 'GET':
-            x="random"
+
             lietotajs=request.user
             nebus=Darba_laiks.objects.filter(lietotajs=lietotajs)
             iemesls=Iemesls.objects.filter(lietotajs=lietotajs)
@@ -100,21 +100,20 @@ def darba_laiks(request):
 
 
             context = {'nebus': nebus,
-                       'iemesls': iemesls,
-                       'atstrada': atstrada,
-                       'monday': monday,
-                       'tuesday': tuesday,
-                       'wednesday': wednesday,
-                       'thursday': thursday,
-                       'friday': friday,
-                       'saturday': saturday,
-                       'sunday': sunday,
-                       'week': week,
-                       'x': x,
-
-                       }
-
+                   'iemesls': iemesls,
+                   'atstrada': atstrada,
+                   'monday': monday,
+                   'tuesday': tuesday,
+                   'wednesday': wednesday,
+                   'thursday': thursday,
+                   'friday': friday,
+                   'saturday': saturday,
+                   'sunday': sunday,
+                   'week': week,
+                   }
             return render(request, "index.html", context)
+
+
 
         if request.method =='POST':
             monday = request.POST.get("monday")
@@ -179,6 +178,7 @@ def darba_laiks(request):
                            }
                 return render(request, "index.html", context)
 
+
             if datums_dzesanai:
                 lietotajs = request.user
                 nebus = Darba_laiks.objects.filter(lietotajs=lietotajs)
@@ -188,17 +188,13 @@ def darba_laiks(request):
                 i=Darba_laiks.objects.filter(lietotajs=lietotajs, datums=datums_dzesanai, no=no_dzesanai)
                 i.delete()
 
-
-                date = datetime.date.today()
-                monday = date - datetime.timedelta(date.weekday())
-                sunday = monday + datetime.timedelta(6)
-                tuesday = monday + datetime.timedelta(1)
-                wednesday = monday + datetime.timedelta(2)
-                thursday = monday + datetime.timedelta(3)
-                friday = monday + datetime.timedelta(4)
-                saturday = monday + datetime.timedelta(5)
-                week = datetime.date.today().strftime("%V")
-                '24'
+                monday = request.POST.get("monday3")
+                tuesday = request.POST.get("tuesday3")
+                wednesday = request.POST.get("wednesday3")
+                thursday = request.POST.get("thursday3")
+                friday = request.POST.get("friday3")
+                saturday = request.POST.get("saturday3")
+                sunday = request.POST.get("sunday3")
 
                 context = {'nebus': nebus,
                            'iemesls': iemesls,
@@ -210,13 +206,13 @@ def darba_laiks(request):
                            'friday': friday,
                            'saturday': saturday,
                            'sunday': sunday,
-                           'week': week,
                            }
                 return render(request, "index.html", context)
 
             if monday3:
                 lietotajs = request.user
                 nebus = Darba_laiks.objects.filter(lietotajs=lietotajs)
+                iemesls= Iemesls.objects.filter(lietotajs=lietotajs)
                 atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
                 monday = request.POST.get("monday2")
                 tuesday = request.POST.get("tuesday2")
@@ -227,7 +223,7 @@ def darba_laiks(request):
                 sunday = request.POST.get("sunday2")
                 lidz = request.POST.get("timeWillEnd")
 
-                iemesls = request.POST.get("reason")
+                iemesls1 = request.POST.get("reason")
                 a=Darba_laiks.objects.create(
                     lietotajs = request.user,
                     no=request.POST.get("timeFrom", ""),
@@ -239,39 +235,39 @@ def darba_laiks(request):
                 darba_laiks_id=a.id
 
 
-                if iemesls=='Slimiba':
+                if iemesls1=='Slimiba':
                      b=Iemesls.objects.create(
                          lietotajs=request.user,
                          darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
                          slimiba='True',
                      )
-                elif iemesls=='Atvalinajums':
+                elif iemesls1=='Atvalinajums':
                      b=Iemesls.objects.create(
                          lietotajs=request.user,
                          darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
                          atvalinajums='True',
                      )
 
-                elif iemesls=='Lekcijas':
+                elif iemesls1=='Lekcijas':
                      b=Iemesls.objects.create(
                          lietotajs=request.user,
                          darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
                          lekcijas='True',
                      )
 
-                elif iemesls=='Darbs no majam':
+                elif iemesls1=='Darbs no majam':
                      b=Iemesls.objects.create(
                          lietotajs=request.user,
                          darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
                          darbs_no_majam='True',
                      )
-                elif iemesls=='Mazaka slodze':
+                elif iemesls1=='Mazaka slodze':
                      b=Iemesls.objects.create(
                          lietotajs=request.user,
                          darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
                          mazaka_slodze='True',
                      )
-                else:
+                elif iemesls1=='Cits':
                     b=Iemesls.objects.create(
                         lietotajs=request.user,
                         darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
@@ -1185,6 +1181,71 @@ def virsstundas_admin(request):
                     'atlasiti_dati': atlasiti_dati,
                 }
             return render(request, 'virsstundas_admin.html', context)
+
+def lietotaja_profils(request):
+    if request.method == "GET":
+        lietotajs=request.user
+        userprofile=UserProfile.objects.get(user=lietotajs)
+
+        context= {
+            'userprofile': userprofile,
+            'lietotajs': lietotajs,
+        }
+
+        return render(request, 'lietotaja_profils.html', context)
+
+    if request.method == "POST":
+        user_id_update_photo = request.POST.get("user-id-update-photo")
+        user_id_update = request.POST.get("user-id-update")
+        user_id_update_password = request.POST.get("user-id-update-password")
+
+
+        if user_id_update_photo:
+            image = request.FILES["image"]
+            lietotajs_userprofile= UserProfile.objects.get(id=user_id_update_photo)
+            lietotajs_userprofile.avatar=image
+            lietotajs_userprofile.save()
+
+            lietotajs = request.user
+            userprofile = UserProfile.objects.get(user=lietotajs)
+
+            context = {
+                'userprofile': userprofile,
+                'lietotajs': lietotajs,
+            }
+            return render(request, 'lietotaja_profils.html', context)
+
+        if user_id_update:
+            lietotajs = User.objects.get(id=user_id_update)
+            first_name_update = request.POST.get("first-name-update", "")
+            last_name_update = request.POST.get("last-name-update", "")
+            lietotajs.first_name = first_name_update
+            lietotajs.last_name = last_name_update
+            lietotajs.save()
+
+            lietotajs = request.user
+            userprofile = UserProfile.objects.get(user=lietotajs)
+
+            context = {
+                'userprofile': userprofile,
+                'lietotajs': lietotajs,
+            }
+            return render(request, 'lietotaja_profils.html', context)
+
+        if user_id_update_password:
+            lietotajs = request.user
+            password = request.POST.get("password-update")
+            lietotajs.set_password(password)
+            lietotajs.save()
+
+            userprofile = UserProfile.objects.get(user=lietotajs)
+
+            context = {
+                'userprofile': userprofile,
+                'lietotajs': lietotajs,
+            }
+            return render(request, 'lietotaja_profils.html', context)
+
 
 # def pievienot_favoritiem(request, pk):
 #     lietotajs_kuru_pievienoja = User.objects.get(pk=pk)

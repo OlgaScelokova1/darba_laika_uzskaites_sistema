@@ -1,0 +1,12 @@
+.submitButton{
+  background-color: white;
+  border: solid 1px #bfbfbf;
+  background-color: #F5F5F5;
+  outline:none;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size:16px;
+  padding-left: 20px;
+  padding-right:20px;
+  margin-top: 0.5em;
+}

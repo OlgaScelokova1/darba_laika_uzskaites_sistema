@@ -304,13 +304,28 @@ frm.submit(function () {
     var until2 = document.getElementById("AfterUntil");
     var reason = document.getElementById("InputReason");
 
+    if(!date1.value){
+        alert("Lūdzu, ievadiet kavējuma datumu!")
+        return false;
+    }
+
+    if(!from1.value){
+        alert("Lūdzu, ievadiet laiku, kad nestrādāsiet!")
+        return false;
+    }
+
+    if(!until1.value){
+        alert("Lūdzu, ievadiet laiku, kad nestrādāsiet!")
+        return false;
+    }
+
     if (from1.value>until1.value){
-        alert("Nepareizi ievadīts laiks!")
+        alert("Nepareizi ievadīts laiks")
         return false;
     } // formu pārbaude, ja ievadītais laiks no ir lielāks par laiku līdz, tiek izvadīts paziņojums
 
     if (from2.value>until2.value){
-        alert("Nepareizi ievadīts laiks!")
+        alert("Nepareizi ievadīts laiks")
         return false;
     } // formu pārbaude, ja ievadītais laiks no ir lielāks par laiku līdz, tiek izvadīts paziņojums
 
@@ -322,7 +337,7 @@ frm.submit(function () {
         var isValidFrom2 = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(from2.value);
         var isValidUntil2 = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(until2.value);
         if(!isValidFrom2 || !isValidUntil2){
-            alert("Laiks ievadīts nepareizā formātā!")
+            alert("Nepareizi ievadīts laiks")
             return false;
         }
     } // formu pārbaude, ja ievadīti iemesli, kas jāatstrādā, tiek pieprasīts ievadīt atstrādāšanas laikus
@@ -332,7 +347,7 @@ frm.submit(function () {
 
 
     if(!isValidFrom1 || !isValidUntil1){
-        alert("Laiks ievadīts nepareizā formātā!")
+        alert("Nepareizi ievadīts laiks")
             return false;
     }
 

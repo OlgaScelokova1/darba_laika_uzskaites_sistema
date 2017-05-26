@@ -7,12 +7,8 @@
 
         <div class="row">
             <div id = "search">
-                <form method="POST" action="">{% csrf_token %}
-                    <input type="text" name="q"  id = "searchField" placeholder="Meklēt lietotāju" value="{{ request.get.q }}"/>
-                    <input type="hidden" name="datums-meklesanai" id = "dateSearch" value=""/>
-                    <input type="hidden" type="submit" value="Meklēt"/>
-                </form>
-             </div>
+                    <input type="text" name="q" placeholder="Meklēt lietotāju" id="searchField">
+            </div>
         </div>
 
 
@@ -52,7 +48,7 @@
 
 
 
-                <div class = "col-sm-2" id ="oneUser">
+                <div class = "col-sm-2 userBox" id ="oneUser">
 
                      <div class = "dayBox" id = "box">
 
@@ -71,7 +67,7 @@
 
                                 <div id ="userName">
 
-                                    <div>{{izmainits.first_name}} {{izmainits.last_name}}</div>
+                                    <div class ="userFull">{{izmainits.first_name}} {{izmainits.last_name}}</div>
                                 </div>
                                 <div class = "userId">{{izmainits.id}}</div>
                             </div>

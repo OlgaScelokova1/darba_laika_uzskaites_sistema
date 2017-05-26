@@ -1,7 +1,5 @@
 {%extends "base.html" %}
 
-
-
 {% block content %}
 
 {% load staticfiles %}
@@ -348,6 +346,13 @@
         <input  type= "hidden" id="dateForm" name="datums-dzesanai" value = "">
         <input  type= "hidden" id="fromForm" name="no-dzesanai" value = "">
         <input  type= "hidden" id="untilForm" name="lidz-dzesanai" value = "">
+        <input type="hidden" name="monday3" value = "{{ monday }}">
+                <input type="hidden" name="tuesday3" value = "{{ tuesday }}">
+                <input type="hidden" name="wednesday3" value = "{{ wednesday }}">
+                <input type="hidden" name="thursday3" value = "{{ thursday }}">
+                <input type="hidden" name="friday3" value = "{{ friday }}">
+                <input type="hidden" name="saturday3" value = "{{ saturday }}">
+                <input type="hidden" name="sunday3" value = "{{ sunday }}">
         <input type = "submit" value = "Dzēst" id = "deleteButton">
     </form>
 

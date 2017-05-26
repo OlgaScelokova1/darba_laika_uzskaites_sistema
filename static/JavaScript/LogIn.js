@@ -29,3 +29,4 @@ $(document).click = function(){
         username.style.color = "#a8b6c3";
     }
 };
+

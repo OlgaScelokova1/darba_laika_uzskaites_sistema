@@ -49,6 +49,12 @@
     </div>
 
   </div>
+
+    <span class="pull-right">
+        <div id = "search">
+                <input type="text" name="q" placeholder="Meklēt lietotāju" id="searchField">
+         </div>
+    </span>
 </div>
 </div>
 
@@ -59,7 +65,7 @@
     <div class="images">
       <img src="{{darbinieks.userprofile.avatar.url}}" alt="" class="img" width="600" height="400">
       <p class="description">
-          <span>{{darbinieks.first_name}} {{darbinieks.last_name}} </span><br>
+          <div class = "userFull">{{darbinieks.first_name}} {{darbinieks.last_name}} </div><br>
           <button type="button" data-toggle="modal" data-target="#{{darbinieks.id}}">Rediģēt</button> &nbsp
           <button type="button" data-toggle="modal" data-target="#1{{darbinieks.id}}">Rediģēt bildi</button> &nbsp
           <button type="button" data-toggle="modal" data-target="#2{{darbinieks.id}}">Dzēst</button> &nbsp
@@ -151,7 +157,7 @@
             <input type="hidden" name="user-id-delete" value="{{ darbinieks.id }}">
             <div class="row" id="delete">
                 <div>Vai Jūs tiešām gribat dzēst šo lietotāju?</div>
-                <input type="submit" id="deleteSubmit" value="Dzēst" />
+                <input type="submit" id="deleteSubmit" value="Jā" />
             </div>
         </div>
     </form>
