@@ -12,7 +12,6 @@ function formatDateForForm(myDate){
     if(month<10){
         month = "0" + month;
     }
-
     return (year + "-" + month + "-"  + day);
 } // tiek noformatēts datums tā, lai tas varētu tikt pasniegts formā un vēlāk izmantots priekš dienu pārslēgšanas
 
@@ -27,13 +26,10 @@ function formatDate(myDate) {
     if(month<10){
         month = "0" + month;
     }
-
     return (day + "." + month + "." + year + ".");
 } //funkcija, kas pārveido datumu pareizā formātā, lai ierakstītu dokumentā: dd.mm
 
-
 var formattedDay = formatDate(today);
-
 
 function addDays(date, days) {
     var result = new Date(date);
@@ -41,15 +37,9 @@ function addDays(date, days) {
     return result;
 } // funkcija, kas padotajam datumam pievieno padoto skaitu dienu
 
-
 document.getElementById("dateToLeft").value = formatDateForForm(addDays(givenDate, -1));
 document.getElementById("dateToRight").value = formatDateForForm(addDays(givenDate, 1));
 //formā tiek savadīti datumi: bultiņā pa kreisi diena atpakaļ, bultiņā pa labi diena uz priekšu
-
-//var dateSearch = document.getElementById("dateSearch")
-//if(dateSearch){
-//    dateSearch.value = formatDateForForm(today)
-//}; // priekš meklētāja caur backend
 
 var day = today.getDay();
 var days = ['SVĒTDIENA', 'PIRMDIENA', 'OTRDIENA', 'TREŠDIENA', 'CETURTDIENA', 'PIEKTDIENA', 'SESTDIENA'];
@@ -73,9 +63,8 @@ if (document.getElementById("Month")){
     setMonth();
 } //ja mobilajā skatā, tad tiek ierakstīts arī mēnesis
 
+var all = document.getElementsByClassName("oneReason"); // masīvā tiek ievietoti visi iemesli
 
-
-var all = document.getElementsByClassName("oneReason");
 var willWorkWhen = document.getElementById("offWork");
 var reason = document.getElementsByClassName("reason");
 var workFrom = document.getElementsByClassName("atstradasNo");
@@ -99,13 +88,22 @@ for (i = 0 ; i < reason.length ; ){
 
 
 var everyId = document.getElementsByClassName("userId");
+var box = document.getElementsByClassName("dayBox");
+// dabūju katru iemeslu ar id
+var lidz = [];
+var no = [];
+var iemesls = [];
+var tmp = [];
+var start;
 
-function setReasons(){
+if(document.getElementById("description")){
+        var insert = document.getElementById("description");
+        var offTime = document.getElementById("offTime");
+        var offReasonDoc = document.getElementById('offReason');
+        var offWork = document.getElementById('offWork');
+} // tiek iegūti paskaidrojumu elementi, kam tiks pievienotas vērtības
 
-
-    var box = document.getElementsByClassName("dayBox");
-    // dabūju katru iemeslu ar id
-    var allText = [];
+var allText = [];
     var everyIdtmp = [];
 
     for(i=0; i<everyId.length ; i++){
@@ -130,132 +128,61 @@ function setReasons(){
         }
     }
 
-    var lidz = [];
-    var no = [];
-    var iemesls = [];
-    var tmp = [];
-    var start;
-    if(document.getElementById("description")){
-        var insert = document.getElementById("description");
-        var offTime = document.getElementById("offTime");
-        var offReasonDoc = document.getElementById('offReason');
-        var offWork = document.getElementById('offWork');
-    }
+
+function setReasons(){
 
     for(i=0; i< everyIdtmp.length; i++){
         for(j=0; j<id.length ; j++){
             if (id[j] == everyIdtmp[i]){
+
                 lidz[j] = allText[j].slice(allText[j].length - 8);
                 no[j] = allText[j].slice(allText[j].length - 19);
-                lidz[j] = lidz[j].slice(0,2);
-                no[j] = no[j].slice(0,2);
+                lidz[j] = lidz[j].slice(0,5);
+                no[j] = no[j].slice(0,5);
 
-
-                if (allText[j].includes("Slimiba")){
-                    tmp[i] = box[i].getElementsByTagName("li");
-                    for(k=0 ; k<tmp[i].length ; k++){
-                       if (tmp[i][k].innerHTML.slice(0,2) == no[j]){
-
-                           while (tmp[i][k].innerHTML.slice(0,2) != lidz[j]){
-                               tmp[i][k].style.backgroundColor = '#ba1d79';
-                               tmp[i][k].style.color = "#ffffff";
-                               if(document.getElementById("description")){
-                                   offReasonDoc.innerHTML = "Slimība";
-                                   offTime.innerHTML = no[j] + ":00" + "-" + lidz[j] + ":00";
-                                   willWorkWhen.innerHTML = forInputWork[j];
-                                   tmp[i][k].title = insert.textContent;
-                               }
-                               k++;
-                           }
-                       }
-                    }
-                }
-
-                if (allText[j].includes("Lekcijas")){
-                    tmp[i] = box[i].getElementsByTagName("li");
-                    for(k=0 ; k<tmp[i].length ; k++){
-                       if (tmp[i][k].innerHTML.slice(0,2) == no[j]){
-
-                           while (tmp[i][k].innerHTML.slice(0,2) != lidz[j]){
-                               tmp[i][k].style.backgroundColor = '#f15a24';
-                               tmp[i][k].style.color = "#ffffff";
-                               if(document.getElementById("description")){
-                                   offReasonDoc.innerHTML = "Lekcijas";
-                                   offTime.innerHTML = no[j] + ":00" + "-" + lidz[j] + ":00";
-                                   willWorkWhen.innerHTML = forInputWork[j];
-                                   tmp[i][k].title = insert.textContent;
-                               }
-                               k++;
-                           }
-                       }
-                    }
-                }
-
-                if (allText[j].includes("Darbs no majam")){
-                    tmp[i] = box[i].getElementsByTagName("li");
-                    for(k=0 ; k<tmp[i].length ; k++){
-                       if (tmp[i][k].innerHTML.slice(0,2) == no[j]){
-
-                           while (tmp[i][k].innerHTML.slice(0,2) != lidz[j]){
-                               tmp[i][k].style.backgroundColor = '#29abe2';
-                               tmp[i][k].style.color = "#ffffff";
-                               if(document.getElementById("description")){
-                                   offReasonDoc.innerHTML = "Darbs no mājām";
-                                   offTime.innerHTML = no[j] + ":00" + "-" + lidz[j] + ":00";
-                                   willWorkWhen.innerHTML = "-";
-                                   tmp[i][k].title = insert.textContent;
-                               }
-                               k++;
-                           }
-                       }
-                    }
-                }
-
-                if (allText[j].includes("Mazaka slodze")){
-                    tmp[i] = box[i].getElementsByTagName("li");
-                    for(k=0 ; k<tmp[i].length ; k++){
-                       if (tmp[i][k].innerHTML.slice(0,2) == no[j]){
-
-                           while (tmp[i][k].innerHTML.slice(0,2) != lidz[j]){
-                               tmp[i][k].style.backgroundColor = '#22b573';
-                               tmp[i][k].style.color = "#ffffff";
-                               if(document.getElementById("description")){
-                                   offReasonDoc.innerHTML = "Mazāka slodze";
-                                   offTime.innerHTML = no[j] + ":00" + "-" + lidz[j] + ":00";
-                                   willWorkWhen.innerHTML = "-";
-                                   tmp[i][k].title = insert.textContent;
-                               }
-                               k++;
-                           }
-                       }
-                    }
-                }
-
-                if (allText[j].includes("Cits")){
-                    tmp[i] = box[i].getElementsByTagName("li");
-                    for(k=0 ; k<tmp[i].length ; k++){
-                       if (tmp[i][k].innerHTML.slice(0,2) == no[j]){
-                           offReasonDoc.innerHTML = "Cits";
-                           while (tmp[i][k].innerHTML.slice(0,2) != lidz[j]){
-                               tmp[i][k].style.backgroundColor = "#662d91";
-                               tmp[i][k].style.color = "#ffffff";
-                               if(document.getElementById("description")){
-                                   offTime.innerHTML = no[j] + ":00" + "-" + lidz[j] + ":00";
-                                   willWorkWhen.innerHTML = forInputWork[j];
-                                   tmp[i][k].title = insert.textContent;
-                               }
-                               k++;
-                           }
-                       }
-                    }
-                }
-
+                colorReason("Slimiba", "Slimība", no[j].slice(0,2), lidz[j].slice(0,2), no[j], lidz[j], "#ba1d79");
+                colorReason("Lekcijas", "Lekcijas", no[j].slice(0,2), lidz[j].slice(0,2), no[j], lidz[j], "#f15a24");
+                colorReason("Darbs no majam", "Darbs no mājām", no[j].slice(0,2), lidz[j].slice(0,2), no[j], lidz[j], "#29abe2");
+                colorReason("Mazaka slodze", "Mazāka slodze", no[j].slice(0,2), lidz[j].slice(0,2), no[j], lidz[j], "#22b573");
+                colorReason("Cits", "Cits", no[j].slice(0,2), lidz[j].slice(0,2), no[j], lidz[j], "#662d91");
             }
         }
     }
 
 
 
+}
+
+function colorReason(title1, title2, from1, until1, from2, until2, color){
+    if (allText[j].includes(title1)){
+    //pārbaude, vai šis iemesls satur konkrēto simbolu virkni
+        tmp[i] = box[i].getElementsByTagName("li");
+        // tiek iegūtas visas tabulas šūnas
+        for(k=0 ; k<tmp[i].length ; k++){
+           if (tmp[i][k].innerHTML.slice(0,2) == from1){
+           //ja tabulas šūna atbilst laikam, no cikiem lietotājs nebūs, ieiet ciklā līdz laikam, līdz cikiem lietotājs nebūs
+
+               while (tmp[i][k].innerHTML.slice(0,2) != until1){
+                   tmp[i][k].style.backgroundColor = color;
+                   tmp[i][k].style.color = "#ffffff";
+                   // tiek uzstādīta padotā krāsa un balts fonts
+                   if(document.getElementById("description")){
+                       offReasonDoc.innerHTML = title2;
+                       if(title1 == "Darbs no majam" || title1 == "Mazaka slodze"){
+                            willWorkWhen.innerHTML = "-";
+                       }
+                       else {
+                            willWorkWhen.innerHTML = forInputWork[j];
+                       }
+                       offTime.innerHTML = from2 + "-" + until2;
+                       tmp[i][k].title = insert.textContent;
+                       //tiek pievienota paskaidrojuma kastīte ar atbilstošajām vērtībām
+                   }
+                   k++;
+               }
+           }
+        }
+    }
 }
 
 var thisDate = new Date();
@@ -294,7 +221,6 @@ for (i=0; i< everyUserId.length; i++){
 
 var userName = document.getElementsByClassName("userFull");
 var userBox = document.getElementsByClassName("userBox");
-console.log(userBox);
 
 $('#searchField').on('input', function() {
     var input  = $(this).val();
@@ -311,15 +237,9 @@ $('#searchField').on('input', function() {
 
 });
 
-
-
-console.log($(window).width());
-
 window.onresize = function() {
     toggle();
 }
-
-
 
 function toggle() {
     var userBox = document.getElementsByClassName("userBox");

@@ -1,5 +1,4 @@
 .submitButton{
-  background-color: white;
   border: solid 1px #bfbfbf;
   background-color: #F5F5F5;
   outline:none;
@@ -9,4 +8,33 @@
   padding-left: 20px;
   padding-right:20px;
   margin-top: 0.5em;
+}
+
+.img{
+    height: 400px;
+    width: 400px;
+
+}
+
+.title{
+    font-weight: bold;
+    display: flex;
+    margin-bottom: 1.5em;
+}
+
+.innerText{
+    font-weight: normal;
+    margin-left: 1em;
+}
+
+#text{
+    margin-bottom: 3em;
+}
+
+.editButton{
+  background-color: inherit;
+  border: solid 1px #bfbfbf;
+  outline:none;
+  margin-right: 0.5em;
+  margin-bottom: 0.5em;
 }

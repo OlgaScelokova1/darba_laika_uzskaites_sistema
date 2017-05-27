@@ -18,81 +18,7 @@ $(document).ready(function() {
 
     });
 
-    $('#addUserForm').on('submit', function() {
-        var username = document.getElementById("username");
-        for( i=0 ; i < allUsername.length ; i++){
-            if(username.value == allUsername[i].innerHTML){
-               alert("Lietotājs ar šādu lietotājvārdu jau eksistē")
-               return false;
-            }
-        }
 
-        if(username.value.length < 5){
-            alert ("Lietotājvārdam jābūt 5-150 simboli");
-            return false;
-        }
-
-        if(username.value.length>150){
-            alert ("Lietotājvārds var satur 5-150 simbolus");
-            return false;
-        }
-
-        if(!checkSymbol(username.value)){
-            alert ("Lietotājvārds var saturēt tikai latīņu alfabēta burtus, ciparus un īpašos simbolus");
-            return false;
-        }
-
-        var name = document.getElementById("firstName").value;
-        var surname = document.getElementById("lastName").value;
-
-        if(!name){
-            alert ("Lūdzu, ievadiet vārdu");
-            return false;
-        }
-
-        if(name.length>30){
-            alert ("Vārds var saturēt līdz 30 simboliem");
-            return false;
-        }
-
-        if(!surname){
-            alert ("Lūdzu, ievadiet uzvārdu");
-            return false;
-        }
-
-        if(surname.length>30){
-            alert ("Uzvārds var saturēt līdz 30 simboliem");
-            return false;
-        }
-
-        if(!checkLetters(name)){
-            alert ("Vārds var saturēt tikai latviešu vai latīņu alfabēta burtus");
-            return false;
-        }
-        if(!checkLetters(surname)){
-            alert ("Uzvārds var saturēt tikai latviešu vai latīņu alfabēta burtus");
-            return false;
-        }
-
-        password = document.getElementById("password");
-
-        if($('#password').val().length<8 || $('#password').val().length>24 ){
-            alert("Parolei jāsatur 8-24 simboli");
-            return false;
-        }
-
-        if(!checkSymbol(password.value)){
-            alert ("Parole var saturēt tikai latīņu alfabēta burtus, ciparus un īpašos simbolus");
-            return false;
-        }
-
-        if ($('#password').val() != $('#password-again').val()){
-            alert("Ievadītās paroles nesakrīt")
-            return false;
-        }
-
-
-    }); // formas validācija
 
 
     function checkLetters(string){
@@ -198,34 +124,27 @@ $(document).ready(function() {
     }); // formas validācija
 
 var userName = document.getElementsByClassName("userFull");
-var userBox = document.getElementsByClassName("images");
+//masīvā ievietoti visu attēloto lietotāju pilns vārds un uzvārds
+var userBox = document.getElementsByClassName("userBox");
+//masīvā ievietoti visu attēloto lietotāju profili
 
 $('#searchField').on('input', function() {
     var input  = $(this).val();
     input = input.toString().toLowerCase();
+    // elements ar vērtību, kas ierakstīta meklētājā tiek pārveidots par simbolu virkni ar mazajiem burtiem
     for (i=0; i<userName.length; i++){
         if (userName[i].innerHTML.toLowerCase().indexOf(input) >= 0) {
             userBox[i].style.display = "block";
          }
+         /*ja masīva elementā, kas pārveidots par simbolu virkni ar mazajiem burtiem,
+         atrodami meklētājā ierakstītie simboli, attiecīgā lietotāja profils tiek attēlots*/
         else {
             userBox[i].style.display = "none";
-            }
         }
+        //ja masīva elementā nav šo simboli, attiecīgais profils netiek attēlots
+    }
 
 });
-
-var update = document.getElementsByClassName("update");
-
-//$(update).click(function(event){
-//            console.log( "1");
-//
-//            var now = $(this).attr('id');
-//
-//
-//
-//        event.stopPropagation();
-//}); // kastītes novietojums un default vērtības
-
 
 
 });

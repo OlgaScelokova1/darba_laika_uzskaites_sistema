@@ -46,7 +46,7 @@ div.container{
   margin: auto;
 }
 
-div.images {
+div.userBox {
   margin: 15px;
   border: 1px solid #ddd;
   float: left;
@@ -61,7 +61,7 @@ div.images {
   -webkit-border-radius: 3px;
 }
 
-div.images:hover{
+div.userBox:hover{
 -moz-box-shadow: 2px 2px 3px 0px #999;
 -webkit-box-shadow: 2px 2px 3px 0px #999;
 -o-box-shadow: 2px 2px 3px 0px #999;
@@ -69,11 +69,11 @@ box-shadow: 2px 2px 3px 0px #999;
 filter:progid:DXImageTransform.Microsoft.Shadow(color=#999, Direction=134, Strength=3);
 }
 
-div.images:hover .description{
+div.userBox:hover .description{
   color: #2d2d2d;
 }
 
-div.images img {
+div.userBox img {
   width: 100%;
   padding: 5px;
 }
@@ -107,7 +107,7 @@ p.information{
     width: 560px;
   }
 
-  div.images{
+  div.userBox{
     margin: 15px;
   }
 }
@@ -117,7 +117,7 @@ p.information{
     width: 350px;
   }
 
-  div.images{
+  div.userBox{
     margin: 10px 5px;
     width: 350px;
   }
@@ -128,7 +128,7 @@ p.information{
     width: 280px;
   }
 
-  div.images{
+  div.userBox{
     width: 280px;
   }
 }
