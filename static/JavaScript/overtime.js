@@ -160,7 +160,7 @@ $('#addForm').on('submit', function() {
         alert("Komentāra maksimālais garums ir 500 simboli")
         return false;
     }
-    
+
 }); // formas validācija
 
 $('#fromInput').on('input', function() {
