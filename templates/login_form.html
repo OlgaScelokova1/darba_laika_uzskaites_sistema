@@ -1,3 +1,4 @@
+
 {% load staticfiles %}
 
 <link rel="stylesheet" href="https://maxcdn.bootsdivapcdn.com/bootsdivap/3.3.7/css/bootsdivap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -7,44 +8,19 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/Login.css' %}" />
 
 
-<body>
-    <div class="container-fluid">
-
-        <div class="row">
-
-            <div class="col-sm-12 col-md-7">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
-                            {% csrf_token %}
 
 
-                            {% for field in form %}
+  <h2>Pierakstīties sistēmā</h2>
+  <form method="post" action="/darba_laiks/login/">
+    {% csrf_token %}
+      <label>Lietotājvārds:</label>
+   <input type="text" name="username" value="">
+      <label>Parole:</label>
+      <input type="password" name="password" value="">
+
+    <button type="submit">Login</button>
+  </form>
 
 
-           <div class="form-group">
-
-               <label class="control-label col-sm-2">{{ field.label_tag }}</label>
-               <div class="col-sm-10"> {{ field }} </div>
-                <div class="col-sm-offset-2 col-sm-10" id ="error">
-                   <span class="text-danger small">{{ field.errors }}</span>
-               </div>
-           </div>
-
-    {% endfor %}
-
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="submit" class="btn btn-success">Log in</button>
-                                </div>
-                            </div>
-
-                        </form>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</body>
+{{x }}
+{{ y }}

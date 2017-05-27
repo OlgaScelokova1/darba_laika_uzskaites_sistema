@@ -24,6 +24,7 @@ from .models import UserProfile, Iemesls, Atstrada, Saglabatie, Virsstundas
 import datetime
 from datetime import timedelta
 from django_user_agents.utils import get_user_agent
+from django.contrib.auth import authenticate
 
 
 
@@ -442,36 +443,38 @@ class LogoutView(RedirectView):
         auth_logout(request)
         return super(LogoutView, self).get(request, *args, **kwargs)
 
-class LoginView(FormView):
-    success_url = '/darba_laiks/'
-    form_class = AuthenticationForm
-    template_name = 'login_form.html'
-    redirect_field_name = REDIRECT_FIELD_NAME
+def LoginView(request):
+    if request.method == "GET":
+        return render(request, "login_form.html")
 
-    @method_decorator(sensitive_post_parameters('password'))
-    @method_decorator(csrf_protect)
-    @method_decorator(never_cache)
-    def dispatch(self, request, *args, **kwargs):
-        # Sets a test cookie to make sure the user has cookies enabled
-        request.session.set_test_cookie()
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
 
-        return super(LoginView, self).dispatch(request, *args, **kwargs)
+        lietotajs=User.objects.filter(username=username)
 
-    def form_valid(self, form):
-        auth_login(self.request, form.get_user())
+        if not lietotajs:
+            x="lietotajvarda kluda!"
+            context={
+                'x': x,
+            }
+            return render(request, "login_form.html", context)
+        else:
 
-        # If the test cookie worked, go ahead and
-        # delete it since its no longer needed
-        if self.request.session.test_cookie_worked():
-            self.request.session.delete_test_cookie()
+            user = authenticate(username=username, password=password)
 
-        return super(LoginView, self).form_valid(form)
+            if user is not None:
+                login(request, user)
+                # return index(request)
+                return HttpResponseRedirect('/darba_laiks/')
 
-    def get_success_url(self):
-        redirect_to = self.request.POST.get(self.redirect_field_name)
-        if not is_safe_url(url=redirect_to, host=self.request.get_host()):
-            redirect_to = self.success_url
-        return redirect_to
+            else:
+                y="parbaudiet ievaditos datus!"
+                context={
+                    'y': y,
+                }
+                return render(request, "login_form.html", context)
+
 
 
 
@@ -573,46 +576,21 @@ def darbinieki(request):
                     dzest=i
                     dzest.delete()
 
+                context = {'visi': visi,
+                           'izmainitie': izmainitie,
+                           'iemesli': iemesli,
+                           'atstrada': atstrada,
+                           'lietotaja_saglabatie': lietotaja_saglabatie,
+                           'saglabata_id': saglabata_id,
+                           'datums': datums,
+                           }
 
-
-            query=request.POST.get("q")
-            if query:
-                datums = request.POST.get("datums-meklesanai")
-                visi = User.objects.all()
-
-                darba_laika_id = Darba_laiks.objects.filter(datums=datums).values_list('id', flat=True).distinct()
-
-                collection_ids = Darba_laiks.objects.filter(datums=datums).values_list('lietotajs', flat=True).distinct()
-                izmainitie = [
-                    Darba_laiks.objects.filter(lietotajs__id=c)[0] for c in collection_ids
-                ]
-
-                iemesli = [
-                    Iemesls.objects.filter(darba_laiks__id=c)[0] for c in darba_laika_id
-                ]
-
-                atstrada = Atstrada.objects.filter(darba_laiks__id__in=darba_laika_id)
-
-                datums = request.POST.get("datums-meklesanai")
-                visi=visi.filter(
-                        Q(username__icontains=query) |
-                        Q(first_name__icontains=query) |
-                        Q(last_name__icontains=query)
-                    )
-
-            context = {'visi': visi,
-                       'izmainitie': izmainitie,
-                       'iemesli': iemesli,
-                       'atstrada': atstrada,
-                       'lietotaja_saglabatie': lietotaja_saglabatie,
-                       'saglabata_id': saglabata_id,
-                       'datums': datums,
-                       }
             date = request.POST.get("date")
 
             if date:
                 print "xx"
                 datums=date
+
                 context = {'visi': visi,
                            'izmainitie': izmainitie,
                            'iemesli': iemesli,
