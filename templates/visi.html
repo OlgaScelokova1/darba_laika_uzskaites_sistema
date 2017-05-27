@@ -65,12 +65,8 @@
 
             <span class="pull-right">
                 <div id = "search">
-                    <form method="POST" action="">{% csrf_token %}
-                        <input type="text" name="q" placeholder="Meklēt lietotāju" value="{{ request.get.q }}" id="searchField">
-                        <input type="hidden" name="datums-meklesanai" id = "dateSearch" value=""/>
-                        <input type="submit" value="Meklēt"/>
-                    </form>
-                 </div>
+                    <input type="text" name="q" placeholder="Meklēt lietotāju" id="searchField">
+                </div>
             </span>
         </div>
 

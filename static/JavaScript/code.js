@@ -304,13 +304,28 @@ frm.submit(function () {
     var until2 = document.getElementById("AfterUntil");
     var reason = document.getElementById("InputReason");
 
+    if(!date1.value){
+        alert("Lūdzu, ievadiet kavējuma datumu!")
+        return false;
+    }
+
+    if(!from1.value){
+        alert("Lūdzu, ievadiet laiku, kad nestrādāsiet!")
+        return false;
+    }
+
+    if(!until1.value){
+        alert("Lūdzu, ievadiet laiku, kad nestrādāsiet!")
+        return false;
+    }
+
     if (from1.value>until1.value){
-        alert("Nepareizi ievadīts laiks!")
+        alert("Nepareizi ievadīts laiks")
         return false;
     } // formu pārbaude, ja ievadītais laiks no ir lielāks par laiku līdz, tiek izvadīts paziņojums
 
     if (from2.value>until2.value){
-        alert("Nepareizi ievadīts laiks!")
+        alert("Nepareizi ievadīts laiks")
         return false;
     } // formu pārbaude, ja ievadītais laiks no ir lielāks par laiku līdz, tiek izvadīts paziņojums
 
@@ -322,7 +337,7 @@ frm.submit(function () {
         var isValidFrom2 = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(from2.value);
         var isValidUntil2 = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(until2.value);
         if(!isValidFrom2 || !isValidUntil2){
-            alert("Laiks ievadīts nepareizā formātā!")
+            alert("Nepareizi ievadīts laiks")
             return false;
         }
     } // formu pārbaude, ja ievadīti iemesli, kas jāatstrādā, tiek pieprasīts ievadīt atstrādāšanas laikus
@@ -332,23 +347,23 @@ frm.submit(function () {
 
 
     if(!isValidFrom1 || !isValidUntil1){
-        alert("Laiks ievadīts nepareizā formātā!")
+        alert("Nepareizi ievadīts laiks")
             return false;
     }
 
 
-    // $.ajax({
-    //     type: 'POST',
-    //     url: frm.attr('action'),
-    //     data: frm.serialize(),
-    //     success: function (data) {
-    //      location.reload();
-    //     },
-    //     error: function(data) {
-    //      location.reload();
-    //     }
-    // });
-    // return false;
+     $.ajax({
+         type: 'POST',
+         url: frm.attr('action'),
+         data: frm.serialize(),
+         success: function (data) {
+          location.reload();
+         },
+         error: function(data) {
+          location.reload();
+         }
+     });
+     return false;
 }); // kad uzspiež "submit", padotie dati tiek sūtīti uz datu bāzi, kur tie tiek apstrādāti
 
 
@@ -478,12 +493,14 @@ function setSlimiba (){
     var sickDate = [];
     var sickFrom = [];
     var sickUntil = [];
+    console.log(laiks[0])
 
     for (p = 0 ; p < laiks.length ; p++) {
         sickDate[p] = laiks[p][m];
-        sickFrom[p] = laiks[p][m+1].slice(0,2);
-        sickUntil[p] = laiks[p][m+3].slice(0,2);
+        sickFrom[p] = laiks[p][m+1].slice(0,5);
+        sickUntil[p] = laiks[p][m+3].slice(0,5);
     } // saliek pa masiviem datumus un laikus, kad slimo
+    console.log(sickUntil[0]);
 
     var from = 0;
     var Until = 0;
@@ -493,8 +510,8 @@ function setSlimiba (){
 
     for(a = 0 ; a < sickDate.length ; a++){
         date = sickDate[a];
-        from = sickFrom[a];
-        Until = sickUntil[a];
+        from = sickFrom[a].slice(0,2);
+        Until = sickUntil[a].slice(0,2);
         for (j = 0; j < (date2.length - 2) ; j ++){
             if (date == date2[j]){
 
@@ -503,7 +520,7 @@ function setSlimiba (){
                             if (tmp[k] == from){
                                 for ( m = from ; m < Until ;m++) {
                                     box[k].style.backgroundColor = '#ba1d79';
-                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offTime.innerHTML = sickFrom[a] + "-" + sickUntil[a] ;
                                     setOffWork(willWorkSick[a]);
                                     box[k].title = insert.textContent;
                                     setColoredBox(box[k], laiks[a][0], from, Until, willWorkSick[a]);
@@ -520,7 +537,7 @@ function setSlimiba (){
                             if (tmp[k-9] == from){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#ba1d79';
-                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offTime.innerHTML = sickFrom[a] + "-" + sickUntil[a];
                                     setOffWork(willWorkSick[a]);
                                     box[k].title = insert.textContent;
                                     setColoredBox(box[k], laiks[a][0], from, Until, willWorkSick[a]);
@@ -538,7 +555,7 @@ function setSlimiba (){
                             if (tmp[k-18] == from){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#ba1d79';
-                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offTime.innerHTML = sickFrom[a] + "-" + sickUntil[a];
                                     setOffWork(willWorkSick[a]);
                                     box[k].title = insert.textContent;
                                     setColoredBox(box[k], laiks[a][0], from, Until,willWorkSick[a]);
@@ -554,7 +571,7 @@ function setSlimiba (){
                             if (tmp[k-27] == from){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#ba1d79';
-                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offTime.innerHTML = sickFrom[a] + "-" + sickUntil[a];
                                     setOffWork(willWorkSick[a]);
                                     box[k].title = insert.textContent;
                                     setColoredBox(box[k], laiks[a][0], from, Until, willWorkSick[a]);
@@ -570,7 +587,7 @@ function setSlimiba (){
                             if (tmp[k-36] == from){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#ba1d79';
-                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offTime.innerHTML = sickFrom[a] + "-" + sickUntil[a];
                                     setOffWork(willWorkSick[a]);
                                     box[k].title = insert.textContent;
                                     setColoredBox(box[k], laiks[a][0], from, Until, willWorkSick[a]);
@@ -608,8 +625,8 @@ function setLekcijas(){
     var uniUntil = [];
     for (p = 0 ; p < laiks.length ; p++) {
         uniDate[p] = laiks[p][m];
-        uniFrom[p] = laiks[p][m+1].slice(0,2);
-        uniUntil[p] = laiks[p][m+3].slice(0,2);
+        uniFrom[p] = laiks[p][m+1].slice(0,5);
+        uniUntil[p] = laiks[p][m+3].slice(0,5);
     } // saliek pa masiviem datumus un laikus, kad ir lekcijas
 
 
@@ -621,8 +638,8 @@ function setLekcijas(){
 
     for(a = 0 ; a < uniDate.length ; a++){
         dateWhen = uniDate[a];
-        from = uniFrom[a];
-        Until = uniUntil[a];
+        from = uniFrom[a].slice(0,2);
+        Until = uniUntil[a].slice(0,2);
 
         for (j = 0; j < (date2.length - 2) ; j ++){
             if (dateWhen == date2[j]){
@@ -632,7 +649,7 @@ function setLekcijas(){
                             if (tmp[k] == from){
                                 for ( m = from ; m < Until ;m++) {
                                     box[k].style.backgroundColor = '#f15a24';
-                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offTime.innerHTML = uniFrom[a] + "-" + uniUntil[a];
                                     setOffWork(willWorkUni[a]);
                                     box[k].title = insert.textContent;
                                     setColoredBox(box[k], laiks[a][0], from, Until, willWorkUni[a]);
@@ -649,7 +666,7 @@ function setLekcijas(){
                             if (tmp[k-9] == from){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#f15a24';
-                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offTime.innerHTML = uniFrom[a] + "-" + uniUntil[a];
                                     setOffWork(willWorkUni[a]);
                                     box[k].title = insert.textContent;
                                     setColoredBox(box[k], laiks[a][0], from, Until), willWorkUni[a];
@@ -666,7 +683,7 @@ function setLekcijas(){
                             if (tmp[k-18] == from){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#f15a24';
-                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offTime.innerHTML = uniFrom[a] + "-" + uniUntil[a];
                                     setOffWork(willWorkUni[a]);
                                     box[k].title = insert.textContent;
                                     setColoredBox(box[k], laiks[a][0], from, Until, willWorkUni[a]);
@@ -682,7 +699,7 @@ function setLekcijas(){
                             if (tmp[k-27] == from){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#f15a24';
-                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offTime.innerHTML = uniFrom[a] + "-" + uniUntil[a];
                                     setOffWork(willWorkUni[a]);
                                     box[k].title = insert.textContent;
                                     setColoredBox(box[k], laiks[a][0], from, Until, willWorkUni[a]);
@@ -698,7 +715,7 @@ function setLekcijas(){
                             if (tmp[k-36] == from){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#f15a24';
-                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offTime.innerHTML = uniFrom[a] + "-" + uniUntil[a];
                                     setOffWork(willWorkUni[a]);
                                     box[k].title = insert.textContent;
                                     setColoredBox(box[k], laiks[a][0], from, Until, willWorkUni[a]);
@@ -737,8 +754,8 @@ function setHome(){
     var homeUntil = [];
     for (p = 0 ; p < laiks.length ; p++) {
         homeDate[p] = laiks[p][m];
-        homeFrom[p] = laiks[p][m+1].slice(0,2);
-        homeUntil[p] = laiks[p][m+3].slice(0,2);
+        homeFrom[p] = laiks[p][m+1].slice(0,5);
+        homeUntil[p] = laiks[p][m+3].slice(0,5);
     } // saliek pa masiviem datumus un laikus, kad ir darbs no majam
 
 
@@ -750,8 +767,8 @@ function setHome(){
 
     for(a = 0 ; a < homeDate.length ; a++){
         dateWhen = homeDate[a];
-        from = homeFrom[a];
-        Until = homeUntil[a];
+        from = homeFrom[a].slice(0,2);
+        Until = homeUntil[a].slice(0,2);
 
         for (j = 0; j < (date2.length - 2) ; j ++){
             if (dateWhen == date2[j]){
@@ -761,7 +778,7 @@ function setHome(){
                             if (tmp[k] == from){
                                 for ( m = from ; m < Until ;m++) {
                                     box[k].style.backgroundColor = '#29abe2';
-                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offTime.innerHTML = homeFrom[a] + "-" + homeUntil[a];
                                     offWork.innerHTML = "-";
                                     box[k].title = insert.textContent;
                                     setColoredBox(box[k], laiks[a][0], from, Until);
@@ -778,7 +795,7 @@ function setHome(){
                             if (tmp[k-9] == from){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#29abe2';
-                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offTime.innerHTML = homeFrom[a] + "-" + homeUntil[a];
                                     offWork.innerHTML = "-";
                                     box[k].title = insert.textContent;
                                     setColoredBox(box[k], laiks[a][0], from, Until);
@@ -795,7 +812,7 @@ function setHome(){
                             if (tmp[k-18] == from){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#29abe2';
-                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offTime.innerHTML = homeFrom[a] + "-" + homeUntil[a];
                                     offWork.innerHTML = "-";
                                     box[k].title = insert.textContent;
                                     setColoredBox(box[k], laiks[a][0], from, Until);
@@ -811,7 +828,7 @@ function setHome(){
                             if (tmp[k-27] == from){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#29abe2';
-                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offTime.innerHTML = homeFrom[a] + "-" + homeUntil[a];
                                     offWork.innerHTML = "-";
                                     box[k].title = insert.textContent;
                                     setColoredBox(box[k], laiks[a][0], from, Until);
@@ -827,7 +844,7 @@ function setHome(){
                             if (tmp[k-36] == from){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#29abe2';
-                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offTime.innerHTML = homeFrom[a] + "-" + homeUntil[a];
                                     offWork.innerHTML = "-";
                                     box[k].title = insert.textContent;
                                     setColoredBox(box[k], laiks[a][0], from, Until);
@@ -865,8 +882,8 @@ function setSlodze(){
     var lessUntil = [];
     for (p = 0 ; p < laiks.length ; p++) {
         lessDate[p] = laiks[p][m];
-        lessFrom[p] = laiks[p][m+1].slice(0,2);
-        lessUntil[p] = laiks[p][m+3].slice(0,2);
+        lessFrom[p] = laiks[p][m+1].slice(0,5);
+        lessUntil[p] = laiks[p][m+3].slice(0,5);
     } // saliek pa masiviem datumus un laikus, kad ir mazaka slodze
 
 
@@ -878,8 +895,8 @@ function setSlodze(){
 
     for(a = 0 ; a < lessDate.length ; a++){
         date = lessDate[a];
-        from = lessFrom[a];
-        Until = lessUntil[a];
+        from = lessFrom[a].slice(0,2);
+        Until = lessUntil[a].slice(0,2);
 
         for (j = 0; j < (date2.length - 2) ; j ++){
             if (date == date2[j]){
@@ -889,7 +906,7 @@ function setSlodze(){
                             if (tmp[k] == from){
                                 for ( m = from ; m < Until ;m++) {
                                     box[k].style.backgroundColor = '#22b573';
-                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offTime.innerHTML = lessFrom[a] + "-" + lessUntil[a];
                                     offWork.innerHTML = "-";
                                     box[k].title = insert.textContent;
                                     setColoredBox(box[k], laiks[a][0], from, Until);
@@ -906,7 +923,7 @@ function setSlodze(){
                             if (tmp[k-9] == from){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#22b573';
-                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offTime.innerHTML = lessFrom[a] + "-" + lessUntil[a];
                                     offWork.innerHTML = "-";
                                     box[k].title = insert.textContent;
                                     setColoredBox(box[k], laiks[a][0], from, Until);
@@ -923,7 +940,7 @@ function setSlodze(){
                             if (tmp[k-18] == from){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#22b573';
-                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offTime.innerHTML = lessFrom[a] + "-" + lessUntil[a];
                                     offWork.innerHTML = "-";
                                     box[k].title = insert.textContent;
                                     setColoredBox(box[k], laiks[a][0], from, Until);
@@ -939,7 +956,7 @@ function setSlodze(){
                             if (tmp[k-27] == from){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#22b573';
-                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offTime.innerHTML = lessFrom[a] + "-" + lessUntil[a];
                                     offWork.innerHTML = "-";
                                     box[k].title = insert.textContent;
                                     setColoredBox(box[k], laiks[a][0], from, Until);
@@ -955,7 +972,7 @@ function setSlodze(){
                             if (tmp[k-36] == from){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = '#22b573';
-                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offTime.innerHTML = from + ":00" + "-" + lessUntil[a];
                                     offWork.innerHTML = "-";
                                     box[k].title = insert.textContent;
                                     setColoredBox(box[k], laiks[a][0], from, Until);
@@ -993,8 +1010,8 @@ function setOther(){
     var otherUntil = [];
     for (p = 0 ; p < laiks.length ; p++) {
         otherDate[p] = laiks[p][m];
-        otherFrom[p] = laiks[p][m+1].slice(0,2);
-        otherUntil[p] = laiks[p][m+3].slice(0,2);
+        otherFrom[p] = laiks[p][m+1].slice(0,5);
+        otherUntil[p] = laiks[p][m+3].slice(0,5);
     } // saliek pa masiviem datumus un laikus, kad ir cits iemesls
 
 
@@ -1006,8 +1023,8 @@ function setOther(){
 
     for(a = 0 ; a < otherDate.length ; a++){
         date = otherDate[a];
-        from = otherFrom[a];
-        Until = otherUntil[a];
+        from = otherFrom[a].slice(0,2);
+        Until = otherUntil[a].slice(0,2);
 
         for (j = 0; j < (date2.length - 2) ; j ++){
             if (date == date2[j]){
@@ -1017,7 +1034,7 @@ function setOther(){
                             if (tmp[k] == from){
                                 for ( m = from ; m < Until ;m++) {
                                     box[k].style.backgroundColor = "#662d91";
-                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offTime.innerHTML = otherFrom[a] + "-" + otherUntil[a];
                                     setOffWork(willWorkOther[a]);
                                     box[k].title = insert.textContent;
                                     setColoredBox(box[k], laiks[a][0], from, Until, willWorkOther[a]);
@@ -1034,7 +1051,7 @@ function setOther(){
                             if (tmp[k-9] == from){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = "#662d91";
-                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offTime.innerHTML = otherFrom[a] + "-" + otherUntil[a];
                                     setOffWork(willWorkOther[a]);
                                     box[k].title = insert.textContent;
                                     setColoredBox(box[k], laiks[a][0], from, Until, willWorkOther[a]);
@@ -1051,7 +1068,7 @@ function setOther(){
                             if (tmp[k-18] == from){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = "#662d91";
-                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offTime.innerHTML = otherFrom[a] + "-" + otherUntil[a];
                                     setOffWork(willWorkOther[a]);
                                     box[k].title = insert.textContent;
                                     setColoredBox(box[k], laiks[a][0], from, Until, willWorkOther[a]);
@@ -1067,7 +1084,7 @@ function setOther(){
                             if (tmp[k-27] == from){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = "#662d91";
-                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offTime.innerHTML = otherFrom[a] + "-" + otherUntil[a];
                                     setOffWork(willWorkOther[a]);
                                     box[k].title = insert.textContent;
                                     setColoredBox(box[k], laiks[a][0], from, Until, willWorkOther[a]);
@@ -1083,7 +1100,7 @@ function setOther(){
                             if (tmp[k-36] == from){
                                 for ( m = from ; m < Until ; m++) {
                                     box[k].style.backgroundColor = "#662d91";
-                                    offTime.innerHTML = from + ":00" + "-" + Until + ":00";
+                                    offTime.innerHTML = otherFrom[a] + "-" + otherUntil[a];
                                     setOffWork(willWorkOther[a]);
                                     box[k].title = insert.textContent;
                                     setColoredBox(box[k], laiks[a][0], from, Until, willWorkOther[a]);

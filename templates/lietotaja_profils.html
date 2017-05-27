@@ -3,8 +3,9 @@
 
 {% load staticfiles %}
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/userProfile.css' %}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <h4>Mans profils</h4>
 
@@ -73,9 +74,9 @@
 
                 <label>Lietotājvārds: {{ lietotajs.username }}</label><br>
                 <label>Vārds:</label>
-                        <input type="text" name="first-name-update" id = "first-name-update" class = "inputAdd first-name-update" value="{{lietotajs.first_name}}">
+                        <input type="text" name="first-name-update" id = "firstName" class = "inputAdd first-name-update" value="{{lietotajs.first_name}}">
                 <label id= "surname">Uzvārds:</label>
-                <input type="text" name="last-name-update" id="last-name-update" class = "inputAdd last-name-update" value="{{lietotajs.last_name}}"></br>
+                <input type="text" name="last-name-update" id="lastName" class = "inputAdd last-name-update" value="{{lietotajs.last_name}}"></br>
 
                         <input type="submit" class = "submitButton" value="Saglabāt">
                 </div>
@@ -102,16 +103,16 @@
       </div>
         <br class="modal-body">
 
-            <form method='POST' role="form"  action="/darba_laiks/mans-profils/" class="updateForm" >{% csrf_token %}
+            <form method='POST' role="form"  action="/darba_laiks/mans-profils/" class="updatePassForm" >{% csrf_token %}
                 <div class = "container fill">
                 <input type="hidden" name="user-id-update-password" value="{{ lietotajs.id }}">
 
 
                 <label>Ievadiet paroli:</label>
-                        <input type="password" name="password-update" value="">
+                        <input type="password" name="password-update" id="password" value="">
 
                 <label>Ievadiet paroli atkārtoti:</label>
-                <input type="password" name="password-update-again" value=""></br>
+                <input type="password" name="password-update-again" id = "password-again" value=""></br>
 
                         <input type="submit" class = "submitButton" value="Saglabāt">
                 </div>
@@ -124,5 +125,7 @@
     </div>
 
   </div>
+
+ <script type="text/javascript" src="{% static 'JavaScript/userProfile.js' %}"></script>
 
 {% endblock %}

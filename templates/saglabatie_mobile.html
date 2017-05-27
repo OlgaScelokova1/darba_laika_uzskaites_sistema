@@ -5,7 +5,11 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'css/all_mobile.css' %}">
 
-
+        <div class="row">
+            <div id = "search">
+                    <input type="text" name="q" placeholder="Meklēt lietotāju" id="searchField">
+            </div>
+        </div>
 
 
         <div class = "container-fluid" id = "content">
@@ -44,7 +48,7 @@
 
 
 
-                <div class = "col-sm-2" id ="oneUser">
+                <div class = "col-sm-2 userBox" id ="oneUser">
 
                      <div class = "dayBox" id = "box">
 
@@ -63,7 +67,7 @@
 
                                 <div id ="userName">
 
-                                    <div>{{izmainits.lietotajs_kuru_pievienoja.first_name}} {{izmainits.lietotajs_kuru_pievienoja.last_name}}</div>
+                                    <div class ="userFull">{{izmainits.lietotajs_kuru_pievienoja.first_name}} {{izmainits.lietotajs_kuru_pievienoja.last_name}}</div>
                                 </div>
                                 <div class = "userId">{{izmainits.lietotajs_kuru_pievienoja.id}}</div>
                             </div>

@@ -60,10 +60,12 @@
                         <input class = "input" id= "rightInput" type = "submit" value = "">
                     </button>
             </form>
+        </span>
 
-            <!--<button type="button" class="Button" id="Calendar">-->
-                  <!--<span class="glyphicon glyphicon-calendar"></span>-->
-             <!--</button>-->
+        <span class="pull-right">
+                <div id = "search">
+                    <input type="text" name="q" placeholder="Meklēt lietotāju" id="searchField">
+                </div>
         </span>
     </div>
 
@@ -78,8 +80,12 @@
 
                 {% else %}
 
+<<<<<<< HEAD
 
                 <div class = "col-sm-2" id ="oneUser">
+=======
+                <div class = "col-sm-2 userBox" id ="oneUser">
+>>>>>>> 5634329bdddc6d2e25fc87cb0b73030803c20a75
 
                      <div class = "dayBox" id = "box">
 
@@ -98,7 +104,7 @@
 
                                 <div class ="userName">
 
-                                    <a href="{% url 'darba_laiks:darbinieka-darba-laiks' izmainits.lietotajs_kuru_pievienoja.id %}">{{izmainits.lietotajs_kuru_pievienoja.first_name}} {{izmainits.lietotajs_kuru_pievienoja.last_name}}</a>
+                                    <a class="userFull" href="{% url 'darba_laiks:darbinieka-darba-laiks' izmainits.lietotajs_kuru_pievienoja.id %}">{{izmainits.lietotajs_kuru_pievienoja.first_name}} {{izmainits.lietotajs_kuru_pievienoja.last_name}}</a>
                                 </div>
                                 <div class = "userId">{{izmainits.lietotajs_kuru_pievienoja.id}}</div>
                             </div>

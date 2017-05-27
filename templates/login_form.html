@@ -8,7 +8,35 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/Login.css' %}" />
 
 
+<<<<<<< HEAD
 
+=======
+<body>
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <div class="col-sm-12 col-md-7">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+
+
+                            {% for field in form %}
+
+
+                               <div class="form-group">
+
+                                   <label class="control-label col-sm-2">{{ field.label_tag }}</label>
+                                   <div class="col-sm-10"> {{ field }} </div>
+                                    <div class="col-sm-offset-2 col-sm-10" id ="error">
+                                       <span class="text-danger small">{{ field.errors }}</span>
+                                   </div>
+                               </div>
+
+                            {% endfor %}
+>>>>>>> 5634329bdddc6d2e25fc87cb0b73030803c20a75
 
   <h2>Pierakstīties sistēmā</h2>
   <form method="post" action="/darba_laiks/login/">

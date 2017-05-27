@@ -123,6 +123,13 @@ $('#addForm').on('submit', function() {
 
     var from = document.getElementById("fromInput");
     var until = document.getElementById("untilInput");
+    var date = document.getElementById("addDate");
+    var comment = document.getElementById("comment");
+
+    if(!date.value){
+            alert("Lūdzu, ievadiet datumu, kurā strādāsiet!");
+            return false;
+    }
 
     if(!from){
         alert("Lūdzu, ievadiet laiku, no cikiem strādāsiet!")
@@ -136,7 +143,7 @@ $('#addForm').on('submit', function() {
     else
 
     if (from.value>until.value){
-        alert("Nepareizi ievadīts laiks!")
+        alert("Nepareizi ievadīts laiks")
         return false;
     } // formu pārbaude, ja ievadītais laiks no ir lielāks par laiku līdz, tiek izvadīts paziņojums
 
@@ -145,9 +152,15 @@ $('#addForm').on('submit', function() {
     var isValidUntil = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(until.value);
 
     if(!isValidFrom || !isValidUntil){
-        alert("Laiks ievadīts nepareizā formātā!")
+        alert("Nepareizi ievadīts laiks")
         return false;
     }
+
+    if(comment.length>500){
+        alert("Komentāra maksimālais garums ir 500 simboli")
+        return false;
+    }
+
 }); // formas validācija
 
 $('#fromInput').on('input', function() {

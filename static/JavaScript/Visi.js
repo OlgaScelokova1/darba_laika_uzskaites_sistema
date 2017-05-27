@@ -301,10 +301,7 @@ $('#searchField').on('input', function() {
     input = input.toString().toLowerCase();
     for (i=0; i<userName.length; i++){
         if (userName[i].innerHTML.toLowerCase().indexOf(input) >= 0) {
-            document.getElementById("oneUser").style.align = "left";
             userBox[i].style.display = "block";
-
-
          }
         else {
             userBox[i].style.display = "none";
@@ -357,6 +354,7 @@ function toggle() {
     }
 }
 
-toggle();
-
+if(document.getElementById("secondRow")){
+    toggle();
+}
 
