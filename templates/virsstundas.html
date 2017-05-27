@@ -83,7 +83,7 @@
     <button class="modal-button" id = "add" type="button"  data-toggle="modal" data-target="#myModal">Pievienot virsstundas</button>
     <button class="modal-button" id = "select" type="button"  data-toggle="modal" data-target="#myModal2">Atlasīt virsstundas</button>
 {% if atlasiti_dati %}
-    <div class = "container">
+    <div class = "container" id="tableContainer">
         <table class="table" id="table">
             <thead>
               <tr>
@@ -104,7 +104,7 @@
                         <td>{{atlasits.no|time:"H:i"}}</td>
                         <td>{{atlasits.lidz|time:"H:i"}}</td>
                         <td>{{atlasits.no|stundas_starp:atlasits.lidz }}</td>
-                        <td>{{ atlasits.komentars }}</td>
+                        <td><div class="commentText">{{atlasits.komentars }}</div></td>
                         <td class = "statusOvertime">{{ atlasits.statuss }}</td>
                      </tr>
                 </form>

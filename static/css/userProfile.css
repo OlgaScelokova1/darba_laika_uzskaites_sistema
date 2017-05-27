@@ -1,3 +1,8 @@
+#myProfile{
+    font-weight: bold;
+    color: black !important;
+}
+
 .submitButton{
   border: solid 1px #bfbfbf;
   background-color: #F5F5F5;

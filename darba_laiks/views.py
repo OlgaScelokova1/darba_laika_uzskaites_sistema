@@ -780,13 +780,14 @@ def visi(request):
                            'visi': visi,
                            }
 
+
             else:
-                User.objects.create(
-                    username=username,
-                    first_name=first_name,
-                    last_name=last_name,
-                    password=password,
-                )
+                x = User.objects.create()
+                x.username = username
+                x.first_name = first_name
+                x.last_name = last_name
+                x.set_password(password)
+                x.save()
 
                 context={
                     'atrastie_lietotaji': atrastie,

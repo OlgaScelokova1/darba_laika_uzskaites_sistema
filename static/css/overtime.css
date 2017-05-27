@@ -1,3 +1,8 @@
+#overtime{
+    font-weight: bold;
+    color: black;
+}
+
 .modal-button {
   border: none;
   background-color: white;
@@ -7,10 +12,11 @@
 }
 
 #table{
-    background-color:white;
+    background-color: white;
     font-size: 12px;
 
 }
+
 
 #title{
     font-weight: bold;
@@ -28,7 +34,7 @@
 #select{
     float: right;
     margin-bottom: 10px;
-    margin-right: 2em;
+    margin-right: 15%;
 }
 
 #add {
@@ -76,7 +82,7 @@
 }
 
 #search {
-    margin-left: 30%;
+    margin-left: 15%;
 }
 
 .time {
@@ -100,4 +106,14 @@
 
 input {
     border-radius: 0;
+}
+
+.commentText{
+   max-height: 60px;
+   overflow: scroll;
+   max-width: 250px;
+}
+
+.data{
+    font-size: 0;
 }

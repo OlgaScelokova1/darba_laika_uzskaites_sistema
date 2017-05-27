@@ -32,21 +32,22 @@
 
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Aizvērt</button>
             </div>
           </div>
 
     </div>
-    <div id="title">Darbinieku virsstundas</div>
+    <!--<div id="title">Darbinieku virsstundas</div>-->
+
+     {% if atlasiti_dati %}
+
+<div class = "row">
     <div id="search">
         <input type="text" name="q" placeholder="Meklēt lietotāju" id="searchField">
     </div>
 
-     {% if atlasiti_dati %}
-
-
-
     <button class="modal-button" id = "select" type="button"  data-toggle="modal" data-target="#myModal2">Atlasīt virsstundas</button>
+</div>
     <div class = "container">
         <table class="table" id="table">
             <thead>
@@ -71,8 +72,8 @@
                         <td>{{atlasits.no|time:"H:i"}}</td>
                         <td>{{atlasits.lidz|time:"H:i"}}</td>
                         <td>{{atlasits.no|stundas_starp:atlasits.lidz }}</td>
-                        <td>{{atlasits.komentars }}</td>
-                        <td >
+                        <td ><div class="commentText">{{atlasits.komentars }}</div></td>
+                        <td>
                             <div class = "status"></div>
                             <select class ="reason" id="InputReason" name = "reason" list = "Reason">
                                 <option id = "Waiting" value = "gaida">Gaida</option>

@@ -187,4 +187,8 @@ $('#untilInput').on('input', function() {
         }
 
 
+var test = document.getElementsByClassName("commentText");
+console.log(test);
+console.log(test[0].style.color);
+
 });

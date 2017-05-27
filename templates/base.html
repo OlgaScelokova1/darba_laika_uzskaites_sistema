@@ -41,27 +41,27 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{% url 'darba_laiks:darba_laiks' %}">Mans darba laiks</a>
+            <a id="my" class="navbar-brand" href="{% url 'darba_laiks:darba_laiks' %}">Mans darba laiks</a>
         </div>
 
     <!-- Items -->
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li class="">
-                    <a href="{% url 'darba_laiks:darbinieki' %}">
+                    <a id= "all" href="{% url 'darba_laiks:darbinieki' %}">
                         <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>&nbsp;
                         Visi
                     </a>
                 </li>
                 <li class="">
-                    <a href="{% url 'darba_laiks:saglabatie' %}">
+                    <a id= "saved" href="{% url 'darba_laiks:saglabatie' %}">
                         <span class="glyphicon glyphicon-star" aria-hidden="true"></span>&nbsp;
                         Saglabātie
                     </a>
                 </li>
                 {% if not user.is_superuser and not user.is_staff %}
                 <li class="">
-                    <a href="{% url 'darba_laiks:virsstundas' %}">
+                    <a id="overtime" href="{% url 'darba_laiks:virsstundas' %}">
                         <span class="" aria-hidden="true"></span>&nbsp;
                         Virsstundas
                     </a>
@@ -69,8 +69,8 @@
                 {% endif %}
                 {% if user.is_superuser or user.is_staff %}
                 <li class="">
-                    <a href="{% url 'darba_laiks:virsstundas_admin' %}">
-                        <span class="" aria-hidden="true"></span>&nbsp;
+                    <a id="overtime" href="{% url 'darba_laiks:virsstundas_admin' %}">
+                        <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>&nbsp;
                         Virsstundas
                     </a>
                 </li>
@@ -84,15 +84,15 @@
           <ul class="nav navbar-nav navbar-right">
                  {% if user.is_superuser or user.is_staff %}
               <li class="">
-                    <a href="{% url 'darba_laiks:visi' %}">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;
+                    <a id= "userList" href="{% url 'darba_laiks:visi' %}">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;
                         Darbinieku saraksts
                     </a>
               </li>
                  {% else %}
                     <li class="">
-                    <a href="{% url 'darba_laiks:lietotaja_profils' %}">
-                        <span class="" aria-hidden="true"></span>&nbsp;
+                    <a id="myProfile" href="{% url 'darba_laiks:lietotaja_profils' %}">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;
                         Mans profils
                     </a>
                 </li>

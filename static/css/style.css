@@ -28,32 +28,6 @@ a:hover{
   text-decoration: none;
 }
 
-.My {
-  font-size: 14px;
-  color: #9d9d9d;
-}
-
-.All {
-  font-size: 14px;
-  color: #9d9d9d;
-  /*text-decoration: none;*/
-}
-
-.Saved {
-  font-size: 14px;
-  color: #9d9d9d;
-}
-
-#List{
-  font-size: 10px;
-  color: #9d9d9d;
-}
-
-#LogOut{
-  font-size: 10px;
-  color: #9d9d9d;
-}
-
 li {
   list-style-type: none;
 }

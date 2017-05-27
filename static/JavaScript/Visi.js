@@ -1,3 +1,12 @@
+if(document.getElementById("forAll")){
+    document.getElementById("all").style.fontWeight="bold";
+    document.getElementById("all").style.color="black";
+}
+else{
+    document.getElementById("saved").style.fontWeight="bold";
+    document.getElementById("saved").style.color="black";
+}
+
 var givenDate = document.getElementById("givenDate").innerHTML;
 var today = new Date(givenDate);
 
