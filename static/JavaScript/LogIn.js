@@ -1,32 +1,20 @@
+var showErrorUsername = document.getElementById("showErrorUsername");
+var showErrorPassword = document.getElementById("showErrorPassword");
 
-var username = document.getElementById("id_username");
-var password = document.getElementById("id_password");
+if(document.getElementById("usernameError").innerHTML){
+    showErrorUsername.style.display = "inherit";
+    showErrorUsername.style.color = "red";
+    showErrorUsername.style.fontStyle = "italic";
+}
+else{
+    showErrorUsername.style.display = "none";
+}
 
-username.defaultValue = "Enter Username";
-password.defaultValue = "Enter Password";
-
-username.style.color = "#a8b6c3";
-password.style.color = "#a8b6c3";
-
-username.onclick = function (){
-    username.style.color = "black";
-    if (username.value == "Enter Username") username.value = "";
-};
-
-password.onclick = function (event){
-    event.stopPropagation();
-    password.style.color = "black";
-    if (password.value == "Enter Password") password.value = "";
-};
-
-$(document).click = function(){
-    if (password.value == "") {
-        password.value = "Enter Password";
-        password.style.color = "#a8b6c3";
-    }
-    if (username.value == "") {
-        username.value = "Enter Username";
-        username.style.color = "#a8b6c3";
-    }
-};
-
+if(document.getElementById("passwordError").innerHTML){
+    showErrorPassword.style.display = "inherit";
+    showErrorPassword.style.color = "red";
+    showErrorPassword.style.fontStyle = "italic";
+}
+else{
+    showErrorPassword.style.display = "none";
+}

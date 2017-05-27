@@ -10,7 +10,7 @@
 <body>
     <div class="container-fluid">
 
-        <div class="row">
+        <div class="all">
 
             <div class="col-sm-12 col-md-7">
                 <div class="panel panel-default">
@@ -24,26 +24,46 @@
 
                                <div class="form-group">
 
-                                   <label class="control-label col-sm-2">{{ field.label_tag }}</label>
-                                   <div class="col-sm-10"> {{ field }} </div>
+                                   <label class="control-label col-sm-2">{{field.label_tag}}</label>
+                                   <div class="col-sm-10"> {{field}} </div>
                                     <div class="col-sm-offset-2 col-sm-10" id ="error">
-                                       <span class="text-danger small">{{ field.errors }}</span>
+                                       <span class="text-danger small">{{field.errors}}</span>
                                    </div>
                                </div>
 
                             {% endfor %}
 
-  <h2>Pierakstīties sistēmā</h2>
-  <form method="post" action="/darba_laiks/login/">
-    {% csrf_token %}
-      <label>Lietotājvārds:</label>
-   <input type="text" name="username" value="">
-      <label>Parole:</label>
-      <input type="password" name="password" value="">
+                          <h2>Pierakstīties sistēmā</h2>
+                          <form method="post" action="/darba_laiks/login/">
+                            {% csrf_token %}
+                              <div class = "row">
+                              <label>Lietotājvārds:</label>
+                              <input type="text" name="username" value="">
+                              </div>
+                              <div class = "row">
+                              <label>Parole:</label>
+                              <input type="password" name="password" value="">
+                              </div>
 
-    <button type="submit">Login</button>
-  </form>
+                            <button type="submit" id="logIn">Pierakstīties</button>
+                          </form>
+                            <div id="showErrorUsername">Lietotājs ar šādu lietotājvārdu neeksistē</div>
+                            <div id = "showErrorPassword">Ievadītie dati nav korekti</div>
 
 
-{{x }}
-{{ y }}
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="errorReceived">
+        <div id="usernameError">{{x}}</div>
+        <div id="passwordError">{{ y }}</div>
+    </div>
+
+    <script type="text/javascript" src="{% static 'JavaScript/LogIn.js' %}"></script>
+</body>

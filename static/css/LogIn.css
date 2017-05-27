@@ -8,10 +8,11 @@ li{
     list-style-type: none;
 }
 
-.row{
+.all{
     border: solid 0.5px #29abe2;
     margin-top: 7em;
-    margin-left: 30em;
+    margin-left: 30%;
+    margin-right: 40%;
     width: 500px;
     background-color: white;
     padding-top: 2em;
@@ -63,4 +64,8 @@ li{
     height: 30px;
     border-radius: 7px;
     border-width: 1px;
+}
+
+#errorReceived{
+    font-size: 0;
 }

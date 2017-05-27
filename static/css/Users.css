@@ -1,24 +1,4 @@
-#userList{
-    font-weight: bold;
-    color: black;
-}
 
-.img{
-    width: 180px;
-    height: 180px;
-}
-
-.createButton{
-    width: 200px;
-    height: 30px;
-    background-color:  #29abe2;
-    font-size: 16px;
-    border-color: #29abe2;
-    border-width: 1.5px;
-    margin-top:0.5em;
-    margin-left: 8.5em;
-    margin-bottom: 3em;
-}
 
 @import url(https://fonts.googleapis.com/css?family=Roboto);
 
@@ -85,10 +65,7 @@ div.userBox img {
 
 p.description {
   color: #777;
-  padding: 15px 15px 10px 15px;
   text-align: center;
-
-
 }
 
 div.clear{
@@ -155,6 +132,26 @@ p.information{
 }
 
 
+#userList{
+    font-weight: bold;
+    color: black;
+}
+
+.img{
+    width: 200px;
+    height: 200px;
+}
+
+#createButton{
+    width: 200px;
+    height: 40px;
+    background-color:  #29abe2;
+    font-size: 16px;
+    border-color: #29abe2;
+    border-radius: 0;
+
+}
+
 .fill{
     margin-left: 20px;
 }
@@ -206,6 +203,21 @@ p.information{
   padding-right:20px;
 }
 
-/*.allUsername{
+.allUsername{
     font-size:0;
+}
+
+.userFull{
+    margin-left:1em;
+}
+
+.oneButton{
+  background-color: white;
+  outline:none;
+  border: 1px solid #DCDCDC;
+  font-style: italic;
+}
+
+#buttons{
+    margin-left: 0.2em;
 }
