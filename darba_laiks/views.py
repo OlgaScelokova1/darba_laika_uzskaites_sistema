@@ -1101,17 +1101,27 @@ def virsstundas(request):
             lidz_virsstundas = request.POST.get("lidz-virsstundas")
             komentars_virsstundas = request.POST.get("komentars-virsstundas", "")
 
-            Virsstundas.objects.create(
-                lietotajs=request.user,
-                datums=datums_virsstundas,
-                no=no_virsstundas,
-                lidz=lidz_virsstundas,
-                komentars=komentars_virsstundas,
-            )
+            parbaude=Atstrada.objects.filter(lietotajs=lietotajs, datums=datums_virsstundas, no__gte=no_virsstundas, lidz__lte=lidz_virsstundas)
+            if parbaude:
+                error= "sis laiks jau ir atzimets ka atsradasanas laiks"
+                context={
+                    'error': error,
+                    'atlasiti_dati': atlasiti_dati,
+                }
+                return render(request, 'virsstundas.html', context)
 
-            context = {'atlasiti_dati': atlasiti_dati,
+            else:
+                Virsstundas.objects.create(
+                    lietotajs=request.user,
+                    datums=datums_virsstundas,
+                    no=no_virsstundas,
+                    lidz=lidz_virsstundas,
+                    komentars=komentars_virsstundas,
+                )
+
+                context = {'atlasiti_dati': atlasiti_dati,
                        }
-            return render(request, 'virsstundas.html', context)
+                return render(request, 'virsstundas.html', context)
 
         elif datums_no_virsstundas_atlasit:
             lietotajs = request.user
