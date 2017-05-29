@@ -40,26 +40,25 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{% url 'darba_laiks:darba_laiks' %}">Mans darba laiks</a>
+            <a id="my" class="navbar-brand" href="{% url 'darba_laiks:darba_laiks' %}">Mans darba laiks</a>
         </div>
 
     <!-- Items -->
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li class="">
-                    <a href="{% url 'darba_laiks:darbinieki' %}">
+                    <a id= "all" href="{% url 'darba_laiks:darbinieki' %}">
                         <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>&nbsp;
                         Visi
                     </a>
                 </li>
                 <li class="">
-                    <a href="{% url 'darba_laiks:saglabatie' %}">
+                    <a id= "saved" href="{% url 'darba_laiks:saglabatie' %}">
                         <span class="glyphicon glyphicon-star" aria-hidden="true"></span>&nbsp;
                         Saglabātie
                     </a>
                 </li>
             </ul>
-
 
           <ul class="nav navbar-nav navbar-right">
 

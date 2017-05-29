@@ -6,7 +6,7 @@ var documentWeek = document.getElementById("WeekDate").innerHTML;
 
 if (thisWeek != documentWeek){
     $(".OneDay").slideUp(1).delay(200).slideDown('fast');
-} // ja nav šī nedēļa, tad, pāršķirot lapu, efekts
+} // ja nav šī nedēļa, tad, pāršķirot nedēļu, efekts
 
 var monday = document.getElementById("mondayReceived").innerHTML;
 var tuesday = document.getElementById("tuesdayReceived").innerHTML;
@@ -15,7 +15,7 @@ var thursday = document.getElementById("thursdayReceived").innerHTML;
 var friday = document.getElementById("fridayReceived").innerHTML;
 var saturday = document.getElementById("saturdayReceived").innerHTML;
 var sunday = document.getElementById("sundayReceived").innerHTML;
-
+//tiek ierakstīti mainīgajos visi nedēļas datumi, kas tiek saņemti
 
 
 function datesInDateFormat(){
@@ -63,7 +63,6 @@ function formatAllDates(){
     formattedDateFriday = formatDate(friday);
     formattedDateSaturday = formatDate(saturday);
     formattedDateSunday = formatDate(sunday);
-
 } // funkcija, kas citos mainīgajos ievieto noformētus nedēļas datumus
 
 formatAllDates();
@@ -84,7 +83,7 @@ function addDays(date, days) {
     var result = new Date(date);
     result.setDate(result.getDate() + days);
     return result;
-} // funckija, kas pievieno dienas konkrētajai dienai
+} // funckija, kas pievieno dienas padotajai dienai
 
 var addMonday;
 var addTuesday;
@@ -145,10 +144,8 @@ function setValuesForFormDown(){
     document.getElementById("sundaySendDown").value = removeSunday;
 } // funkcija, kas ievieto formā (pogā uz leju) vērtības priekš iepriekšējās nedēļas
 
-
 setValuesForFormUp();
 setValuesForFormDown();
-
 
 function getWeek(date) {
    date.setHours(0, 0, 0, 0);
@@ -178,8 +175,6 @@ function setMonthAndWeek() {
 }// ar šo funkciju dokumenā tiek ierakstīts mēnesis un nedēļa pēc kārtas
 
 setMonthAndWeek();
-console.log(monday);
-
 
 var dateMonday = new Date(); // pagaidām pirmdienā ir šodienas datums
 
@@ -219,9 +214,7 @@ function getDates(){
     } //parveidoju datuma formu no html un ielieku katru dienu masiva date2[]
 } // ar šo funkciju masīvā date2[] tiek ierakstīti visi datumi, kas ir attēloti attiecīgajā nedēļā
 
-
 getDates();
-
 
 if(FillBox){
     $(document).click(function(event){
@@ -268,10 +261,6 @@ if(FillBox){
     }); // kastītes novietojums un default vērtības
 
 }
-
-// $(document).on('click', 'li.ui-menu-item, a.ui-corner-all', function(e) {
-//     e.stopPropagation();
-// });
 
 $(document).on('click', 'li.ui-menu-item', function(e) {
     e.stopPropagation();
@@ -370,12 +359,6 @@ frm.submit(function () {
 var today;
 var forResize; // šis mainīgais tiks izmantots vēlāk, kad tiks mainīts ekrāna lielums
 
-//var mondayList = document.getElementById("MondayList");
-//var tuesdayList = document.getElementById("TuesdayList");
-//var wednesdayList = document.getElementById("WednesdayList");
-//var thursdayList = document.getElementById("ThursdayList");
-//var fridayList = document.getElementById("FridayList");
-
 var dayLists = document.getElementsByClassName("OneDay");
 
 
@@ -383,7 +366,6 @@ function getTodayDate(){
     today = new Date()
     var dd = today.getDate();
     var mm = today.getMonth()+1; //January is 0!
-
     var yyyy = today.getFullYear();
     if(dd<10){
         dd='0'+dd;
@@ -477,8 +459,7 @@ function setSlimiba (){
     var slimiba = document.getElementById("iemeslsList").querySelectorAll("#slimiba");
     //tiek ielikti visi, kur ir slimība
     offReasonDoc.innerHTML = "Slimība";
-
-
+    //description kastītē ierakstīts iemesls
 
     for ( p = 0 ; p<slimiba.length ; p++){
         if (slimiba[p].innerText == "True"){
@@ -493,14 +474,12 @@ function setSlimiba (){
     var sickDate = [];
     var sickFrom = [];
     var sickUntil = [];
-    console.log(laiks[0])
 
     for (p = 0 ; p < laiks.length ; p++) {
         sickDate[p] = laiks[p][m];
         sickFrom[p] = laiks[p][m+1].slice(0,5);
         sickUntil[p] = laiks[p][m+3].slice(0,5);
     } // saliek pa masiviem datumus un laikus, kad slimo
-    console.log(sickUntil[0]);
 
     var from = 0;
     var Until = 0;
@@ -514,10 +493,11 @@ function setSlimiba (){
         Until = sickUntil[a].slice(0,2);
         for (j = 0; j < (date2.length - 2) ; j ++){
             if (date == date2[j]){
-
+                //ja datums, kad slimo, sakrīt ar datumu,kas ir attiecīgajai dienai
                 if (OneDay[j].id.startsWith("Mo")){
                         for(k = 0; k < 9 ; ){
                             if (tmp[k] == from){
+                                //ja atrasts darba laiks, kas sakrīt ar laiku no, tiek izpildīts cikls
                                 for ( m = from ; m < Until ;m++) {
                                     box[k].style.backgroundColor = '#ba1d79';
                                     offTime.innerHTML = sickFrom[a] + "-" + sickUntil[a] ;
@@ -526,6 +506,8 @@ function setSlimiba (){
                                     setColoredBox(box[k], laiks[a][0], from, Until, willWorkSick[a]);
                                     n++;
                                     k++;
+                                    //tiek piešķirts stils attiecīgajam laukam līdz brīdim, kas sasniegts laiks, līdz cikiem nebūs
+                                    // tiek piešķirtas vērtības description kastītei
                                 }
                             }
                             else k++;
@@ -1147,11 +1129,8 @@ function setColors(){
         else if (willWorkReason[i].innerHTML.startsWith('Cits')) {
             willWorkOther[s] = workDate[i].innerHTML + "  " + workFrom[i].innerHTML + "-" + workUntil[i].innerHTML;
             s++;
-        }
-    }
-
-
-
+        } // tiek izveidoti masīvi ar atstrādāšanas laikiem priekš description kastītes
+}
 
     OneDay = document.getElementsByClassName("OneDay");
     // masīvā tiek ielikts katras dienas bloks ar visiem datiem
@@ -1161,25 +1140,9 @@ function setColors(){
     setSlodze();
     setOther();
 
-
-
-
-}
-
+} // ar šo funkciju tiek iekrāsoti visi lauki.
 
 setColors();
-
-
-function setOffWork(willWork){
-    if(willWork){
-        offWork.innerHTML = willWork;
-    }
-    else {
-        offWork.innerHTML = "Nav norādīts";
-    }
-
-}
-
 
 var dateForm = document.getElementById("dateForm");
 var fromForm = document.getElementById("fromForm");
@@ -1194,7 +1157,7 @@ function setDeleteForm(date, from, Until){
 
 function setColoredBox(target, date, from, Until, willWork){
     target.style.color = "#ffffff";
-
+    //tiek padota kastīte, tai tiek piešķirta cita fonta krāsa
     $(target).click(function(event){
         deleteBox.style.display = "block";
         deleteBox.style.position = "absolute";
@@ -1225,15 +1188,16 @@ function setColoredBox(target, date, from, Until, willWork){
             $("#Fr" ).append($("#delete"));
             setDeleteForm(date, from, Until);
             FillBox.style.display = "none";
-         }
+         } // uzspiežot uz šīs kastītes, tagad tiks atvērta dzēst poga un netiks attēlota kavējumu aizpildāmā forma
     });
 }
 
-
+function setOffWork(willWork){
+    offWork.innerHTML = willWork;
+}
 
 var save = document.getElementById("Save");
 var inputReason = document.getElementById("InputReason");
-
 
 var sickInput = document.getElementById("Sick");
 var lectureInput = document.getElementById("Lecture");
@@ -1241,20 +1205,9 @@ var workFromHomeInput = document.getElementById("WorkFromHome");
 var workloadInput = document.getElementById("Workload");
 var otherInput = document.getElementById("Other");
 
-
-
-if(save){
-if(save.disabled){
-    save.style.backgroundColor = "grey";
-}
-}
-
-
 $(function(){
 $('[data-toggle = "tooltip" ]').tooltip();
 });
-
-
 
 if(FillBox){
     $('.DateField').datepicker({
@@ -1270,7 +1223,7 @@ if(FillBox){
         interval: 30,
         dynamic: true,
     });
-}
+} // tiek piešķirts datepicker un timepicker priekš kavēkjumu atzīmēšanas kastītes laukiem
 
 
 $('#InputUntil').on('input', function() {
@@ -1282,7 +1235,7 @@ $('#InputUntil').on('input', function() {
         else{
             until.style.borderColor = "#c7d8eb";
         }
-});
+}); // ja vērtība līdz ir mazāka par vērtību no, līdz parādās sarkans rāmis
 
 $('#InputFrom').on('input', function() {
         var from = document.getElementById("InputFrom");
@@ -1293,7 +1246,7 @@ $('#InputFrom').on('input', function() {
         else{
             until.style.borderColor = "#c7d8eb";
         }
-});
+}); // ja vērtība līdz ir mazāka par vērtību no, līdz parādās sarkans rāmis
 
 
 $('#AfterUntil').on('input', function() {
@@ -1305,7 +1258,7 @@ $('#AfterUntil').on('input', function() {
         else{
             until.style.borderColor = "#c7d8eb";
         }
-});
+}); // ja vērtība līdz ir mazāka par vērtību no, līdz parādās sarkans rāmis
 
 
 $('#AfterFrom').on('input', function() {
@@ -1317,18 +1270,11 @@ $('#AfterFrom').on('input', function() {
         else{
             until.style.borderColor = "#c7d8eb";
         }
-});
-
-
-
-
-console.log($(window).width());
+}); // ja vērtība līdz ir mazāka par vērtību no, līdz parādās sarkans rāmis
 
 window.onresize = function() {
     toggle();
 }
-console.log(forResize);
-console.log(dayLists);
 
 function toggle() {
     if ($(window).width()<768){
@@ -1344,16 +1290,15 @@ function toggle() {
             else{
                 for(i=1; i<dayLists.length; i++){
                     dayLists[i].style.display = "none";
-                    console.log(dayLists[i]);
                 }
                 dayLists[0].style.marginTop="-50px";
-                console.log(dayLists);
 
             }
             document.getElementById("Month").style.marginTop="-200px";
             document.getElementById("weekChange").style.marginLeft="50px";
 
-    }
+    } // ja ekrāna platums ir mazāks par 768, tiek attēlota tikai konkrētā diena, ja konkrētā diena ir brīvdiena, tiek attēlota pirmdiena
+
     else if ($(window).width()<995){
             if(forResize){
                 for (i=0; i<dayLists.length; i++){
@@ -1372,7 +1317,8 @@ function toggle() {
             }
             document.getElementById("Month").style.marginTop="0";
 
-    }
+    }// ja ekrāna platums ir mazāks par 995, tiek attēlota tikai konkrētā diena, ja konkrētā diena ir brīvdiena, tiek attēlota pirmdiena
+
     else if ($(window).width()<1200){
         document.getElementById("HolidayList").style.display="none";
         document.getElementById("Month").style.marginTop="0";
@@ -1385,7 +1331,8 @@ function toggle() {
         else{
             dayLists[0].style.marginTop="0";
         }
-    }
+    } // ja ekrāna platums ir mazāks par 1200, netiek attēlotas brīvdienas
+
     else {
         for(i=0; i<dayLists.length; i++){
             dayLists[i].style.display = "block";
@@ -1397,10 +1344,9 @@ function toggle() {
         else{
             dayLists[0].style.marginTop="0";
         }
-    }
+    } // citādāk tiek attēlots viss
 }
 
 toggle();
-
 
 });
