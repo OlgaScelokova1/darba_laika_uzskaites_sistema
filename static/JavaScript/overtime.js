@@ -164,7 +164,6 @@ $('#addForm').on('submit', function() {
 $('#fromInput').on('input', function() {
         var from = document.getElementById("fromInput");
         var until = document.getElementById("untilInput");
-
         if(from.value>until.value){
             until.style.borderColor = "red";
         }

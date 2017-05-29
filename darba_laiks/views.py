@@ -323,11 +323,16 @@ def darba_laiks(request): #personiga darba laika skata funkcija
 
                 if date: #tiek izmantots, ja lietotajs grib izmainit nedelu
                     datums=date
+                    lietotajs = request.user
+                    nebus = Darba_laiks.objects.filter(lietotajs=lietotajs)
+                    iemesls = Iemesls.objects.filter(lietotajs=lietotajs)
+                    atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
                     context = {'nebus': nebus,
                                'iemesls': iemesls,
                                'atstrada': atstrada,
                                'datums': datums,
                                }
+                    return render(request, "index_mobile.html", context)
 
                 elif datums_dzesanai: #ja tiek izmantota forma darba laika ieraksta dzesanai
                     no_dzesanai=request.POST.get("no-dzesanai")
@@ -344,6 +349,7 @@ def darba_laiks(request): #personiga darba laika skata funkcija
                                'atstrada': atstrada,
                                'datums': datums,
                                }
+                    return render(request, "index_mobile.html", context)
 
                 else: #ja lietotajs grib izveidot jaunu ierakstu darba laika
 
