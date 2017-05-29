@@ -11,7 +11,6 @@ if(document.getElementById("notAdmin")){
     $('.time').timepicker({
         timeFormat: 'HH:mm',
         interval: 30,
-        dynamic: true,
     });
 }
 
@@ -73,7 +72,6 @@ if(document.getElementById("searchField")){
     var save = document.getElementsByClassName("Save");
     var overtimeStatus = document.getElementsByClassName("status");
 
-    reason[0].style.display = "none";
 
     for (i=0; i<overtimeId.length; i++){
         for (k=0 ; k<receivedId.length ; k++){
@@ -186,9 +184,14 @@ $('#untilInput').on('input', function() {
             until.style.borderColor = "#c7d8eb";
         }
 
-
-var test = document.getElementsByClassName("commentText");
-console.log(test);
-console.log(test[0].style.color);
-
 });
+
+var errorMessage = document.getElementById("errorMessage")
+if(document.getElementById("error").innerHTML){
+    errorMessage.style.display = "block"
+    errorMessage.style.color = "red"
+    errorMessage.style.fontStyle = "italic"
+}
+else{
+    errorMessage.style.display = "none"
+}
