@@ -15,6 +15,7 @@ import datetime
 from datetime import timedelta
 from django_user_agents.utils import get_user_agent
 from django.contrib.auth import authenticate
+from django.contrib.auth import update_session_auth_hash
 
 
 
@@ -1221,6 +1222,7 @@ def lietotaja_profils(request): #lietotaja profila skats
                 lietotajs = request.user
                 password = request.POST.get("password-update")
                 lietotajs.set_password(password)
+                update_session_auth_hash(request, request.user) #kad lietotajs nomaina paroli, tas tiek automatiski autentificets sistema ar jauno paroli
                 lietotajs.save()
 
                 userprofile = UserProfile.objects.get(user=lietotajs)
