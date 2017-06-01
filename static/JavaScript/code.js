@@ -341,18 +341,18 @@ frm.submit(function () {
     }
 
 
-     $.ajax({
-         type: 'POST',
-         url: frm.attr('action'),
-         data: frm.serialize(),
-         success: function (data) {
-          location.reload();
-         },
-         error: function(data) {
-          location.reload();
-         }
-     });
-     return false;
+//     $.ajax({
+//         type: 'POST',
+//         url: frm.attr('action'),
+//         data: frm.serialize(),
+//         success: function (data) {
+//          location.reload();
+//         },
+//         error: function(data) {
+//          location.reload();
+//         }
+//     });
+//     return false;
 }); // kad uzspiež "submit", padotie dati tiek sūtīti uz datu bāzi, kur tie tiek apstrādāti
 
 
@@ -452,6 +452,7 @@ var offTime = document.getElementById("offTime");
 var offReasonDoc = document.getElementById('offReason');
 var offWork = document.getElementById('offWork');
 var inputId = document.getElementById("workId");
+
 
 
 function setSlimiba (){

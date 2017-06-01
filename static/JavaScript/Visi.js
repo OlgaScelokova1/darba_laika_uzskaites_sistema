@@ -76,6 +76,7 @@ var all = document.getElementsByClassName("oneReason"); // masīvā tiek ievieto
 
 var willWorkWhen = document.getElementById("offWork");
 var reason = document.getElementsByClassName("reason");
+console.log(reason);
 var workFrom = document.getElementsByClassName("atstradasNo");
 var workUntil = document.getElementsByClassName("atstradasLidz");
 var workDate = document.getElementsByClassName("atstradasKad");

@@ -15,6 +15,7 @@ import datetime
 from datetime import timedelta
 from django_user_agents.utils import get_user_agent
 from django.contrib.auth import authenticate
+from django.contrib.auth import update_session_auth_hash
 
 
 
@@ -1090,8 +1091,11 @@ def virsstundas(request): #funkcija, kas darbojas ar virsstundu skatu
                 lidz_virsstundas = request.POST.get("lidz-virsstundas")
                 komentars_virsstundas = request.POST.get("komentars-virsstundas", "")
 
-                parbaude=Atstrada.objects.filter(lietotajs=lietotajs, datums=datums_virsstundas, no__gte=no_virsstundas, lidz__lte=lidz_virsstundas)
-                if parbaude:
+                parbaude1 = Atstrada.objects.filter(lietotajs=lietotajs, datums=datums_virsstundas,
+                                                    no__gte=no_virsstundas, lidz__lte=lidz_virsstundas)
+                parbaude2 = Atstrada.objects.filter(lietotajs=lietotajs, datums=datums_virsstundas,
+                                                    no__gte=no_virsstundas, lidz__gte=lidz_virsstundas)
+                if parbaude1 or parbaude2:
                     error= "sis laiks jau ir atzimets ka atsradasanas laiks"
                     context={
                         'error': error,
@@ -1221,6 +1225,7 @@ def lietotaja_profils(request): #lietotaja profila skats
                 lietotajs = request.user
                 password = request.POST.get("password-update")
                 lietotajs.set_password(password)
+                update_session_auth_hash(request, request.user) #kad lietotajs nomaina paroli, tas tiek automatiski autentificets sistema ar jauno paroli
                 lietotajs.save()
 
                 userprofile = UserProfile.objects.get(user=lietotajs)
