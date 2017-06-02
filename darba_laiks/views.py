@@ -298,6 +298,7 @@ def darba_laiks(request): #personiga darba laika skata funkcija
                 atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
 
 
+
                 context = {'nebus': nebus,
                            'iemesls': iemesls,
                            'atstrada': atstrada,
@@ -315,6 +316,7 @@ def darba_laiks(request): #personiga darba laika skata funkcija
                 lidz = request.POST.get("timeWillEnd")
 
                 datums_dzesanai=request.POST.get("datums-dzesanai")
+                date2 = request.POST.get("date2")
 
                 lietotajs=request.user
                 nebus=Darba_laiks.objects.filter(lietotajs=lietotajs)
@@ -343,7 +345,7 @@ def darba_laiks(request): #personiga darba laika skata funkcija
                     nebus = Darba_laiks.objects.filter(lietotajs=lietotajs)
                     iemesls = Iemesls.objects.filter(lietotajs=lietotajs)
                     atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
-                    datums = datetime.date.today()
+                    datums = request.POST.get("date3")
 
                     context = {'nebus': nebus,
                                'iemesls': iemesls,
@@ -352,9 +354,12 @@ def darba_laiks(request): #personiga darba laika skata funkcija
                                }
                     return render(request, "index_mobile.html", context)
 
-                else: #ja lietotajs grib izveidot jaunu ierakstu darba laika
+                elif date2:#ja lietotajs grib izveidot jaunu ierakstu darba laika
+                    nebus = Darba_laiks.objects.filter(lietotajs=lietotajs)
+                    iemesls = Iemesls.objects.filter(lietotajs=lietotajs)
+                    atstrada = Atstrada.objects.filter(lietotajs=lietotajs)
 
-                    iemesls = request.POST.get("reason")
+                    iemesls1 = request.POST.get("reason")
                     a=Darba_laiks.objects.create(
                         lietotajs = request.user,
                         no=request.POST.get("timeFrom", ""),
@@ -366,39 +371,39 @@ def darba_laiks(request): #personiga darba laika skata funkcija
                     darba_laiks_id=a.id
 
 
-                    if iemesls=='Slimiba':
+                    if iemesls1=='Slimiba':
                          b=Iemesls.objects.create(
                              lietotajs=request.user,
                              darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
                              slimiba='True',
                          )
-                    elif iemesls=='Atvalinajums':
+                    elif iemesls1=='Atvalinajums':
                          b=Iemesls.objects.create(
                              lietotajs=request.user,
                              darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
                              atvalinajums='True',
                          )
 
-                    elif iemesls=='Lekcijas':
+                    elif iemesls1=='Lekcijas':
                          b=Iemesls.objects.create(
                              lietotajs=request.user,
                              darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
                              lekcijas='True',
                          )
 
-                    elif iemesls=='Darbs no majam':
+                    elif iemesls1=='Darbs no majam':
                          b=Iemesls.objects.create(
                              lietotajs=request.user,
                              darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
                              darbs_no_majam='True',
                          )
-                    elif iemesls=='Mazaka slodze':
+                    elif iemesls1=='Mazaka slodze':
                          b=Iemesls.objects.create(
                              lietotajs=request.user,
                              darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
                              mazaka_slodze='True',
                          )
-                    else:
+                    elif iemesls1=='Cits':
                         b=Iemesls.objects.create(
                             lietotajs=request.user,
                             darba_laiks=Darba_laiks.objects.get(id=darba_laiks_id),
@@ -416,8 +421,13 @@ def darba_laiks(request): #personiga darba laika skata funkcija
                             lidz=request.POST.get("timeWillEnd", ""),
                         )
 
-                    context = {
+                    datums=date2
+                    context = {'nebus': nebus,
+                               'iemesls': iemesls,
+                               'atstrada': atstrada,
+                               'datums': datums,
                                }
+
                     return render(request, "index_mobile.html", context)
 
     else:

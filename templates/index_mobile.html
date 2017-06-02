@@ -60,7 +60,7 @@
 
 
         <div class = "row" id = "FillRow">
-            <form class = "container" action="/darba_laiks/" id = "Fill">{% csrf_token %}
+            <form class = "container" method="post" action="/darba_laiks/" id = "Fill">{% csrf_token %}
                 <div class = "container" id ="data">
 
                     <p id="Time">Laiks:</p>
@@ -87,6 +87,7 @@
                     <p class = "SecondLine">-</p>
                     <input class = "SecondLine TimeField" id = "AfterUntil"  name = "timeWillEnd">
                 </div>
+                 <input type="hidden" name="date2" value = "{{ datums }}">
                 <input type = "submit" value = "Saglabāt" id="Save">
             </form>
         </div>
@@ -129,6 +130,7 @@
         <input  type= "hidden" id="dateForm" name="datums-dzesanai" value = "">
         <input  type= "hidden" id="fromForm" name="no-dzesanai" value = "">
         <input  type= "hidden" id="untilForm" name="lidz-dzesanai" value = "">
+        <input type="hidden" name="date3" value = "{{ datums }}">
         <input type = "submit" value = "Dzēst" id = "deleteButton">
     </form>
 
